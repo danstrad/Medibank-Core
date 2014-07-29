@@ -1,0 +1,50 @@
+DESIGN:
+	multitouch - pan? zoom could cause problems. Just zoom on boxes?
+	
+OPTIMIZATION:
+	Pooling?
+	Too many videos on screen at once is slowing it down. (Only show video in big home groups? Would still be displayed at scale 0 though)
+	blendmode (invertex boxes) causing jitters? Use mask instead
+	
+stop coords blowing out?
+
+Secondary motion on orange and blue?
+
+
+cacheAsBitmap when animation finished?
+
+Put a cap on zMoveFactor effect?
+
+Videos still going in the background with Infographics
+also BackgroundImage
+
+Make extra storyHeaders expand instantly to avoid animation slowdown
+
+
+DONE
+----------------------------------------------------------------
+Floaters come out slower and staggered
+Stagger orange
+Size variation in story headers
+Camera more fluid - slower zoom out
+Header anims - all shrink, then move, then grow  - to avoid overlaps
+make the default camera position for a new story not grid aligned, so the screen doesnt cut off at the edge of a box
+Scrolling off the edge pulls you back. More smooth and effortless scrolling all around. Flick screen = scroll for a while
+Images scrolling within their box - based on z for purple, but also in other styles
+inverse text over an image is not great
+Purple animation when clicking a story header - bring forward & turn white, then grow, then shoot out articles. Move to static positions based on the type of content they're going to show
+story headers grow and move
+Blue story header roll out the end
+camera area doesn't account for an expanded header. recalc camera on click? just buffer it out more?
+Quote text is messed up when in a rectangular box
+Exit anims. Fold back in, shrink, etc
+If idle for a while, return to start
+looping video sucks. need two streams
+Alternate AnimationData for small home buttons?
+gentle autoscroll panning when a new story folds out
+When showing a chapter, keep the home buttons further in screen in their initial position - Not working because panArea won't allow for it. Inflate bounds of big home buttons?
+Put a wait on the story headers expanding after new home buttons appear
+Zoom out when scrolling?
+Back button from fullscreen video
+
+

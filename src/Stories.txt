@@ -1,0 +1,78 @@
+Last entry in Chapter 3 still to come
+
+give 1800respect image a border/background
+
+allow overriding the dir for each box in Sprouting
+
+Feature versions
+
+Gen Better video?
+
+
+are cacheAsBitmap and rounded camera movements needed?
+
+
+
+art1:
+	D, F, G infographics
+	
+art2:
+	Background image
+	D, F, G infographics
+	E - infographic included in content?
+	
+	
+doc1:
+	Image for F
+	Text on a light image doesn't show up well
+	
+doc2:
+	Image for F, G
+	
+doc3:
+	Image for B, F, G
+	
+doc4:
+	Image for F
+	
+doc5:
+	images and quote text type for 3 quotes (B, F, G) (if using this option)
+	D - delete "source"?
+	
+doc6:
+	Image for B
+	What is B meant to say?
+
+doc7:
+	Images for boxes B, F, G higher res images requested?
+	Images have text over them already, and B has overlay text to go on top as well
+	
+doc8:
+	Colored background for Box B, F
+	
+doc9:
+	Image for B, F, G
+	
+
+prof1:
+	Image for B
+
+prof2:
+	
+prof3:
+	Image is pretty low res
+
+prof4:
+	
+prof5:
+	
+prof6:
+	No image?
+
+prof7:
+	
+prof8:
+	
+prof9:
+	
+	
