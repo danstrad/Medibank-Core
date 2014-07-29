@@ -1,0 +1,1003 @@
+<BoxesData>
+	<BackgroundColour>#73b427</BackgroundColour>
+	
+	<Chapter>
+		<Title>HOW WE’RE ENCOURAGING A HEALTHIER NATION.</Title>
+		<BackgroundColour>#653179</BackgroundColour>
+		<Story>Chapter 1</Story>		
+	</Chapter>	
+	
+	<Chapter>
+		<Title>HOW WE’RE CREATING BETTER HEALTHCARE CONNECTIONS.</Title>
+		<BackgroundColour>#ff9330</BackgroundColour>
+		<Story>Chapter 2</Story>
+	</Chapter>
+	
+	<Chapter>
+		<Title>HOW WE’RE BUILDING AN EFFECTIVE HEALTHCARE SYSTEM.</Title>
+		<BackgroundColour>#00a2e0</BackgroundColour>
+		<Story>Chapter 3</Story>
+	</Chapter>
+	
+		
+	
+	<Story id="Chapter 1">
+		<Box id="A">
+			<Text>Is it time to unplug?</Text>
+			<Story>art1</Story>
+		</Box>
+		<Box id="B">
+			<Text>Delivering quality care across New Zealand</Text>
+			<Story>doc1</Story>
+		</Box>
+		<Box id="C">
+			<Text>To go to the doctor? Or, not to go to the doctor?</Text>
+			<Infographic>info6</Infographic> <!-- Healthline -->
+		</Box>				
+		<Box id="D">
+			<Text>Creating a system for Better Health</Text>
+			<Story>doc4</Story>
+		</Box>		
+		<Box id="E">
+			<Text>Funding Aboriginal and Torres Strait Islander health and wellbeing programs</Text>
+			<Story>prof2</Story>
+		</Box>
+		<Box id="F">
+			<Text>Walking side-by-side with Heart Foundation</Text>
+			<Story>doc9</Story>
+		</Box>
+		<Box id="G">
+			<Text>Meet Jayde, Yalari scholarship recipient</Text>
+			<Story>prof3</Story>
+		</Box>
+		<Box id="H">
+			<Text>BLIND SPORTS VICTORIA 2014 - $10,000 Grant Recipient for Victoria</Text>
+			<Story>prof5</Story>
+		</Box>
+		<Box id="I">
+			<Text>Burdekin Police Citizen Youth Welfare Association - 2014 Grant Recipient for Queensland</Text>
+			<Story>prof6</Story>
+		</Box>
+		<Box id="J">
+			<Text>Taking action on reconciliation</Text>
+			<Story>doc6</Story>
+		</Box>
+		<Box id="K">
+			<Text>Bankstown Woman’s Community Garden - 2014 Grant Recipient for New South Wales</Text>
+			<Story>prof7</Story>
+		</Box>
+		<Box id="L">
+			<Text>Whyalla Men's Shed - 2014 Grant Recipient for South Australia</Text>
+			<Story>prof8</Story>
+		</Box>
+		<Box id="M">
+			<Text>We’re embracing a healthier way of working</Text>
+			<Story>prof9</Story>
+		</Box>
+		<Box id="N">
+			<Text>Making healthcare affordable.</Text>
+			<Infographic>info3</Infographic> <!-- Affordable -->
+		</Box>		
+		<Box id="O">
+			<Text>Healthy Weight for Life</Text>
+			<Story>doc5</Story>
+		</Box>		
+		<Box id="P">
+			<Text>Fair Game sports equipment - 2014 Community Fund Grant Recipient for Western Australia</Text>
+			<Story>prof4</Story>
+		</Box>
+		<Box id="Q">
+			<Text>1800 RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault</Text>
+			<Story>doc8</Story>
+		</Box>		
+		
+		<Animation type="Floating" direction="90" randomSeed="24">
+			<!-- 
+			<Box id="B" size="1.1666" />
+			<Box id="D" size="0.666" />
+			<Box id="E" size="0.8333" />
+			 -->
+		</Animation>
+	</Story>
+	
+	
+	<Story id="Chapter 2">	
+		<Box id="A">
+			<Text>Delivering quality care across New Zealand</Text>
+			<Story>doc1</Story>
+		</Box>
+		<Box id="I">
+			<Text>Meet Leith, Medibank nurse</Text>
+			<Story>prof1</Story>
+		</Box>
+		<Box id="O">
+			<Text>How far is too far for specialist healthcare?</Text>
+			<Infographic>info1</Infographic> <!-- Anywhere Healthcare -->
+		</Box>
+		<Box id="B">
+			<Text>Meeting the mental health challenge</Text>
+			<Story>doc2</Story>
+		</Box>
+		<Box id="C">
+			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians</Text>
+			<Story>doc3</Story>
+		</Box>		
+		<Box id="P">
+			<Text>Making advice and care more accessible.</Text>
+			<Infographic>info2</Infographic> <!-- Accessible -->
+		</Box>
+		<Box id="J">
+			<Text>Fair Game sports equipment - 2014 Community Fund Grant Recipient for Western Australia</Text>
+			<Story>prof4</Story>
+		</Box>
+		<Box id="D">
+			<Text>Creating a system for Better Health</Text>
+			<Story>doc4</Story>
+		</Box>			
+		<Box id="E">
+			<Text>Healthy Weight for Life</Text>
+			<Story>doc5</Story>
+		</Box>		
+		<Box id="K">
+			<Text>BLIND SPORTS VICTORIA 2014 - $10,000 Grant Recipient for Victoria </Text>
+			<Story>prof5</Story>
+		</Box>
+		<Box id="Q">
+			<Text>Making healthcare affordable.</Text>
+			<Infographic>info3</Infographic> <!-- Affordable -->
+		</Box>
+		<Box id="F">
+			<Text>Rewarding better health with flybuys and Medibank</Text>
+			<Story>doc7</Story>
+		</Box>
+		<Box id="L">
+			<Text>Burdekin Police Citizen Youth Welfare Association - 2014 Grant Recipient for Queensland</Text>
+			<Story>prof6</Story>
+		</Box>
+		<Box id="R">
+			<Text>Contributing to communities.</Text>
+			<Infographic>info4</Infographic> <!-- Communities -->
+		</Box>
+		<Box id="G">
+			<Text>1800 RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault</Text>
+			<Story>doc8</Story>
+		</Box>
+		<Box id="M">
+			<Text>Bankstown Woman’s Community Garden - 2014 Grant Recipient for New South Wales</Text>
+			<Story>prof7</Story>
+		</Box>
+		<Box id="H">
+			<Text>Walking side-by-side with Heart Foundation</Text>
+			<Story>doc9</Story>
+		</Box>
+		<Box id="S">
+			<Text>To go to the doctor? Or, not to go to the doctor?</Text>
+			<Infographic>info6</Infographic> <!-- Healthline -->
+		</Box>
+		<Box id="N">
+			<Text>Whyalla Men's Shed - 2014 Grant Recipient for South Australia </Text>
+			<Story>prof8</Story>
+		</Box>
+
+		<Animation type="Sprouting" direction="40" randomSeed="30">
+			<Box id="A" size="0.666" />
+			<Box id="C" size="1.5" />
+			<Box id="D" size="1.5" />
+			<Box id="F" size="0.5" />
+		</Animation>
+	</Story>
+	
+	
+	<Story id="Chapter 3">
+		<Box id="A">
+			<Text>Meet Leith, Medibank nurse</Text>
+			<Story>prof1</Story>
+		</Box>
+		<Box id="B">
+			<Text>Driving discussion about mental health reform</Text>
+			<Story>art2</Story>
+		</Box>
+		<Box id="C">
+			<Text>Meeting the mental health challenge</Text>
+			<Story>doc2</Story>
+		</Box>		
+		<Box id="F">
+			<Text>Growing with Australia.</Text>
+			<Infographic>info5</Infographic> <!-- Timeline -->
+		</Box>
+		<Box id="D">
+			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians</Text>
+			<Story>doc3</Story>
+		</Box>
+
+		<Animation type="Sliding" direction="90" slidingWidth="2">
+			<Box id="C" size="2" />
+			<Box id="F" size="2" />
+		</Animation>
+		<Animation type="Sliding" small="true" direction="90" slidingWidth="1">
+		</Animation>
+	</Story>		
+	
+	
+	
+	
+	
+	<Story id="art1">
+		<Background>
+			<Image url="assets/art1/Background.png" />
+		</Background>
+		
+		<Box id="C">
+			<Text type="Quote">A new Medibank study finds we’re averaging nine hours a day looking at computers, TVs, smartphones and tablets. How does this impact our health?</Text>
+		</Box>
+		<Box id="D">
+			<Text type="Label">Infographic</Text>
+		</Box>
+		<Box id="E">
+			<Text type="Content">Australian adults are spending more time in front of screens than sleeping, according to a new community survey commissioned by Medibank.
+Medibank Health Check – Is it time to unplug? is the first in a series of community surveys which will examine Australians’ views on emerging health issues.
+For this study, 1,505 Australians were asked about their views on screen usage and its impact on health.
+A clear conclusion has been found: people suspect there is something concerning about the amount of time they spend in front of screens, but they are uncertain about exactly what the health impact is.
+[b]Snapshot of screen use[/b]
+The key findings of the study include:
+• People spend a lot of time on screens. Respondents estimated they spend an average of six hours a day in front of screens for leisure, and a further three hours for work or study. When combined, this is more than the recommended eight hours for sleep.
+• Most of this time is in front of computers. About 40% of this time is in front of computers, with TV taking the next biggest time share at 31%.
+• There is uncertainty about health risks. While 62% of respondents know that reduced physical activity is a consequence of too much screen time, almost half of those surveyed failed to recognise the likelihood of other health risks, which include obesity, attention difficulty, low self-esteem and depression.
+
+[b]What influences screen use?[/b]
+• Age influences which screens you’re using. In general terms, the older you are the less time you are likely to spend in front of TVs and smartphones. The opposite is generally true for computers – the older you are, the more time you are likely to spend in front of computers.
+• Screen time is consistent across Australia. The study found little difference in screen use across states and only minor difference between rural versus metro locations.
+• Higher income links to more screens, but not necessarily more screen time. Households with higher income are more likely to have a larger number of screens available within the home. However, the amount of time spent in front of screens does not vary significantly by income.
+[b]What does this mean?[/b]
+Medibank spokesman Dr Ian Boyd said some of the key results in the Medibank Health Check survey were concerning.
+“It is worrying that adults are spending more time in front of screens than sleeping, and while they want to change their behaviour they don’t seem to know what to do about it,” he said.
+“More than 60% of respondents with children agreed that screen time affects their family time, and their family’s health, and 57% of these want to cut back on screen time.
+“And one in five say that if they weren’t in front of a screen they would be involved in a physical activity instead such as going for a run, riding a bike or going for a walk.”
+Dr Boyd said that enough concern had been raised about screen-time to warrant further research and education to improve community health outcomes.
+“There needs to be much greater community education is needed around what are safe levels of screen time and more programs are needed to encourage people to unplug and get involved in other recreational activities,” he said.
+“The benefits of unplugging and spending more time being active are clear for both adults and children, and we need to be encouraging this before people accept our over-use of screens as the norm.”
+Read the full Medibank Health Check – is it time to unplug? report for more information.</Text>
+		</Box>
+		<Box id="F">
+			<Text type="Label">Infographic</Text>
+		</Box>
+		<Box id="G">
+			<Text type="Label">Infographic</Text>
+		</Box>
+		
+		
+		<Animation type="Floating" direction="90" randomSeed="41" >
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="2.5" height="2" />
+			<Box id="E" width="3" height="2.5" />
+			<Box id="F" size="0.8333" />
+			<Box id="G" size="0.8333" />			
+		</Animation>
+	</Story>
+	
+	<Story id="art2">
+		<Box id="C">
+			<Text type="Quote">Mental illness is a significant and growing challenge for Australia, with Medibank research revealing the overall cost of supporting people with a mental illness across the nation exceeds $28.6 billion each year – four times previous estimates.</Text>
+		</Box>
+		<Box id="D">
+			<Text type="Label">Infographic</Text>
+		</Box>
+		<Box id="E">
+			<Text type="Content">Released in May 2013 by Medibank and leading management consulting firm, The Nous Group, the compelling research paper – The Case for Mental Health Reform in Australia – provided an in-depth review of healthcare expenditure and system design. The research:
+•	Provided a complete picture of the direct financial costs of supporting people with a mental illness in Australia 
+•	Examined the structure of the current Australian mental health system
+•	Reviewed domestic and international examples of how integrated approaches to mental healthcare and social services deliver better health outcomes and a better experience for patients, as well as improved cost effectiveness.
+[b]Getting the complete picture[/b]
+Medibank and Nous Group’s research looked at whole-of-system expenditure, including the activities that lie outside hospital services and community and public health services. 
+The report highlighted that although both policy attention and new funding are being directed towards mental health, there is still a large number of mentally ill people who fall through the gaps and don’t receive appropriate care. It also identified fragmentation and overlap among a wide variety of bodies responsible for funding and budgets, including the Australian Government, state governments, private health insurers, the corporate sector and consumers – resulting in inefficient spending and driving up costs.
+[b]Taking the lead in mental health reform[/b]
+Though the report identified significant challenges facing Australia’s mental health care system, it also highlighted an unprecedented opportunity for Australia to lead the world in end-to-end mental health system redesign, delivering better outcomes at a lower cost. 
+The report suggested that by adopting an integrated approach, Australia can provide the most effective care for those suffering from mental illness and set the standard for best practice mental health care across the globe.
+[b]From talking the talk to walking the walk[/b]
+Demonstrating commitment to the cause, in November 2013 Medibank partnered with beyondblue to host a roundtable involving more than 40 of Australia’s leading thinkers in mental health, health and social services. Based on the insights and discussions at the workshop, Medibank and beyondblue published the report, Australia’s Mental Health System – can we achieve generational change?
+Medibank has since taken the outcomes of the research and roundtable event to inform a submission to the National Mental Health Commission – the government agency responsible for building a better mental health system – as part of Medibank’s mission to take the lead on policy reform in mental health.</Text>
+		</Box>
+		<Box id="F">
+			<Text type="Label">Infographic</Text>
+		</Box>
+		<Box id="G">
+			<Text type="Label">Infographic</Text>
+		</Box>		
+		
+		<Animation type="Sliding" direction="180" randomSeed="41" slidingWidth="2.5">
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="2.5" height="2" />
+			<Box id="E" width="2.5" height="3" />
+			<Box id="F" size="0.8333" x="1.6666" y="2.0888" />
+			<Box id="G" size="0.8333" x="1.6666" y="3.911" />			
+		</Animation>
+	</Story>
+	
+	<Story id="doc1">
+		<Box id="B">
+			<Image url="assets/doc1/doc1 Delivering quality care across New Zealand IMAGE.jpg" />
+			<Text type="Splash">“I get fantastic care from my team of carers; I can’t fault it.”</Text>
+		</Box>
+		<Box id="C">
+			<Text type="Quote">Every day, all over New Zealand, Medibank's Homecare Services help make life easier for people in need. From cooking and cleaning, to help with showering and eating, to developing personal skills, Medibank carers provide tailored help to ensure people, like Grant, live safe and comfortable lives.</Text>
+		</Box>
+		<Box id="D">
+			<Text type="Splash">Medibank is supporting Grant on his Road to Rio</Text>
+		</Box>
+		<!-- <Box id="F">
+			<Image url="assets/doc1/doc1 Delivering quality care across New Zealand IMAGE.jpg" />
+		</Box> -->
+		<Box id="E">
+			<Text type="Content">Grant had always been very active, hiking and camping with the scouts, but a diving accident in 1989 broke his neck and left him with tetraplegia. 
+Now, with the help of his carers, Grant stays active with different sports and activities, including abseiling, blo-karting and river rafting. “If it is possible for me to do it, I will!”
+Through Medibank Homecare Services, Grant receives 10 to 12 hours of care each day ranging from getting up and dressed in the morning, to helping out with the chores, to simply enjoying the company of his carers. 
+Testament to his positive spirit, Grant hopes to represent New Zealand in target shooting at the 2016 Paralympic Games, and Medibank is helping him get there by sponsoring Grant’s Road to Rio.</Text>
+		</Box>
+		
+		<Animation type="Floating" direction="90" randomSeed="41">
+			<Box id="B" width="2.5" height="4.444" /> <!-- 1152, 2048  1.77777 -->
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="F" size="0.8333" x="1.6666" y="2.0888" />
+			<Box id="E" width="3" height="2.5" />
+		</Animation>
+		<Animation type="Sprouting" direction="90" randomSeed="41">
+			<Box id="B" width="2.5" height="4.444" /> <!-- 1152, 2048  1.77777 -->
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="F" size="0.8333" x="1.6666" y="2.0888" />
+			<Box id="E" width="3" height="2.5" />
+		</Animation>
+	</Story>
+	
+	<Story id="doc2">
+		<Box id="B">
+			<Text type="Label">Infographic</Text>
+		</Box>
+		<Box id="C">
+			<Text type="Quote">Mental health is an issue close to the heart of Medibank and we believe Australia has an unprecedented opportunity to meet the mental health challenge, delivering better outcomes at a lower cost.</Text>
+		</Box>
+		<!-- <Box id="F">
+			<Image url="assets/doc1/doc1 Delivering quality care across New Zealand IMAGE.jpg" />
+		</Box> -->
+		<Box id="D">
+			<Text type="Splash">Australia has an unprecedented opportunity to meet the mental health challenge.</Text>
+		</Box>
+		<!-- <Box id="G">
+			<Image url="assets/doc1/doc1 Delivering quality care across New Zealand IMAGE.jpg" />
+		</Box> -->
+		<Box id="E">
+			<Text type="Content">Australia has an unprecedented opportunity to meet the mental health challenge.
+A mental health system with:
+•	Timely, affordable and equitable access to mental health services
+•	Fewer unnecessary public hospital admissions
+•	Better care coordination for consumers of mental health services
+•	Efficient expenditure on quality mental health care
+•	Services that address skills shortages and provide 24/7 care.
+But major system changes are needed to get the best outcomes – from detection and diagnosis to treatment and ongoing recovery.
+At Medibank we deliver a range of evidence-based programs that give Australians 24/7 access to trained mental health professionals via online, telephone and face-to-face channels, including:
+•	Care coordination and counselling
+•	Mental health triage 
+•	Relapse prevention
+•	Occupational health medicine 
+•	Suicide prevention follow-up and support 
+•	Return to work programs 
+•	Mental health services for the justice system. 
+Demonstrating our commitment to better mental health, we also partner with like-minded organisations such as beyondblue to influence mental health policy and reform, and ultimately provide better care and life outcomes for all Australians.</Text>
+		</Box>
+		
+		<Animation type="Sprouting" direction="90" randomSeed="41">
+			<Box id="B" width="2.5" height="3" />
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="E" width="3" height="2.5" />
+		</Animation>
+		<Animation type="Sliding" direction="180" randomSeed="41" slidingWidth="2.5">
+			<Box id="B" width="2.5" height="3" />
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="E" width="3" height="2.5" />
+		</Animation>
+	</Story>
+	
+	<Story id="doc3">
+		<Box id="B">
+			<Text type="Splash">“We’re making it easier for Australians to get help and advice on mental health – when, where and how they need it.”</Text>
+		</Box>
+		<Box id="C">
+			<Text type="Quote">Mental health is one of Australia’s biggest health challenges – and young Australians are particularly vulnerable. Every year, one in three young Australians faces mental illness, and only one in four of those people will actually receive professional help.</Text>
+		</Box>
+		<!-- <Box id="F">
+			<Image url="assets/doc1/doc1 Delivering quality care across New Zealand IMAGE.jpg" />
+		</Box> -->
+		<Box id="D">
+			<Text type="Stats">[b]75%[/b]
+of mental illness emerges before the age of 25.</Text>
+		</Box>
+		<!-- <Box id="G">
+			<Image url="assets/doc1/doc1 Delivering quality care across New Zealand IMAGE.jpg" />
+		</Box> -->
+		<Box id="H">
+			<Text type="Stats">[b]100,000:[/b]
+the total number of phone, chat and email consultations delivered through the 24 hour service.</Text>
+		</Box>
+		<Box id="E">
+			<Text type="Content">With around 50% of substance abuse problems in young people developing after the onset of mental illness, and a youth suicide rate among the highest in the world, it is critical those with mental illness have somewhere to turn.
+That’s why, since early 2013, Medibank has provided a 24 hour service on behalf of beyondblue that connects people with a qualified mental health professional via phone or online chat. The beyondblue Support Service helps people seeking care for themselves, along with friends, family, colleagues and employers who are impacted by mental illness.
+And it’s making a big difference. Though the service is available to all Australians, the online chat has been particularly popular among younger people, giving those nervous about using traditional face-to-face avenues an easy, confidential and anonymous way to seek help and advice, often for the first time. In fact, people aged under 20 account for 40% of all interactions with online chat, with a spike in young people using the service around end-of-year-exams. 
+The beyondblue Support Service is just one way Medibank is using its clinical expertise to partner with like-minded organisations to provide the care people need – when, where and how they need it.</Text>
+		</Box>
+		
+		<Animation type="Sprouting" direction="90" randomSeed="41">
+			<Box id="B" width="2.5" height="3" />
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="E" width="3" height="2.5" />
+		</Animation>
+		<Animation type="Sliding" direction="180" randomSeed="41" slidingWidth="2.5">
+			<Box id="B" width="2.5" height="3" />
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="E" width="3" height="2.5" />
+		</Animation>
+	</Story>
+	
+	<Story id="doc4">
+		<Box id="B">
+			<Image url="assets/doc4/box B.jpg" />
+		</Box>
+		<Box id="C">
+			<Text type="Quote">We believe that improving the quality of interaction between people and their doctors is key to delivering better health outcomes for all Australians. That’s why we created our Better Health programs.</Text>
+		</Box>
+		<!-- <Box id="F">
+			<Image url="assets/doc1/doc1 Delivering quality care across New Zealand IMAGE.jpg" />
+		</Box> -->
+		<Box id="D">
+			<Text type="Stats">[b]$4,000[/b]
+average annual cost of hospital and medical benefits for members with Type II diabetes and Coronary Artery Disease.</Text>
+		</Box>
+		<Box id="H">
+			<Text type="Stats">[b]$8,000[/b]
+average annual cost of hospital and medical benefits for members with chronic heart conditions.</Text>
+		</Box>
+		<Box id="G">
+			<Text type="Quote">Orthopaedic operations account for 20% of Medibank’s total hospital and medical benefit outlays. The majority of these procedures are knee and hip replacements due to osteoarthritis, which can often be managed through weight loss and exercise.</Text>
+		</Box>
+		<Box id="E">
+			<Text type="Content">No one likes going to hospital. And we believe that better care in the community can reduce the need for hospital care.
+
+Chronic conditions such as diabetes, heart diseases and arthritis make up a large proportion of hospital admissions in Australia. Often, it’s simply a case of people being unaware that their condition may be managed or treated through GPs or specialists.
+
+But we know that our members value their GPs, so we want to enhance that relationship. Our Better Health programs are aimed at helping members understand the care options available so they can reduce avoid unnecessary hospital stays. At the same time, we’re committed to supporting GPs and specialists so they can provide the best possible care for their patients.
+
+We believe that improving the quality of interaction between people and their doctors is key to delivering better health outcomes for all Australians.</Text>
+		</Box>
+		
+		<Animation type="Floating" direction="90" randomSeed="41">
+			<Box id="B" width="4.5" height="3" /> <!-- 5616, 3744  1.5 -->
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="E" width="3" height="2.5" />
+		</Animation>
+		<Animation type="Sprouting" direction="90" randomSeed="41">
+			<Box id="B" width="4.5" height="3" /> <!-- 5616, 3744  1.5 -->
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="E" width="3" height="2.5" />
+		</Animation>
+	</Story>
+	
+	<Story id="doc5">
+		<Box id="B">
+			<Text type="Splash">“Previously I would only come down the stairs in the morning and go up at night. Now I can go up and down without too much difficulty or pain, I can even go up without pulling myself up on the bannisters.”
+Norm, 67, Queensland</Text>
+			<!-- <Image url="assets/doc4/box B.jpg" />  -->
+		</Box>
+		<Box id="C">
+			<Text type="Quote">Medibank’s Healthy Weight For Life program makes life better for members by providing guidance and strategies for weight reduction, pain management and an overall healthier lifestyle.</Text>
+		</Box>
+		<Box id="F">
+			<Text type="Splash">“The program has shown me that keeping my weight low has reduced the load on my hip/back and has given me back a lot of mobility, flexibility and strength.”
+David, 64, Victoria</Text>
+			<!-- <Image url="assets/doc4/box B.jpg" />  -->
+		</Box>
+		<Box id="D">
+			<!-- <Text type="Label">1.6 million Australians living with osteoarthritis (2010 statistic - overall source)
+
+Osteoarthritis of the knee and hip are the most common forms of arthritis in Australia</Text> -->
+			<Text type="Stats">[b]1.6[/b]
+million Australians living with osteoarthritis
+
+Osteoarthritis of the knee and hip are the most common forms of arthritis in Australia</Text>
+		</Box>
+		<Box id="G">
+			<Text type="Splash">“I've never felt so good in years, have become more aware of the foods I should be eating and am very happy within myself. Never ever thought that by losing weight my hip would feel so good.”
+Gloria, Tasmania</Text>
+			<!-- <Image url="assets/doc4/box B.jpg" />  -->
+		</Box>
+		<Box id="H">
+			<Text type="Splash">Weight control and activity are the best forms of preventing arthritis</Text>
+		</Box>
+		<Box id="E">
+			<Text type="Content">Osteoarthritis is a challenge faced by many Australians, especially later in life. Arthritis of the knee or hip can turn simple things like climbing stairs and common activities difficult. But there are steps sufferers can take to vastly improve their quality of life.
+
+Medibank’s Healthy Weight For Life program makes life better for members by providing guidance and strategies for weight reduction, pain management and an overall healthier lifestyle.
+
+The 18-week program has already improved the lives of more than 450 members. They’re people who are no longer letting osteoarthritis hold them back from climbing the stairs to hitting the golf course.</Text>
+		</Box>
+		
+		<Animation type="Floating" direction="90" randomSeed="41">
+			<Box id="B" width="4.5" height="3" /> <!-- 5616, 3744  1.5 -->
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="E" width="3" height="2.5" />
+		</Animation>
+		<Animation type="Sprouting" direction="90" randomSeed="41">
+			<Box id="B" width="4.5" height="3" /> <!-- 5616, 3744  1.5 -->
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="E" width="3" height="2.5" />
+		</Animation>
+	</Story>
+	
+	<Story id="doc6">
+		<Box id="B">
+			<Text type="Splash">Aboriginal and Torres Strait Islander peoples can be achieved through a whole-of-community effort.</Text>
+			<!-- <Image url="assets/doc4/box B.jpg" />  -->
+		</Box>
+		<Box id="C">
+			<Text type="Quote">In 2012, we became the first private health insurer to develop a Reconciliation Action Plan (RAP). In it we outlined the action we would take to improve the health and wellbeing outcomes of Aboriginal and Torres Strait Islander health.</Text>
+		</Box>
+		<Box id="D">
+			<Text type="Quote">The first pillar of our RAP
+Relationships
+It is through the development of relationships with the Aboriginal and Torres Strait Islander peoples community, that Medibank aims to address the challenge of equity in health and wellbeing outcomes.
+These are relationships built on the principles of dialogue, respect, understanding, partnership and reciprocity.</Text>
+		</Box>
+		<Box id="G">
+			<Text type="Quote">The second pillar of our RAP
+Respect
+Medibank is founded on a culture based on respect. And we understand that to Close the Gap, we must respect Aboriginal and Torres Strait Islander peoples culture and history while helping others to do the same.</Text>
+		</Box>
+		<Box id="F">
+			<Text type="Quote">The third pillar of our RAP
+Opportunities
+As a health organisation we know that by helping to create opportunities for education, employment and partnerships, we are playing a role in improving the health and wellbeing outcomes of Aboriginal and Torres Strait Islander peoples.</Text>
+		</Box>
+		<Box id="E">
+			<Text type="Content">Closing the gap
+We recently conducted research into community perceptions of life expectancy for Aboriginal and Torres Strait Islander peoples, which found that most Australians believed that ‘health’ and ‘poor living conditions’ are responsible for a gap between Indigenous and non-Indigenous Australians.
+
+As a community we know there’s a gap, and we must close it.
+
+In 2012, we became the first private health insurer to develop a Reconciliation Action Plan (RAP). In it we outlined the action we would take to improve the health and wellbeing outcomes of Aboriginal and Torres Strait Islander health.
+
+Since then we’ve worked hard to accomplish those actions, and we’ve already seen improvements in employee engagement and cultural awareness. But we’re constantly learning and adapting our RAP to improve its outcomes.
+
+We revised our RAP last year to develop our understanding of the barriers and opportunity for improvement to Aboriginal and Torres Strait Islander health care. To do this we consulted with organisations already working to improve the health and wellbeing of Aboriginal and Torres Strait Islander communities. This also led to a number of organisations benefiting from $100,000 in grants from the Medibank Community Fund to assist or enhance their programs.
+
+We’re making progress, but we can’t stop now. We know that until there is genuine equality in health and wellbeing, not only will our RAP continue, it must continue.</Text>
+		</Box>
+		
+		<Animation type="Floating" direction="90" randomSeed="41">
+			<Box id="B" width="4.5" height="3" /> <!-- 5616, 3744  1.5 -->
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="E" width="3" height="2.5" />
+		</Animation>
+	</Story>
+	
+	<Story id="doc7">
+		<Box id="B">
+			<Text type="Splash">“Rewarding members for their activity is making the benefits of better health even better.”</Text>
+			<!-- <Image url="assets/doc7/box B.jpg" />  -->
+		</Box>		
+		<Box id="C">
+			<Text type="Quote">Rewarding regular daily activity is a key to better health. Even a simple activity such as walking can have huge benefits for people’s health. Healthy adults are recommended to take at least 10,000 steps per day.</Text>
+		</Box>
+		<Box id="F">
+			<!-- <Image url="assets/doc7/box B.jpg" />  -->
+		</Box>
+		<Box id="D">
+			<Text type="Stats">[b]300,000[/b]
+Medibank members already earn points with flybuys
+[b]10 points:[/b]
+the number of flybuys points members can earn each day they reach 10,000 steps</Text>
+		</Box>
+		<Box id="G">
+			<!-- <Image url="assets/doc7/box B.jpg" />  -->
+		</Box>
+		<Box id="H">
+			<Text type="Splash">“Medibank and flybuys members are choosing to buy more fruit and vegetables than ever before”</Text>
+		</Box>
+		<Box id="E">
+			<Text type="Content">Rewarding regular daily activity is a key to better health. Even a simple activity such as walking can have huge benefits for people’s health. Healthy adults are recommended to take at least 10,000 steps per day.
+
+We want to encourage all Australians to take control of their health, so Medibank has partnered with flybuys to reward members for being active. By using a Fitbit to record their daily activity, members will be able to earn flybuys points whenever they reach a daily 10,000 step goal.
+
+It’s our way of making the benefits of better health even better.
+
+Fruit and Vegetables
+We are what we eat, and making healthy choices when we go shopping is another simple change that will result in better health for Australians.
+
+Medibank and flybuys have teamed up to reward members for making healthy choices by providing them with  triple flybuys points when they purchase fresh and frozen fruit and vegetables at Coles supermarkets
+
+Since 2013, over 300,000 members have already joined the program.</Text>
+		</Box>
+		
+		<Animation type="Sprouting" direction="110" randomSeed="41">
+			<Box id="B" width="4.5" height="3" />
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="E" width="3" height="2.5" />
+		</Animation>
+	</Story>
+	
+	<Story id="doc8">
+		<Box id="B">
+			<Text type="Splash">Responding to domestic violence is everyone’s business.</Text>
+		</Box>		
+		<Box id="C">
+			<Text type="Quote">1800RESPECT is the national sexual assault, domestic and family violence counselling service, delivered by Medibank on behalf of the Australian Government to help end violence against women and their children.</Text>
+		</Box>
+		<Box id="D">
+			<Text type="Splash">One in three Australian women experiences family or domestic violence.</Text>
+		</Box>
+		<Box id="G">
+			<Image url="assets/doc8/1800RESPECT_logo_RGB.png" scroll="0" />
+		</Box>
+		<Box id="H">
+			<Text type="Splash">There are a lot of reasons to take action.</Text>
+		</Box>
+		<Box id="F">
+			<Text type="Splash">1800RESPECT provides a 24-hour counselling service to people who have experienced sexual assault and domestic and family violence.</Text>
+		</Box>
+		<Box id="E">
+			<Text type="Content">Violence against women and their children is alarmingly high in Australia and has a profound impact on the health of our community. 
+Over their lifetime, one in three Australian women will experience family or domestic violence and one in five women over the age of 15 will experience sexual assault. 
+At a national level, domestic and family violence and sexual assault cost the nation $13.6 billion each year. By 2021, this figure is forecast to rise to $15.6 billion. 
+1800RESPECT is the national sexual assault, domestic and family violence counselling service, delivered by Medibank on behalf of the Australian Government to help end violence against women and their children.  
+1800RESPECT provides a 24-hour counselling service to people who have experienced sexual assault and domestic and family violence.
+It provides counselling information and referral to friends and family members and support to workers who see the impacts of gendered violence in their work every day. 
+It also offers online resources for workers across sectors including health, disability and housing, empowering them to provide best-practice support to their clients who have experienced domestic and family violence and sexual assault.
+1800RESPECT is not only about responding to domestic and family violence and sexual assault, but also about providing all Australians with information and resources so they too can respond, because responding is everyone’s business.</Text>
+		</Box>
+		
+		<Animation type="Floating" direction="90" randomSeed="41">
+			<Box id="B" width="4.5" height="3" />
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="E" width="3" height="2.5" />
+			<Box id="G" width="3.058" height="0.842" /> <!-- 1529, 421 -->
+		</Animation>
+		<Animation type="Sprouting" direction="110" randomSeed="41">
+			<Box id="B" width="4.5" height="3" />
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="E" width="3" height="2.5" />
+			<Box id="G" width="3.058" height="0.842" /> <!-- 1529, 421 -->
+		</Animation>
+	</Story>
+	
+	<Story id="doc9">
+		<Box id="B">
+			<Text type="Splash">“Inactivity and being overweight are both risk factors for the development of chronic disease. Walking can help address both.”</Text>
+		</Box>		
+		<Box id="C">
+			<Text type="Quote">The Heart Foundation Walking program is Australia’s largest walking group. With 1300 groups and 21,000 members, around 42,000 Australians have already participated and have started walking their way to better health.</Text>
+		</Box>
+		<Box id="F">
+			<!-- <Image url="assets/doc8/1800RESPECT_logo_RGB.png" /> -->
+		</Box>
+		<Box id="D">
+			<Text type="Stats">[b]$0[/b]
+the cost of the walking program to participants</Text>
+		</Box>
+		<Box id="G">
+			<!-- <Image url="assets/doc8/1800RESPECT_logo_RGB.png" /> -->
+		</Box>
+		<Box id="H">
+			<Text type="Stats">Over
+[b]1,200[/b]
+groups
+
+More than
+[b]20,000[/b]
+people registered</Text>
+		</Box>
+		<Box id="E">
+			<Text type="Content">Walking is one of the easiest ways of reducing the risk of chronic disease. It also encourages people to get out with friends and enjoy the social side of activity together.
+
+The Heart Foundation’s Walking program connects people with nearby walking groups. It’s free for participants and with over 1,200 groups and more than 20,000 people registered, it’s already proven to be a success since it began in 1995.
+
+The Medibank Community fund is proud to be working with the Heart Foundation to grow the Walking program so others can join the 35,000 Australians who have walked their way to better health.</Text>
+		</Box>
+		
+		<Animation type="Floating" direction="90" randomSeed="41">
+			<Box id="B" width="4.5" height="3" />
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="E" width="3" height="2.5" />
+		</Animation>
+		<Animation type="Sprouting" direction="110" randomSeed="41">
+			<Box id="B" width="4.5" height="3" />
+			<Box id="C" width="2.5" height="1.5" />
+			<Box id="D" width="1.5" height="1" />
+			<Box id="E" width="3" height="2.5" />
+		</Animation>
+	</Story>
+	
+	
+	<Story id="prof1">
+		<Box id="B">
+			<!-- <Image url="assets/doc8/1800RESPECT_logo_RGB.png" /> -->
+		</Box>
+		<Box id="C">
+			<Text type="Quote">“My work-life balance is brilliant.”</Text>
+		</Box>
+		<Box id="D">
+			<Text type="Content">Leith is a registered nurse with more than 25 years’ experience and one of 2500 health professionals employed by Medibank to care for patients across Australia.
+As part of the nation’s largest telephone triage, health advice and referral service, Leith assesses callers based on their symptoms before providing advice and recommendations on what care they need. 
+Just one telehealth nurse can support 6,000 patients each year.
+Like 85% of Medibank’s nurse workforce, Leith works from home as part of our work@home model, which lets her balance her important role in providing quality healthcare with her equally important role as a mum.
+“I can work from home during the day, pick the kids up from school, help with homework, get dinner on the table, then do a few more hours of work in the evening,” Leith said. 
+Thanks to nurses like Leith, the nurse triage, health advice and referral service gives patients access to years of experience and skills and helps relieve the burden on the public health system. Every year, the service results in 60,000 fewer emergency department visits, 5,000 fewer ambulance callouts and savings of almost $30 million in public healthcare costs. 
+By working from home, Leith benefits too because she gets to enjoy more valuable time with her husband and her kids.
+“My work-life balance is brilliant, plus you don’t have to travel. It means I’m there for my family when they need me.”</Text>
+		</Box>
+		
+		<Animation type="Sprouting" direction="110" randomSeed="41">
+			<Box id="B" width="4.5" height="3" />
+			<Box id="C" width="1.5" height="1.5" />
+			<Box id="D" width="3" height="2.5" />
+		</Animation>
+		<Animation type="Sliding" direction="180" randomSeed="41" sliderWidth="2.5">
+			<Box id="B" width="4.5" height="3" />
+			<Box id="C" width="1.5" height="1.5" />
+			<Box id="D" width="2.5" height="3" />
+		</Animation>
+	</Story>
+	
+	<Story id="prof2">
+		<Box id="B">
+			<Image url="assets/prof2/image for boxB.jpg" />
+		</Box>
+		<Box id="C">
+			<Text type="Quote">“Nine organisations building a healthier future for Aboriginal and Torres Strait Islander peoples.”</Text>
+		</Box>
+		<Box id="D">
+			<Text type="Content">Nine organisations from across Australia’s states and territories shared in $100,000 in grants to support their vital work delivering better health and wellbeing to Australian Aboriginal and Torres Strait Islander communities.
+
+The AH&MRC (NSW) will use their grant to expand their Get Healthy program. The program coaches Aboriginal and Torres Strait Islander peoples on strategies to obtain and maintain healthy weight. They’ll also increase the availability of sports equipment and Yulunga, a series of traditional Aboriginal games. 
+
+QAIHC (QLD) will focus on food and education. Their grant will fund a week-long program that encourages Aboriginal and Torres Strait Islander youth to attend university. At the same time participants will also be equipped with life skills like cooking and living healthy lifestyles.
+
+Winnunga Nimmityjah (ACT) and Kura Yerlo (SA) are also tackling health issues caused by poor nutritional education. With diabetes a widespread health issue for Aboriginal and Torres Strait Islander people, their programs will empower participants with the knowledge to manage their condition. They’ll also work to halt the spread of diabetes through education about healthy nutrition and exercise.
+
+VACCHO will deliver their redesigned “Tucker Talk Tips”. It will ensure Aboriginal and Torres Strait Islander communities in Victoria are benefiting from improved understanding of nutrition and exercise.
+
+Derbarl Yerrigan’s grant will allow them to expand their ‘Daisy Petals’ program, which improves the health of Aboriginal women in Western Australia. Participants will benefit from extensive assessments of their own health. They’ll also learn about specific women’s health issues, from the importance of breast and cervical screening to social and emotional wellbeing.
+
+The AHCWA (WA) will to take to the airwaves. Their grant will deliver 12-months of radio spots that will promote healthy lifestyle choices and disease prevention across vast distances and to a huge number of Aboriginal and Torres Strait Islander communities.
+
+The AHCSA will get rolling to eliminate racism through their roller derby team. While those in the team will have a lot of fun, they’ll act as role models who’ll demonstrate the benefits of an active lifestyle and encourage harmony between Australian communities in South Australia.</Text>
+		</Box>
+		
+		<Animation type="Floating" direction="90" randomSeed="41">
+			<Box id="B" width="3.264" height="2.448" /> <!-- 3264, 2448   -->
+			<Box id="C" width="1.5" height="1.5" />
+			<Box id="D" width="3" height="2.5" />
+		</Animation>		
+	</Story>
+	
+	<Story id="prof3">
+		<Box id="B">
+			<Image url="assets/prof3/prof3 Yalari education IMAGE B.png" />
+		</Box>
+		<Box id="C">
+			<Text type="Quote">“Yalari has opened so many door for me and has been such a great impact on life for me and my family.”</Text>
+		</Box>
+		<Box id="D">
+			<Text type="Content">Education is one of the most valuable investments we can make towards better health and wellbeing for all Australians. That’s why we’re proud to support Yalari, a foundation dedicated to creating educational opportunities for Aboriginal and Torres Strait Islander students.
+
+Yalari offers students the chance to enrich their understanding of their heritage while also opening opportunities to study at some of Australia’s best schools. Yalari’s emphasis on leadership and cultural pride matches our hope that students might one day emerge from their educational journey to take up prominent roles in the health sector.
+
+Jayde is a Yalari scholarship recipient who is currently attending Geelong Grammar School. Although it’s a long way from home in Derby, WA, she’s taken the brave step in order to improve the future for herself and her community. 
+
+“I applied for a scholarship because I knew opportunities for my future might be limited if I stayed at home,” said Jayde. “I wanted to leave home and get a great education, so after school I can hopefully help support more family than if I’d stayed.
+
+Jayde has leapt right into to life in Geelong, participating in the school’s renowned Outdoor Education programs in the Victorian Alps.
+
+“I’d never seen snow until I went to Timbertop, I’d never been outside Western Australia or the Northern Territory,” she said. “Most importantly I’ve learned how to push myself, and now I know how much I’m capable of achieving.”
+
+Jayde is now considering moving forward towards university education, an opportunity that is likely to have remained out of reach in her hometown.
+
+“Yalari is life changing. It’s opened so many door for me and has been such a great impact on life for me and my family.”</Text>
+		</Box>
+		
+		<Animation type="Floating" direction="90" randomSeed="41">
+			<Box id="B" width="4.63" height="3" /> <!-- 463, 300  -->
+			<Box id="C" width="1.5" height="1.5" />
+			<Box id="D" width="3" height="2.5" />
+		</Animation>		
+	</Story>
+	
+	<Story id="prof4">
+		<Box id="B">
+			<Image url="assets/prof4/Box B.jpg" />
+		</Box>
+		<Box id="C">
+			<Text type="Quote">“We encourage communities to get active through participation in sport-based team games, fitness challenges, dance, Indigenous yoga and wellness programs.”</Text>
+		</Box>
+		<Box id="D">
+			<Text type="Content">Fair Game is a health promotion and community development charity that recycles donated sports equipment and uses it to deliver unique fitness, health and wellness programs to underserviced communities in need. The $20,000 grant will allow Fair Game to continue to operate three initiatives which reach 2000 people and help to reduce the rates of communicable diseases, lifestyle related illness, improve mental well-being and build social cohesion. Through the Recycle and Donate program sports equipment and clothing is recycled and donated to communities in need, to help encourage children’s participation in physical activity. The Game On! initiative encourages communities to get active through participation in sport-based team games, fitness challenges, dance, Indigenous yoga and wellness programs. Healthy Communities provides trained volunteers to engage with communities and integrate fun education sport and fitness sessions. The sustainability of this education is ensured though the Fair Game back pack which is given to each participant and contains various health items that are vital for the continuation of the health practices taught across the three unique, educational programs.</Text>
+		</Box>
+		
+		<Animation type="Floating" direction="90" randomSeed="41">
+			<Box id="B" width="3.51" height="4.75" /> <!-- 702, 950  -->
+			<Box id="C" width="1.5" height="1.5" />
+			<Box id="D" width="3" height="2.5" />
+		</Animation>
+		<Animation type="Sprouting" direction="110" randomSeed="41">
+			<Box id="B" width="3.51" height="4.75" /> <!-- 702, 950  -->
+			<Box id="C" width="1.5" height="1.5" />
+			<Box id="D" width="3" height="2.5" />
+		</Animation>		
+	</Story>
+	
+	<Story id="prof5">
+		<Box id="B">
+			<Image url="assets/prof5/Box B.jpg" />
+		</Box>
+		<Box id="C">
+			<Text type="Quote">“We’re providing opportunities for blind or vision impaired people to become active in sport and recreation throughout Victoria”.</Text>
+		</Box>
+		<Box id="D">
+			<Text type="Content">Blind Sports Victoria (BSV) is dedicated to increasing and providing opportunities for blind or vision impaired people to become active in sport and recreation throughout Victoria. A soccer program which has made a major impact on the lives of blind and vision impaired children in the City of Darebin will be extended to the Melbourne CBD, northern suburbs and Bendigo thanks to the Medibank Community Fund. In partnership with Melbourne Heart Football Club, Blind Sports Victoria (BSV) has been and will continue to run blind soccer clinics to help build skills and fitness among blind and vision impaired children, who generally have fewer opportunities to participate in physical activity programs. The blind soccer clinics encourage skills development through use of adaptive equipment, including audible balls containing ball bearings. By participating alongside sighted players who wear blindfolds, vision impaired children become more connected to their community, gaining confidence and new skills.</Text>
+		</Box>
+		
+		<Animation type="Floating" direction="90" randomSeed="41">
+			<Box id="B" width="6.23" height="4.14" /> <!-- 623, 414  -->
+			<Box id="C" width="1.5" height="1.5" />
+			<Box id="D" width="3" height="2.5" />
+		</Animation>
+		<Animation type="Sprouting" direction="110" randomSeed="41">
+			<Box id="B" width="6.23" height="4.14" /> <!-- 623, 414  -->
+			<Box id="C" width="1.5" height="1.5" />
+			<Box id="D" width="3" height="2.5" />
+		</Animation>		
+	</Story>
+	
+	<Story id="prof6">
+		<!-- 
+		<Box id="B">
+			<Image url="assets/prof5/Box B.jpg" />
+		</Box>
+		 -->
+		<Box id="C">
+			<Text type="Quote">“We are giving families living in extreme poverty the opportunity to access KinderGym classes to  enhance the development of young children, and invite parents to socially connect with the community”.</Text>
+		</Box>
+		<Box id="D">
+			<Text type="Content">Queensland Police Citizen Youth Welfare Association at the Burdekin Branch are giving families living in extreme poverty the opportunity to access KinderGym classes which enhance the physical, social and cognitive development of young children and invite parents to socially connect with the community. The $14,800 grant will allow PCYC Burdekin to allow 20 local families to access KinderGym at a subsidised rate and provide free transport to and from the classes. Additionally Burdekin PCYC will use the KinderGym as a platform to provide information and awareness on other relevant issues including child nutrition and literacy programs.</Text>
+		</Box>
+		
+		<Animation type="Floating" direction="90" randomSeed="41">
+			<!-- <Box id="B" width="6.23" height="4.14" /> <!-- 623, 414  -->  -->
+			<Box id="C" width="1.5" height="1.5" />
+			<Box id="D" width="3" height="2.5" />
+		</Animation>
+		<Animation type="Sprouting" direction="110" randomSeed="41">
+			<!-- <Box id="B" width="6.23" height="4.14" /> <!-- 623, 414  -->  -->
+			<Box id="C" width="1.5" height="1.5" />
+			<Box id="D" width="3" height="2.5" />
+		</Animation>		
+	</Story>
+	
+	<Story id="prof7">
+		<Box id="B">
+			<Image url="assets/prof7/Box B.jpg" />
+		</Box>
+		<Box id="C">
+			<Text type="Quote">“We’re a not for profit organisation run by women, for women, providing free or heavily discounted health and wellbeing services to help women take care of their wellbeing”.</Text>
+		</Box>
+		<Box id="D">
+			<Text type="Content">Bankstown Women's Health Centre is a not for profit organisation run by women, for women, providing free or heavily discounted health and wellbeing services to help women take care of their physical, emotional and psychological wellbeing. The $10,600 grant will be used to establish an organic garden that will be available to the wider community, to encourage growing, cooking and eating health food, social interaction and physical exercise. The garden will provide inclusive programs, targeting vulnerable community members, with hands-on skills in sustainable gardening, waste management and food preservation. There are plans to have regular visits and demonstrators from educators to the community garden on gardening skills, open days and cooking demonstrations.</Text>
+		</Box>
+		
+		<Animation type="Floating" direction="90" randomSeed="41">
+			<Box id="B" width="5.12" height="2.265" /> <!-- 1024, 453  -->
+			<Box id="C" width="1.5" height="1.5" />
+			<Box id="D" width="3" height="2.5" />
+		</Animation>
+		<Animation type="Sprouting" direction="110" randomSeed="41">
+			<Box id="B" width="5.12" height="2.265" /> <!-- 1024, 453  -->
+			<Box id="C" width="1.5" height="1.5" />
+			<Box id="D" width="3" height="2.5" />
+		</Animation>		
+	</Story>
+	
+	<Story id="prof8">
+		<Box id="B">
+			<Image url="assets/prof8/Box B.jpg" />
+		</Box>
+		<Box id="C">
+			<Text type="Quote">“We’re a grass roots community based organisation that aims to engage men in a positive and friendly environment in order to promote healthy lifestyle choices”.</Text>
+		</Box>
+		<Box id="D">
+			<Text type="Content">The Whyalla Men's Shed (WMS) in a grass roots community based organisation that aims to engage men in a positive and friendly environment in order to promote healthy lifestyle choices that will improve their physical and social wellbeing and reduce the risk of chronic disease and mental illness. The $7,300 grant will give Whyalla Men’s Shed the resources to build an outdoor area that will allow them to reach out to men of all ages and backgrounds and encourage them to come together in a sociable, non-judgmental positive environment. Currently comprising of 20 active members, the shed aims to create an environment where older men can mentor younger men from disadvantaged backgrounds and improve their overall social and emotional wellbeing through friendship, camaraderie and hands-on activities such as woodwork, metal work, lead lighting and computing.</Text>
+		</Box>
+		
+		<Animation type="Floating" direction="90" randomSeed="41">
+			<Box id="B" width="6.895" height="4.57" /> <!-- 1379, 914  -->
+			<Box id="C" width="1.5" height="1.5" />
+			<Box id="D" width="3" height="2.5" />
+		</Animation>
+		<Animation type="Sprouting" direction="110" randomSeed="41">
+			<Box id="B" width="6.895" height="4.57" /> <!-- 1379, 914  -->
+			<Box id="C" width="1.5" height="1.5" />
+			<Box id="D" width="3" height="2.5" />
+		</Animation>		
+	</Story>
+		
+	<Story id="prof9">
+		<Box id="B">
+			<Image url="assets/prof9/BOX B.jpg" />
+		</Box>
+		<Box id="C">
+			<Text type="Quote">Here at Medibank, to live our ‘For Better Health’ purpose, we are embracing a healthier way of working that will help us to be more collaborative and productive… all part of Generation Better.</Text>
+		</Box>
+		<Box id="D">
+			<Text type="Content">Medibank Place signals the creation of a healthier working environment, designed with health at the forefront of every decision. Supported by Leadership and a new way of working, the result is a truly flexible and creative working environment that is designed to improve productivity, collaboration and innovation. 
+
+Medibank employees, visitors and our Docklands neighbours will enjoy green spaces providing better air quality and natural cooling. Inside Medibank Place, the many rejuvenation and social settings will help our people recharge and connect including spiral staircases for active connection between floors. Our standing desks will reduce the amount of sitting time for our people throughout the day.  
+
+Medibank Place encourages physical health throughout the work day with the incorporation of a gym, dedicated bike storage, a multipurpose court and change room facilities to support people to exercise… all part of delivering on our ‘For Better Health’ purpose. 
+
+Green spaces inside-and-out provide better air quality and natural cooling, while spiral staircases create active connections between floors. And with 5 of our Melbourne offices coming together inside, it’s literally bringing our teams closer.
+
+It’s a healthier way of working. The new building gives our team the freedom to choose where and how they work, which we know leads to happier, more productive employees, who’ll deliver better outcomes for our members. 
+
+Medibank Place gives us a home that embodies our commitment to delivering better health and wellbeing to all Australians.</Text>
+		</Box>
+		
+		<Animation type="Floating" direction="90" randomSeed="41">
+			<Box id="B" width="4.43" height="2.9525" /> <!-- 1772, 1181 -->
+			<Box id="C" width="1.5" height="1.5" />
+			<Box id="D" width="3" height="2.5" />
+		</Animation>
+	</Story>
+	
+	
+	
+	<Infographic id="info1">
+		<slide type="center_text_box">
+			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"></appearance>
+			<featuredText>Accessing specialist care in regional Australia presents many challenges for GPs and their patients.</featuredText>
+		</slide>
+		<slide type="center_text_box">
+			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"></appearance>
+			<featuredText>Many patients have to travel more than 200km to see a specialist, not to mention the associated costs. Some choose to miss out on care altogether.</featuredText>
+		</slide>
+		<slide type="center_text_box">
+			<appearance textColor="#FFFFFF" backgroundColor="#ff9330" boxColor="#E4002B"></appearance>
+			<featuredText>That was before Anywhere Healthcare – Australia’s largest panel of online specialists that connects patients with specialists via video.</featuredText>
+		</slide>	
+		<slide type="center_text_box">
+			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#ff9330"></appearance>
+			<featuredText>Anywhere Healthcare improves access to specialist care in regional and remote Australia.</featuredText>
+		</slide>
+		<slide type="people_graph">
+		</slide>		
+	</Infographic>
+	<Infographic id="info2">
+	</Infographic>
+	<Infographic id="info3">
+	</Infographic>
+	<Infographic id="info4">
+	</Infographic>
+	<Infographic id="info5">
+	</Infographic>
+	<Infographic id="info6">
+	</Infographic>
+	
+</BoxesData>
