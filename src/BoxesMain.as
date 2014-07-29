@@ -100,6 +100,7 @@ package {
 		
 
 		public function BoxesMain() {
+			trace("egg");
 			if (stage) init();
 			else addEventListener(Event.ADDED_TO_STAGE, handleAddedToStage);
 		}
