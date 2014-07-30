@@ -5,6 +5,7 @@
 
 # Generated files
 *.swf
+RECOVER*.fla
 
 # System files
 thumbs.db
