@@ -46,8 +46,8 @@ package med.infographic {
 			
 			if (xml.hasOwnProperty("intro")) {
 				var introXML:XML = xml.intro[0];
-				var explanationText:String;
-				var instructionsText:String;
+				var explanationText:String = null;
+				var instructionsText:String = null;
 				if (introXML.hasOwnProperty("explanationText")) explanationText = Utils.safeText(introXML.explanationText[0].toString());
 				if (introXML.hasOwnProperty("instructionsText")) instructionsText = Utils.safeText(introXML.instructionsText[0].toString());
 				if (explanationText || instructionsText) {
@@ -62,8 +62,8 @@ package med.infographic {
 			
 			hotspotsLayer = new Sprite();
 			for each(var hotspotXML:XML in xml.hotspot) {
-				var expanderText:String;
-				var expanderImageURL:String;
+				var expanderText:String = null;
+				var expanderImageURL:String = null;
 				if (hotspotXML.hasOwnProperty("Text")) expanderText = Utils.safeText(hotspotXML.Text[0].toString());
 				if (hotspotXML.hasOwnProperty("Image")) expanderImageURL = hotspotXML.Image[0].@url.toString();
 
