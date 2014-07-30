@@ -30,8 +30,6 @@ package med.infographic {
 			// we store this so we can return to it when we're done with the infographic
 			initialBackgroundColor = background.getColor();
 			
-			this.mouseChildren = false;
-			
 			// load first slide	
 			currentSlideIndex = -1;
 			nextSlide();

@@ -5,12 +5,14 @@ package med.infographic {
 	import flash.display.BitmapData;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
+	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 
 	public class HotspotSlide extends Sprite implements ISlide {
 		
 		public function get displayDurationSeconds():Number { return 0; }
 		
+		//76b82a
 		
 		protected var bitmap:Bitmap;
 		protected var intro:MovieClip;
@@ -44,10 +46,18 @@ package med.infographic {
 			}
 			
 			hotspotsLayer = new Sprite();
+			for each(var o:Object in data.hotspots) {
+				var expander:HotspotExpander = new HotspotExpander(o.text, o.imageURL);
+				expander.x = o.x;
+				expander.y = o.y;
+				hotspotsLayer.addChild(expander);
+			}
 			
 		}
 		
 		public function animateOff(callback:Function):void {
+			removeEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
+			
 			callback(this);
 		}
 		
@@ -55,24 +65,27 @@ package med.infographic {
 			
 			var t:Number = 0;
 			
-			if (bitmap) {
-				const BITMAP_FADE_TIME:Number = 1.5;
-				TweenMax.to(bitmap, BITMAP_FADE_TIME, { alpha:0.2, ease:Quad.easeOut } ); 
-				t += BITMAP_FADE_TIME;
-			}
-			
-			if (intro) {
-				const INTRO_ANIMATE_X:Number = 1400;
-				intro.x = -INTRO_ANIMATE_X;
-				addChild(intro);
+			const SKIP_INTRO:Boolean = true;
+			if (!SKIP_INTRO) {
+				if (bitmap) {
+					const BITMAP_FADE_TIME:Number = 1.5;
+					TweenMax.to(bitmap, BITMAP_FADE_TIME, { alpha:0.2, ease:Quad.easeOut } ); 
+					t += BITMAP_FADE_TIME;
+				}
 				
-				t -= 0.5;
-				const INTRO_ANIMATE_TIME:Number = 1;
-				TweenMax.to(intro, INTRO_ANIMATE_TIME, { x:0, delay:t, ease:Quad.easeOut } ); 
-				t += INTRO_ANIMATE_TIME;
-				t += 5;
-				TweenMax.to(intro, INTRO_ANIMATE_TIME, { x:INTRO_ANIMATE_X, delay:t, ease:Quad.easeIn } ); 
-				t += INTRO_ANIMATE_TIME;			
+				if (intro) {
+					const INTRO_ANIMATE_X:Number = 1400;
+					intro.x = -INTRO_ANIMATE_X;
+					addChild(intro);
+					
+					t -= 0.5;
+					const INTRO_ANIMATE_TIME:Number = 1;
+					TweenMax.to(intro, INTRO_ANIMATE_TIME, { x:0, delay:t, ease:Quad.easeOut } ); 
+					t += INTRO_ANIMATE_TIME;
+					t += 5;
+					TweenMax.to(intro, INTRO_ANIMATE_TIME, { x:INTRO_ANIMATE_X, delay:t, ease:Quad.easeIn } ); 
+					t += INTRO_ANIMATE_TIME;			
+				}
 			}
 			
 			if (bitmap) {
@@ -82,9 +95,28 @@ package med.infographic {
 			}
 
 			addChild(hotspotsLayer);
+			hotspotsLayer.alpha = 0;
+			const HOTSPOTS_OPAQUE_TIME:Number = 1.5;
+			TweenMax.to(hotspotsLayer, HOTSPOTS_OPAQUE_TIME, { alpha:1, delay:t, ease:Quad.easeOut, onComplete:onHotspotsAppeared } ); 
+			t += HOTSPOTS_OPAQUE_TIME;
 			
-			
-			
+		}
+		
+		protected function onHotspotsAppeared():void {
+			addEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
+		}
+		
+		protected function handleMouseDown(event:MouseEvent):void {
+			var expander:HotspotExpander = event.target as HotspotExpander;
+			if (!expander) return;
+			if (expander.canToggle) {
+				expander.toggle();
+				if (expander.expanded) {
+					expander.parent.setChildIndex(expander, expander.parent.numChildren - 1);
+				} else {
+					expander.parent.setChildIndex(expander, 0);
+				}
+			}			
 		}
 		
 	}
