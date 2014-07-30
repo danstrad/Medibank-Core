@@ -22,6 +22,7 @@ package med.display {
 		
 		public var defaultColorTransform:ColorTransform;
 		
+		
 		public function HomeBox(chapter:Chapter, id:int) {
 			this.chapter = chapter;
 			this.id = id;

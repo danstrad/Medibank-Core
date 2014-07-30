@@ -53,7 +53,7 @@ package med.infographic {
 		
 		
 		protected function removePreviousSlides():void {
-			for each (var oldSlideSprite in slideSprites) {
+			for each (var oldSlideSprite:Sprite in slideSprites) {
 				
 				// todo: different slide types will have different removal animations
 				TweenMax.to(oldSlideSprite, 0.5, { alpha:0, scaleX:0, scaleY:0, onComplete:removeSlideSpriteFromStage, onCompleteParams:[oldSlideSprite]});
@@ -95,7 +95,7 @@ package med.infographic {
 						break;
 	
 						
-					/*
+					
 					case InfographicSlideData.CENTER_TEXT_BOX:
 						
 						box = new InfoGraphicCenterBox();
@@ -122,7 +122,7 @@ package med.infographic {
 						}
 						
 						break;
-					*/
+					
 						
 					default:
 						end();

@@ -1,4 +1,5 @@
 package med.display {
+	import adobe.utils.CustomActions;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Shape;
 	import flash.display.Sprite;
@@ -10,7 +11,7 @@ package med.display {
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
 
-	public class TextContent extends Sprite {
+	public class TextContent extends _TextContent {
 		
 		protected static const TEXT_SCALE:Number = 1;// 0.4;
 		protected static const NATURAL_SIZE:Number = 86;
@@ -78,10 +79,6 @@ package med.display {
 		protected static const TOUCH_WAIT:Number = 2000;
 		protected static const END_WAIT:Number = 3000;
 		protected static const AUTO_SCROLL:Number = 3;
-		
-		public var textField:TextField;
-		public var subtextField:TextField;
-		public var textMask:Sprite;
 		
 		protected var min:Number;
 		protected var max:Number;

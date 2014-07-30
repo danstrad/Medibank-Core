@@ -13,7 +13,7 @@ package med.display {
 	import med.story.BoxPlacement;
 	import med.story.ContentInfo;
 
-	public class Box extends Sprite {
+	public class Box extends _Box {
 		
 		static public const SIZE:Number = 100;
 		
@@ -23,15 +23,16 @@ package med.display {
 		public var widthAsHeader:Number;
 		public var heightAsHeader:Number;
 				
-		protected var bg:Sprite;
-		protected var bgMask:Sprite;
-		protected var contentMask:Sprite;
 		protected var content:Sprite;
 		
 		public var textContent:TextContent;
 		public var videoContent:VideoContent;
 		public var imageContent:ImageContent;
 		public var substoryFlash:SubstoryFlash;
+		
+		protected var bg:Sprite;
+		protected var bgMask:Sprite;
+		protected var contentMask:Sprite;
 		
 		public var contentInfo:ContentInfo;
 		public var placement:BoxPlacement;
@@ -161,6 +162,7 @@ package med.display {
 			contentMask.visible = false;
 			bgMask.visible = false;
 			bg.visible = false;
+			
 			content = new Sprite();
 			addChild(content);
 			
@@ -279,7 +281,7 @@ package med.display {
 		}
 		
 		
-		protected static function createBlock(color:uint):Sprite{
+		protected static function createBlock(color:uint):Sprite {
 			var s:Sprite = new Sprite();
 			s.graphics.beginFill(color);
 			s.graphics.drawRect( -Box.SIZE / 2, -Box.SIZE / 2, Box.SIZE, Box.SIZE);

@@ -9,7 +9,7 @@ package med.infographic {
 	import flash.filters.ColorMatrixFilter;
 	
 	
-	public class PeopleGraph extends Sprite {
+	public class PeopleGraph extends _PeopleGraph implements ISlide {
 
 		// using a static array for this for performance / memory reasons
 		protected static var people:Vector.<PeopleGraphPerson>;
@@ -111,7 +111,7 @@ package med.infographic {
 			var targetRowCountsLeft:Array = [];
 			var targetRowCountsRight:Array = [];
 		
-			for (i = 0; i < numPeopleOnRight; i++) {				
+			for (i = 0; i < numTargetPeopleOnRight; i++) {				
 				// on the the right, they fill up from the top
 				targetRowCountsRight[i % 10]++;
 			}
@@ -150,7 +150,7 @@ package med.infographic {
 							
 							tintColor = 0xFFFFFF;
 							
-							TweenMax.to(person, PEOPLE_TRANSITION_TIME_SEC, { x:finalX, delay:delay, colorTransform{tint:tintColor, tintAmount:1.0} } );
+							TweenMax.to(person, PEOPLE_TRANSITION_TIME_SEC, { x:finalX, delay:delay, colorTransform:{tint:tintColor, tintAmount:1.0} } );
 						
 						}
 							
@@ -169,7 +169,7 @@ package med.infographic {
 							
 							tintColor = 0xFF9330;
 							
-							TweenMax.to(person, PEOPLE_TRANSITION_TIME_SEC, { x:finalX, delay:delay, colorTransform{tintColor:tintColor, tintAmount:1.0} } );
+							TweenMax.to(person, PEOPLE_TRANSITION_TIME_SEC, { x:finalX, delay:delay, colorTransform:{tintColor:tintColor, tintAmount:1.0} } );
 						
 						}
 
@@ -181,6 +181,10 @@ package med.infographic {
 		}
 		
 		
+		public function get displayDurationSeconds():Number {
+			// todo
+			return 10;
+		}
 		
 		
 		
