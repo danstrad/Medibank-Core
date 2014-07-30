@@ -2,6 +2,32 @@ package med.infographic {
 
 	public class InfographicSlideData {
 
+
+		// simplified version
+		public var type:String;		
+		public var displayTimeMsec:Number;	
+		public var xml:XML;
+		
+		
+		public function InfographicSlideData(type:String, displayTimeMsec:int, xml:XML) {
+			this.type = type;
+			this.xml = xml;
+			this.displayTimeMsec = displayTimeMsec;			
+		}
+		
+		
+		//--------------------------------------------------------------------------------------
+		// helper functions to quickly grab often-used (but not universal) things from the xml		
+		//--------------------------------------------------------------------------------------
+		
+		public function get backgroundColor():uint {
+			return uint(xml.appearance.@backgroundColor.toString().replace("#", "0x"));
+		}
+		
+		public function get boxColor():uint {
+			return uint(xml.appearance.@boxColor.toString().replace("#", "0x"));	
+		}
+		
 		
 		
 		// slide type constants
@@ -10,7 +36,7 @@ package med.infographic {
 		
 		public static const PEOPLE_GRAPH:String					= "people_graph";		// a "moving dots" graph
 		
-		public static const NUMBER_STRIP:String					= "number_strip";			// a "number strip" where each number slot roattes up/down until it reaches the correct value
+		public static const NUMBER_STRIP:String					= "number_strip";			// a "number strip" where each number slot rotates up/down until it reaches the correct value
 		
 		public static const FULLSCREEN_TEXT_TOP:String			= "fullscreen_text_top";	// fullscreen text on background with the text at the top (see info4)
 		public static const FULLSCREEN_TEXT_CENTER:String		= "fullscreen_text_center";	// fullscreen text on background with the text in the center (see info4)
@@ -31,22 +57,6 @@ package med.infographic {
 		
 				
 
-		
-		public var type:String;
-		
-		public var textColor:uint;
-		public var backgroundColor:uint;
-		public var boxColor:uint;
-		
-		public var featuredText:String;
-		public var featuredNumber:String;
-		
-		public var data:Object;
-		public var displayTimeMsec:Number;
-	
-		public function InfographicSlideData() {
-			
-		}
 
 		
 		
