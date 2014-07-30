@@ -113,6 +113,8 @@ package {
 			//STAGE_WIDTH = stage.stageWidth;
 			//STAGE_HEIGHT = stage.stageHeight;
 			
+			new _FontDump();
+			
 			backgroundImages = new Vector.<BackgroundImage>();
 			homeAnimations = new Vector.<HomeAnimationController>();
 			endingHomeAnimations = new Vector.<HomeAnimationController>();
