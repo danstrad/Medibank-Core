@@ -14,6 +14,16 @@ package med.infographic {
 		public static const BOX_X:Number = -CENTER_BOX_WIDTH * 0.5;
 		public static const BOX_Y:Number = -CENTER_BOX_HEIGHT * 0.5;
 			
+
+		
+		protected static const ANIMATE_ON_TIME:Number = 0.5;	// time for the box to rotate (or squash up)
+		
+		protected static const TEXT_TRANSITION_ON_TIME:Number = 0.25;
+		protected static const TEXT_TRANSITION_OFF_TIME:Number = 0.2;
+
+		protected static const ANIMATE_OFF_TIME:Number = 0.3;	// how long is take the box to 'squash'
+		
+		
 		
 		protected var box:Shape;
 		protected var textMask:Shape;
@@ -58,47 +68,48 @@ package med.infographic {
 		}
 
 		
-		protected static const ANIMATE_ON_TIME:Number = 0.5;
-		
-		protected static const TEXT_TRANSITION_OFF_TIME:Number = 0.2;
-
-		
 			
 		public function animateOn():void {
 			// standard animation on-- squish out			
-			TweenMax.fromTo(box, ANIMATE_ON_TIME, { alpha:0, scaleX:0, scaleY:0 }, { alpha:1, scaleX:1, scaleY:1, immediateRender:true, onComplete:rollOutText } );						
+			TweenMax.fromTo(box, ANIMATE_ON_TIME, { scaleX:0, scaleY:0 }, { scaleX:1, scaleY:1, immediateRender:true, onComplete:rollOutText } );
 		}
 		
 		
 		public function animateOnRotate(previousBoxColor:uint):void {
-			// animation when transitioning from a previous box
-			
+			// animation when transitioning from a previous box			
 			TweenMax.fromTo(box, ANIMATE_ON_TIME, { rotation:90, colorTransform:{ tint:previousBoxColor, tintAmount:1.0} }, { rotation:0, colorTransform:{ tint:previousBoxColor, tintAmount:0}, immediateRender:true, onComplete:rollOutText } );
 		}
 		
 		
-		public function animateOff():void {
+		public function animateOff(callback:Function):void {
+			slideTextOff(callback);
+		}
+		
+		public function animateOffSquash(callback:Function):void {								
 			// squash to a point
 			// note: this isn't used if the next slide is also an InfographicCenterBox
-			
-			// todo
+			slideTextOff();
+			TweenMax.fromTo(box, ANIMATE_OFF_TIME, { scaleX:1, scaleY:1 }, { scaleX:0, scaleY:0, immediateRender:true, onComplete:callback, onCompleteParams:[this], delay: TEXT_TRANSITION_OFF_TIME } );						
+		}
+		
+		
+		protected function hide():void {
+			this.visible = false;
 		}
 		
 
-		
+		protected function slideTextOff(callback:Function = null):void {
+			if (callback != null) {
+				TweenMax.to(textField, TEXT_TRANSITION_OFF_TIME, { x:textFieldOriginalX + 450, onComplete:callback, onCompleteParams:[this] } );	
+			} else {
+				TweenMax.to(textField, TEXT_TRANSITION_OFF_TIME, { x:textFieldOriginalX + 450 } );	
+			}
+		}
 		
 		
 		protected function rollOutText():void {
-		
-			
 			// once our animation is done, we have the text appear from the left hand side
-			TweenMax.to(textField, 0.25, { x:textFieldOriginalX } );
-			
-			
-			var delayTime:Number = (data.displayTimeMsec * 0.001) - ANIMATE_ON_TIME - TEXT_TRANSITION_OFF_TIME;
-			
-			
-			TweenMax.to(textField, TEXT_TRANSITION_OFF_TIME, { x:textFieldOriginalX+450, delay:delayTime } );			
+			TweenMax.to(textField, TEXT_TRANSITION_ON_TIME, { x:textFieldOriginalX } );			
 		}
 		
 		

@@ -30,12 +30,11 @@ package med.infographic {
 			// we store this so we can return to it when we're done with the infographic
 			initialBackgroundColor = background.getColor();
 			
-			slideSprites = [];
-			
 			this.mouseChildren = false;
 			
-			// load first slide		
-			initSlide(0);
+			// load first slide	
+			currentSlideIndex = -1;
+			nextSlide();
 
 		}
 		
@@ -47,35 +46,57 @@ package med.infographic {
 		
 		
 		
-		protected var slideSprites:Array;
+		protected var slideSprite:Sprite;
 		
 		
-		protected function removePreviousSlides():void {
-			for each (var oldSlideSprite:Sprite in slideSprites) {
-				
-				// todo: different slide types will have different removal animations
-//				TweenMax.to(oldSlideSprite, 0.5, { alpha:0, scaleX:0, scaleY:0, onComplete:removeSlideSpriteFromStage, onCompleteParams:[oldSlideSprite]});
-				
-				removeSlideSpriteFromStage(oldSlideSprite);
-				
-				slideSprites.splice(slideSprites.indexOf(oldSlideSprite), 1);
+		protected function removePreviousSlide():void {		
+			if (slideSprite == null)	return;
+			
+			trace("removePreviousSprite");
+			
+			var nextSlideData:InfographicSlideData;				
+			if (currentSlideIndex < data.slides.length - 1) {
+				nextSlideData = data.slides[currentSlideIndex + 1];
 			}
-						
+				
+			if (slideSprite is InfographicCenterBox) {
+				
+				if (!nextSlideData || (nextSlideData && (nextSlideData.type != InfographicSlideData.CENTER_TEXT_BOX))) {
+					// if the next slide is NOT also a center box, we need to use a different exit animation (squash)
+					InfographicCenterBox(slideSprite).animateOffSquash(removeSlideSpriteFromStage);
+				} else {
+					ISlide(slideSprite).animateOff(removeSlideSpriteFromStage);
+				}
+				
+			} else if (slideSprite is ISlide) {
+				// under normal circumstances, trust the ISlide to animate itself off
+				ISlide(slideSprite).animateOff(removeSlideSpriteFromStage);
+			
+			} else {
+				// not sure what this thing is. just get rid of it
+				removeSlideSpriteFromStage(slideSprite);
+			}
+
+			slideSprite = null;
+			
 		}
 		
 		
-		protected function initSlide(slideIndex:int):void {
 		
-			// make sure any previous slides are being removed
-			removePreviousSlides();
+		protected function nextSlide():void {
+		
+			// make sure previous slide is removed
+			removePreviousSlide();
+			
+			var slideIndex:int = currentSlideIndex + 1;
 			
 			
 			if ((slideIndex >= 0) && (slideIndex < data.slides.length) && (data.slides[slideIndex] != null)) {
 				
-				currentSlideTime = 0;
-				
 				this.currentSlideIndex = slideIndex;
-				
+
+				currentSlideTime = 0;
+								
 				var slideData:InfographicSlideData = data.slides[slideIndex];
 				
 				// get some info on what (if any) the previous slide was
@@ -92,7 +113,7 @@ package med.infographic {
 						background.showColor(0xFF0000);
 						
 						var graph:PeopleGraph = new PeopleGraph();
-						addChild(graph);
+						addSlideSprite(graph);
 						
 						graph.animateOn();
 						
@@ -103,8 +124,7 @@ package med.infographic {
 					case InfographicSlideData.CENTER_TEXT_BOX:
 						
 						var box:InfographicCenterBox = new InfographicCenterBox(slideData);						
-						addChild(box);
-						slideSprites.push(box);
+						addSlideSprite(box);
 						
 						if (previousSlideData && (previousSlideData.type == InfographicSlideData.CENTER_TEXT_BOX)) {
 							box.animateOnRotate(previousSlideData.boxColor);
@@ -135,8 +155,16 @@ package med.infographic {
 		
 
 		
+		protected function addSlideSprite(sprite:Sprite):void {
+			this.slideSprite = sprite;
+			addChild(sprite);
+		}
+		
+		
+		
 		protected function removeSlideSpriteFromStage(sprite:Sprite):void {
-			if (sprite)  removeChild(sprite);
+			if (sprite && sprite.parent)  sprite.parent.removeChild(sprite);
+			nextSlide();
 		}
 		
 
@@ -153,11 +181,11 @@ package med.infographic {
 			if (data.slides[currentSlideIndex] && (currentSlideTime >= data.slides[currentSlideIndex].displayTimeMsec)) { 
 				
 				if (currentSlideIndex < (data.slides.length-1)) {
-					// next slide
-					initSlide(currentSlideIndex + 1);
+					// remove previous slide, was for callback to start next slide
+					removePreviousSlide();
 				
 				} else {
-					removePreviousSlides();
+					removePreviousSlide();
 					end();
 				}
 				

@@ -32,8 +32,14 @@ package med.infographic {
 				slideData.featuredNumber = slideXML.featuredNumber;
 			
 				
-				// placeholder
-				slideData.displayTimeMsec = 2500;
+				// how long should the slide stay on the screen?
+				// note: this currently includes animate on time, but NOT animate off time
+				slideData.displayTimeMsec = int(slideXML.@duration);
+				
+				if (slideData.displayTimeMsec <= 0) {
+					// fallback
+					slideData.displayTimeMsec = 1000;
+				}
 				
 				
 				
