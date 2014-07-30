@@ -142,8 +142,7 @@ package med.infographic {
 					case InfographicSlideData.HOTSPOT:
 						
 						var hotspotSlide:HotspotSlide = new HotspotSlide(slideData, initialBackgroundColor);
-						addChild(hotspotSlide);
-						slideSprites.push(hotspotSlide);
+						addSlideSprite(hotspotSlide);
 						hotspotSlide.animateOn();
 						
 						break;

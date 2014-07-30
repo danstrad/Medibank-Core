@@ -47,6 +47,10 @@ package med.infographic {
 			
 		}
 		
+		public function animateOff(callback:Function):void {
+			callback(this);
+		}
+		
 		public function animateOn():void {
 			
 			var t:Number = 0;
