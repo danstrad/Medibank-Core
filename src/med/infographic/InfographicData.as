@@ -43,49 +43,11 @@ package med.infographic {
 				slideData.featuredNumber = slideXML.featuredNumber;
 				*/
 				
-				/*
-				switch(slideData.type) {
-					
-					case InfographicSlideData.HOTSPOT:
-						data = { };
-						if (slideXML.hasOwnProperty("Background")) {
-							var bgXML:XML = slideXML.Background[0];
-							if (bgXML.hasOwnProperty("Image")) {
-								var imageXML:XML = bgXML.Image[0];
-								data.backgroundURL = imageXML.@url.toString();
-								data.backgroundScale = parseFloat(imageXML.@scale.toString());
-							}
-						}
-						if (slideXML.hasOwnProperty("intro")) {
-							var introXML:XML = slideXML.intro[0];
-							if (introXML.hasOwnProperty("explanationText")) data.introExplanationText = safeText(introXML.explanationText[0].toString());
-							if (introXML.hasOwnProperty("instructionsText")) data.introInstructionsText = safeText(introXML.instructionsText[0].toString());
-						}
-						data.hotspots = [];
-						for each(var hotspotXML:XML in slideXML.hotspot) {
-							var o:Object = { } ;
-							o.x = parseFloat(hotspotXML.@x) || 0;
-							o.y = parseFloat(hotspotXML.@y) || 0;
-							if (hotspotXML.hasOwnProperty("Text")) o.text = hotspotXML.Text[0].toString();
-							if (hotspotXML.hasOwnProperty("Image")) o.imageURL = hotspotXML.Image[0].@url.toString();
-							data.hotspots.push(o);
-						}
-						break;
-						
-				}
-				*/
-
 				this.slides.push(slideData);
 			}
 			
 		}
 		
-		protected static function safeText(text:String):String {
-			text = text.replace(/\n\r/ig, '\n');
-			text = text.replace(/\r\n/ig, '\n');
-			text = text.replace(/\r/ig, '\n');
-			return text;
-		}
 		
 		
 

@@ -24,32 +24,52 @@ package med.infographic {
 			var W:Number = 1024;
 			var H:Number = 576;
 			
-			var data:Object; // = slideData.data;
-			
-			var url:String = data.backgroundURL;
-			if (url) {
-				var bmd:BitmapData = AssetManager.getImage(url);
-				bitmap = new Bitmap(bmd);
-				addChild(bitmap);
-				if (data.backgroundScale) bitmap.scaleX = bitmap.scaleY = data.backgroundScale;
-				bitmap.x = -bitmap.width / 2;
-				bitmap.y = -bitmap.height / 2;
-				bitmap.alpha = 0;
+			var xml:XML = slideData.xml;
+
+			if (xml.hasOwnProperty("Background")) {
+				var bgXML:XML = xml.Background[0];
+				if (bgXML.hasOwnProperty("Image")) {
+					var imageXML:XML = bgXML.Image[0];
+					var url:String = imageXML.@url.toString();
+					if (url) {
+						var bmd:BitmapData = AssetManager.getImage(url);
+						bitmap = new Bitmap(bmd);
+						addChild(bitmap);
+						if (imageXML.hasOwnProperty("@scale")) bitmap.scaleX = bitmap.scaleY = parseFloat(imageXML.@scale.toString());
+						bitmap.x = -bitmap.width / 2;
+						bitmap.y = -bitmap.height / 2;
+						bitmap.alpha = 0;
+					}
+					
+				}
 			}
 			
-			if (data.introExplanationText || data.introInstructionsText) {
-				intro = new _HotspotIntroAssets();
-				if (data.introExplanationText) intro.explanationField.text = data.introExplanationText;
-				else intro.explanationField.visible = false;
-				if (data.introInstructionsText) intro.instructionsField.text = data.introInstructionsText;
-				else intro.instructionsField.visible = false;
+			if (xml.hasOwnProperty("intro")) {
+				var introXML:XML = xml.intro[0];
+				var explanationText:String;
+				var instructionsText:String;
+				if (introXML.hasOwnProperty("explanationText")) explanationText = Utils.safeText(introXML.explanationText[0].toString());
+				if (introXML.hasOwnProperty("instructionsText")) instructionsText = Utils.safeText(introXML.instructionsText[0].toString());
+				if (explanationText || instructionsText) {
+					intro = new _HotspotIntroAssets();
+					if (explanationText) intro.explanationField.text = explanationText;
+					else intro.explanationField.visible = false;
+					if (instructionsText) intro.instructionsField.text = instructionsText;
+					else intro.instructionsField.visible = false;
+				}				
 			}
+			
 			
 			hotspotsLayer = new Sprite();
-			for each(var o:Object in data.hotspots) {
-				var expander:HotspotExpander = new HotspotExpander(o.text, o.imageURL);
-				expander.x = o.x;
-				expander.y = o.y;
+			for each(var hotspotXML:XML in xml.hotspot) {
+				var expanderText:String;
+				var expanderImageURL:String;
+				if (hotspotXML.hasOwnProperty("Text")) expanderText = Utils.safeText(hotspotXML.Text[0].toString());
+				if (hotspotXML.hasOwnProperty("Image")) expanderImageURL = hotspotXML.Image[0].@url.toString();
+
+				var expander:HotspotExpander = new HotspotExpander(expanderText, expanderImageURL);
+				expander.x = parseFloat(hotspotXML.@x) || 0;
+				expander.y = parseFloat(hotspotXML.@y) || 0;
 				hotspotsLayer.addChild(expander);
 			}
 			
