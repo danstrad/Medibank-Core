@@ -4,7 +4,7 @@ package med.infographic {
 	import flash.display.Sprite;
 
 	
-	public class PeopleGraphPerson extends Sprite {
+	public class PeopleGraphPerson extends _PeopleGraphPerson {
 
 		protected var interior:Shape;
 

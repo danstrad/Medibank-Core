@@ -32,6 +32,7 @@ package med.infographic {
 				slideData.featuredNumber = slideXML.featuredNumber;
 			
 				
+<<<<<<< HEAD
 				switch(slideData.type) {
 					case InfographicSlideData.HOTSPOT:
 						data = { };
@@ -59,6 +60,17 @@ package med.infographic {
 						}
 						break;
 				}
+=======
+				// how long should the slide stay on the screen?
+				// note: this currently includes animate on time, but NOT animate off time
+				slideData.displayTimeMsec = int(slideXML.@duration);
+				
+				if (slideData.displayTimeMsec <= 0) {
+					// fallback
+					slideData.displayTimeMsec = 1000;
+				}
+				
+>>>>>>> 4109ff1686e2c70aeaf18e08757c490ad2697e2a
 				
 				slideData.data = data;
 				

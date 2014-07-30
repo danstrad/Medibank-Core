@@ -30,14 +30,14 @@ package med.infographic {
 			// we store this so we can return to it when we're done with the infographic
 			initialBackgroundColor = background.getColor();
 			
-			slideSprites = [];
-			
 			this.mouseChildren = false;
 			
-			// load first slide		
-			initSlide(0);
-			
+			// load first slide	
+			currentSlideIndex = -1;
+			nextSlide();
+
 		}
+		
 		
 		protected function end():void {
 			// End of sequence reached. Handling passed off to subclass
@@ -45,38 +45,63 @@ package med.infographic {
 		
 		
 		
-		public static const CENTER_BOX_WIDTH:Number = 464.1;
-		public static const CENTER_BOX_HEIGHT:Number = 443;
+		
+		protected var slideSprite:Sprite;
 		
 		
-		protected var slideSprites:Array;
-		
-		
-		protected function removePreviousSlides():void {
-			for each (var oldSlideSprite:Sprite in slideSprites) {
-				
-				// todo: different slide types will have different removal animations
-				TweenMax.to(oldSlideSprite, 0.5, { alpha:0, scaleX:0, scaleY:0, onComplete:removeSlideSpriteFromStage, onCompleteParams:[oldSlideSprite]});
-				
-				slideSprites.splice(slideSprites.indexOf(oldSlideSprite), 1);
+		protected function removePreviousSlide():void {		
+			if (slideSprite == null)	return;
+			
+			trace("removePreviousSprite");
+			
+			var nextSlideData:InfographicSlideData;				
+			if (currentSlideIndex < data.slides.length - 1) {
+				nextSlideData = data.slides[currentSlideIndex + 1];
 			}
-						
+				
+			if (slideSprite is InfographicCenterBox) {
+				
+				if (!nextSlideData || (nextSlideData && (nextSlideData.type != InfographicSlideData.CENTER_TEXT_BOX))) {
+					// if the next slide is NOT also a center box, we need to use a different exit animation (squash)
+					InfographicCenterBox(slideSprite).animateOffSquash(removeSlideSpriteFromStage);
+				} else {
+					ISlide(slideSprite).animateOff(removeSlideSpriteFromStage);
+				}
+				
+			} else if (slideSprite is ISlide) {
+				// under normal circumstances, trust the ISlide to animate itself off
+				ISlide(slideSprite).animateOff(removeSlideSpriteFromStage);
+			
+			} else {
+				// not sure what this thing is. just get rid of it
+				removeSlideSpriteFromStage(slideSprite);
+			}
+
+			slideSprite = null;
+			
 		}
 		
 		
-		protected function initSlide(slideIndex:int):void {
 		
-			// make sure any previous slides are being removed
-			removePreviousSlides();
+		protected function nextSlide():void {
+		
+			// make sure previous slide is removed
+			removePreviousSlide();
+			
+			var slideIndex:int = currentSlideIndex + 1;
 			
 			
 			if ((slideIndex >= 0) && (slideIndex < data.slides.length) && (data.slides[slideIndex] != null)) {
 				
 				this.currentSlideIndex = slideIndex;
-				
+
+				currentSlideTime = 0;
+								
 				var slideData:InfographicSlideData = data.slides[slideIndex];
 				
-				var box:Sprite;
+				// get some info on what (if any) the previous slide was
+				var previousSlideData:InfographicSlideData;				
+				if (slideIndex > 0)		previousSlideData = data.slides[slideIndex - 1];
 				
 				
 				// this is a placeholder approach
@@ -88,7 +113,7 @@ package med.infographic {
 						background.showColor(0xFF0000);
 						
 						var graph:PeopleGraph = new PeopleGraph();
-						addChild(graph);
+						addSlideSprite(graph);
 						
 						graph.animateOn();
 						
@@ -98,23 +123,14 @@ package med.infographic {
 					
 					case InfographicSlideData.CENTER_TEXT_BOX:
 						
-						box = new InfographicCenterBox();
+						var box:InfographicCenterBox = new InfographicCenterBox(slideData);						
+						addSlideSprite(box);
 						
-						box.graphics.clear();
-						box.graphics.beginFill(slideData.boxColor);
-						box.graphics.drawRect(-CENTER_BOX_WIDTH * 0.5, -CENTER_BOX_HEIGHT * 0.5, CENTER_BOX_WIDTH, CENTER_BOX_HEIGHT);
-						box.graphics.endFill();
-						
-						// set text
-						InfographicCenterBox(box).textField.htmlText = "<font color='#" + slideData.textColor.toString(16) + "'>" + slideData.featuredText + "</font>";
-						
-						InfographicCenterBox(box).textField.autoSize = TextFieldAutoSize.CENTER;						
-						InfographicCenterBox(box).textField.y = 0 - (InfographicCenterBox(box).textField.height * 0.5);
-						
-						addChild(box);
-						slideSprites.push(box);
-						
-						TweenMax.fromTo(box, 0.5, { alpha:0, scaleX:0, scaleY:0 }, { alpha:1, scaleX:1, scaleY:1, immediateRender:true } );
+						if (previousSlideData && (previousSlideData.type == InfographicSlideData.CENTER_TEXT_BOX)) {
+							box.animateOnRotate(previousSlideData.boxColor);
+						} else {
+							box.animateOn();
+						}
 						
 						
 						if (slideData.backgroundColor != background.getColor()) {
@@ -147,26 +163,55 @@ package med.infographic {
 		
 
 		
+		protected function addSlideSprite(sprite:Sprite):void {
+			this.slideSprite = sprite;
+			addChild(sprite);
+		}
+		
+		
+		
 		protected function removeSlideSpriteFromStage(sprite:Sprite):void {
-			if (sprite)  removeChild(sprite);
+			if (sprite && sprite.parent)  sprite.parent.removeChild(sprite);
+			nextSlide();
 		}
 		
 
+		
+		// number of msec the current slide has been displayed (we count this up in animate())
+		protected var currentSlideTime:Number = 0;
+		
 
 		public function animate(dTime:Number):void {
 			
+			// check whether we've exceeded the amount of time to show this slide
+			currentSlideTime += dTime;
+			
+			if (data.slides[currentSlideIndex] && (currentSlideTime >= data.slides[currentSlideIndex].displayTimeMsec)) { 
+				
+				if (currentSlideIndex < (data.slides.length-1)) {
+					// remove previous slide, was for callback to start next slide
+					removePreviousSlide();
+				
+				} else {
+					removePreviousSlide();
+					end();
+				}
+				
+			}
 		}
 		
 		
 		
 		protected function handleMouseDown(event:MouseEvent):void {
 
+			/*
 			if (currentSlideIndex < (data.slides.length-1)) {
 				initSlide(currentSlideIndex + 1);
 			} else {
 				removePreviousSlides();
 				end();
 			}
+			*/
 			
 		}
 		

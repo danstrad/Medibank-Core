@@ -2,12 +2,9 @@ package med.infographic {
 	import flash.display.Sprite;
 
 	public interface ISlide {
-
-				
-		function get displayDurationSeconds():Number;
-
 		
 		function animateOn():void;
+		function animateOff(callback:Function):void;	// the callback function takes the ISlide as the parameter
 		
 
 	}

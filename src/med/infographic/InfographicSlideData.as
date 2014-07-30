@@ -41,7 +41,12 @@ package med.infographic {
 		public var featuredText:String;
 		public var featuredNumber:String;
 		
+<<<<<<< HEAD
 		public var data:Object;
+=======
+		public var displayTimeMsec:Number;
+
+>>>>>>> 4109ff1686e2c70aeaf18e08757c490ad2697e2a
 		
 		
 		public function InfographicSlideData() {

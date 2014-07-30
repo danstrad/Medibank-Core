@@ -970,23 +970,23 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	
 	
 	<Infographic id="info1">
-		<slide type="center_text_box">
+		<slide type="center_text_box" duration="2000">
 			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"></appearance>
 			<featuredText>Accessing specialist care in regional Australia presents many challenges for GPs and their patients.</featuredText>
 		</slide>
-		<slide type="center_text_box">
+		<slide type="center_text_box" duration="3000">
 			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"></appearance>
 			<featuredText>Many patients have to travel more than 200km to see a specialist, not to mention the associated costs. Some choose to miss out on care altogether.</featuredText>
 		</slide>
-		<slide type="center_text_box">
+		<slide type="center_text_box" duration="3000">
 			<appearance textColor="#FFFFFF" backgroundColor="#ff9330" boxColor="#E4002B"></appearance>
 			<featuredText>That was before Anywhere Healthcare – Australia’s largest panel of online specialists that connects patients with specialists via video.</featuredText>
 		</slide>	
-		<slide type="center_text_box">
+		<slide type="center_text_box" duration="2000">
 			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#ff9330"></appearance>
 			<featuredText>Anywhere Healthcare improves access to specialist care in regional and remote Australia.</featuredText>
 		</slide>
-		<slide type="people_graph">
+		<slide type="people_graph" duration="10000">
 		</slide>		
 	</Infographic>
 	<Infographic id="info2">

@@ -52,7 +52,7 @@ package med.infographic {
 				var xIndex:int = i % 10;
 				var yIndex:int = Math.floor(i / 10);
 
-				person.rowIndex = yIndex;
+				people[i].rowIndex = yIndex;
 				
 				people[i].x = startX + (xIndex * PEOPLE_SPACING);
 				people[i].y = startY + (yIndex * PEOPLE_SPACING);
@@ -63,7 +63,7 @@ package med.infographic {
 			isInNeutralState = true;
 			
 			// hide text
-			//textPanel.visible = false;
+			textPanel.visible = false;
 		}
 
 		
@@ -78,6 +78,12 @@ package med.infographic {
 				person.animateOnPerson(animationDelayMsec);
 			}
 			
+		}
+		
+		
+		public function animateOff(callback:Function):void {
+//			TweenMax.fromTo(box, ANIMATE_ON_TIME, { scaleX:1, scaleY:1 }, { scaleX:0, scaleY:0, immediateRender:true, onComplete:callback, onCompleteParams:[this] } );	
+			callback(this);
 		}
 		
 		
@@ -179,13 +185,7 @@ package med.infographic {
 			
 			
 		}
-		
-		
-		public function get displayDurationSeconds():Number {
-			// todo
-			return 10;
-		}
-		
+
 		
 		
 	}
