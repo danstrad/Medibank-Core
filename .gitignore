@@ -6,7 +6,8 @@
 # Generated files
 *.swf
 RECOVER*.fla
+.obj/
 
 # System files
 thumbs.db
-obj\
+
