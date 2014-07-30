@@ -25,16 +25,23 @@ package med.infographic {
 		public var isInNeutralState:Boolean;
 		
 		
+		public var slideData:InfographicSlideData;
 		
-		public function PeopleGraph() {
+		
+		
+		public function PeopleGraph(slideData:InfographicSlideData) {
 			var i:int;
 			
-			// todo: move this somewhere better (it's  one-time init)
-			TweenPlugin.activate([ColorTransformPlugin]);
+						
+			for each (var graphStateXML:XML in slideData.xml.graphstate) {
+				//<graphstate value="33" featuredText="1 in 3" usePercentage="false" topText="" bottomText="Consultations for patients up to the age of 15 are for dermatology." />
+				
+			}
+				
 			
 			
 			if (people == null) {
-				// create vector for the first time
+				// create vector for graphical representation of people for the first time
 				people = new Vector.<PeopleGraphPerson>();
 				
 				for (i = 0; i < 100; i++) {

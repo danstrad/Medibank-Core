@@ -22,7 +22,7 @@ package med.infographic {
 			var W:Number = 1024;
 			var H:Number = 576;
 			
-			var data:Object = slideData.data;
+			var data:Object; // = slideData.data;
 			
 			var url:String = data.backgroundURL;
 			if (url) {

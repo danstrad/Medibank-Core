@@ -37,10 +37,19 @@ package med.infographic {
 		public function InfographicCenterBox(slideData:InfographicSlideData) {
 			this.data = slideData;
 			
+			
+			// get details from xml
+			var textColor:uint = uint(slideData.xml.appearance.@textColor.toString().replace("#", "0x"));
+			var backgroundColor:uint = uint(slideData.xml.appearance.@backgroundColor.toString().replace("#", "0x"));
+			var boxColor:uint = uint(slideData.xml.appearance.@boxColor.toString().replace("#", "0x"));	
+				
+			var boxText:String = slideData.xml.featuredText;
+			
+			
 			// draw box
 			box = new Shape();
 			box.graphics.clear();
-			box.graphics.beginFill(slideData.boxColor);
+			box.graphics.beginFill(boxColor);
 			box.graphics.drawRect(BOX_X, BOX_Y, CENTER_BOX_WIDTH, CENTER_BOX_HEIGHT);
 			box.graphics.endFill();
 			addChildAt(box, 0);
@@ -54,7 +63,7 @@ package med.infographic {
 			addChild(textMask);			
 			
 			// set text
-			textField.htmlText = "<font color='#" + slideData.textColor.toString(16) + "'>" + slideData.featuredText + "</font>";
+			textField.htmlText = "<font color='#" + textColor.toString(16) + "'>" + boxText + "</font>";
 			
 			textField.autoSize = TextFieldAutoSize.CENTER;						
 			textField.y = 0 - (textField.height * 0.5);

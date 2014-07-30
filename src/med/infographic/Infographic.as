@@ -112,7 +112,7 @@ package med.infographic {
 						// for debug
 						background.showColor(0xFF0000);
 						
-						var graph:PeopleGraph = new PeopleGraph();
+						var graph:PeopleGraph = new PeopleGraph(slideData);
 						addSlideSprite(graph);
 						
 						graph.animateOn();
@@ -139,6 +139,7 @@ package med.infographic {
 						
 						break;
 					
+						
 					case InfographicSlideData.HOTSPOT:
 						
 						var hotspotSlide:HotspotSlide = new HotspotSlide(slideData, initialBackgroundColor);
