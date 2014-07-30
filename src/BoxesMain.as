@@ -160,7 +160,10 @@ package {
 			xmlLoader.addEventListener(Event.COMPLETE, handleXMLLoaded);
 			xmlLoader.load(new URLRequest("BoxesData.XML"));
 
-			addEventListener(MouseEvent.CLICK, handleFullScreenClick);
+			CONFIG::release {
+				addEventListener(MouseEvent.CLICK, handleFullScreenClick);
+			}
+			
 			stage.addEventListener(FullScreenEvent.FULL_SCREEN, handleFullScreenChange);
 		}
 
