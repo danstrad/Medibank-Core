@@ -63,7 +63,7 @@ package med.infographic {
 			isInNeutralState = true;
 			
 			// hide text
-			//textPanel.visible = false;
+			textPanel.visible = false;
 		}
 
 		
@@ -79,6 +79,12 @@ package med.infographic {
 			}
 			
 		}
+		
+		
+		public function animateOff():void {
+			// todo
+		}
+		
 		
 		
 		
@@ -179,13 +185,7 @@ package med.infographic {
 			
 			
 		}
-		
-		
-		public function get displayDurationSeconds():Number {
-			// todo
-			return 10;
-		}
-		
+
 		
 		
 	}

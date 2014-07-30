@@ -36,17 +36,15 @@ package med.infographic {
 			
 			// load first slide		
 			initSlide(0);
-			
+
 		}
+		
 		
 		protected function end():void {
 			// End of sequence reached. Handling passed off to subclass
 		}
 		
 		
-		
-		public static const CENTER_BOX_WIDTH:Number = 464.1;
-		public static const CENTER_BOX_HEIGHT:Number = 443;
 		
 		
 		protected var slideSprites:Array;
@@ -56,7 +54,9 @@ package med.infographic {
 			for each (var oldSlideSprite:Sprite in slideSprites) {
 				
 				// todo: different slide types will have different removal animations
-				TweenMax.to(oldSlideSprite, 0.5, { alpha:0, scaleX:0, scaleY:0, onComplete:removeSlideSpriteFromStage, onCompleteParams:[oldSlideSprite]});
+//				TweenMax.to(oldSlideSprite, 0.5, { alpha:0, scaleX:0, scaleY:0, onComplete:removeSlideSpriteFromStage, onCompleteParams:[oldSlideSprite]});
+				
+				removeSlideSpriteFromStage(oldSlideSprite);
 				
 				slideSprites.splice(slideSprites.indexOf(oldSlideSprite), 1);
 			}
@@ -72,11 +72,15 @@ package med.infographic {
 			
 			if ((slideIndex >= 0) && (slideIndex < data.slides.length) && (data.slides[slideIndex] != null)) {
 				
+				currentSlideTime = 0;
+				
 				this.currentSlideIndex = slideIndex;
 				
 				var slideData:InfographicSlideData = data.slides[slideIndex];
 				
-				var box:Sprite;
+				// get some info on what (if any) the previous slide was
+				var previousSlideData:InfographicSlideData;				
+				if (slideIndex > 0)		previousSlideData = data.slides[slideIndex - 1];
 				
 				
 				// this is a placeholder approach
@@ -98,23 +102,15 @@ package med.infographic {
 					
 					case InfographicSlideData.CENTER_TEXT_BOX:
 						
-						box = new InfographicCenterBox();
-						
-						box.graphics.clear();
-						box.graphics.beginFill(slideData.boxColor);
-						box.graphics.drawRect(-CENTER_BOX_WIDTH * 0.5, -CENTER_BOX_HEIGHT * 0.5, CENTER_BOX_WIDTH, CENTER_BOX_HEIGHT);
-						box.graphics.endFill();
-						
-						// set text
-						InfographicCenterBox(box).textField.htmlText = "<font color='#" + slideData.textColor.toString(16) + "'>" + slideData.featuredText + "</font>";
-						
-						InfographicCenterBox(box).textField.autoSize = TextFieldAutoSize.CENTER;						
-						InfographicCenterBox(box).textField.y = 0 - (InfographicCenterBox(box).textField.height * 0.5);
-						
+						var box:InfographicCenterBox = new InfographicCenterBox(slideData);						
 						addChild(box);
 						slideSprites.push(box);
 						
-						TweenMax.fromTo(box, 0.5, { alpha:0, scaleX:0, scaleY:0 }, { alpha:1, scaleX:1, scaleY:1, immediateRender:true } );
+						if (previousSlideData && (previousSlideData.type == InfographicSlideData.CENTER_TEXT_BOX)) {
+							box.animateOnRotate(previousSlideData.boxColor);
+						} else {
+							box.animateOn();
+						}
 						
 						
 						if (slideData.backgroundColor != background.getColor()) {
@@ -144,21 +140,42 @@ package med.infographic {
 		}
 		
 
+		
+		// number of msec the current slide has been displayed (we count this up in animate())
+		protected var currentSlideTime:Number = 0;
+		
 
 		public function animate(dTime:Number):void {
 			
+			// check whether we've exceeded the amount of time to show this slide
+			currentSlideTime += dTime;
+			
+			if (data.slides[currentSlideIndex] && (currentSlideTime >= data.slides[currentSlideIndex].displayTimeMsec)) { 
+				
+				if (currentSlideIndex < (data.slides.length-1)) {
+					// next slide
+					initSlide(currentSlideIndex + 1);
+				
+				} else {
+					removePreviousSlides();
+					end();
+				}
+				
+			}
 		}
 		
 		
 		
 		protected function handleMouseDown(event:MouseEvent):void {
 
+			/*
 			if (currentSlideIndex < (data.slides.length-1)) {
 				initSlide(currentSlideIndex + 1);
 			} else {
 				removePreviousSlides();
 				end();
 			}
+			*/
 			
 		}
 		

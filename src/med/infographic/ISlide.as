@@ -3,11 +3,9 @@ package med.infographic {
 
 	public interface ISlide {
 
-				
-		function get displayDurationSeconds():Number;
-
 		
 		function animateOn():void;
+		function animateOff():void;
 		
 
 	}

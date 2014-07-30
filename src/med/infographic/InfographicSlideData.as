@@ -39,6 +39,7 @@ package med.infographic {
 		public var featuredText:String;
 		public var featuredNumber:String;
 		
+		public var displayTimeMsec:Number;
 
 		
 		

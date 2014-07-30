@@ -32,6 +32,9 @@ package med.infographic {
 				slideData.featuredNumber = slideXML.featuredNumber;
 			
 				
+				// placeholder
+				slideData.displayTimeMsec = 2500;
+				
 				
 				
 				this.slides.push(slideData);
