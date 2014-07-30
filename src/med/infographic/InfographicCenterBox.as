@@ -1,4 +1,5 @@
 package med.infographic {
+	import com.garin.Text;
 	import com.greensock.TweenMax;
 	import flash.display.Shape;
 	import flash.display.Sprite;
@@ -63,7 +64,11 @@ package med.infographic {
 			addChild(textMask);			
 			
 			// set text
-			textField.htmlText = "<font color='#" + textColor.toString(16) + "'>" + boxText + "</font>";
+//			textField.htmlText = "<font color='#" + textColor.toString(16) + "'>" + boxText + "</font>";
+			textField.text = boxText;
+			textField.textColor = textColor;
+			Text.boldText(textField);
+			Text.setTextSpacing(textField, -2);
 			
 			textField.autoSize = TextFieldAutoSize.CENTER;						
 			textField.y = 0 - (textField.height * 0.5);
