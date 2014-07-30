@@ -98,7 +98,7 @@ package med.infographic {
 					
 					case InfographicSlideData.CENTER_TEXT_BOX:
 						
-						box = new InfoGraphicCenterBox();
+						box = new InfographicCenterBox();
 						
 						box.graphics.clear();
 						box.graphics.beginFill(slideData.boxColor);
@@ -106,10 +106,10 @@ package med.infographic {
 						box.graphics.endFill();
 						
 						// set text
-						InfoGraphicCenterBox(box).textField.htmlText = "<font color='#" + slideData.textColor.toString(16) + "'>" + slideData.featuredText + "</font>";
+						InfographicCenterBox(box).textField.htmlText = "<font color='#" + slideData.textColor.toString(16) + "'>" + slideData.featuredText + "</font>";
 						
-						InfoGraphicCenterBox(box).textField.autoSize = TextFieldAutoSize.CENTER;						
-						InfoGraphicCenterBox(box).textField.y = 0 - (InfoGraphicCenterBox(box).textField.height * 0.5);
+						InfographicCenterBox(box).textField.autoSize = TextFieldAutoSize.CENTER;						
+						InfographicCenterBox(box).textField.y = 0 - (InfographicCenterBox(box).textField.height * 0.5);
 						
 						addChild(box);
 						slideSprites.push(box);

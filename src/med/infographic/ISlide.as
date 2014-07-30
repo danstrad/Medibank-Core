@@ -5,6 +5,9 @@ package med.infographic {
 
 				
 		function get displayDurationSeconds():Number;
+
+		
+		function animateOn():void;
 		
 
 	}

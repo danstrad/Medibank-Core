@@ -38,6 +38,8 @@
     </source-path>
     <library-path append="true">
       <path-element>C:\Users\Cuuble\Documents\GitHub\Medibank\lib\boxes.swc</path-element>
+      <path-element>C:\Users\Cuuble\Documents\GitHub\Medibank\lib\PeopleGraph.swc</path-element>
+      <path-element>C:\Users\Cuuble\Documents\GitHub\Medibank\lib\InfographicBoxes.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>
