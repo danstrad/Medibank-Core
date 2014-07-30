@@ -27,6 +27,8 @@ package med.infographic {
 		public static const FLOATING_BOXES_TEXT:String			= "floating_boxes";		// floating boxes with single line of text on left (info2)
 		public static const FLOATING_BOXES_NUMBER:String		= "floating_boxes_number";	// floating boxes with a prominent number (info4)
 		
+		public static const HOTSPOT:String						= "hotspot";	// image background with clickable hotspots
+		
 				
 
 		
@@ -39,7 +41,7 @@ package med.infographic {
 		public var featuredText:String;
 		public var featuredNumber:String;
 		
-
+		public var data:Object;
 		
 		
 		public function InfographicSlideData() {

@@ -123,6 +123,14 @@ package med.infographic {
 						
 						break;
 					
+					case InfographicSlideData.HOTSPOT:
+						
+						var hotspotSlide:HotspotSlide = new HotspotSlide(slideData, initialBackgroundColor);
+						addChild(hotspotSlide);
+						slideSprites.push(hotspotSlide);
+						hotspotSlide.animateOn();
+						
+						break;
 						
 					default:
 						end();
