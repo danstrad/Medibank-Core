@@ -22,13 +22,23 @@ package med.infographic {
 				
 				// how long should the slide stay on the screen?
 				// note: this currently includes animate on time, but NOT animate off time
-				var displayTimeMsec:int = int(slideXML.@duration);
+				var displayTimeMsec:int;
 				
-				if (displayTimeMsec <= 0) {
-					// fallback
-					displayTimeMsec = 3000;
+				if (type == InfographicSlideData.PEOPLE_GRAPH) {
+					// calculate duration automatically based on slide count, ignore what's in the xml (if anything)
+					displayTimeMsec = (PeopleGraph.ANIMATE_ON_DURATION_SEC + (slideXML.graphstate.length() * PeopleGraph.GRAPH_STATE_DURATION_SEC)) * 1000;	
+					
+				} else {
+					
+					displayTimeMsec = int(slideXML.@duration);
+				
+					if (displayTimeMsec <= 0) {
+						// fallback
+						displayTimeMsec = 3000;
+					}
+				
 				}
-				
+					
 				var slideData:InfographicSlideData = new InfographicSlideData(type, displayTimeMsec, slideXML);
 				
 				

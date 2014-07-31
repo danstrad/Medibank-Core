@@ -170,6 +170,7 @@ package med.infographic {
 		
 		protected function removeSlideSpriteFromStage(sprite:Sprite):void {
 			if (sprite && sprite.parent)  sprite.parent.removeChild(sprite);
+			slideSprite = null;
 			nextSlide();
 		}
 		

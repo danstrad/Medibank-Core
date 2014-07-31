@@ -12,7 +12,7 @@ package med.infographic {
 		public function InfographicSlideData(type:String, displayTimeMsec:int, xml:XML) {
 			this.type = type;
 			this.xml = xml;
-			this.displayTimeMsec = displayTimeMsec;			
+			this.displayTimeMsec = displayTimeMsec;	
 		}
 		
 		
