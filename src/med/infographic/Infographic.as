@@ -12,8 +12,6 @@ package med.infographic {
 
 	public class Infographic extends Sprite {
 		
-		protected static const BACKGROUND_COLOR_TRANSITION_TIME:Number = 500;
-		
 		
 		public var data:InfographicData;		
 		protected var background:Background;
@@ -59,12 +57,23 @@ package med.infographic {
 				
 			if (slideSprite is InfographicCenterBox) {
 				
-				if (!nextSlideData || (nextSlideData && (nextSlideData.type != InfographicSlideData.CENTER_TEXT_BOX))) {
-					// if the next slide is NOT also a center box, we need to use a different exit animation (squash)
-					InfographicCenterBox(slideSprite).animateOffSquash(removeSlideSpriteFromStage);
-				} else {
-					ISlide(slideSprite).animateOff(removeSlideSpriteFromStage);
+				switch (data.slides[currentSlideIndex].animateOff) {
+					
+					case "zoomIn":
+						InfographicCenterBox(slideSprite).animateOffZoom(removeSlideSpriteFromStage);
+						break;
+						
+					case "squash":
+						InfographicCenterBox(slideSprite).animateOffSquash(removeSlideSpriteFromStage);
+						break;
+						
+					default:	
+					case "none":
+						ISlide(slideSprite).animateOff(removeSlideSpriteFromStage);
+						break;
+				
 				}
+				
 				
 			} else if (slideSprite is ISlide) {
 				// under normal circumstances, trust the ISlide to animate itself off
@@ -124,15 +133,32 @@ package med.infographic {
 						var box:InfographicCenterBox = new InfographicCenterBox(slideData);						
 						addSlideSprite(box);
 						
-						if (previousSlideData && (previousSlideData.type == InfographicSlideData.CENTER_TEXT_BOX)) {
-							box.animateOnRotate(previousSlideData.boxColor);
-						} else {
-							box.animateOn();
+						
+						switch (data.slides[currentSlideIndex].animateOn) {
+							
+							
+							case "none":
+								box.animateOnNone();
+								break;
+							
+							default:	
+							case "squash":
+								box.animateOn();
+								break;
+								
+							case "rotate":
+								if (previousSlideData && (previousSlideData.type == InfographicSlideData.CENTER_TEXT_BOX)) {
+									box.animateOnRotate(previousSlideData.boxColor);
+								} else {
+									box.animateOnRotate(slideData.boxColor);	// this is an unusual situation
+								}
+								break;
+					
 						}
 						
 						
 						if (slideData.backgroundColor != background.getColor()) {
-							background.fadeToColor(slideData.backgroundColor, BACKGROUND_COLOR_TRANSITION_TIME);
+							background.showColor(slideData.backgroundColor);
 						}
 						
 						break;
@@ -182,13 +208,17 @@ package med.infographic {
 
 		public function animate(dTime:Number):void {
 			
+			// do we even have a slide?
+			if (!slideSprite)	return;
+			
+			
 			// check whether we've exceeded the amount of time to show this slide
 			currentSlideTime += dTime;
 			
 			if (data.slides[currentSlideIndex] && (currentSlideTime >= data.slides[currentSlideIndex].displayTimeMsec)) { 
 				
-				if (currentSlideIndex < (data.slides.length-1)) {
-					// remove previous slide, was for callback to start next slide
+					if (currentSlideIndex < (data.slides.length-1)) {
+					// remove previous slide, wait for callback to start next slide
 					removePreviousSlide();
 				
 				} else {

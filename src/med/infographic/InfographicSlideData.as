@@ -28,6 +28,13 @@ package med.infographic {
 			return uint(xml.appearance.@boxColor.toString().replace("#", "0x"));	
 		}
 		
+		public function get animateOn():String {
+			return xml.@animateOn;	
+		}
+
+		public function get animateOff():String {
+			return xml.@animateOff;	
+		}
 		
 		
 		// slide type constants

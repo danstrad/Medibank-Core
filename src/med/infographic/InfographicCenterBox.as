@@ -5,6 +5,7 @@ package med.infographic {
 	import flash.display.Sprite;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
+	import med.display.Background;
 
 	public class InfographicCenterBox extends _InfographicCenterBox implements ISlide {
 
@@ -32,6 +33,7 @@ package med.infographic {
 		protected var textFieldOriginalX:Number;
 		
 		protected var data:InfographicSlideData;
+		protected var boxColor:uint;
 		
 		
 		
@@ -42,7 +44,8 @@ package med.infographic {
 			// get details from xml
 			var textColor:uint = uint(slideData.xml.appearance.@textColor.toString().replace("#", "0x"));
 			var backgroundColor:uint = uint(slideData.xml.appearance.@backgroundColor.toString().replace("#", "0x"));
-			var boxColor:uint = uint(slideData.xml.appearance.@boxColor.toString().replace("#", "0x"));	
+			
+			this.boxColor = uint(slideData.xml.appearance.@boxColor.toString().replace("#", "0x"));	
 				
 			var boxText:String = slideData.xml.featuredText;
 			
@@ -91,9 +94,14 @@ package med.infographic {
 		
 		public function animateOnRotate(previousBoxColor:uint):void {
 			// animation when transitioning from a previous box			
-			TweenMax.fromTo(box, ANIMATE_ON_TIME, { rotation:90, colorTransform:{ tint:previousBoxColor, tintAmount:1.0} }, { rotation:0, colorTransform:{ tint:previousBoxColor, tintAmount:0}, immediateRender:true, onComplete:rollOutText } );
+			TweenMax.fromTo(box, ANIMATE_ON_TIME, { rotation:-90, colorTransform:{ tint:previousBoxColor, tintAmount:1.0} }, { rotation:0, colorTransform:{ tint:previousBoxColor, tintAmount:0}, immediateRender:true, onComplete:rollOutText } );
 		}
 		
+		
+		public function animateOnNone():void {
+			// no animation, just roll the text out
+			rollOutText();
+		}
 		
 		public function animateOff(callback:Function):void {
 			slideTextOff(callback);
@@ -106,6 +114,13 @@ package med.infographic {
 			TweenMax.fromTo(box, ANIMATE_OFF_TIME, { scaleX:1, scaleY:1 }, { scaleX:0, scaleY:0, immediateRender:true, onComplete:callback, onCompleteParams:[this], delay: TEXT_TRANSITION_OFF_TIME } );						
 		}
 		
+		
+		public function animateOffZoom(callback:Function):void {		
+			// zoom in to this box until it fills the screen
+			slideTextOff(null);
+			TweenMax.fromTo(this, ANIMATE_OFF_TIME, { scaleX:1.0, scaleY:1.0 }, { scaleX:3.0, scaleY:3.0, delay:TEXT_TRANSITION_OFF_TIME, onComplete:callback, onCompleteParams:[this] } );
+		}
+
 		
 		protected function hide():void {
 			this.visible = false;

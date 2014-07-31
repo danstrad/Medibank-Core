@@ -48,7 +48,7 @@ package med.display {
 			backgroundImageLayer.visible = true;
 			
 			if (initialBackgroundColor != background.getColor()) {
-				background.fadeToColor(initialBackgroundColor, BACKGROUND_COLOR_TRANSITION_TIME);
+				background.fadeToColor(initialBackgroundColor, 1.0);
 			}
 			
 			//finished = true;
@@ -89,8 +89,10 @@ package med.display {
 					finished = true;
 				}
 			} else {
-				super.animate(dTime);
+				
 			}
+			
+			super.animate(dTime);
 		}
 		
 		
