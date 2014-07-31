@@ -90,7 +90,7 @@ package med.infographic {
 			
 			var t:Number = 0;
 			
-			const SKIP_INTRO:Boolean = true;
+			const SKIP_INTRO:Boolean = false;
 			if (!SKIP_INTRO) {
 				if (bitmap) {
 					const BITMAP_FADE_TIME:Number = 1.5;
