@@ -23,7 +23,8 @@ package med.infographic {
 		
 			var W:Number = 1024;
 			var H:Number = 576;
-			
+			var coordScale:Number = 1 / 2.400390625;
+					
 			var xml:XML = slideData.xml;
 
 			if (xml.hasOwnProperty("Background")) {
@@ -35,7 +36,9 @@ package med.infographic {
 						var bmd:BitmapData = AssetManager.getImage(url);
 						bitmap = new Bitmap(bmd);
 						addChild(bitmap);
-						if (imageXML.hasOwnProperty("@scale")) bitmap.scaleX = bitmap.scaleY = parseFloat(imageXML.@scale.toString());
+						var bgScale:Number = 1;
+						if (imageXML.hasOwnProperty("@scale")) bgScale = parseFloat(imageXML.@scale.toString());
+						bitmap.scaleX = bitmap.scaleY = bgScale * coordScale;
 						bitmap.x = -bitmap.width / 2;
 						bitmap.y = -bitmap.height / 2;
 						bitmap.alpha = 0;
@@ -64,12 +67,14 @@ package med.infographic {
 			for each(var hotspotXML:XML in xml.hotspot) {
 				var expanderText:String = null;
 				var expanderImageURL:String = null;
+				var expanderDir:String = null;
 				if (hotspotXML.hasOwnProperty("Text")) expanderText = Utils.safeText(hotspotXML.Text[0].toString());
 				if (hotspotXML.hasOwnProperty("Image")) expanderImageURL = hotspotXML.Image[0].@url.toString();
+				if (hotspotXML.hasOwnProperty("@dir")) expanderDir = hotspotXML.@dir.toString();
 
-				var expander:HotspotExpander = new HotspotExpander(expanderText, expanderImageURL);
-				expander.x = parseFloat(hotspotXML.@x) || 0;
-				expander.y = parseFloat(hotspotXML.@y) || 0;
+				var expander:HotspotExpander = new HotspotExpander(expanderText, expanderImageURL, expanderDir);
+				expander.x = (parseFloat(hotspotXML.@x) * coordScale) || 0;
+				expander.y = (parseFloat(hotspotXML.@y) * coordScale) || 0;
 				hotspotsLayer.addChild(expander);
 			}
 			
@@ -130,11 +135,15 @@ package med.infographic {
 			var expander:HotspotExpander = event.target as HotspotExpander;
 			if (!expander) return;
 			if (expander.canToggle) {
-				expander.toggle();
-				if (expander.expanded) {
-					expander.parent.setChildIndex(expander, expander.parent.numChildren - 1);
+				if (expander.mouseWithinImage) {
+					expander.showFullscreenImage();
 				} else {
-					expander.parent.setChildIndex(expander, 0);
+					expander.toggle();
+					if (expander.expanded) {
+						expander.parent.setChildIndex(expander, expander.parent.numChildren - 1);
+					} else {
+						//expander.parent.setChildIndex(expander, 0);
+					}
 				}
 			}			
 		}
