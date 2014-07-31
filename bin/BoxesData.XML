@@ -970,6 +970,11 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	
 	
 	<Infographic id="info1">
+		
+		<slide type="flip_number" duration="10000">
+			<graphstate value="80" featuredText="Psychology and psychiatry consultations take place each month." topText="About" />			
+		</slide>		
+		
 		<slide type="center_text_box" duration="4000" animateOn="squash" animateOff="none">
 			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"/>
 			<featuredText>Accessing specialist care in regional Australia presents many challenges for GPs and their patients.</featuredText>

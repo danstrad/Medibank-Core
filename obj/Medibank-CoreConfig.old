@@ -41,6 +41,7 @@
       <path-element>C:\Users\Cuuble\Documents\GitHub\Medibank-Core\lib\InfographicBoxes.swc</path-element>
       <path-element>C:\Users\Cuuble\Documents\GitHub\Medibank-Core\lib\Hotspots.swc</path-element>
       <path-element>C:\Users\Cuuble\Documents\GitHub\Medibank-Core\lib\PeopleGraph.swc</path-element>
+      <path-element>C:\Users\Cuuble\Documents\GitHub\Medibank-Core\lib\FlipNumber.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

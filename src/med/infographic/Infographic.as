@@ -50,6 +50,9 @@ package med.infographic {
 			
 			trace("removePreviousSprite");
 			
+			var oldSlideSprite:Sprite = slideSprite;
+			slideSprite = null;
+			
 			var nextSlideData:InfographicSlideData;				
 			if (currentSlideIndex < data.slides.length - 1) {
 				nextSlideData = data.slides[currentSlideIndex + 1];
@@ -60,16 +63,16 @@ package med.infographic {
 				switch (data.slides[currentSlideIndex].animateOff) {
 					
 					case "zoomIn":
-						InfographicCenterBox(slideSprite).animateOffZoom(removeSlideSpriteFromStage);
+						InfographicCenterBox(oldSlideSprite).animateOffZoom(removeSlideSpriteFromStage);
 						break;
 						
 					case "squash":
-						InfographicCenterBox(slideSprite).animateOffSquash(removeSlideSpriteFromStage);
+						InfographicCenterBox(oldSlideSprite).animateOffSquash(removeSlideSpriteFromStage);
 						break;
 						
 					default:	
 					case "none":
-						ISlide(slideSprite).animateOff(removeSlideSpriteFromStage);
+						ISlide(oldSlideSprite).animateOff(removeSlideSpriteFromStage);
 						break;
 				
 				}
@@ -77,14 +80,14 @@ package med.infographic {
 				
 			} else if (slideSprite is ISlide) {
 				// under normal circumstances, trust the ISlide to animate itself off
-				ISlide(slideSprite).animateOff(removeSlideSpriteFromStage);
+				ISlide(oldSlideSprite).animateOff(removeSlideSpriteFromStage);
 			
 			} else {
 				// not sure what this thing is. just get rid of it
-				removeSlideSpriteFromStage(slideSprite);
+				removeSlideSpriteFromStage(oldSlideSprite);
 			}
 
-			slideSprite = null;
+			
 			
 		}
 		
@@ -126,6 +129,18 @@ package med.infographic {
 						
 						break;
 	
+						
+					case InfographicSlideData.FLIP_NUMBER:
+						// for debug
+						background.showColor(0xFF0000);
+						
+						var flipNumberSlide:FlipNumberSlide = new FlipNumberSlide(slideData);
+						addSlideSprite(flipNumberSlide);
+						
+						flipNumberSlide.animateOn();
+						
+						break;
+						
 						
 					
 					case InfographicSlideData.CENTER_TEXT_BOX:
