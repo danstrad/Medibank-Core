@@ -971,10 +971,6 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	
 	<Infographic id="info1">
 		
-		<slide type="flip_number" duration="10000">
-			<graphstate value="80" featuredText="Psychology and psychiatry consultations take place each month." topText="About" />			
-		</slide>		
-		
 		<slide type="center_text_box" duration="4000" animateOn="squash" animateOff="none">
 			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"/>
 			<featuredText>Accessing specialist care in regional Australia presents many challenges for GPs and their patients.</featuredText>
@@ -991,6 +987,9 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#ff9330"/>
 			<featuredText>Anywhere Healthcare improves access to specialist care in regional and remote Australia.</featuredText>
 		</slide>
+		<slide type="flip_number" duration="5000">
+			<graphstate value="80" featuredText="Psychology and psychiatry consultations take place each month." topText="About" />		
+		</slide>	
 		<slide type="people_graph">
 			<graphstate value="33" featuredText="1 in 3" usePercentage="false" topText="" bottomText="Consultations for patients up to the age of 15 are for dermatology." />
 			<graphstate value="5" featuredText="95" usePercentage="true" topText="Thanks to Anywhere Healthcare" bottomText="Of patients avoid travelling long distances." />

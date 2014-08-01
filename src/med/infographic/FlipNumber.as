@@ -5,7 +5,8 @@ package med.infographic {
 	public class FlipNumber extends _FlipNumber {
 
 		
-		protected var numerals:Vector.<FlipNumberNumeral>;
+		protected var numerals:Vector.<FlipNumberNumeral>;		
+		protected var commas:Vector.<FlipNumberComma>;
 		
 		protected var numeralParent:Sprite;
 		
@@ -22,8 +23,8 @@ package med.infographic {
 			numeralParent.y = 0;
 			addChild(numeralParent);
 			
-			numerals = new Vector.<FlipNumberNumeral>();
-			
+			numerals = new Vector.<FlipNumberNumeral>();			
+			commas = new Vector.<FlipNumberComma>();
 			
 //			for (var i:int = 0; i < numDigits; i++) {
 //				addNewNumeral();
@@ -46,6 +47,8 @@ package med.infographic {
 		protected function removeNumeral():void {
 			var numeral:FlipNumberNumeral = numerals.pop();
 			numeralParent.removeChild(numeral);
+			
+			// todo: check if we also need to remove a comma here
 		}
 		
 		
@@ -54,20 +57,54 @@ package med.infographic {
 			
 			var totalWidth:Number = 0;
 			
-			for (var i:int = 0; i < numerals.length; i++) {
+			
+			// make sure we have the right number of commas
+			var comma:FlipNumberComma;
+				
+			var numCommasRequired:int = Math.ceil(targetValues.length / 3) - 1;
+			
+			while (commas.length < numCommasRequired) {			
+				comma = new FlipNumberComma();
+				commas.push(comma);
+				numeralParent.addChild(comma);
+			}
+			
+			while (commas.length > numCommasRequired) {
+				comma = commas.pop();
+				numeralParent.removeChild(comma);
+			}
+							
+			var commaIndex:int = commas.length - 1;
+			
+			
+			for (var i:int = numerals.length - 1; i >= 0; i--) {
 				var numeral:FlipNumberNumeral = numerals[i];
+
+				
+				// now we start with the least significant digit, and place digits leftwards from the origin
+				// this is to make it easier to insert the comma in the right position
+				var significantDigitIndex:int = ((numerals.length - 1) - i);
+				
+				
+				if ((significantDigitIndex != 0) && ((significantDigitIndex % 3) == 0)) {
+					// insert comma here
+					commas[commaIndex].x = -30 - totalWidth + 22;
+					totalWidth += 24;
+					commaIndex--;
+				}				
 				
 				// remember that the origin of the numerals is in their center.. need to add half the width to this
-				numeral.x = 30 + (i * NUMERAL_GAP_X);
+//				numeral.x = -30 - (((numerals.length-1) - i) * NUMERAL_GAP_X);
 				
+				numeral.x = -30 - totalWidth;
+
 				if (i == 0)		totalWidth += 60;
 				else			totalWidth += NUMERAL_GAP_X;
 				
-				// todo: handle commas
 			}
 			
 			// center the whole thing
-			numeralParent.x = -(totalWidth * 0.5);
+			numeralParent.x = (totalWidth * 0.5);
 			
 		}
 		
@@ -121,8 +158,8 @@ package med.infographic {
 				
 				var targetValue:int = int(String(targetValues[i]));				
 				
-				// set an offset value for us to flip too
-				numerals[i].setValue(0, true);
+				// set an offset value for us to flip from
+//				numerals[i].setValue(0, true);
 				
 				// tell it to flip to this value
 				numerals[i].setValue(targetValue, false);
@@ -139,6 +176,13 @@ package med.infographic {
 				numeral.slideOn();
 			}
 			
+		}
+		
+		
+		public function slideOff():void {
+			for each (var numeral:FlipNumberNumeral in numerals) {
+				numeral.slideOff();
+			}
 		}
 		
 
