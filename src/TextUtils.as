@@ -9,6 +9,7 @@ package  {
 		public static var storyHeaderFormat:TextFormat;
 		public static var quoteFormat:TextFormat;
 		public static var contentFormat:TextFormat;
+		public static var contentHeaderFormat:TextFormat;
 		public static var contentBoldFormat:TextFormat;
 		public static var contentNewlineFormat:TextFormat;
 		public static var labelFormat:TextFormat;
@@ -28,6 +29,9 @@ package  {
 			format.leading = -2;
 			format.letterSpacing = -0.35;
 			contentFormat = format = new TextFormat("DIN", 11);
+			format.leading = 0;//-2;
+			format.letterSpacing = -0.1;
+			contentHeaderFormat = format = new TextFormat("DIN Bold", 13);
 			format.leading = 0;//-2;
 			format.letterSpacing = -0.1;
 			contentBoldFormat = format = new TextFormat("DIN Bold", 11);
@@ -51,7 +55,7 @@ package  {
 
 				
 		
-		public static function fillText(textField:TextField, text:String, regularFormat:TextFormat, boldFormat:TextFormat):void {
+		public static function fillText(textField:TextField, text:String, regularFormat:TextFormat, boldFormat:TextFormat, addGaps:Boolean = true):void {
 			textField.text = "";
 			var carat:int = 0
 			var len:int;
@@ -86,9 +90,11 @@ package  {
 				i = boldEnd + 4;
 			};
 			var tft:String = textField.text;
-			for (i = tft.lastIndexOf('\r'); i >= 0; i = tft.lastIndexOf('\r', i - 1)) {
-				textField.replaceText(i, i, '\n');
-				textField.setTextFormat(contentNewlineFormat, i, i + 1);					
+			if (addGaps) {
+				for (i = tft.lastIndexOf('\r'); i >= 0; i = tft.lastIndexOf('\r', i - 1)) {
+					textField.replaceText(i, i, '\n');
+					textField.setTextFormat(contentNewlineFormat, i, i + 1);					
+				}
 			}
 		}		
 
@@ -98,13 +104,6 @@ package  {
 			text = text.replace(/\r\n/ig, '\n');
 			text = text.replace(/\r/ig, '\n');
 			return text;
-		}
-		
-		static public function convertToHTML(text:String):String {
-			//text = text.replace(/[b]/ig, "<b>").replace(/[\/b]/ig, "</b>"); 
-			//text = text.replace(/[B]/ig, "<b>").replace(/[\/B]/ig, "</b>"); 
-			//return text;
-			return text.replace(/\[/g, "<").replace(/\]/g, ">");
 		}
 		
 		

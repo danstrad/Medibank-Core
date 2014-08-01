@@ -27,9 +27,11 @@ package med.infographic {
 		protected var fullscreenHome:Rectangle;
 		protected var fullscreenImage:Bitmap;
 		protected var bitmap:Bitmap;
+		protected var title:String;
 		protected var text:String;
 		protected var imageURL:String;
 		
+		protected var titleMask:Shape;
 		protected var textMask:Shape;
 		protected var bitmapMask:Shape;
 		
@@ -45,16 +47,22 @@ package med.infographic {
 		protected var extendedBitmapY:Number;
 		protected var dockedTextY:Number;
 		protected var extendedTextY:Number;
-		protected var textWidth:Number;
+		protected var dockedTitleY:Number;
+		protected var extendedTitleY:Number;
+		protected var boxWidth:Number;
+		protected var boxHeight:Number;
+		protected var titleHeight:Number;
 		protected var textHeight:Number;
 		protected var bitmapHeight:Number;
 
 		protected var color:uint;
 		protected var colorTransform:ColorTransform;
 		
-		public function HotspotExpander(text:String, imageURL:String, dir:String, color:uint) {
-			this.imageURL = imageURL;
+		public function HotspotExpander(title:String, text:String, imageURL:String, dir:String, color:uint) {
+			this.title = title;
 			this.text = text;
+			this.imageURL = imageURL;
+			titleField.visible = false;
 			textField.visible = false;
 			textBG.visible = false;
 			
@@ -68,39 +76,62 @@ package med.infographic {
 			boxRadius = 15;
 			
 			const MARGIN:Number = 15;
+			const GAP_SQUEEZE:Number = 20;
 
 			const MIN_WIDTH:Number = 130;
 			const MAX_WIDTH:Number = 200;
 			
-			var g:Graphics;
-			textWidth = MAX_WIDTH;
+			boxWidth = 0;
+			boxHeight = 0;
+			
+			titleHeight = 0;
+			if (title) {
+				titleField.defaultTextFormat = TextUtils.contentHeaderFormat;
+				titleField.autoSize = TextFieldAutoSize.LEFT;
+				titleField.multiline = false;
+				titleField.wordWrap = false;
+				
+				titleField.text = title;
+				titleField.width; // force refresh?
+				titleField.multiline = true;
+				titleField.wordWrap = true;
+				titleField.width = Math.min(MAX_WIDTH, titleField.width);
+				titleField.width = Math.max(MIN_WIDTH, Math.min(titleField.width, titleField.textWidth + 4));
+				
+				titleHeight = titleField.height + MARGIN * 2 - 5;
+				boxWidth = titleField.width + MARGIN * 2;
+				boxHeight = titleHeight;
+			}
+			
 			textHeight = 0;
 			if (text) {
 				textField.autoSize = TextFieldAutoSize.LEFT;
 				textField.multiline = false;
 				textField.wordWrap = false;
 				
-				//TextUtils.fillText(textField, text, TextUtils.
-				textField.htmlText = text;
+				TextUtils.fillText(textField, text, TextUtils.contentFormat, TextUtils.contentBoldFormat, false);
 				textField.width; // force refresh?
 				textField.multiline = true;
 				textField.wordWrap = true;
 				textField.width = Math.min(MAX_WIDTH, textField.width);
 				textField.width = Math.max(MIN_WIDTH, Math.min(textField.width, textField.textWidth + 4));
 				
-				textWidth = textField.width + MARGIN * 2;
 				textHeight = textField.height + MARGIN * 2 - 5;
+				boxWidth = Math.max(boxWidth, textField.width + MARGIN * 2);
+				if (boxHeight > 0) boxHeight -= GAP_SQUEEZE;
+				boxHeight += textHeight;
 			}
+			if (!boxWidth) boxWidth = MAX_WIDTH;
 			
 			if (right) {
 				dockedX = boxRadius;
 				extendedX = boxRadius;
 			} else {
 				dockedX = -boxRadius;
-				extendedX = -boxRadius - textWidth;
+				extendedX = -boxRadius - boxWidth;
 			}
 			
-			textBG.width = textWidth;
+			textBG.width = boxWidth;
 			textBG.height = textHeight;
 			textBG.transform.colorTransform = colorTransform;
 			horizontalLine.transform.colorTransform = colorTransform;
@@ -109,7 +140,7 @@ package med.infographic {
 			if (imageURL) {
 				var bmd:BitmapData = AssetManager.getImage(imageURL);
 				bitmap = new Bitmap(bmd, "auto", true);
-				bitmap.width = textWidth;
+				bitmap.width = boxWidth;
 				bitmap.scaleY = bitmap.scaleX;
 				bitmapHeight = bitmap.height;
 				addChild(bitmap);
@@ -117,25 +148,54 @@ package med.infographic {
 				bitmap.x = extendedX;
 			}
 
+			var titleOffset:Number = titleHeight;
+			if (titleHeight > 0) titleOffset -= GAP_SQUEEZE;
 			if (down) {
 				dockedY = -boxRadius;
 				extendedY = -boxRadius;
 				dockedBitmapY = dockedY + textHeight - bitmapHeight;
 				extendedBitmapY = dockedY + textHeight;
-				extendedTextY = extendedY + MARGIN - 5;
-				dockedTextY = extendedTextY + textHeight + 2;
+				extendedTitleY = extendedY + MARGIN - 5;
+				dockedTitleY = extendedTitleY - titleHeight - 2;
+				extendedTextY = titleOffset + extendedY + MARGIN - 5;
+				dockedTextY = titleOffset + extendedTextY + textHeight + 2;
 			} else {
 				dockedY = -boxRadius;
-				extendedY = boxRadius - textHeight;
+				extendedY = boxRadius - boxHeight;
 				dockedBitmapY = extendedY;
-				extendedBitmapY = extendedY - bitmap.height;
-				extendedTextY = extendedY + MARGIN - 5;
-				dockedTextY = extendedTextY - textHeight - 2;
+				extendedBitmapY = extendedY - bitmapHeight;
+				if (bitmap) {
+					extendedTitleY = extendedY + MARGIN - 5;
+					dockedTitleY = extendedTitleY + titleHeight + 2;
+					extendedTextY = titleOffset + extendedY + MARGIN - 5;
+					dockedTextY = titleOffset + extendedTextY - textHeight - 2;
+				} else {
+					extendedTitleY = extendedY + MARGIN - 5;
+					dockedTitleY = extendedTitleY - titleHeight - 2;
+					extendedTextY = titleOffset + extendedY + MARGIN - 5;
+					dockedTextY = titleOffset + extendedTextY + textHeight + 2;
+				}
 			}
+			
+			
 
+			var g:Graphics;
+			if (title) {
+				titleField.x = extendedX + MARGIN;
+				titleField.y = extendedTitleY;
+
+				titleMask = new Shape();
+				g = titleMask.graphics;
+				g.beginFill(0xFFFFFF);
+				g.drawRect(titleField.x, titleField.y, titleField.width, titleField.height);
+				g.endFill();
+				titleMask.visible = false;
+				addChild(titleMask);
+				titleField.mask = titleMask;
+			}
 			if (text) {
 				textField.x = extendedX + MARGIN;				
-				textField.y = extendedTextY;
+				textField.y = extendedTextY;				
 				
 				textMask = new Shape();
 				g = textMask.graphics;
@@ -187,11 +247,11 @@ package med.infographic {
 				TweenMax.to(horizontalLine, BUTTON_CHANGE_TIME, { delay:t, scaleX:1.1, scaleY:1.1, colorTransform: { tint:0xFFFFFF, tintAmount:1.0 }, ease:Quad.easeOut } );
 				t += BUTTON_CHANGE_TIME - BUTTON_OVERLAP;
 				
-				TweenMax.fromTo(textBG, EXPAND_HORIZONTAL_TIME, { x:dockedX, width:0, height:(boxRadius * 2), visible:true }, { delay:t, x:extendedX, width:textWidth, ease:Quad.easeOut } );				
+				TweenMax.fromTo(textBG, EXPAND_HORIZONTAL_TIME, { x:dockedX, width:0, height:(boxRadius * 2), visible:true }, { delay:t, x:extendedX, width:boxWidth, ease:Quad.easeOut } );				
 				t += EXPAND_HORIZONTAL_TIME;
 				
-				if (textHeight > 0) {
-					TweenMax.to(textBG, EXPAND_VERTICAL_TIME, { delay:t, y:extendedY, height:textHeight, ease:Quad.easeIn } );
+				if (boxHeight > 0) {
+					TweenMax.to(textBG, EXPAND_VERTICAL_TIME, { delay:t, y:extendedY, height:boxHeight, ease:Quad.easeIn } );
 					t += EXPAND_VERTICAL_TIME + DIRECTION_DELAY;
 				}
 				
@@ -200,7 +260,8 @@ package med.infographic {
 					TweenMax.fromTo(bitmap, EXPAND_CONTENT_TIME, { y:dockedBitmapY }, { delay:t, y:extendedBitmapY, ease:Quad.easeOut } );
 				}
 				if (text) TweenMax.fromTo(textField, EXPAND_CONTENT_TIME, { y:dockedTextY, visible:true }, { delay:t, y:extendedTextY, ease:Quad.easeOut } );				
-				
+				if (title) TweenMax.fromTo(titleField, EXPAND_CONTENT_TIME, { y:dockedTitleY, visible:true }, { delay:t, y:extendedTitleY, ease:Quad.easeOut } );				
+
 				// Dummy to trigger callback
 				TweenMax.to(textBG, EXPAND_CONTENT_TIME, { delay:t, onComplete:onExpandingFinished } );								
 				
@@ -209,9 +270,10 @@ package med.infographic {
 				
 				if (bitmap) TweenMax.to(bitmap, EXPAND_CONTENT_TIME, { delay:t,  y:dockedBitmapY, visible:false, ease:Quad.easeIn } );
 				if (text) TweenMax.to(textField, EXPAND_CONTENT_TIME, { delay:t, y:dockedTextY, visible:false, ease:Quad.easeIn } );				
+				if (title) TweenMax.to(titleField, EXPAND_CONTENT_TIME, { delay:t, y:dockedTitleY, visible:false, ease:Quad.easeIn } );				
 				t += EXPAND_CONTENT_TIME;
 
-				if (textHeight > 0) {
+				if (boxHeight > 0) {
 					TweenMax.to(textBG, EXPAND_VERTICAL_TIME, { delay:t, y:dockedY, height:(boxRadius * 2), ease:Quad.easeOut } );
 					t += EXPAND_VERTICAL_TIME + DIRECTION_DELAY;
 				}

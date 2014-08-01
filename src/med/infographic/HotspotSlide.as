@@ -78,14 +78,16 @@ package med.infographic {
 			
 			hotspotsLayer = new Sprite();
 			for each(var hotspotXML:XML in xml.hotspot) {
+				var expanderTitle:String = null;
 				var expanderText:String = null;
 				var expanderImageURL:String = null;
 				var expanderDir:String = null;
-				if (hotspotXML.hasOwnProperty("Text")) expanderText = TextUtils.convertToHTML(TextUtils.safeText(hotspotXML.Text[0].toString()));
+				if (hotspotXML.hasOwnProperty("Title")) expanderTitle = TextUtils.safeText(hotspotXML.Title[0].toString());
+				if (hotspotXML.hasOwnProperty("Text")) expanderText = TextUtils.safeText(hotspotXML.Text[0].toString());
 				if (hotspotXML.hasOwnProperty("Image")) expanderImageURL = hotspotXML.Image[0].@url.toString();
 				if (hotspotXML.hasOwnProperty("@dir")) expanderDir = hotspotXML.@dir.toString();
 
-				var expander:HotspotExpander = new HotspotExpander(expanderText, expanderImageURL, expanderDir, hotspotColor);
+				var expander:HotspotExpander = new HotspotExpander(expanderTitle, expanderText, expanderImageURL, expanderDir, hotspotColor);
 				expander.x = (parseFloat(hotspotXML.@x) * coordScale) || 0;
 				expander.y = (parseFloat(hotspotXML.@y) * coordScale) || 0;
 				hotspotsLayer.addChild(expander);
