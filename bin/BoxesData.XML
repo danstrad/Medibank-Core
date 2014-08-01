@@ -996,8 +996,30 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			<graphstate value="92" featuredText="92" usePercentage="true" topText="Thanks to Anywhere Healthcare" bottomText="Of patients save money on travel costs." />
 			<graphstate value="50" featuredText="50" usePercentage="true" textOnRightEdge="true" topText="Thanks to Anywhere Healthcare more than" bottomText="Of patients avoid having to take time off work." />
 		</slide>		
+		<slide type="center_text_box" duration="4000" animateOn="zoom" animateOff="squash">
+			<appearance textColor="#ffffff" backgroundColor="#ff9330" boxColor="#E4002B"/>
+			<featuredText>Contributing to communities.</featuredText>
+		</slide>
 	</Infographic>
 	<Infographic id="info2">
+		<slide type="center_text_box" duration="4000" animateOn="squash" animateOff="zoomIn">
+			<appearance textColor="#FFFFFF" backgroundColor="#ff9330" boxColor="#E4002B"/>
+			<featuredText>Making advice and care accessible.</featuredText>
+		</slide>	
+		<slide type="flip_number" duration="20000">
+			<graphstate value="1555252" featuredText="Dentist scale cleans" topText="In one year, we supported" />	
+			<graphstate value="1462572" featuredText="Teeth fillings" topText="In one year, we supported" />	
+			<graphstate value="22491" featuredText="Births" topText="In one year, we supported" />	
+			<graphstate value="1240000" featuredText="Pairs of glasses and contact lenses" topText="In one year, we supported" />	
+			<graphstate value="2527806" featuredText="Physio consultations" topText="In one year, we supported" />	
+			<graphstate value="5804" featuredText="Hip replacements" topText="In one year, we supported" />	
+			<graphstate value="2736" featuredText="Pacemakers" topText="In one year, we supported" />	
+		</slide>	
+		<slide type="center_text_box" duration="4000" animateOn="zoom" animateOff="squash">
+			<appearance textColor="#FFFFFF" backgroundColor="#ff9330" boxColor="#E4002B"/>
+			<featuredText>Making advice and care more accessible.</featuredText>
+		</slide>	
+		
 	</Infographic>
 	<Infographic id="info3">
 	</Infographic>

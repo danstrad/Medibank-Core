@@ -40,7 +40,6 @@ package med.infographic {
 		public function InfographicCenterBox(slideData:InfographicSlideData) {
 			this.data = slideData;
 			
-			
 			// get details from xml
 			var textColor:uint = uint(slideData.xml.appearance.@textColor.toString().replace("#", "0x"));
 			var backgroundColor:uint = uint(slideData.xml.appearance.@backgroundColor.toString().replace("#", "0x"));
@@ -103,6 +102,13 @@ package med.infographic {
 			rollOutText();
 		}
 		
+		
+		public function animateOnZoom():void {
+			// animate on by zooming in
+			TweenMax.fromTo(this, ANIMATE_ON_TIME, { scaleX:3.0, scaleY:3.0 }, { scaleX:1.0, scaleY:1.0, onComplete:rollOutText } );			
+		}
+		
+		
 		public function animateOff(callback:Function):void {
 			slideTextOff(callback);
 		}
@@ -120,6 +126,8 @@ package med.infographic {
 			slideTextOff(null);
 			TweenMax.fromTo(this, ANIMATE_OFF_TIME, { scaleX:1.0, scaleY:1.0 }, { scaleX:3.0, scaleY:3.0, delay:TEXT_TRANSITION_OFF_TIME, onComplete:callback, onCompleteParams:[this] } );
 		}
+		
+		
 
 		
 		protected function hide():void {

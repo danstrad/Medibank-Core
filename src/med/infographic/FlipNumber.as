@@ -1,4 +1,5 @@
 package med.infographic {
+	import com.gskinner.utils.Rndm;
 	import flash.display.Shape;
 	import flash.display.Sprite;
 
@@ -88,8 +89,8 @@ package med.infographic {
 				
 				if ((significantDigitIndex != 0) && ((significantDigitIndex % 3) == 0)) {
 					// insert comma here
-					commas[commaIndex].x = -30 - totalWidth + 22;
-					totalWidth += 24;
+					commas[commaIndex].x = -30 - totalWidth + 20;
+					totalWidth += 26;
 					commaIndex--;
 				}				
 				
@@ -157,16 +158,32 @@ package med.infographic {
 			for (var i:int = 0; i < targetValues.length; i++) {
 				
 				var targetValue:int = int(String(targetValues[i]));				
-				
-				// set an offset value for us to flip from
-//				numerals[i].setValue(0, true);
-				
+
 				// tell it to flip to this value
 				numerals[i].setValue(targetValue, false);
 				
 			}
 
 			
+		}
+		
+		
+		public function setRandomStartingNumber():void {
+				
+			for (var i:int = 0; i < targetValues.length; i++) {
+				
+				var targetValue:int = int(String(targetValues[i]));				
+
+				var initValue:int = Rndm.integer(0, 10);
+				
+				while (Math.abs(initValue - targetValue) < 2) {
+					initValue = Rndm.integer(0, 10);
+				}
+								
+				numerals[i].setValue(initValue, true);
+				
+			}
+							
 		}
 		
 		

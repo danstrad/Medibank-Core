@@ -58,7 +58,7 @@ package med.infographic {
 				nextSlideData = data.slides[currentSlideIndex + 1];
 			}
 				
-			if (slideSprite is InfographicCenterBox) {
+			if (oldSlideSprite is InfographicCenterBox) {
 				
 				switch (data.slides[currentSlideIndex].animateOff) {
 					
@@ -78,7 +78,7 @@ package med.infographic {
 				}
 				
 				
-			} else if (slideSprite is ISlide) {
+			} else if (oldSlideSprite is ISlide) {
 				// under normal circumstances, trust the ISlide to animate itself off
 				ISlide(oldSlideSprite).animateOff(removeSlideSpriteFromStage);
 			
@@ -119,9 +119,6 @@ package med.infographic {
 					
 					case InfographicSlideData.PEOPLE_GRAPH:	
 						
-						// for debug
-						background.showColor(0xFF0000);
-						
 						var graph:PeopleGraph = new PeopleGraph(slideData);
 						addSlideSprite(graph);
 						
@@ -131,9 +128,7 @@ package med.infographic {
 	
 						
 					case InfographicSlideData.FLIP_NUMBER:
-						// for debug
-						background.showColor(0xFF0000);
-						
+							
 						var flipNumberSlide:FlipNumberSlide = new FlipNumberSlide(slideData);
 						addSlideSprite(flipNumberSlide);
 						
@@ -159,6 +154,10 @@ package med.infographic {
 							default:	
 							case "squash":
 								box.animateOn();
+								break;
+								
+							case "zoom":
+								box.animateOnZoom();
 								break;
 								
 							case "rotate":

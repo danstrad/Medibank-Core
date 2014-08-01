@@ -178,6 +178,9 @@ package med.infographic {
 			
 				flipNumber.initForNumber(value);
 
+				// set the initial state 
+				flipNumber.setRandomStartingNumber();
+				
 			}
 			
 		}
