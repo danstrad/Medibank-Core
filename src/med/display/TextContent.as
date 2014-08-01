@@ -28,51 +28,7 @@ package med.display {
 		public static const TYPE_STATS:String = "Stats";
 		public static const TYPE_SPLASH:String = "Splash";
 		
-		protected static var chapterHeaderFormat:TextFormat;
-		protected static var storyHeaderFormat:TextFormat;
-		protected static var quoteFormat:TextFormat;
-		protected static var contentFormat:TextFormat;
-		protected static var contentBoldFormat:TextFormat;
-		protected static var contentNewlineFormat:TextFormat;
-		protected static var labelFormat:TextFormat;
-		protected static var statBoldFormat:TextFormat;
-		protected static var splashFormat:TextFormat;
-		
 
-		protected function createTextFormats():void {
-			var format:TextFormat;			
-			chapterHeaderFormat = format = new TextFormat("DINCond-Black", 15);
-			format.leading = -5;
-			format.letterSpacing = -0.35;
-			storyHeaderFormat = format = new TextFormat("DIN Bold", 13);
-			format.leading = -1;
-			format.letterSpacing = -0.35;
-			quoteFormat = format = new TextFormat("DIN Bold", 20);// 11);
-			format.leading = -2;
-			format.letterSpacing = -0.35;
-			contentFormat = format = new TextFormat("DIN", 11);
-			format.leading = 0;//-2;
-			format.letterSpacing = -0.1;
-			contentBoldFormat = format = new TextFormat("DIN Bold", 11);
-			format.leading = 0;//-2;
-			format.letterSpacing = -0.1;
-			contentNewlineFormat = format = new TextFormat("DIN", 0);
-			format.leading = 0;
-			labelFormat = format = new TextFormat("DIN Bold", 27);
-			format.leading = -2;
-			format.letterSpacing = -0.35;
-			format.align = TextFormatAlign.CENTER;
-			statBoldFormat = format = new TextFormat("DIN Bold", 26);
-			format.leading = -2;
-			format.letterSpacing = -0.35;
-			format.align = TextFormatAlign.CENTER;
-			splashFormat = format = new TextFormat("DIN Bold", 12);
-			format.leading = -2;
-			format.letterSpacing = -0.35;
-			format.align = TextFormatAlign.CENTER;
-		}
-
-		
 		
 		protected static const MOMENTUM_FALLOFF:Number = 0.4;
 		protected static const INITIAL_WAIT:Number = 5000;
@@ -95,7 +51,6 @@ package med.display {
 		public function get isScroller():Boolean { return (scrollBar != null); }
 
 		public function TextContent(text:String, textType:String, textScale:Number, subtext:String, subtextScale:Number, width:Number, height:Number) {
-			if (!chapterHeaderFormat) createTextFormats();
 			
 			textMask.visible = false;
 			subtextField.visible = false;
@@ -111,13 +66,11 @@ package med.display {
 					break;
 			}
 
-			text = text.replace(/\n\r/ig, '\n');
-			text = text.replace(/\r\n/ig, '\n');
-			text = text.replace(/\r/ig, '\n');
+			text = TextUtils.safeText(text);
 
 			if (textType == TYPE_CONTENT) {
 				
-				fillText(text, contentFormat, contentBoldFormat);
+				TextUtils.fillText(textField, text, TextUtils.contentFormat, TextUtils.contentBoldFormat);
 				
 				textField.width = width;
 				textField.height = height;
@@ -128,7 +81,7 @@ package med.display {
 				
 			} else if (textType == TYPE_STATS) {
 				
-				fillText(text, contentFormat, statBoldFormat);
+				TextUtils.fillText(textField, text, TextUtils.contentFormat, TextUtils.statBoldFormat);
 				textField.width = width;
 				textField.height = height;
 				scaleToFit(width, height, textScale);
@@ -138,12 +91,12 @@ package med.display {
 
 			} else {
 				switch(textType) {
-					case TYPE_CHAPTER_HEADER: textField.defaultTextFormat = chapterHeaderFormat; break;
+					case TYPE_CHAPTER_HEADER: textField.defaultTextFormat = TextUtils.chapterHeaderFormat; break;
 					default:
-					case TYPE_STORY_HEADER: textField.defaultTextFormat = storyHeaderFormat; break;
-					case TYPE_QUOTE: textField.defaultTextFormat = quoteFormat; break;
-					case TYPE_LABEL: textField.defaultTextFormat = labelFormat; break;
-					case TYPE_SPLASH: textField.defaultTextFormat = splashFormat; break;
+					case TYPE_STORY_HEADER: textField.defaultTextFormat = TextUtils.storyHeaderFormat; break;
+					case TYPE_QUOTE: textField.defaultTextFormat = TextUtils.quoteFormat; break;
+					case TYPE_LABEL: textField.defaultTextFormat = TextUtils.labelFormat; break;
+					case TYPE_SPLASH: textField.defaultTextFormat = TextUtils.splashFormat; break;
 				}
 								
 				textField.text = text;				
@@ -170,7 +123,7 @@ package med.display {
 				if (subtext) {
 					subtextField.autoSize = TextFieldAutoSize.LEFT;
 					subtextField.visible = true;
-					subtextField.defaultTextFormat = contentFormat;
+					subtextField.defaultTextFormat = TextUtils.contentFormat;
 					subtextField.text = subtext;
 					subtextField.scaleX = subtextField.scaleY = Math.min(width, height) / NATURAL_SIZE * subtextScale;
 					subtextField.x = textField.x;
@@ -308,46 +261,6 @@ package med.display {
 			scrollBar.y = textMask.y - textMask.height / 2 + (textMask.height - scrollBar.height) * ((scrollY - max) / (min - max));
 		}
 		
-		protected function fillText(text:String, regularFormat:TextFormat, boldFormat:TextFormat):void {
-			textField.text = "";
-			var carat:int = 0
-			var len:int;
-			var i:int = 0;
-			var boldStart:int;
-			var boldEnd:int;
-			while(true) {
-				boldStart = text.indexOf("[b]", i);
-				boldEnd = text.indexOf("[/b]", boldStart);
-				if ((boldStart >= 0) && (boldEnd >= 0)) {
-					len = boldStart - i;
-					if (len > 0) {
-						textField.appendText(text.substr(i, len));
-						textField.setTextFormat(regularFormat, carat, carat + len);
-						carat += len;
-					}
-					len = boldEnd - boldStart - 3;
-					if (len > 0) {
-						textField.appendText(text.substr(boldStart + 3, len));
-						textField.setTextFormat(boldFormat, carat, carat + len);
-						carat += len;
-					}
-				} else {
-					len = text.length - i;
-					if (len > 0) {
-						textField.appendText(text.substr(i, len));
-						textField.setTextFormat(regularFormat, carat, carat + len);
-						carat += len;
-					}
-					break;
-				}
-				i = boldEnd + 4;
-			};
-			var tft:String = textField.text;
-			for (i = tft.lastIndexOf('\r'); i >= 0; i = tft.lastIndexOf('\r', i - 1)) {
-				textField.replaceText(i, i, '\n');
-				textField.setTextFormat(contentNewlineFormat, i, i + 1);					
-			}
-		}
 		
 		//protected function scaleToFit(scale:Number, width:Number, height:Number):Number {
 		protected function scaleToFit(width:Number, height:Number, textScale:Number):void {
