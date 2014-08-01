@@ -73,9 +73,12 @@ package med.infographic {
 		
 		public function animateOn():void {
 			
-			flipNumber.slideOn();
-					
-			topField.visible = false;
+//			flipNumber.slideOn();
+			
+			if (prevTopString != topString) {
+				topField.visible = false;
+			}
+			
 			featuredField.visible = false;
 			
 			TweenMax.to(this, FlipNumberNumeral.SLIDE_IN_DURATION_SECS, { onComplete:flipToTargetValue } );
@@ -92,18 +95,40 @@ package med.infographic {
 		protected static const Y_ANIM_OFFSET_BOTTOM:Number = -100;
 	
 	
+		protected function get nextTopString():String {
+			if (graphStateIndex >= graphStatesXML.length-1)	return "";
+			
+			var nextGraphStateXML:XML = graphStatesXML[graphStateIndex + 1];
+			if (nextGraphStateXML) {
+				return nextGraphStateXML.@topText.toString();
+			} else {
+				return "";
+			}
+		}
+		
+		
+		protected var topString:String = "";
+		protected var prevTopString:String = "";
+
+		
+		
 		protected function flipToTargetValue():void {
 			flipNumber.flipToNumber(value);
 		
 			
 			// tween on the text fields
-			topField.visible = true;
-			featuredField.visible = true;	
-			
-			
-			TweenMax.fromTo(topField, TEXT_SLIDE_ON_DURATION_SEC, { y:normalTopFieldY + Y_ANIM_OFFSET_TOP }, { y:normalTopFieldY, immediateRender:true, delay:TEXT_SLIDE_ON_DELAY_SEC } );
+			featuredField.visible = true;				
 			TweenMax.fromTo(featuredField, TEXT_SLIDE_ON_DURATION_SEC, { y:normalFeaturedFieldY + Y_ANIM_OFFSET_BOTTOM }, { y:normalFeaturedFieldY, immediateRender:true, delay:TEXT_SLIDE_ON_DELAY_SEC } );		
 						
+			topField.visible = true;
+
+			// don't animate on top text field if its the same as the last one
+			if (topString != prevTopString) {
+				TweenMax.fromTo(topField, TEXT_SLIDE_ON_DURATION_SEC, { y:normalTopFieldY + Y_ANIM_OFFSET_TOP }, { y:normalTopFieldY, immediateRender:true, delay:TEXT_SLIDE_ON_DELAY_SEC } );
+			} else {
+				topField.y = normalTopFieldY;
+			}
+			
 			// set listeners to tween them off
 //			TweenMax.fromTo(topField, TEXT_SLIDE_OFF_DURATION_SEC, { y:normalTopFieldY }, { y:normalTopFieldY + Y_OFFSET, delay:NUMBER_DISPLAYED_DURATION_SEC - TEXT_SLIDE_ON_DELAY_SEC } );
 //			TweenMax.fromTo(featuredField, TEXT_SLIDE_OFF_DURATION_SEC, { y:normalFeaturedFieldY }, { y:normalFeaturedFieldY - Y_OFFSET, delay: NUMBER_DISPLAYED_DURATION_SEC - TEXT_SLIDE_ON_DELAY_SEC } );		
@@ -115,8 +140,12 @@ package med.infographic {
 		
 
 		protected function animateOffText():void {
-						
-			TweenMax.fromTo(topField, TEXT_SLIDE_OFF_DURATION_SEC, { y:normalTopFieldY }, { y:normalTopFieldY + Y_ANIM_OFFSET_TOP, immediateRender:true } );
+			
+			// don't animate it off if the next one is the same
+			if (nextTopString != topString) {
+				TweenMax.fromTo(topField, TEXT_SLIDE_OFF_DURATION_SEC, { y:normalTopFieldY }, { y:normalTopFieldY + Y_ANIM_OFFSET_TOP, immediateRender:true } );
+			}
+			
 			TweenMax.fromTo(featuredField, TEXT_SLIDE_OFF_DURATION_SEC, { y:normalFeaturedFieldY }, { y:normalFeaturedFieldY + Y_ANIM_OFFSET_BOTTOM, immediateRender:true } );	
 			
 			waitThenAdvance(TEXT_SLIDE_OFF_DURATION_SEC);
@@ -142,7 +171,7 @@ package med.infographic {
 			if (graphStateIndex >= graphStatesXML.length) {
 				// there are no more!
 				// just do nothing and wait for Infographic to remove us
-				flipNumber.slideOff();
+//				flipNumber.slideOff();
 				return;
 			}
 			
@@ -157,12 +186,15 @@ package med.infographic {
 				
 			
 			// set text
-			var topString:String = graphStateXML.@topText;
+			prevTopString = topString;
+			this.topString = graphStateXML.@topText;
+			
 			var featuredString:String = graphStateXML.@featuredText;
 			
 			topField.text = topString;
 			Text.boldText(topField);
 			Text.setTextSpacing(topField, -0.2);
+
 			
 			featuredField.text = featuredString;
 			Text.boldText(featuredField);
@@ -179,7 +211,7 @@ package med.infographic {
 				flipNumber.initForNumber(value);
 
 				// set the initial state 
-				flipNumber.setRandomStartingNumber();
+//				flipNumber.setRandomStartingNumber();
 				
 			}
 			

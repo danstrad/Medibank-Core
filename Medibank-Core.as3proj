@@ -57,6 +57,7 @@
     <element path="lib\Hotspots.swc" />
     <element path="lib\PeopleGraph.swc" />
     <element path="lib\FlipNumber.swc" />
+    <element path="lib\SpinNumber.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

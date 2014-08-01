@@ -114,6 +114,11 @@ package med.infographic {
 				if (slideIndex > 0)		previousSlideData = data.slides[slideIndex - 1];
 				
 				
+				if (slideData.backgroundColor && (slideData.backgroundColor != background.getColor())) {
+					background.showColor(slideData.backgroundColor);
+				}
+						
+				
 				// this is a placeholder approach
 				switch (slideData.type) {
 					
@@ -126,6 +131,16 @@ package med.infographic {
 						
 						break;
 	
+						
+					case InfographicSlideData.SPIN_NUMBER_STRIP:
+						
+						var spinNumberSlide:SpinNumberSlide = new SpinNumberSlide(slideData);
+						addSlideSprite(spinNumberSlide);
+						
+						spinNumberSlide.animateOn();
+						
+						break;
+						
 						
 					case InfographicSlideData.FLIP_NUMBER:
 							
@@ -168,11 +183,6 @@ package med.infographic {
 								}
 								break;
 					
-						}
-						
-						
-						if (slideData.backgroundColor != background.getColor()) {
-							background.showColor(slideData.backgroundColor);
 						}
 						
 						break;

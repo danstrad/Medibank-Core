@@ -130,19 +130,7 @@ package med.infographic {
 					removeNumeral();
 				}
 			}
-			
-			
-			// do we need commas?
-			if (value > 1000) {
-			
-				// place them correctly
-				
-			
-				// todo
-				
-			}
-			
-			
+
 			// finalize placement of numerals and commas
 			repositionNumerals();
 						
@@ -167,7 +155,7 @@ package med.infographic {
 			
 		}
 		
-		
+		/*
 		public function setRandomStartingNumber():void {
 				
 			for (var i:int = 0; i < targetValues.length; i++) {
@@ -185,8 +173,9 @@ package med.infographic {
 			}
 							
 		}
+		*/
 		
-		
+		/*
 		public function slideOn():void {
 						
 			for each (var numeral:FlipNumberNumeral in numerals) {
@@ -201,7 +190,7 @@ package med.infographic {
 				numeral.slideOff();
 			}
 		}
-		
+		*/
 
 	}
 

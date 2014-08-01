@@ -21,8 +21,8 @@ package med.infographic {
 		
 		
 		// animation constants
-		private static const ANIMATE_ON_EXPAND_TIME:Number = 0.25;
-		private static const ANIMATE_ON_FILL_TIME:Number = 0.25;
+		private static const ANIMATE_ON_EXPAND_TIME:Number = 0.5;
+		private static const ANIMATE_ON_FILL_TIME:Number = 0.5;
 		
 		
 		

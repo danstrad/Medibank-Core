@@ -18,10 +18,10 @@ package med.infographic {
 			
 
 		
-		protected static const ANIMATE_ON_TIME:Number = 0.5;	// time for the box to rotate (or squash up)
+		protected static const ANIMATE_ON_TIME:Number = 0.4;	// time for the box to rotate (or squash up)
 		
-		protected static const TEXT_TRANSITION_ON_TIME:Number = 0.25;
-		protected static const TEXT_TRANSITION_OFF_TIME:Number = 0.2;
+		protected static const TEXT_TRANSITION_ON_TIME:Number = 0.1;
+		protected static const TEXT_TRANSITION_OFF_TIME:Number = 0.1;
 
 		protected static const ANIMATE_OFF_TIME:Number = 0.3;	// how long is take the box to 'squash'
 		
@@ -93,7 +93,7 @@ package med.infographic {
 		
 		public function animateOnRotate(previousBoxColor:uint):void {
 			// animation when transitioning from a previous box			
-			TweenMax.fromTo(box, ANIMATE_ON_TIME, { rotation:-90, colorTransform:{ tint:previousBoxColor, tintAmount:1.0} }, { rotation:0, colorTransform:{ tint:previousBoxColor, tintAmount:0}, immediateRender:true, onComplete:rollOutText } );
+			TweenMax.fromTo(box, ANIMATE_ON_TIME, { rotation:-180, colorTransform:{ tint:previousBoxColor, tintAmount:1.0} }, { rotation:0, colorTransform:{ tint:previousBoxColor, tintAmount:0}, immediateRender:true, onComplete:rollOutText } );
 		}
 		
 		

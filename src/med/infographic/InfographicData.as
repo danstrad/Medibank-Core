@@ -33,8 +33,8 @@ package med.infographic {
 					displayTimeMsec = int(slideXML.@duration);
 				
 					if (displayTimeMsec <= 0) {
-						// fallback
 						displayTimeMsec = 3000;
+						// fallback
 					}
 				
 				}

@@ -21,11 +21,19 @@ package med.infographic {
 		//--------------------------------------------------------------------------------------
 		
 		public function get backgroundColor():uint {
-			return uint(xml.appearance.@backgroundColor.toString().replace("#", "0x"));
+			if (xml.hasOwnProperty("appearance") && xml.appearance.hasOwnProperty("@backgroundColor")) {
+				return uint(xml.appearance.@backgroundColor.toString().replace("#", "0x"));
+			} else {
+				return 0;
+			}
 		}
 		
 		public function get boxColor():uint {
-			return uint(xml.appearance.@boxColor.toString().replace("#", "0x"));	
+			if (xml.hasOwnProperty("appearance") && xml.appearance.hasOwnProperty("@boxColor")) {
+				return uint(xml.appearance.@boxColor.toString().replace("#", "0x"));	
+			} else {
+				return 0;
+			}
 		}
 		
 		public function get animateOn():String {
@@ -43,17 +51,15 @@ package med.infographic {
 		
 		public static const PEOPLE_GRAPH:String					= "people_graph";		// a "moving dots" graph
 		
-		public static const NUMBER_STRIP:String					= "number_strip";			// a "number strip" where each number slot rotates up/down until it reaches the correct value
+		public static const SPIN_NUMBER_STRIP:String			= "spin_number";			// a "number strip" where each number slot rotates up/down until it reaches the correct value
 
 		public static const FLIP_NUMBER:String					= "flip_number";		// a fullscreen number-based text that acts like a flipboard
 		
 		
 		public static const FULLSCREEN_TEXT_TOP:String			= "fullscreen_text_top";	// fullscreen text on background with the text at the top (see info4)
-		public static const FULLSCREEN_TEXT_CENTER:String		= "fullscreen_text_center";	// fullscreen text on background with the text in the center (see info4)
 		
 		public static const FALLING_TAGS:String					= "falling_tags";	// falling tags with text on the left side of the background (info1)
 		
-		public static const FULLSCREEN_IMAGE:String				= "image";
 		public static const CLOCK_ANIMATION:String				= "clock";		// clock animation with text (info4)
 		
 		public static const TIMELINE_WITH_NUMBER:String			= "timeline_number";	// fullscreen number-based text with timeline (info4)
@@ -64,7 +70,7 @@ package med.infographic {
 		
 		public static const HOTSPOT:String						= "hotspot";	// image background with clickable hotspots
 		
-		public static const SPLASH_TEXT:String					= "splash_text";	// plain bold text
+		public static const SPLASH_TEXT:String					= "splash_text";	// plain bold text, with or without image
 		
 				
 

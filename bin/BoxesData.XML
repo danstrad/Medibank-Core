@@ -970,7 +970,6 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	
 	
 	<Infographic id="info1">
-		
 		<slide type="center_text_box" duration="4000" animateOn="squash" animateOff="none">
 			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"/>
 			<featuredText>Accessing specialist care in regional Australia presents many challenges for GPs and their patients.</featuredText>
@@ -989,19 +988,23 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 		</slide>
 		<slide type="flip_number" duration="5000">
 			<graphstate value="80" featuredText="Psychology and psychiatry consultations take place each month." topText="About" />		
-		</slide>	
+		</slide>		
 		<slide type="people_graph">
+			<appearance backgroundColor="#E4002B" />
 			<graphstate value="33" featuredText="1 in 3" usePercentage="false" topText="" bottomText="Consultations for patients up to the age of 15 are for dermatology." />
 			<graphstate value="5" featuredText="95" usePercentage="true" topText="Thanks to Anywhere Healthcare" bottomText="Of patients avoid travelling long distances." />
 			<graphstate value="92" featuredText="92" usePercentage="true" topText="Thanks to Anywhere Healthcare" bottomText="Of patients save money on travel costs." />
 			<graphstate value="50" featuredText="50" usePercentage="true" textOnRightEdge="true" topText="Thanks to Anywhere Healthcare more than" bottomText="Of patients avoid having to take time off work." />
-		</slide>		
+		</slide>
+			
 		<slide type="center_text_box" duration="4000" animateOn="zoom" animateOff="squash">
 			<appearance textColor="#ffffff" backgroundColor="#ff9330" boxColor="#E4002B"/>
 			<featuredText>Contributing to communities.</featuredText>
-		</slide>
+		</slide>		
+
 	</Infographic>
 	<Infographic id="info2">
+			
 		<slide type="center_text_box" duration="4000" animateOn="squash" animateOff="zoomIn">
 			<appearance textColor="#FFFFFF" backgroundColor="#ff9330" boxColor="#E4002B"/>
 			<featuredText>Making advice and care accessible.</featuredText>
@@ -1018,10 +1021,15 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 		<slide type="center_text_box" duration="4000" animateOn="zoom" animateOff="squash">
 			<appearance textColor="#FFFFFF" backgroundColor="#ff9330" boxColor="#E4002B"/>
 			<featuredText>Making advice and care more accessible.</featuredText>
-		</slide>	
+		</slide>			
 		
 	</Infographic>
 	<Infographic id="info3">
+		<slide type="spin_number" duration="10000">
+			<appearance backgroundColor="#B0008E" />
+			<graphstate value="1234567" featuredText="Testing something" />		
+			<graphstate value="7654321" featuredText="Testing something else" />	
+		</slide>
 	</Infographic>
 	<Infographic id="info4">
 	</Infographic>
