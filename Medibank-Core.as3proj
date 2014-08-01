@@ -53,9 +53,10 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="lib\boxes.swc" />
-    <element path="lib\PeopleGraph.swc" />
     <element path="lib\InfographicBoxes.swc" />
     <element path="lib\Hotspots.swc" />
+    <element path="lib\PeopleGraph.swc" />
+    <element path="lib\FlipNumber.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

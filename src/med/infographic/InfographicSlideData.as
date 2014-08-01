@@ -12,7 +12,7 @@ package med.infographic {
 		public function InfographicSlideData(type:String, displayTimeMsec:int, xml:XML) {
 			this.type = type;
 			this.xml = xml;
-			this.displayTimeMsec = displayTimeMsec;			
+			this.displayTimeMsec = displayTimeMsec;	
 		}
 		
 		
@@ -28,6 +28,13 @@ package med.infographic {
 			return uint(xml.appearance.@boxColor.toString().replace("#", "0x"));	
 		}
 		
+		public function get animateOn():String {
+			return xml.@animateOn;	
+		}
+
+		public function get animateOff():String {
+			return xml.@animateOff;	
+		}
 		
 		
 		// slide type constants
@@ -37,10 +44,12 @@ package med.infographic {
 		public static const PEOPLE_GRAPH:String					= "people_graph";		// a "moving dots" graph
 		
 		public static const NUMBER_STRIP:String					= "number_strip";			// a "number strip" where each number slot rotates up/down until it reaches the correct value
+
+		public static const FLIP_NUMBER:String					= "flip_number";		// a fullscreen number-based text that acts like a flipboard
+		
 		
 		public static const FULLSCREEN_TEXT_TOP:String			= "fullscreen_text_top";	// fullscreen text on background with the text at the top (see info4)
 		public static const FULLSCREEN_TEXT_CENTER:String		= "fullscreen_text_center";	// fullscreen text on background with the text in the center (see info4)
-		public static const FULLSCREEN_TEXT_NUMBER:String		= "fullscreen_text_number";	// a fullscreen number-based text
 		
 		public static const FALLING_TAGS:String					= "falling_tags";	// falling tags with text on the left side of the background (info1)
 		

@@ -2,6 +2,7 @@ package med.infographic {
 	import com.greensock.TweenMax;
 	import flash.display.Shape;
 	import flash.display.Sprite;
+	import flash.geom.ColorTransform;
 
 	
 	public class PeopleGraphPerson extends _PeopleGraphPerson {
@@ -20,8 +21,8 @@ package med.infographic {
 		
 		
 		// animation constants
-		private static const ANIMATE_ON_EXPAND_TIME:Number = 0.4;
-		private static const ANIMATE_ON_FILL_TIME:Number = 0.4;
+		private static const ANIMATE_ON_EXPAND_TIME:Number = 0.25;
+		private static const ANIMATE_ON_FILL_TIME:Number = 0.25;
 		
 		
 		
@@ -31,16 +32,28 @@ package med.infographic {
 			interior = new Shape();
 			addChild(interior);
 			
+//			interior.cacheAsBitmap = true;
+			
+		}
+
+		
+		public function reset():void {
+			
 			var color:uint = 0xff9330;
+						
+			interior.graphics.clear();
 			
 			interior.graphics.beginFill(color, 1);
 			interior.graphics.drawCircle(0, 0, RADIUS);
 			interior.graphics.endFill();
 			
-			interior.cacheAsBitmap = true;
+			this.filters = null;
+			
+			this.transform.colorTransform = new ColorTransform();
 			
 		}
-
+		
+		
 		
 		
 		public function animateOnPerson(delayMsec:Number=0):void {
