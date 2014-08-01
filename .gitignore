@@ -12,3 +12,6 @@ obj/*.*
 # System files
 thumbs.db
 
+obj/Medibank-CoreConfig.old
+obj/Medibank-CoreConfig.old
+obj/Medibank-CoreConfig.xml
