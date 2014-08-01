@@ -6,7 +6,12 @@
 # Generated files
 *.swf
 RECOVER*.fla
+<<<<<<< HEAD
+.obj/
+=======
 obj/
+obj/*.*
+>>>>>>> fdb3b8786a9238b8926c956bd0f5a1c3d9f68519
 
 # System files
 thumbs.db

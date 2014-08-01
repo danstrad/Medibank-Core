@@ -15,6 +15,7 @@ package  {
 		public static var labelFormat:TextFormat;
 		public static var statBoldFormat:TextFormat;
 		public static var splashFormat:TextFormat;
+		public static var infographicSplashFormat:TextFormat;
 		
 
 		public static function createTextFormats():void {
@@ -49,6 +50,11 @@ package  {
 			format.align = TextFormatAlign.CENTER;
 			splashFormat = format = new TextFormat("DIN Bold", 12);
 			format.leading = -2;
+			format.letterSpacing = -0.35;
+			format.align = TextFormatAlign.CENTER;
+
+			infographicSplashFormat = format = new TextFormat("DINCond-Black", 50);
+			format.leading = -5;
 			format.letterSpacing = -0.35;
 			format.align = TextFormatAlign.CENTER;
 		}

@@ -64,6 +64,8 @@ package med.infographic {
 		
 		public static const HOTSPOT:String						= "hotspot";	// image background with clickable hotspots
 		
+		public static const SPLASH_TEXT:String					= "splash_text";	// plain bold text
+		
 				
 
 

@@ -12,7 +12,7 @@ package med.infographic {
 		
 		public function get displayDurationSeconds():Number { return 0; }
 		
-		protected const SKIP_INTRO:Boolean = true;
+		protected const SKIP_INTRO:Boolean = false;
 		
 		//76b82a
 		

@@ -187,6 +187,14 @@ package med.infographic {
 						
 						break;
 						
+					case InfographicSlideData.SPLASH_TEXT:
+						
+						var splashSlide:SplashTextSlide = new SplashTextSlide(slideData, initialBackgroundColor);
+						addSlideSprite(splashSlide);
+						splashSlide.animateOn();
+						
+						break;
+						
 					default:
 						end();
 						break;
