@@ -114,6 +114,7 @@ package {
 			//STAGE_HEIGHT = stage.stageHeight;
 			
 			new _FontDump();
+			TextUtils.createTextFormats();
 			
 			backgroundImages = new Vector.<BackgroundImage>();
 			homeAnimations = new Vector.<HomeAnimationController>();

@@ -14,13 +14,6 @@ package  {
 			return Math.max(0, Math.min(1, (f - minBound) / (maxBound - minBound)));
 		}
 		
-		public static function safeText(text:String):String {
-			text = text.replace(/\n\r/ig, '\n');
-			text = text.replace(/\r\n/ig, '\n');
-			text = text.replace(/\r/ig, '\n');
-			return text;
-		}
-		
 		
 	}
 

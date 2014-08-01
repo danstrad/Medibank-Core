@@ -12,20 +12,25 @@ package med.infographic {
 		
 		public function get displayDurationSeconds():Number { return 0; }
 		
+		protected const SKIP_INTRO:Boolean = true;
+		
 		//76b82a
 		
 		protected var bitmap:Bitmap;
 		protected var intro:MovieClip;
+		protected var disclaimer:MovieClip;
 		
 		protected var hotspotsLayer:Sprite;
 		
 		public function HotspotSlide(slideData:InfographicSlideData, color:uint) {
-		
+			
 			var W:Number = 1024;
 			var H:Number = 576;
 			var coordScale:Number = 1 / 2.400390625;
 					
 			var xml:XML = slideData.xml;
+			
+			var hotspotColor:uint = 0x0;
 
 			if (xml.hasOwnProperty("Background")) {
 				var bgXML:XML = xml.Background[0];
@@ -46,13 +51,16 @@ package med.infographic {
 					
 				}
 			}
+			if (xml.hasOwnProperty("hotspotColor")) {
+				hotspotColor = uint(xml.hotspotColor[0].toString().replace("#", "0x"));
+			}
 			
 			if (xml.hasOwnProperty("intro")) {
 				var introXML:XML = xml.intro[0];
 				var explanationText:String = null;
 				var instructionsText:String = null;
-				if (introXML.hasOwnProperty("explanationText")) explanationText = Utils.safeText(introXML.explanationText[0].toString());
-				if (introXML.hasOwnProperty("instructionsText")) instructionsText = Utils.safeText(introXML.instructionsText[0].toString());
+				if (introXML.hasOwnProperty("explanationText")) explanationText = TextUtils.safeText(introXML.explanationText[0].toString());
+				if (introXML.hasOwnProperty("instructionsText")) instructionsText = TextUtils.safeText(introXML.instructionsText[0].toString());
 				if (explanationText || instructionsText) {
 					intro = new _HotspotIntroAssets();
 					if (explanationText) intro.explanationField.text = explanationText;
@@ -61,6 +69,11 @@ package med.infographic {
 					else intro.instructionsField.visible = false;
 				}				
 			}
+			if (xml.hasOwnProperty("disclaimer")) {
+				var disclaimerText:String = TextUtils.safeText(xml.disclaimer[0].toString());
+				disclaimer = new _HotspotDisclaimerAssets();
+				disclaimer.disclaimerField.text = disclaimerText;
+			}
 			
 			
 			hotspotsLayer = new Sprite();
@@ -68,11 +81,11 @@ package med.infographic {
 				var expanderText:String = null;
 				var expanderImageURL:String = null;
 				var expanderDir:String = null;
-				if (hotspotXML.hasOwnProperty("Text")) expanderText = Utils.safeText(hotspotXML.Text[0].toString());
+				if (hotspotXML.hasOwnProperty("Text")) expanderText = TextUtils.convertToHTML(TextUtils.safeText(hotspotXML.Text[0].toString()));
 				if (hotspotXML.hasOwnProperty("Image")) expanderImageURL = hotspotXML.Image[0].@url.toString();
 				if (hotspotXML.hasOwnProperty("@dir")) expanderDir = hotspotXML.@dir.toString();
 
-				var expander:HotspotExpander = new HotspotExpander(expanderText, expanderImageURL, expanderDir);
+				var expander:HotspotExpander = new HotspotExpander(expanderText, expanderImageURL, expanderDir, hotspotColor);
 				expander.x = (parseFloat(hotspotXML.@x) * coordScale) || 0;
 				expander.y = (parseFloat(hotspotXML.@y) * coordScale) || 0;
 				hotspotsLayer.addChild(expander);
@@ -90,7 +103,6 @@ package med.infographic {
 			
 			var t:Number = 0;
 			
-			const SKIP_INTRO:Boolean = false;
 			if (!SKIP_INTRO) {
 				if (bitmap) {
 					const BITMAP_FADE_TIME:Number = 1.5;
@@ -117,6 +129,12 @@ package med.infographic {
 				const BITMAP_OPAQUE_TIME:Number = 1.5;
 				TweenMax.to(bitmap, BITMAP_OPAQUE_TIME, { alpha:1, delay:t, ease:Quad.easeOut } ); 
 				t += BITMAP_OPAQUE_TIME;
+			}
+			
+			if (disclaimer) {
+				addChild(disclaimer);
+				disclaimer.alpha = 0;
+				TweenMax.to(disclaimer, 1, { alpha:1, delay:t, ease:Quad.easeOut } ); 
 			}
 
 			addChild(hotspotsLayer);

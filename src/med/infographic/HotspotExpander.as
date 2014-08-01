@@ -11,9 +11,11 @@ package med.infographic {
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.geom.ColorTransform;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
+	import flash.text.TextFormat;
 
 	public class HotspotExpander extends _HotspotExpander {
 		
@@ -46,13 +48,20 @@ package med.infographic {
 		protected var textWidth:Number;
 		protected var textHeight:Number;
 		protected var bitmapHeight:Number;
+
+		protected var color:uint;
+		protected var colorTransform:ColorTransform;
 		
-		public function HotspotExpander(text:String, imageURL:String, dir:String) {
+		public function HotspotExpander(text:String, imageURL:String, dir:String, color:uint) {
 			this.imageURL = imageURL;
 			this.text = text;
 			textField.visible = false;
 			textBG.visible = false;
 			
+			this.color = color;
+			colorTransform = new ColorTransform(0, 0, 0, 1);
+			colorTransform.color = color;
+
 			right = dir.charAt(1) == "r";
 			down = dir.charAt(0) == "d";
 
@@ -70,7 +79,9 @@ package med.infographic {
 				textField.autoSize = TextFieldAutoSize.LEFT;
 				textField.multiline = false;
 				textField.wordWrap = false;
-				textField.text = text;
+				
+				//TextUtils.fillText(textField, text, TextUtils.
+				textField.htmlText = text;
 				textField.width; // force refresh?
 				textField.multiline = true;
 				textField.wordWrap = true;
@@ -91,6 +102,9 @@ package med.infographic {
 			
 			textBG.width = textWidth;
 			textBG.height = textHeight;
+			textBG.transform.colorTransform = colorTransform;
+			horizontalLine.transform.colorTransform = colorTransform;
+			verticalLine.transform.colorTransform = colorTransform;
 			
 			if (imageURL) {
 				var bmd:BitmapData = AssetManager.getImage(imageURL);
@@ -150,6 +164,7 @@ package med.infographic {
 			canToggle = true;
 		}
 		
+
 		
 		public function toggle():void {
 			expanded = !expanded;
@@ -167,8 +182,8 @@ package med.infographic {
 			
 			if (expanded) {
 				t = 0;
-				TweenMax.to(bg, BUTTON_CHANGE_TIME, { delay:t, colorTransform:{ tint:0x76b82a, tintAmount:1.0 }, ease:Quad.easeOut } );
-				TweenMax.to(verticalLine, BUTTON_CHANGE_TIME, { delay:t, scaleY:0, alpha:0, ease:Quad.easeOut } );
+				TweenMax.to(bg, BUTTON_CHANGE_TIME, { delay:t, colorTransform:{ tint:color, tintAmount:1.0 }, ease:Quad.easeOut } );
+				TweenMax.to(verticalLine, BUTTON_CHANGE_TIME, { delay:t, scaleY:0, colorTransform: { tint:0xFFFFFF, tintAmount:1.0 }, alpha:0, ease:Quad.easeOut } );
 				TweenMax.to(horizontalLine, BUTTON_CHANGE_TIME, { delay:t, scaleX:1.1, scaleY:1.1, colorTransform: { tint:0xFFFFFF, tintAmount:1.0 }, ease:Quad.easeOut } );
 				t += BUTTON_CHANGE_TIME - BUTTON_OVERLAP;
 				
@@ -204,9 +219,9 @@ package med.infographic {
 				TweenMax.to(textBG, EXPAND_HORIZONTAL_TIME, { delay:t, x:dockedX, width:0, ease:Quad.easeIn } );				
 				t += EXPAND_HORIZONTAL_TIME - BUTTON_OVERLAP;
 				
-				TweenMax.to(bg, BUTTON_CHANGE_TIME, { delay:t, colorTransform:{ tint:0xFFFFFF, tintAmount:0 }, ease:Quad.easeOut } );
-				TweenMax.to(verticalLine, BUTTON_CHANGE_TIME, {delay:t, scaleY:1, alpha:1, ease:Quad.easeOut } );
-				TweenMax.to(horizontalLine, BUTTON_CHANGE_TIME, { delay:t, scaleX:1, scaleY:1, colorTransform: { tint:0x76b82a, tintAmount:0 }, ease:Quad.easeOut } );				
+				TweenMax.to(bg, BUTTON_CHANGE_TIME, { delay:t, colorTransform:{ tint:color, tintAmount:1 }, ease:Quad.easeOut } );
+				TweenMax.to(verticalLine, BUTTON_CHANGE_TIME, {delay:t, scaleY:1, colorTransform: { tint:0xFFFFFF, tintAmount:1 }, alpha:1, ease:Quad.easeOut } );
+				TweenMax.to(horizontalLine, BUTTON_CHANGE_TIME, { delay:t, scaleX:1, scaleY:1, colorTransform: { tint:0xFFFFFF, tintAmount:1 }, ease:Quad.easeOut } );				
 				
 				// Dummy to trigger callback
 				TweenMax.to(textBG, BUTTON_CHANGE_TIME, { delay:t, onComplete:onExpandingFinished } );								
