@@ -28,6 +28,10 @@ package med.infographic {
 					// calculate duration automatically based on slide count, ignore what's in the xml (if anything)
 					displayTimeMsec = (PeopleGraph.ANIMATE_ON_DURATION_SEC + (slideXML.graphstate.length() * PeopleGraph.GRAPH_STATE_DURATION_SEC)) * 1000;	
 					
+				} else if (type == InfographicSlideData.SPIN_NUMBER_STRIP) {
+					
+					displayTimeMsec = 2000 + ((SpinNumberSlot.MIN_SPIN_TIME_SECS + SpinNumberSlide.AFTER_SPINNING_WAIT_TIME_SECONDS) * slideXML.graphstate.length()) * 1000;
+					
 				} else {
 					
 					displayTimeMsec = int(slideXML.@duration);

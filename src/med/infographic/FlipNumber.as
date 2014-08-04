@@ -48,8 +48,6 @@ package med.infographic {
 		protected function removeNumeral():void {
 			var numeral:FlipNumberNumeral = numerals.pop();
 			numeralParent.removeChild(numeral);
-			
-			// todo: check if we also need to remove a comma here
 		}
 		
 		
@@ -90,6 +88,7 @@ package med.infographic {
 				if ((significantDigitIndex != 0) && ((significantDigitIndex % 3) == 0)) {
 					// insert comma here
 					commas[commaIndex].x = -30 - totalWidth + 20;
+					commas[commaIndex].visible = true;
 					totalWidth += 26;
 					commaIndex--;
 				}				
@@ -111,6 +110,14 @@ package med.infographic {
 		
 		
 
+		public function thisValueWillChangeNumeralCount(value:int):Boolean {
+			var values:Array = value.toString().split("");
+			
+			if (values.length > numerals.length) 		return true;
+			else if (values.length < numerals.length) 	return true;
+			else	return false;
+		}
+		
 		
 		public function initForNumber(value:int):void {
 			var i:int;
@@ -137,11 +144,45 @@ package med.infographic {
 		}
 		
 		
+		protected var afterFlipCallback:Function;
+		
+		
+		public function flipToBlank(callback:Function):void {
+			afterFlipCallback = callback;
+			
+			numeralsFinishedCount = 0;
+			
+			for each (var numeral:FlipNumberNumeral in numerals) {
+				numeral.setValue(-1, false, numeralFinished);
+			}
+			
+			for each (var comma:FlipNumberComma in commas) {
+				comma.visible = false;
+			}
+		}
+		
+		
+		protected var numeralsFinishedCount:int = 0;
+		
+		public function numeralFinished():void {
+			numeralsFinishedCount++;
+			
+			if (numeralsFinishedCount >= numerals.length) {
+				if (afterFlipCallback != null) {
+					afterFlipCallback();
+				}
+			}
+		}
+		
+		
 		
 		public function flipToNumber(value:int):void {
 
-			initForNumber(value);
-			
+//			initForNumber(value);
+
+			targetValues = value.toString().split("");
+
+			numeralsFinishedCount = 0;
 			
 			for (var i:int = 0; i < targetValues.length; i++) {
 				

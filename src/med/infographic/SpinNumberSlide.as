@@ -1,5 +1,7 @@
 package med.infographic {
+	import com.greensock.easing.BounceInOut;
 	import com.greensock.TweenMax;
+	import com.gskinner.utils.Rndm;
 	import flash.display.Shape;
 	import flash.display.Sprite;
 
@@ -13,7 +15,9 @@ package med.infographic {
 
 		protected static const RIGHT_EDGE_SLOT_OFFSET:Number = 40;
 		
+		public static const AFTER_SPINNING_WAIT_TIME_SECONDS:Number = 2.5;
 		
+	
 		
 		protected var featuredTextPanel:Sprite;
 		protected var featuredTextEntries:Vector.<FeaturedTextEntry>;
@@ -24,7 +28,7 @@ package med.infographic {
 		protected var alphaShadingLayer:Shape;
 		
 		protected var slots:Vector.<SpinNumberSlot>;		
-		protected var commas:Vector.<FlipNumberComma>;
+		protected var commas:Vector.<SpinNumberComma>;
 		
 		protected var targetValues:Array;
 		protected var value:Number;
@@ -40,7 +44,7 @@ package med.infographic {
 			}
 			
 			
-			commas = new Vector.<FlipNumberComma>();
+			commas = new Vector.<SpinNumberComma>();
 			slots = new Vector.<SpinNumberSlot>();
 			
 			
@@ -50,6 +54,13 @@ package med.infographic {
 			featuredTextPanel.x = -512;
 			featuredTextPanel.y = ENTRY_HEIGHT * 0.5;
 			addChild(featuredTextPanel);
+			
+			
+			// draw correct color for color line
+			colorLine.graphics.clear();
+			colorLine.graphics.beginFill(slideData.boxColor, 1.0);
+			colorLine.graphics.drawRect(-512, -ENTRY_HEIGHT * 0.5, 1024, ENTRY_HEIGHT);
+			colorLine.graphics.endFill();
 			
 			
 			// add entries
@@ -120,9 +131,31 @@ package med.infographic {
 		
 		public function animateOn():void {
 			
-			// todo: start spinning numbers
+			TweenMax.fromTo(colorLine, 1.0, { x: -1024 }, { x:0, immediateRender:true } );
+		}
+		
+		
+		
+		public function animateOff(callback:Function):void {
+				
+			// close up the color line
+			TweenMax.to(colorLine, 1.0, { x:-1024, onComplete:callback, onCompleteParams:[this] } );
 			
-			TweenMax.fromTo(colorLine, 1.0, { x: -1024 }, { x:0, immediateRender:true, onComplete:rollUpText } );
+			// scroll up all the numbers
+			for each (var slot:SpinNumberSlot in slots) {
+				TweenMax.to(slot, 1.0, { y: -1000, alpha:0 } );
+			}
+			
+			for each (var comma:SpinNumberComma in commas) {
+				TweenMax.to(comma, 1.0, { y: -1000, alpha:0 } );
+			}
+			
+			TweenMax.to(dollarSign, 1.0, { y: -1000, alpha:0 } );			
+			TweenMax.to(decimalPoint, 1.0, { y: -1000, alpha:0 } );
+			
+			// move off text to the left
+			TweenMax.to(featuredTextPanel, 0.5, { x: featuredTextPanel.x - 400 } );
+			
 		}
 		
 		
@@ -137,15 +170,10 @@ package med.infographic {
 			TweenMax.fromTo(featuredTextPanel, 0.3, { y: featuredTextPanel.y }, { y:featuredTextPanel.y - ENTRY_HEIGHT, immediateRender:true } );
 		}
 		
+
 		
-		
-		public function animateOff(callback:Function):void {
-			
-			callback(this);
-			
-		}
-		
-		
+		protected var showDecimal:Boolean = false;
+		protected var numDigitsAfterDecimalPoint:int = 0;
 
 		
 		public function initForNumber(value:Number):void {
@@ -153,6 +181,34 @@ package med.infographic {
 								
 			targetValues = value.toString().split("");
 
+			
+			// show / hide decimal point
+			showDecimal = ((value % 1) > 0);
+			
+			if (showDecimal) {
+				decimalPoint.visible = true;
+				
+				var decimalIndex:int = targetValues.indexOf(".");
+				
+				numDigitsAfterDecimalPoint = (targetValues.length - 1) - decimalIndex;
+
+				// we need to splice the "." out of targetValues
+				targetValues.splice(decimalIndex, 1);
+				
+				if (numDigitsAfterDecimalPoint == 1) {
+					// add a trailing zero
+					targetValues.push("0");
+					numDigitsAfterDecimalPoint = 2;
+				} 
+				
+					
+			} else {
+				decimalPoint.visible = false;
+				numDigitsAfterDecimalPoint = 0;
+			}
+			
+			
+			
 			// add slots
 			var slot:SpinNumberSlot;
 						
@@ -176,26 +232,26 @@ package med.infographic {
 			repositionSlots();
 					
 			
-			// move the alpha thing back to the top
+			// move the alpha thing back on top of letters
 			addChild(alphaShadingLayer);
+			
 		}
 		
 				
 		
 		
 		protected function repositionSlots():void {
-			// finalize placement of slots
-			
+			// finalize placement of slots			
 			var totalWidth:Number = 0;
 			
 			
 			// make sure we have the right number of commas
-			var comma:FlipNumberComma;
+			var comma:SpinNumberComma;
 				
-			var numCommasRequired:int = Math.ceil(targetValues.length / 3) - 1;
+			var numCommasRequired:int = Math.ceil((targetValues.length - numDigitsAfterDecimalPoint) / 3) - 1;
 			
 			while (commas.length < numCommasRequired) {			
-				comma = new FlipNumberComma();
+				comma = new SpinNumberComma();
 				commas.push(comma);
 				addChild(comma);
 			}
@@ -208,33 +264,35 @@ package med.infographic {
 			var commaIndex:int = commas.length - 1;
 			
 			
-			for (var i:int = slots.length - 1; i >= 0; i--) {
+			for (var i:int = 0; i < slots.length; i++) {
 				
-				var slot:SpinNumberSlot = slots[i];
+				var slot:SpinNumberSlot = slots[(slots.length-1)-i];
 				
 				// now we start with the least significant digit, and place digits leftwards from the origin
 				// this is to make it easier to insert the comma in the right position
-				var significantDigitIndex:int = ((slots.length - 1) - i);
+				var significantDigitIndex:int = i - numDigitsAfterDecimalPoint;
 				
 				
-				if ((significantDigitIndex != 0) && ((significantDigitIndex % 3) == 0)) {
+				if ((significantDigitIndex > 0) && ((significantDigitIndex % 3) == 0)) {
 					// insert comma here
-					commas[commaIndex].x = 512 - RIGHT_EDGE_SLOT_OFFSET - totalWidth + 15;
-					totalWidth += 26;
+					commas[commaIndex].x = 512 - RIGHT_EDGE_SLOT_OFFSET - totalWidth + 18;
+					totalWidth += 14;
 					commaIndex--;
 				}				
-								
+				
+				if (showDecimal && (significantDigitIndex == 0)) {
+					// figure out where to put the decimal
+					decimalPoint.x = 512 - RIGHT_EDGE_SLOT_OFFSET - totalWidth + 15;
+					totalWidth += 20;
+				}
+				
 				slot.x = 512 - RIGHT_EDGE_SLOT_OFFSET - totalWidth;
-
-				if (i == 0)		totalWidth += 50;
-				else			totalWidth += SLOT_GAP_X;
+				totalWidth += 50;
 				
 			}
 	
 			// place dollar sign correctly
-			// todo
-			
-// 			dollarSign
+ 			dollarSign.x = 512 - RIGHT_EDGE_SLOT_OFFSET - totalWidth + 5;
 
 			
 			
@@ -283,42 +341,19 @@ package med.infographic {
 		}		
 		
 		
-		protected function startSlotSpinning(slot:SpinNumberSlot):void {
-			if (slot) slot.startSpinning();
-		}
-		
+
 		
 		protected function flipToTargetValue():void {
-			
-			for each (var slot:SpinNumberSlot in slots) {
-				slot.startSpinning();
-			}
-			
-//			flipNumber.flipToNumber(value);
-		
-			/*
-			// tween on the text fields
-			featuredField.visible = true;				
-			TweenMax.fromTo(featuredField, TEXT_SLIDE_ON_DURATION_SEC, { y:normalFeaturedFieldY + Y_ANIM_OFFSET_BOTTOM }, { y:normalFeaturedFieldY, immediateRender:true, delay:TEXT_SLIDE_ON_DELAY_SEC } );		
 						
-			topField.visible = true;
-
-			// don't animate on top text field if its the same as the last one
-			if (topString != prevTopString) {
-				TweenMax.fromTo(topField, TEXT_SLIDE_ON_DURATION_SEC, { y:normalTopFieldY + Y_ANIM_OFFSET_TOP }, { y:normalTopFieldY, immediateRender:true, delay:TEXT_SLIDE_ON_DELAY_SEC } );
-			} else {
-				topField.y = normalTopFieldY;
+			rollUpText();
+			
+			for (var i:int = 0; i < targetValues.length; i++) {
+				slots[i].startSpinning(targetValues[i], Rndm.integer(0, 50));
 			}
 			
-			// set listeners to tween them off
-//			TweenMax.fromTo(topField, TEXT_SLIDE_OFF_DURATION_SEC, { y:normalTopFieldY }, { y:normalTopFieldY + Y_OFFSET, delay:NUMBER_DISPLAYED_DURATION_SEC - TEXT_SLIDE_ON_DELAY_SEC } );
-//			TweenMax.fromTo(featuredField, TEXT_SLIDE_OFF_DURATION_SEC, { y:normalFeaturedFieldY }, { y:normalFeaturedFieldY - Y_OFFSET, delay: NUMBER_DISPLAYED_DURATION_SEC - TEXT_SLIDE_ON_DELAY_SEC } );		
-			
-			
-			TweenMax.to(this, NUMBER_DISPLAYED_DURATION_SEC - TEXT_SLIDE_OFF_DURATION_SEC, { onComplete:animateOffText } );
-			*/
-			
+			TweenMax.to(this, SpinNumberSlot.MIN_SPIN_TIME_SECS + AFTER_SPINNING_WAIT_TIME_SECONDS, {onComplete: nextGraphState});
 		}		
+		
 		
 		
 		public function animate(dTime:Number):void {

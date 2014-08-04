@@ -6,12 +6,14 @@ package med.infographic {
 		
 		public static const SLIDE_IN_DURATION_SECS:Number = 0.5;
 		
-		protected static const DELAY_BETWEEN_TOP_AND_BOTTOM_SEC:Number = 0.07; // 0.03;
-		protected static const DELAY_BEFORE_STARTING_NEXT_FLIP_SEC:Number = 0.1; // 0.025;
+		protected static const DELAY_BETWEEN_TOP_AND_BOTTOM_SEC:Number = 0.03; // 0.07; // 0.03;
+		protected static const DELAY_BEFORE_STARTING_NEXT_FLIP_SEC:Number = 0.025; // 0.1; // 0.025;
 		
 		
 		protected var currentValue:int = 0;
 		protected var targetValue:int = 0;
+				
+		protected var callback:Function;
 		
 		
 		public function FlipNumberNumeral() {
@@ -20,7 +22,8 @@ package med.infographic {
 		}
 		
 		
-		public function setValue(newValue:int, changeInstantly:Boolean):void {
+		public function setValue(newValue:int, changeInstantly:Boolean, callback:Function=null):void {
+			this.callback = callback;
 			
 			// now we have "blank card" as a thing
 			// pass -1 to use it
@@ -36,6 +39,9 @@ package med.infographic {
 				}
 				
 				this.currentValue = newValue;
+				
+				if (callback != null)  callback();
+				
 				
 			} else {				
 				this.targetValue = newValue;	
@@ -78,25 +84,32 @@ package med.infographic {
 		*/
 		
 		
+		protected function get currentValueAsString():String {
+			if (currentValue == -1) 	return "";
+			else						return String(currentValue);
+		}
+		
+		
 		protected function flipLowerHalfUp():void {
 						
 			if (currentValue < targetValue) {
 				currentValue++;							
 			} else {
 				// we've reached our target, break the loop
+				if (callback != null)  callback();
 				return;
 			}
 			
 			// change the bottom half immediately, change the upper one on a timer
-			lowerHalf.numberField.text = String(currentValue);
-			
+			lowerHalf.numberField.text = currentValueAsString;
+				
 			TweenMax.to(this, DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { onComplete: flipUpperHalfUp } );
 			
 		}
 		
 		
 		protected function flipUpperHalfUp():void {
-			upperHalf.numberField.text = String(currentValue);
+			upperHalf.numberField.text = currentValueAsString;
 			
 			TweenMax.to(this, DELAY_BEFORE_STARTING_NEXT_FLIP_SEC, { onComplete: flipLowerHalfUp } );
 		}
@@ -110,11 +123,12 @@ package med.infographic {
 				currentValue--;							
 			} else {
 				// we've reached our target, break the loop
+				if (callback != null)   callback();
 				return;
 			}
 			
 			// change the top half immediately, change the bottom one on a timer
-			upperHalf.numberField.text = String(currentValue);
+			upperHalf.numberField.text = currentValueAsString;
 			
 			TweenMax.to(this, DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { onComplete: flipLowerHalfDown } );
 			
@@ -122,7 +136,7 @@ package med.infographic {
 		
 		
 		protected function flipLowerHalfDown():void {
-			lowerHalf.numberField.text = String(currentValue);
+			lowerHalf.numberField.text = currentValueAsString;
 			
 			TweenMax.to(this, DELAY_BEFORE_STARTING_NEXT_FLIP_SEC, { onComplete: flipUpperHalfDown } );
 		}		

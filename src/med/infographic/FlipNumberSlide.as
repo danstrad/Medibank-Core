@@ -115,9 +115,9 @@ package med.infographic {
 		
 		
 		protected function flipToTargetValue():void {
-			flipNumber.flipToNumber(value);
 		
-			
+			flipNumber.flipToNumber(value);
+				
 			// tween on the text fields
 			featuredField.visible = true;				
 			TweenMax.fromTo(featuredField, TEXT_SLIDE_ON_DURATION_SEC, { y:normalFeaturedFieldY + Y_ANIM_OFFSET_BOTTOM }, { y:normalFeaturedFieldY, immediateRender:true, delay:TEXT_SLIDE_ON_DELAY_SEC } );		
@@ -205,18 +205,32 @@ package med.infographic {
 			
 			if (graphStateIndex != 0) {
 				// for index 0, we need to wait for the animateOn() call to complete before we start flipping
-				// otherwise, we can start it immediately
-				flipToTargetValue();
+				// otherwise, we can start it immediately (as long as we don't need to change the number of numerals)
+				
+				if (flipNumber.thisValueWillChangeNumeralCount(value) == false) {
+					flipToTargetValue();
 			
+				} else {					
+					// we need to "flip to blank" first
+					flipNumber.flipToBlank(afterFlipToBlank);		
+				
+				}
+				
 			} else {
 			
 				flipNumber.initForNumber(value);
-
-				// set the initial state 
-//				flipNumber.setRandomStartingNumber();
 				
 			}
 			
+		}
+		
+		
+		public function afterFlipToBlank():void {
+			// when this is done, call init
+			flipNumber.initForNumber(value);
+					
+			// then flip to value
+			flipToTargetValue();
 		}
 		
 		

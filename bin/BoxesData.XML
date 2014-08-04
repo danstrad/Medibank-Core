@@ -970,7 +970,7 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	
 	
 	<Infographic id="info1">
-		<slide type="center_text_box" duration="4000" animateOn="squash" animateOff="none">
+		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
 			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"/>
 			<featuredText>Accessing specialist care in regional Australia presents many challenges for GPs and their patients.</featuredText>
 		</slide>
@@ -1005,11 +1005,12 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	</Infographic>
 	<Infographic id="info2">
 			
-		<slide type="center_text_box" duration="4000" animateOn="squash" animateOff="zoomIn">
+		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="zoomIn">
 			<appearance textColor="#FFFFFF" backgroundColor="#ff9330" boxColor="#E4002B"/>
 			<featuredText>Making advice and care accessible.</featuredText>
 		</slide>	
-		<slide type="flip_number" duration="20000">
+		<slide type="flip_number" duration="40000">
+			<appearance backgroundColor="#E4002B" />
 			<graphstate value="1555252" featuredText="Dentist scale cleans" topText="In one year, we supported" />	
 			<graphstate value="1462572" featuredText="Teeth fillings" topText="In one year, we supported" />	
 			<graphstate value="22491" featuredText="Births" topText="In one year, we supported" />	
@@ -1025,11 +1026,20 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 		
 	</Infographic>
 	<Infographic id="info3">
-		<slide type="spin_number" duration="30000">
-			<appearance backgroundColor="#B0008E" />
-			<graphstate value="1234567" featuredText="Testing something" />		
-			<graphstate value="7654321" featuredText="Testing something else" />	
+		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="zoomIn">
+			<appearance textColor="#FFFFFF" backgroundColor="#653279" boxColor="#B0008E"/>
+			<featuredText>Making healthcare affordable.</featuredText>
+		</slide>	
+		<slide type="spin_number">
+			<appearance backgroundColor="#B0008E" boxColor="#653279" />
+			<graphstate value="12794842.60" featuredText="Pet insurance benefits paid." />		
+			<graphstate value="8758284.75" featuredText="Travel insurance benefits paid." />	
 		</slide>
+		<slide type="center_text_box" duration="4000" animateOn="zoom" animateOff="squash">
+			<appearance textColor="#FFFFFF" backgroundColor="#653279" boxColor="#B0008E"/>
+			<featuredText>Making healthcare affordable.</featuredText>
+		</slide>
+		
 	</Infographic>
 	<Infographic id="info4">
 	</Infographic>
