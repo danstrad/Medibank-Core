@@ -43,6 +43,7 @@
       <path-element>C:\Users\Cuuble\Documents\GitHub\Medibank-Core\lib\PeopleGraph.swc</path-element>
       <path-element>C:\Users\Cuuble\Documents\GitHub\Medibank-Core\lib\FlipNumber.swc</path-element>
       <path-element>C:\Users\Cuuble\Documents\GitHub\Medibank-Core\lib\SpinNumber.swc</path-element>
+      <path-element>C:\Users\Cuuble\Documents\GitHub\Medibank-Core\lib\TimeDials.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

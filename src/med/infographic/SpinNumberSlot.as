@@ -1,6 +1,11 @@
 package med.infographic {
+	import com.greensock.easing.ExpoIn;
+	import com.greensock.plugins.BlurFilterPlugin;
+	import com.greensock.TweenMax;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.filters.BlurFilter;
+	import org.flashdevelop.utils.FlashConnect;
 	
 	
 	public class SpinNumberSlot extends _SpinNumberSlot {
@@ -13,7 +18,8 @@ package med.infographic {
 		
 		public static const MIN_SPIN_TIME_SECONDS:Number = 1.0;
 		
-//		public static const 
+		
+		public var speed:Number;
 		
 		
 		public function SpinNumberSlot() {
@@ -24,9 +30,16 @@ package med.infographic {
 		}
 
 		
+		
+		
 		public function startSpinning():void {
 			
 			isSpinning = true;
+			
+			speed = 0; // 0.1;
+			
+			TweenMax.fromTo(this, 1.0, { speed:0, blurFilter:{blurY:0} }, { speed:3.0, blurFilter:{blurY:8}, immediateRender:true, ease:ExpoIn.ease } );
+			
 			
 		}
 		
@@ -36,7 +49,7 @@ package med.infographic {
 			if (!isSpinning)	return;
 			
 			// temp, needs acceleration
-			var moved:Number = 0.01 * dTime;
+			var moved:Number = speed * dTime;
 			
 			block1.y += moved;
 			block2.y += moved;
@@ -54,7 +67,7 @@ package med.infographic {
 			
 			
 			// if one block has moved too far down, put it back on the top
-			if (bottomBlock.y > ((BoxesMain.STAGE_HEIGHT * 0.5) + SpinNumberSlide.ENTRY_HEIGHT)) {
+			if (bottomBlock.y > ((300 * 0.5) + SpinNumberSlide.ENTRY_HEIGHT)) {
 				bottomBlock.y = topBlock.y - (SpinNumberSlide.ENTRY_HEIGHT * 10); 
 			}
 			

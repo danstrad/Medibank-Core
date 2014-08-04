@@ -103,11 +103,11 @@ package med.infographic {
 			
 			// draw completely solid strips at the very top and bottom
 			alphaShadingLayer.graphics.beginFill(slideData.backgroundColor, 1.0);
-			alphaShadingLayer.graphics.drawRect(-512, (-BoxesMain.STAGE_HEIGHT*0.5)-98, 1024, 100);
+			alphaShadingLayer.graphics.drawRect(-512, -288-98, 1024, 100);
 			alphaShadingLayer.graphics.endFill();
 			
 			alphaShadingLayer.graphics.beginFill(slideData.backgroundColor, 1.0);
-			alphaShadingLayer.graphics.drawRect(-512, (BoxesMain.STAGE_HEIGHT*0.5)-2, 1024, 100);
+			alphaShadingLayer.graphics.drawRect(-512, 288-2, 1024, 100);
 			alphaShadingLayer.graphics.endFill();
 			
 
@@ -283,15 +283,15 @@ package med.infographic {
 		}		
 		
 		
+		protected function startSlotSpinning(slot:SpinNumberSlot):void {
+			if (slot) slot.startSpinning();
+		}
+		
 		
 		protected function flipToTargetValue():void {
 			
 			for each (var slot:SpinNumberSlot in slots) {
-<<<<<<< HEAD
 				slot.startSpinning();
-=======
-				//slot.
->>>>>>> origin/master
 			}
 			
 //			flipNumber.flipToNumber(value);
@@ -321,7 +321,6 @@ package med.infographic {
 		}		
 		
 		
-<<<<<<< HEAD
 		public function animate(dTime:Number):void {
 			
 			for each (var slot:SpinNumberSlot in slots) {
@@ -331,12 +330,7 @@ package med.infographic {
 			}
 			
 		}
-		
-		
-=======
-		public function animate(dTime:Number):void { }
->>>>>>> origin/master
-		
+
 		
 	}
 
