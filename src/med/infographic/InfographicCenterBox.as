@@ -127,6 +127,7 @@ package med.infographic {
 			TweenMax.fromTo(this, ANIMATE_OFF_TIME, { scaleX:1.0, scaleY:1.0 }, { scaleX:3.0, scaleY:3.0, delay:TEXT_TRANSITION_OFF_TIME, onComplete:callback, onCompleteParams:[this] } );
 		}
 		
+		public function animate(dTime:Number):void { }
 		
 
 		

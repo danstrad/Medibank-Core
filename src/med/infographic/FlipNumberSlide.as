@@ -90,6 +90,8 @@ package med.infographic {
 			callback(this);
 		}
 		
+		public function animate(dTime:Number):void { }
+		
 		
 		protected static const Y_ANIM_OFFSET_TOP:Number = 50;
 		protected static const Y_ANIM_OFFSET_BOTTOM:Number = -100;

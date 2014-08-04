@@ -163,6 +163,7 @@ package med.infographic {
 		}
 		
 
+		public function animate(dTime:Number):void { }
 		
 		
 		

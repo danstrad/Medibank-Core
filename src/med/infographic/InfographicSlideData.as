@@ -72,6 +72,8 @@ package med.infographic {
 		
 		public static const SPLASH_TEXT:String					= "splash_text";	// plain bold text, with or without image
 		
+		public static const TIME_DIALS:String					= "time_dials";	// dials to show different number of hours
+		
 				
 
 

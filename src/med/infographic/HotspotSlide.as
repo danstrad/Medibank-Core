@@ -95,6 +95,8 @@ package med.infographic {
 			
 		}
 		
+		public function animate(dTime:Number):void { }
+		
 		public function animateOff(callback:Function):void {
 			removeEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
 			
@@ -167,6 +169,7 @@ package med.infographic {
 				}
 			}			
 		}
+
 		
 	}
 

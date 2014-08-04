@@ -287,7 +287,11 @@ package med.infographic {
 		protected function flipToTargetValue():void {
 			
 			for each (var slot:SpinNumberSlot in slots) {
+<<<<<<< HEAD
 				slot.startSpinning();
+=======
+				//slot.
+>>>>>>> origin/master
 			}
 			
 //			flipNumber.flipToNumber(value);
@@ -317,6 +321,7 @@ package med.infographic {
 		}		
 		
 		
+<<<<<<< HEAD
 		public function animate(dTime:Number):void {
 			
 			for each (var slot:SpinNumberSlot in slots) {
@@ -328,6 +333,9 @@ package med.infographic {
 		}
 		
 		
+=======
+		public function animate(dTime:Number):void { }
+>>>>>>> origin/master
 		
 		
 	}
