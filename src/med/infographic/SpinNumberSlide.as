@@ -99,8 +99,6 @@ package med.infographic {
 			alphaShadingLayer.graphics.endFill();
 			
 
-// 			dollarSign
-
 			loadGraphState(0);
 		}
 
@@ -220,7 +218,14 @@ package med.infographic {
 				else			totalWidth += SLOT_GAP_X;
 				
 			}
-						
+	
+			// place dollar sign correctly
+			// todo
+			
+// 			dollarSign
+
+			
+			
 		}
 				
 		
@@ -264,8 +269,12 @@ package med.infographic {
 		}		
 		
 		
+		
 		protected function flipToTargetValue():void {
 			
+			for each (var slot:SpinNumberSlot in slots) {
+				slot.
+			}
 			
 //			flipNumber.flipToNumber(value);
 		
