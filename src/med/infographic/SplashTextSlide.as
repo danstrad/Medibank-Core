@@ -14,6 +14,9 @@ package med.infographic {
 		protected var textField:TextField;
 		protected var bitmaps:Vector.<Bitmap>;
 		
+		protected var animateOnType:String;
+		protected var animateOffType:String;
+		
 		public function SplashTextSlide(slideData:InfographicSlideData, initialBackgroundColor:uint) {
 			var xml:XML = slideData.xml;
 			
@@ -28,9 +31,12 @@ package med.infographic {
 				bitmap.x -= bitmap.width / 2;
 				bitmap.y -= bitmap.height / 2;
 				bitmaps.push(bitmap);
+				addChild(bitmap);
 			}
 			
 			if (xml.hasOwnProperty("text")) {
+				var textXML:XML = xml.text[0];
+				
 				textField = new TextField();
 				textField.mouseEnabled = false;
 				textField.width = 1;
@@ -39,35 +45,57 @@ package med.infographic {
 				textField.autoSize = TextFieldAutoSize.LEFT;
 				textField.textColor = 0xFFFFFF;
 				
-				var text:String = TextUtils.safeText(xml.text[0].toString());
+				var text:String = TextUtils.safeText(textXML.toString());
 				textField.text = text;
 				textField.width = Math.min(textField.width, 1024);
+				
+				if (textXML.hasOwnProperty("@textScale")) {
+					var textScale:Number = parseFloat(textXML.@textScale);
+					textField.scaleX = textField.scaleY = textScale;
+				}
 
 				textField.x = -textField.width / 2;
 				textField.y = -textField.height / 2;
+
+				addChild(textField);
 			}
+			
+			animateOnType = xml.@animateOn;
+			animateOffType = xml.@animateOff;
 			
 		}
 		
 		public function animateOn():void {
-			for each(var bitmap:Bitmap in bitmaps) {
-				addChild(bitmap);
-				bitmap.alpha = 0;
-				TweenMax.to(bitmap, SCROLL_TIME, { alpha:1, ease:Quad.easeOut } );
+			switch(animateOnType) {
+				case "none":
+					break;
+				default:
+					for each(var bitmap:Bitmap in bitmaps) {
+						bitmap.alpha = 0;
+						TweenMax.to(bitmap, SCROLL_TIME, { alpha:1, ease:Quad.easeOut } );
+					}
+					break;
 			}
 			if (textField) {
-				addChild(textField);
-				textField.x = SCROLL_X - textField.width / 2;
+				textField.x = -SCROLL_X - textField.width / 2;
 				TweenMax.to(textField, SCROLL_TIME, { x:(0 - textField.width / 2), ease:Quad.easeOut } );
 			}
 		}
 		public function animateOff(callback:Function):void {
-			for each(var bitmap:Bitmap in bitmaps) {
-				TweenMax.to(bitmap, SCROLL_TIME, { alpha:0, ease:Quad.easeOut } );
+			switch(animateOffType) {
+				case "none":
+					break;
+				default:
+					for each(var bitmap:Bitmap in bitmaps) {
+						TweenMax.to(bitmap, SCROLL_TIME, { alpha:0, ease:Quad.easeOut } );
+					}
+					break;
 			}
 			if (textField) {
 				TweenMax.to(textField, SCROLL_TIME, { x:(SCROLL_X - textField.width / 2), ease:Quad.easeIn } );
 			}
+			
+			TweenMax.to(this, SCROLL_TIME, { onComplete:callback, onCompleteParams:[this] } );
 		}
 		
 		public function animate(dTime:Number):void { }
