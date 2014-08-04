@@ -217,6 +217,22 @@ package med.infographic {
 						
 						break;
 						
+					case InfographicSlideData.PICK3_INPUT:
+						
+						var pick3InputSlide:Pick3InputSlide = new Pick3InputSlide(slideData, initialBackgroundColor, inputVars, removeSlideSpriteFromStage);
+						addSlideSprite(pick3InputSlide);
+						pick3InputSlide.animateOn();
+						
+						break;
+						
+					case InfographicSlideData.PICK3_RESULTS:
+						
+						var pick3ResultsSlide:Pick3ResultsSlide = new Pick3ResultsSlide(slideData, initialBackgroundColor, inputVars, removeSlideSpriteFromStage);
+						addSlideSprite(pick3ResultsSlide);
+						pick3ResultsSlide.animateOn();
+						
+						break;
+						
 					default:
 						end();
 						break;

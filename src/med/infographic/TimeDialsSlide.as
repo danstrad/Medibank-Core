@@ -10,7 +10,6 @@ package med.infographic {
 		protected const SCROLL_X:Number = 1200;
 		
 		protected var inputVars:Object;
-
 		protected var finishedCallback:Function;
 		
 		protected var dials:Vector.<TimeDial>;
