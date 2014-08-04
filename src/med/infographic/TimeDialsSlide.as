@@ -9,11 +9,14 @@ package med.infographic {
 		protected const SCROLL_TIME:Number = 0.6;
 		protected const SCROLL_X:Number = 1200;
 		
+		protected var inputVars:Object;
 		protected var finishedCallback:Function;
 		
 		protected var dials:Vector.<TimeDial>;
 		
-		public function TimeDialsSlide(slideData:InfographicSlideData, initialBackgroundColor:uint, finishedCallback:Function) {
+		
+		public function TimeDialsSlide(slideData:InfographicSlideData, initialBackgroundColor:uint, inputVars:Object, finishedCallback:Function) {
+			this.inputVars = inputVars;
 			this.finishedCallback = finishedCallback;
 			
 			var xml:XML = slideData.xml;
@@ -31,6 +34,7 @@ package med.infographic {
 				else dial.color = 0x845b94;
 				dial.variable = dialXML.@variable;
 				if (dialXML.hasOwnProperty("@value")) dial.value = parseFloat(dialXML.@value.toString());
+				if (!dial.input && dial.variable) dial.value = inputVars[dial.variable];
 				addChild(dial);
 				dials.push(dial);
 			}
@@ -59,6 +63,8 @@ package med.infographic {
 		}
 		
 		public function animateOff(callback:Function):void {
+			readInput();
+			
 			var t:Number = 0;
 			for each(var dial:TimeDial in dials) {
 				dial.animateOff();
@@ -78,6 +84,14 @@ package med.infographic {
 			for each(var dial:TimeDial in dials) dial.animate(dTime);
 		}
 
+		protected function readInput():void {
+			for each(var dial:TimeDial in dials) {
+				if (dial.input) {
+					inputVars[dial.variable] = dial.value;
+				}
+			}
+		}
+		
 		protected function startTimeDials():void {
 			for each(var dial:TimeDial in dials) {
 				dial.animateOn();

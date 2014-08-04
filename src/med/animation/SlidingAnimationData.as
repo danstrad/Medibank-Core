@@ -13,7 +13,7 @@ package med.animation {
 
 		protected static const TYPE_INDEX:int = AnimationType.getIndex(AnimationType.SLIDING);
 		
-		static public const COLORS:Vector.<uint> = Vector.<uint>([0x1bace3, 0x33b5e7, 0x4ebfe9]);
+		static public var COLORS:Vector.<uint>;
 		
 		public var totalLaneWidth:Number;
 		

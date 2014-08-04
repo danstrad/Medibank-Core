@@ -54,11 +54,13 @@ package med.animation {
 				info.text = chapter.title;
 				data.homeInfos[info.chapterID] = info;
 			}
+			/*
 			info = new HomeInfo(4);
 			info.width = 9 / 4 * (6 / 9);
 			info.height = 5 / 4 * (6 / 9);
 			info.videoURL = "assets/003_40inch_Main.mov"
 			data.homeInfos[info.chapterID] = info;
+			*/
 
 			switch(baseChapterID) {
 				default:
@@ -96,7 +98,7 @@ package med.animation {
 						data.layouts[i] = layout;
 					}
 					
-					addVideo(data);
+					//addVideo(data);
 					break;
 			
 				case 1:
@@ -136,10 +138,12 @@ package med.animation {
 						data.layouts[i] = layout;
 					}
 
+					/*
 					addVideo(data);
 					layout = data.layouts[3];
 					state = layout.states[4];
 					state.scale = 0;
+					*/
 					break;
 					
 			}

@@ -36,6 +36,17 @@
 				else chapter.bgColor = 0x555500;
 				if (chapterXML.hasOwnProperty("Story")) chapter.storyID = chapterXML.Story[0].toString();
 				StorySet.chapters.push(chapter);
+
+				var colors:Vector.<uint> = new Vector.<uint>();
+				for each(var colorXML:XML in chapterXML.BoxColour) {
+					colors.push(uint(colorXML.toString().replace("#", "0x")));
+				}
+				switch(chapterCount) {
+					case 1: FloatingAnimationData.COLORS = colors; break;
+					case 2: SproutingAnimationData.COLORS = colors; break;
+					case 3: SlidingAnimationData.COLORS = colors; break;
+				}
+				
 			}
 									
 			StorySet.animationDatas[0] = StorySet.baseAnimationData = HomeAnimationData.create(0);
