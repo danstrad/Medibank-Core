@@ -7,7 +7,7 @@ package med.infographic {
 	public class SpinNumberSlide extends _SpinNumberSlide implements ISlide {
 
 		
-		protected static const ENTRY_HEIGHT:Number = 82;
+		public static const ENTRY_HEIGHT:Number = 82;
 		
 		protected static const SLOT_GAP_X:Number = 62;
 
@@ -273,7 +273,7 @@ package med.infographic {
 		protected function flipToTargetValue():void {
 			
 			for each (var slot:SpinNumberSlot in slots) {
-				slot.
+				//slot.
 			}
 			
 //			flipNumber.flipToNumber(value);
@@ -303,6 +303,7 @@ package med.infographic {
 		}		
 		
 		
+		public function animate(dTime:Number):void { }
 		
 		
 	}

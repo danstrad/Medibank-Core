@@ -204,6 +204,14 @@ package med.infographic {
 						
 						break;
 						
+					case InfographicSlideData.TIME_DIALS:
+						
+						var dialsSlide:TimeDialsSlide = new TimeDialsSlide(slideData, initialBackgroundColor, removeSlideSpriteFromStage);
+						addSlideSprite(dialsSlide);
+						dialsSlide.animateOn();
+						
+						break;
+						
 					default:
 						end();
 						break;
@@ -247,7 +255,10 @@ package med.infographic {
 			// check whether we've exceeded the amount of time to show this slide
 			currentSlideTime += dTime;
 			
-			if (data.slides[currentSlideIndex] && (currentSlideTime >= data.slides[currentSlideIndex].displayTimeMsec)) { 
+			var slide:ISlide = slideSprite as ISlide;
+			if (slide) slide.animate(dTime);
+			
+			if ((data.slides[currentSlideIndex].displayTimeMsec > 0) && data.slides[currentSlideIndex] && (currentSlideTime >= data.slides[currentSlideIndex].displayTimeMsec)) { 
 				
 					if (currentSlideIndex < (data.slides.length-1)) {
 					// remove previous slide, wait for callback to start next slide

@@ -32,11 +32,6 @@ package med.infographic {
 					
 					displayTimeMsec = int(slideXML.@duration);
 				
-					if (displayTimeMsec <= 0) {
-						displayTimeMsec = 3000;
-						// fallback
-					}
-				
 				}
 					
 				var slideData:InfographicSlideData = new InfographicSlideData(type, displayTimeMsec, slideXML);
