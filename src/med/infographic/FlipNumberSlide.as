@@ -12,7 +12,7 @@ package med.infographic {
 		protected var graphStatesXML:Vector.<XML> = new Vector.<XML>();
 		
 		public static const ANIMATE_ON_TIME_SEC:Number = 0.75;
-		public static const NUMBER_DISPLAYED_DURATION_SEC:Number = 4.0;
+		public static const NUMBER_DISPLAYED_DURATION_SEC:Number = 6.0;
 		
 		protected static const TEXT_SLIDE_ON_DURATION_SEC:Number = 0.5;
 		protected static const TEXT_SLIDE_OFF_DURATION_SEC:Number = 0.5;
@@ -34,7 +34,7 @@ package med.infographic {
 				graphStatesXML.push(graphStateXML);
 			}
 										
-			flipNumber = new FlipNumber();
+			flipNumber = new FlipNumber(slideData.backgroundColor);
 			flipNumber.x = 0;
 			flipNumber.y = -10;
 			addChild(flipNumber);			
