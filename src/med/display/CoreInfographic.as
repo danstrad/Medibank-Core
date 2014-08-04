@@ -2,6 +2,7 @@ package med.display {
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import med.display.Background;
 	import med.infographic.Infographic;
 	import med.infographic.InfographicData;
@@ -25,10 +26,10 @@ package med.display {
 		protected var ending:Boolean;
 		public var ended:Boolean;
 		
-		public function CoreInfographic(data:InfographicData, mover:Sprite, launchPoint:Point, backgroundImageLayer:Sprite, background:Background) {			
+		public function CoreInfographic(data:InfographicData, mover:Sprite, launchRect:Rectangle, backgroundImageLayer:Sprite, background:Background) {			
 			this.mover = mover;
 			this.backgroundImageLayer = backgroundImageLayer;
-			super(data, background, launchPoint);
+			super(data, background, launchRect);
 		
 			moverOrigin = new Point(mover.x, mover.y);
 						

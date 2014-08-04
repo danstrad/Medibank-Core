@@ -4,6 +4,7 @@ package med.infographic {
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	import med.display.Background;
@@ -91,11 +92,14 @@ package med.infographic {
 			TweenMax.fromTo(box, ANIMATE_ON_TIME, { scaleX:0, scaleY:0 }, { scaleX:1, scaleY:1, immediateRender:true, onComplete:rollOutText } );
 		}
 		
-		public function animateOnLaunch(launchPoint:Point):void {
+		public function animateOnLaunch(launchRect:Rectangle):void {
 			// roll out from a specific point. Used in tansition from BoxesMain into Infographic
-			var startRot:Number = (launchPoint.x < 0) ? -180 : 180;
-			var startScale:Number = 200 / CENTER_BOX_HEIGHT;
-			TweenMax.fromTo(box, ANIMATE_ON_TIME, { x:launchPoint.x, y:launchPoint.y, scaleX:startScale, scaleY:startScale, rotation:startRot }, { x:0, y:0, scaleX:1, scaleY:1, rotation:0, immediateRender:true, onComplete:rollOutText } );
+			var startRot:Number = (launchRect.x + launchRect.width / 2 < 0) ? -180 : 180;
+			var startX:Number = (launchRect.x + launchRect.width / 2);
+			var startY:Number = (launchRect.y + launchRect.height / 2);
+			var startScaleX:Number = launchRect.width / CENTER_BOX_WIDTH;
+			var startScaleY:Number = launchRect.height / CENTER_BOX_HEIGHT;
+			TweenMax.fromTo(box, ANIMATE_ON_TIME, { x:startX, y:startY, scaleX:startScaleX, scaleY:startScaleY, rotation:startRot }, { x:0, y:0, scaleX:1, scaleY:1, rotation:0, immediateRender:true, onComplete:rollOutText } );
 		}
 		
 		public function animateOnRotate(previousBoxColor:uint):void {

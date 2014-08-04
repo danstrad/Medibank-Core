@@ -29,12 +29,12 @@
 			
 			var chapterCount:int = 0;
 			for each(var chapterXML:XML in setXML.Chapter) {
-				chapterCount++;
 				var chapter:Chapter = new Chapter(chapterCount);
 				if (chapterXML.hasOwnProperty("Title")) chapter.title = chapterXML.Title[0].toString().toUpperCase();
 				if (chapterXML.hasOwnProperty("BackgroundColour")) chapter.bgColor = uint(chapterXML.BackgroundColour[0].toString().replace("#", "0x"));
 				else chapter.bgColor = 0x555500;
-				if (chapterXML.hasOwnProperty("Story")) chapter.storyID = chapterXML.Story[0].toString();
+				if (chapterXML.hasOwnProperty("Story")) chapter.baseStoryID = chapterXML.Story[0].toString();
+				if (chapterXML.hasOwnProperty("Infographic")) chapter.baseInfographicID = chapterXML.Infographic[0].toString();
 				StorySet.chapters.push(chapter);
 
 				var colors:Vector.<uint> = new Vector.<uint>();
@@ -47,6 +47,7 @@
 					case 3: SlidingAnimationData.COLORS = colors; break;
 				}
 				
+				chapterCount++;
 			}
 									
 			StorySet.animationDatas[0] = StorySet.baseAnimationData = HomeAnimationData.create(0);

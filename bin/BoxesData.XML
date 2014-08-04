@@ -1,5 +1,12 @@
 <BoxesData>
-	<BackgroundColour>#73b427</BackgroundColour>
+	<BackgroundColour>#e4002b</BackgroundColour>
+	
+	<Chapter>
+		<Title>OUR VISION.</Title>
+		<BackgroundColour>#e4002b</BackgroundColour>		
+		<BoxColour>#e4002b</BoxColour>
+		<Infographic>vision1</Infographic>
+	</Chapter>	
 	
 	<Chapter>
 		<Title>HOW WE’RE ENCOURAGING A HEALTHIER NATION.</Title>
@@ -981,7 +988,7 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
 			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"/>
 			<featuredText>Accessing specialist care in regional Australia presents many challenges for GPs and their patients.</featuredText>
-		</slide>
+		</slide>		
 		<slide type="center_text_box" duration="4000" animateOn="rotate" animateOff="none">
 			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"/>
 			<featuredText>Many patients have to travel more than 200km to see a specialist, not to mention the associated costs. Some choose to miss out on care altogether.</featuredText>
@@ -1009,7 +1016,6 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			<appearance textColor="#ffffff" backgroundColor="#ff9330" boxColor="#E4002B"/>
 			<featuredText>Contributing to communities.</featuredText>
 		</slide>		
-
 	</Infographic>
 	<Infographic id="info2">
 			
@@ -1055,5 +1061,14 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	</Infographic>
 	<Infographic id="info6">
 	</Infographic>
+	
+	<Infographic id="vision1">
+		<slide type="center_text_box" duration="1000" animateOn="launch" animateOff="squash">
+			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
+			<featuredText>OUR VISION.</featuredText>
+		</slide>			
+	</Infographic>
+	
+	
 	
 </BoxesData>

@@ -43,13 +43,15 @@ package med.animation {
 			var BIG_OFF:Number = SIZE * ( -1 + 0.25);
 			var SMALL_OFF:Number = SIZE * ( -0.5 + 0.25);
 			
+			/*
 			info = new HomeInfo(0);
 			info.defaultColorTransform = HomeBox.createDefaultColorTransform(StorySet.bgColor);
 			info.text = "WELCOME TO GENERATION BETTER.";
 			data.homeInfos[info.chapterID] = info;
+			*/
 			for (i = 0; i < StorySet.chapters.length; i++) {
 				chapter = StorySet.chapters[i];
-				info = new HomeInfo(i + 1);
+				info = new HomeInfo(i);
 				info.defaultColorTransform = HomeBox.createDefaultColorTransform(chapter.bgColor);
 				info.text = chapter.title;
 				data.homeInfos[info.chapterID] = info;

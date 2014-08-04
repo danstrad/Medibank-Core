@@ -31,7 +31,7 @@ package med.animation {
 		
 		static public function getIndex(type:String):int {
 			switch(type) {
-				default:
+				default: return 0;
 				case FLOATING: return 1;
 				case SPROUTING: return 2;
 				case SLIDING: return 3;

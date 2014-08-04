@@ -6,6 +6,7 @@ package med.infographic {
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import med.display.Background;
 	import flash.text.TextFieldAutoSize;
 
@@ -22,13 +23,13 @@ package med.infographic {
 		
 		protected var inputVars:Object;
 		
-		protected var launchPoint:Point;
+		protected var launchRect:Rectangle;
 		
 		protected var endCallback:Function;
 
 		
-		public function Infographic(data:InfographicData, background:Background, launchPoint:Point = null) {
-			this.launchPoint = launchPoint;
+		public function Infographic(data:InfographicData, background:Background, launchRect:Rectangle = null) {
+			this.launchRect = launchRect;
 			this.data = data;
 			this.background = background;
 
@@ -173,7 +174,7 @@ package med.infographic {
 							
 							
 							case "launch":
-								box.animateOnLaunch(launchPoint || new Point(0, 0));
+								box.animateOnLaunch(launchRect || new Rectangle(0, 0, 0, 0));
 								break;
 							
 							case "none":

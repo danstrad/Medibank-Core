@@ -387,12 +387,13 @@ package {
 			return animation;
 		}
 		
-		protected function beginInfographic(data:InfographicData, launchPoint:Point):void {
+		protected function beginInfographic(data:InfographicData, launchRect:Rectangle):void {
 			mover.mouseChildren = false;
 			
-			launchPoint = new Point(launchPoint.x - STAGE_WIDTH / 2, launchPoint.y - STAGE_HEIGHT / 2);
+			launchRect = launchRect.clone();
+			launchRect.offset(-STAGE_WIDTH / 2, -STAGE_HEIGHT / 2);
 			
-			var infographic:CoreInfographic = new CoreInfographic(data, mover, launchPoint, backgroundImageLayer, background);
+			var infographic:CoreInfographic = new CoreInfographic(data, mover, launchRect, backgroundImageLayer, background);
 			currentInfographic = infographic;
 			infographic.x = STAGE_WIDTH / 2;
 			infographic.y = STAGE_HEIGHT/ 2;
@@ -410,11 +411,14 @@ package {
 			var chapterID:int = 0;
 			if (currentChapter) chapterID = currentChapter.id;
 			
+			var offset:Point = new Point(450, 0);
+
 			var container:Sprite = new Sprite();
 			boxesLayer.addChild(container);
-
-			var offset:Point = new Point(450, 0);
-			var homeAnim:HomeAnimationController = new HomeAnimationController(null, ZERO_POINT, offset, container, StorySet.baseAnimationData);
+			container.x = offset.x;
+			container.y = offset.y;
+			
+			var homeAnim:HomeAnimationController = new HomeAnimationController(null, offset, ZERO_POINT, container, StorySet.baseAnimationData);
 			homeAnimations.push(homeAnim);
 			currentHomeAnimation = homeAnim;
 			
@@ -517,6 +521,7 @@ package {
 		
 		protected function checkClick(event:MouseEvent):Boolean {
 			var i:int;
+			var launchRect:Rectangle;
 			
 			var box:Box = event.target as Box;
 			if (!box || !box.clickEnabled) return false;
@@ -540,15 +545,25 @@ package {
 				*/
 				
 				if (homeBox.chapter) {
-					if (homeBox.chapter.baseStory == currentStory) return false;
+					if (homeBox.chapter.baseInfographic) {
+						launchRect = box.getBounds(this);
+						
+						killAnimations(null);
+						beginInfographic(homeBox.chapter.baseInfographic, launchRect);
+						showBlip = true;
+					} else if (homeBox.chapter.baseStory) {
+						if (homeBox.chapter.baseStory == currentStory) return false;
+
+						showBlip = true;
+						transitionToChapter(homeBox);
+					} else {
+						return false;
+					}
 				} else {
 					if (!currentStory) return false;
 				}
 				
 				//disableExistingClickableBoxes();
-				
-				showBlip = true;
-				transitionToChapter(homeBox);
 
 			} else {
 				
@@ -575,10 +590,10 @@ package {
 					}
 				} else if (linkedInfographic) {
 					
-					var launchPoint:Point = globalToLocal(box.localToGlobal(ZERO_POINT));
+					launchRect = box.getBounds(this);
 					
 					killAnimations(null);
-					beginInfographic(linkedInfographic, launchPoint);
+					beginInfographic(linkedInfographic, launchRect);
 					showBlip = true;
 					
 				} else if (box.contentInfo.action == AnimationAction.HOME) {
