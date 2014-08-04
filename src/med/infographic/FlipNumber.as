@@ -15,12 +15,9 @@ package med.infographic {
 		
 		public static const NUMERAL_GAP_X:Number = 64;
 		
-		protected var bgColor:uint;
 		
 		
-		
-		public function FlipNumber(bgColor:uint) {
-			this.bgColor = bgColor;
+		public function FlipNumber() {
 			
 			numeralParent = new Sprite();
 			numeralParent.x = 0;
@@ -40,7 +37,7 @@ package med.infographic {
 		
 		
 		protected function addNewNumeral():void {
-			var numeral:FlipNumberNumeral = new FlipNumberNumeral(bgColor);
+			var numeral:FlipNumberNumeral = new FlipNumberNumeral();
 			numeral.x = 0;
 			numeral.y = 0;
 			numerals.push(numeral);

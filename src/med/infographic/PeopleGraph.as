@@ -1,8 +1,6 @@
 package med.infographic {
 	import com.garin.ColorMatrix;
 	import com.garin.Text;
-	import com.greensock.easing.Ease;
-	import com.greensock.easing.Strong;
 	import com.greensock.plugins.ColorMatrixFilterPlugin;
 	import com.greensock.plugins.ColorTransformPlugin;
 	import com.greensock.plugins.TweenPlugin;
@@ -54,7 +52,8 @@ package med.infographic {
 		protected var graphStateIndex:int = 0;
 		
 		protected var graphStatesXML:Vector.<XML> = new Vector.<XML>();
-				
+		
+		
 		protected var textPanelMask:Shape;
 		
 		
@@ -62,9 +61,7 @@ package med.infographic {
 		public function PeopleGraph(slideData:InfographicSlideData) {
 			var i:int;
 			
-			this.slideData = slideData;
 						
-			
 			for each (var graphStateXML:XML in slideData.xml.graphstate) {
 				graphStatesXML.push(graphStateXML);
 			}
@@ -77,7 +74,7 @@ package med.infographic {
 				people = new Vector.<PeopleGraphPerson>();
 				
 				for (i = 0; i < 100; i++) {
-					var person:PeopleGraphPerson = new PeopleGraphPerson(slideData.boxColor);
+					var person:PeopleGraphPerson = new PeopleGraphPerson();
 					people.push(person);	 
 				}
 			}
@@ -125,22 +122,6 @@ package med.infographic {
 			textPanel.visible = false;
 		}
 
-
-		
-		public function animate(dTime:Number):void {
-			
-			if (isAnimatingOn) {
-			
-				for each (var person:PeopleGraphPerson in people) {
-					person.animate(dTime);
-				}
-			
-			}
-			
-		}
-		
-		protected var isAnimatingOn:Boolean = false;
-		
 		
 		public function animateOn():void {
 			// have the circles gradually appear in the neutral position
@@ -152,9 +133,7 @@ package med.infographic {
 				var animationDelayMsec:Number = Number(rndm.integer(0, 500));
 				person.animateOnPerson(animationDelayMsec);
 			}
-					
-			isAnimatingOn = true;
-			
+						
 			// wait until this finishes, then advance to the next (first) graph state
 			waitThenAdvance(ANIMATE_ON_DURATION_SEC);
 		}
@@ -184,13 +163,14 @@ package med.infographic {
 		}
 		
 
+		public function animate(dTime:Number):void { }
+		
 		
 		
 		public function nextGraphState():void {
 			
 			graphStateIndex++;
 			
-			isAnimatingOn = false;
 			
 			if (graphStateIndex >= graphStatesXML.length) {
 				// there are no more!
@@ -259,21 +239,7 @@ package med.infographic {
 				
 			} else {
 				textPanel.topField.visible = false;
-				
 			}			
-
-			if (usePercentage && (topTextString.length == 0)) {
-				// if there's no top-text, move the percentage up
-				textPanel.percentageField.y = 47;
-				textPanel.percentageSignField.y = 61;					
-			
-			} else {
-				// move these back to their normal positions
-				textPanel.percentageField.y = 91;
-				textPanel.percentageSignField.y = 105;
-			}
-				
-			
 			
 			
 			if (usePercentage) {
@@ -411,8 +377,6 @@ package med.infographic {
 			
 			var rndm:Rndm = new Rndm(50);
 			
-			var ease:Ease = Strong.easeInOut;
-			
 			
 			// now nominate which people will move across
 			for (var row:int = 0; row < 10; row++) {
@@ -422,7 +386,7 @@ package med.infographic {
 					
 					person = people[(row * 10) + i];
 					
-					var delay:Number = rndm.integer(0, 100) * 0.001;
+					var delay:Number = rndm.integer(0, 500) * 0.001;
 					
 					
 					if (i < targetRowCountsLeft[row]) {
@@ -435,7 +399,7 @@ package med.infographic {
 							// change color
 							
 							finalX = LEFTMOST_X_POSITION + (i * PEOPLE_SPACING);
-							TweenMax.to(person, PEOPLE_TRANSITION_TIME_SEC, { x:finalX, delay:delay, ease:Ease });
+							TweenMax.to(person, PEOPLE_TRANSITION_TIME_SEC, { x:finalX, delay:delay });
 						
 						}
 							
@@ -457,7 +421,7 @@ package med.infographic {
 								finalX = RIGHTMOST_X_POSITION - ((9 - i) * PEOPLE_SPACING);		
 							}
 							
-							TweenMax.to(person, PEOPLE_TRANSITION_TIME_SEC, { x:finalX, delay:delay, ease:Ease});
+							TweenMax.to(person, PEOPLE_TRANSITION_TIME_SEC, { x:finalX, delay:delay});
 						
 						}
 
@@ -469,15 +433,15 @@ package med.infographic {
 
 					if (leftSideIsWhite) {
 						if (person.state == PeopleGraphPerson.STATE_LEFT)		tintColor = 0xFFFFFF;
-						else													tintColor = slideData.boxColor;
+						else													tintColor = 0xFF9330;
 					
 					} else {
-						if (person.state == PeopleGraphPerson.STATE_LEFT)		tintColor = slideData.boxColor;
+						if (person.state == PeopleGraphPerson.STATE_LEFT)		tintColor = 0xFF9330;
 						else													tintColor = 0xFFFFFF;
 
 					}
 					
-					TweenMax.to(person, 0.5, { delay:delay, colorTransform:{tint:tintColor, tintAmount:1.0} } );
+					TweenMax.to(person, PEOPLE_TRANSITION_TIME_SEC, { delay:delay, colorTransform:{tint:tintColor, tintAmount:1.0} } );
 					
 					
 				}
