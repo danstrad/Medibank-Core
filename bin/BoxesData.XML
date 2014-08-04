@@ -3,19 +3,27 @@
 	
 	<Chapter>
 		<Title>HOW WE’RE ENCOURAGING A HEALTHIER NATION.</Title>
-		<BackgroundColour>#653179</BackgroundColour>
+		<BackgroundColour>#653179</BackgroundColour>		
+		<BoxColour>#845b95</BoxColour>
+		<BoxColour>#754787</BoxColour>
+		<BoxColour>#9470a0</BoxColour>
 		<Story>Chapter 1</Story>		
 	</Chapter>	
 	
 	<Chapter>
 		<Title>HOW WE’RE CREATING BETTER HEALTHCARE CONNECTIONS.</Title>
 		<BackgroundColour>#ff9330</BackgroundColour>
+		<BoxColour>#ff9e45</BoxColour>
+		<BoxColour>#ffa95a</BoxColour>
 		<Story>Chapter 2</Story>
 	</Chapter>
 	
 	<Chapter>
 		<Title>HOW WE’RE BUILDING AN EFFECTIVE HEALTHCARE SYSTEM.</Title>
 		<BackgroundColour>#00a2e0</BackgroundColour>
+		<BoxColour>#1bace3</BoxColour>
+		<BoxColour>#33b5e7</BoxColour>
+		<BoxColour>#4ebfe9</BoxColour>
 		<Story>Chapter 3</Story>
 	</Chapter>
 	

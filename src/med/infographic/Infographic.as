@@ -22,8 +22,13 @@ package med.infographic {
 		
 		protected var inputVars:Object;
 		
+		protected var launchPoint:Point;
 		
-		public function Infographic(data:InfographicData, background:Background) {
+		protected var endCallback:Function;
+
+		
+		public function Infographic(data:InfographicData, background:Background, launchPoint:Point = null) {
+			this.launchPoint = launchPoint;
 			this.data = data;
 			this.background = background;
 
@@ -40,7 +45,7 @@ package med.infographic {
 		}
 		
 		
-		protected function end():void {
+		protected function lastFrameReached():void {
 			// End of sequence reached. Handling passed off to subclass
 		}
 		
@@ -68,16 +73,16 @@ package med.infographic {
 				switch (data.slides[currentSlideIndex].animateOff) {
 					
 					case "zoomIn":
-						InfographicCenterBox(oldSlideSprite).animateOffZoom(removeSlideSpriteFromStage);
+						InfographicCenterBox(oldSlideSprite).animateOffZoom(onSlideFinished);
 						break;
 						
 					case "squash":
-						InfographicCenterBox(oldSlideSprite).animateOffSquash(removeSlideSpriteFromStage);
+						InfographicCenterBox(oldSlideSprite).animateOffSquash(onSlideFinished);
 						break;
 						
 					default:	
 					case "none":
-						ISlide(oldSlideSprite).animateOff(removeSlideSpriteFromStage);
+						ISlide(oldSlideSprite).animateOff(onSlideFinished);
 						break;
 				
 				}
@@ -85,11 +90,11 @@ package med.infographic {
 				
 			} else if (oldSlideSprite is ISlide) {
 				// under normal circumstances, trust the ISlide to animate itself off
-				ISlide(oldSlideSprite).animateOff(removeSlideSpriteFromStage);
+				ISlide(oldSlideSprite).animateOff(onSlideFinished);
 			
 			} else {
 				// not sure what this thing is. just get rid of it
-				removeSlideSpriteFromStage(oldSlideSprite);
+				onSlideFinished(oldSlideSprite);
 			}
 
 			
@@ -167,6 +172,10 @@ package med.infographic {
 						switch (data.slides[currentSlideIndex].animateOn) {
 							
 							
+							case "launch":
+								box.animateOnLaunch(launchPoint || new Point(0, 0));
+								break;
+							
 							case "none":
 								box.animateOnNone();
 								break;
@@ -211,7 +220,7 @@ package med.infographic {
 						
 					case InfographicSlideData.TIME_DIALS:
 						
-						var dialsSlide:TimeDialsSlide = new TimeDialsSlide(slideData, initialBackgroundColor, inputVars, removeSlideSpriteFromStage);
+						var dialsSlide:TimeDialsSlide = new TimeDialsSlide(slideData, initialBackgroundColor, inputVars, onSlideFinished);
 						addSlideSprite(dialsSlide);
 						dialsSlide.animateOn();
 						
@@ -219,7 +228,7 @@ package med.infographic {
 						
 					case InfographicSlideData.PICK3_INPUT:
 						
-						var pick3InputSlide:Pick3InputSlide = new Pick3InputSlide(slideData, initialBackgroundColor, inputVars, removeSlideSpriteFromStage);
+						var pick3InputSlide:Pick3InputSlide = new Pick3InputSlide(slideData, initialBackgroundColor, inputVars, onSlideFinished);
 						addSlideSprite(pick3InputSlide);
 						pick3InputSlide.animateOn();
 						
@@ -227,14 +236,14 @@ package med.infographic {
 						
 					case InfographicSlideData.PICK3_RESULTS:
 						
-						var pick3ResultsSlide:Pick3ResultsSlide = new Pick3ResultsSlide(slideData, initialBackgroundColor, inputVars, removeSlideSpriteFromStage);
+						var pick3ResultsSlide:Pick3ResultsSlide = new Pick3ResultsSlide(slideData, initialBackgroundColor, inputVars, onSlideFinished);
 						addSlideSprite(pick3ResultsSlide);
 						pick3ResultsSlide.animateOn();
 						
 						break;
 						
 					default:
-						end();
+						lastFrameReached();
 						break;
 				}
 				
@@ -242,7 +251,7 @@ package med.infographic {
 			} else {
 				// invalid slide index
 				trace("attempted to load an invalid slide index. exiting early");
-				end();
+				lastFrameReached();
 			}
 		}
 		
@@ -255,11 +264,21 @@ package med.infographic {
 		
 		
 		
-		protected function removeSlideSpriteFromStage(sprite:Sprite):void {
+		protected function onSlideFinished(sprite:Sprite):void {
 			if (sprite && sprite.parent)  sprite.parent.removeChild(sprite);
 			slideSprite = null;
-			nextSlide();
+			if (endCallback != null) {
+				endCallback(this)
+			} else {
+				nextSlide();
+			}
 		}
+		
+		protected function animateLastSlideOff(endCallback:Function):void {
+			this.endCallback = endCallback;
+			removePreviousSlide();			
+		}
+		
 		
 
 		
@@ -286,8 +305,8 @@ package med.infographic {
 					removePreviousSlide();
 				
 				} else {
-					removePreviousSlide();
-					end();
+					//removePreviousSlide();
+					lastFrameReached(); // Don't remove last frame yet - Keep it on screen until told to exit
 				}
 				
 			}

@@ -49,8 +49,6 @@ package med.display {
 		public function showVideo(url:String, width:Number, height:Number):void {
 			this.url = url;
 			
-			return;
-			
 			//Create a new Video object that display the video and add it to the stage display list, as shown in the following snippet:
 			video = new Video();
 			addChild(video);

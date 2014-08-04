@@ -15,7 +15,7 @@ package med.animation {
 		
 		protected static const TYPE_INDEX:int = AnimationType.getIndex(AnimationType.SPROUTING);
 
-		static public const COLORS:Vector.<uint> = Vector.<uint>([0xff9e45, 0xffa95a]);
+		static public var COLORS:Vector.<uint>;
 		
 		public function SproutingAnimationData() {
 		}

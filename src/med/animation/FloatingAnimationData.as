@@ -12,7 +12,7 @@ package med.animation {
 		
 		protected static const TYPE_INDEX:int = AnimationType.getIndex(AnimationType.FLOATING);
 		
-		static public const COLORS:Vector.<uint> = Vector.<uint>([0x845b95, 0x754787, 0x754787, 0x9470a0]);
+		static public var COLORS:Vector.<uint>;
 		
 		public function FloatingAnimationData() {
 		}

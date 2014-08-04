@@ -82,6 +82,8 @@ package {
 		protected var currentAnimations:Vector.<AnimationController>;
 		protected var endingAnimations:Vector.<AnimationController>;
 		protected var currentInfographic:CoreInfographic;
+		protected var lingeringInfographic:CoreInfographic;
+		protected var endingInfographic:CoreInfographic;
 		protected var clickBlips:Vector.<ClickBlip>;
 		protected var backgroundEffects:Vector.<BackgroundEffect>;
 		protected var backButton:BackButton;
@@ -385,10 +387,12 @@ package {
 			return animation;
 		}
 		
-		protected function beginInfographic(data:InfographicData):void {
+		protected function beginInfographic(data:InfographicData, launchPoint:Point):void {
 			mover.mouseChildren = false;
 			
-			var infographic:CoreInfographic = new CoreInfographic(data, mover, backgroundImageLayer, background);
+			launchPoint = new Point(launchPoint.x - STAGE_WIDTH / 2, launchPoint.y - STAGE_HEIGHT / 2);
+			
+			var infographic:CoreInfographic = new CoreInfographic(data, mover, launchPoint, backgroundImageLayer, background);
 			currentInfographic = infographic;
 			infographic.x = STAGE_WIDTH / 2;
 			infographic.y = STAGE_HEIGHT/ 2;
@@ -397,9 +401,40 @@ package {
 			
 		}
 		
+		protected function restoreAfterInfographic():void {
+			mover.mouseChildren = true;
+
+			//if (currentInfographic.parent) currentInfographic.parent.removeChild(currentInfographic);
+			//currentInfographic = null;
+			
+			var chapterID:int = 0;
+			if (currentChapter) chapterID = currentChapter.id;
+			
+			var container:Sprite = new Sprite();
+			boxesLayer.addChild(container);
+
+			var offset:Point = new Point(450, 0);
+			var homeAnim:HomeAnimationController = new HomeAnimationController(null, ZERO_POINT, offset, container, StorySet.baseAnimationData);
+			homeAnimations.push(homeAnim);
+			currentHomeAnimation = homeAnim;
+			
+			transitionToChapter(homeAnim.boxes[chapterID]);
+			
+			mover.addChild(currentInfographic);
+			currentInfographic.x = 0;
+			currentInfographic.y = 0;
+			lingeringInfographic = currentInfographic;
+			currentInfographic = null;
+			
+			updateCameraBounds();
+			camera.setFocus(new Point(0, 0));
+			camera.animateTo(200, 0, 1500, 100);
+		}
 		
 		
 		protected function updateCameraBounds():void {
+			
+			var margin:Number = Box.SIZE * (1 + 1.5 / 6);
 			
 			var camArea:Rectangle;
 			var b:Rectangle
@@ -416,10 +451,14 @@ package {
 				if (camArea) camArea = camArea.union(b);
 				else camArea = b;
 			}
+			if (lingeringInfographic) {
+				b = new Rectangle( -Camera.WIDTH / 2 + margin, -Camera.HEIGHT / 2 + margin, Camera.WIDTH - margin * 2, Camera.HEIGHT - margin * 2);
+				if (camArea) camArea = camArea.union(b);
+				else camArea = b;
+			}
 
 			//var camArea:Rectangle = mover.getBounds(mover);
 			
-			var margin:Number = Box.SIZE * (1 + 1.5 / 6);
 			camArea.inflate(Math.max(margin, (Camera.WIDTH - camArea.width) / 2), Math.max(margin, (Camera.HEIGHT - camArea.height) / 2));
 			camera.setPanArea(camArea);
 		}
@@ -442,6 +481,11 @@ package {
 					endingAnimations.push(anim);
 					currentAnimations.splice(i, 1);
 				}
+			}
+			if (lingeringInfographic) {
+				endingInfographic = lingeringInfographic;
+				lingeringInfographic = null;
+				endingInfographic.animateOff();
 			}
 		}
 
@@ -531,7 +575,10 @@ package {
 					}
 				} else if (linkedInfographic) {
 					
-					beginInfographic(linkedInfographic);
+					var launchPoint:Point = globalToLocal(box.localToGlobal(ZERO_POINT));
+					
+					killAnimations(null);
+					beginInfographic(linkedInfographic, launchPoint);
 					showBlip = true;
 					
 				} else if (box.contentInfo.action == AnimationAction.HOME) {
@@ -711,12 +758,16 @@ package {
 			frameCount++;
 			*/
 			
+			if (endingInfographic) {
+				if (endingInfographic.ended) {
+					if (endingInfographic.parent) endingInfographic.parent.removeChild(endingInfographic);
+					endingInfographic = null;
+				}
+			}
 			if (currentInfographic) {
 				currentInfographic.animate(dTime);
 				if (currentInfographic.finished) {
-					if (currentInfographic.parent) currentInfographic.parent.removeChild(currentInfographic);
-					currentInfographic = null;
-					mover.mouseChildren = true;
+					restoreAfterInfographic();
 				}
 			}
 			
@@ -792,6 +843,7 @@ package {
 
 			lastFrameTime = time;
 		}
+		
 		
 
 		protected function handleFullScreenClick(event:MouseEvent):void {

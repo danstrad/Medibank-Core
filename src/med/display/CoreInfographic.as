@@ -22,12 +22,13 @@ package med.display {
 		protected var mainScrollOnTime:Number;
 		
 		public var finished:Boolean;
+		protected var ending:Boolean;
+		public var ended:Boolean;
 		
-		
-		public function CoreInfographic(data:InfographicData, mover:Sprite, backgroundImageLayer:Sprite, background:Background) {			
+		public function CoreInfographic(data:InfographicData, mover:Sprite, launchPoint:Point, backgroundImageLayer:Sprite, background:Background) {			
 			this.mover = mover;
 			this.backgroundImageLayer = backgroundImageLayer;
-			super(data, background);
+			super(data, background, launchPoint);
 		
 			moverOrigin = new Point(mover.x, mover.y);
 						
@@ -37,8 +38,8 @@ package med.display {
 			
 		}
 		
-		override protected function end():void {
-			super.end();
+		override protected function lastFrameReached():void {
+			super.lastFrameReached();
 			
 			mainScrollingOff = false;
 			mainScrollingOn = true;
@@ -78,6 +79,7 @@ package med.display {
 				}
 				
 			} else if (mainScrollingOn) {
+				/*
 				mainScrollOnTime = Math.min(mainScrollOnTime + dTime, SCROLL_ON_TIME);
 				f = mainScrollOnTime / SCROLL_ON_TIME;
 				eased = Utils.easeIn(f);
@@ -85,14 +87,24 @@ package med.display {
 				backgroundImageLayer.alpha = eased;
 				
 				if (f >= 1) {
+				*/
 					mainScrollingOn = false;
 					finished = true;
-				}
+				//}
 			} else {
 				
 			}
 			
 			super.animate(dTime);
+		}
+		
+		public function animateOff():void {
+			ending = true;
+			animateLastSlideOff(lastSlideEnded);
+		}
+		
+		protected function lastSlideEnded(infographic:Infographic):void {
+			ended = true;
 		}
 		
 		

@@ -59,6 +59,7 @@
     <element path="lib\FlipNumber.swc" />
     <element path="lib\SpinNumber.swc" />
     <element path="lib\TimeDials.swc" />
+    <element path="lib\Pick3.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
