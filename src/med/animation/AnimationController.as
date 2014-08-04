@@ -102,7 +102,7 @@ package med.animation {
 				var box:Box = new Box(placement.color);
 				box.home = home;
 				box.endState = animationData.boxEndStates[i];
-				box.showContentInfo(info, placement);				
+				box.showContentInfo(info, placement);
 
 				//if (info.substoryID) flashBoxes.push(box);
 				if (box.substoryFlash) flashBoxes.push(box);

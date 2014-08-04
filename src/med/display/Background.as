@@ -15,6 +15,7 @@ package med.display {
 		protected var targetColor:uint;
 		protected var currentColor:uint;
 		public function getColor():uint { return currentColor; }
+		public function getTargetColor():uint { return targetColor; }
 		
 		public function Background(width:Number, height:Number) {
 			_height = height;

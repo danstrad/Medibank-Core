@@ -48,7 +48,7 @@ package med.infographic {
 			
 			this.boxColor = uint(slideData.xml.appearance.@boxColor.toString().replace("#", "0x"));	
 				
-			var boxText:String = slideData.xml.featuredText;
+			var boxText:String = TextUtils.safeText(slideData.xml.featuredText);
 			
 			
 			// draw box

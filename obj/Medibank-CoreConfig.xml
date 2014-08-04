@@ -43,9 +43,9 @@
       <path-element>D:\GitHub\Medibank-Core\lib\Hotspots.swc</path-element>
       <path-element>D:\GitHub\Medibank-Core\lib\PeopleGraph.swc</path-element>
       <path-element>D:\GitHub\Medibank-Core\lib\FlipNumber.swc</path-element>
-      <path-element>D:\GitHub\Medibank-Core\lib\SpinNumber.swc</path-element>
       <path-element>D:\GitHub\Medibank-Core\lib\TimeDials.swc</path-element>
       <path-element>D:\GitHub\Medibank-Core\lib\Pick3.swc</path-element>
+      <path-element>D:\GitHub\Medibank-Core\lib\SpinNumber.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

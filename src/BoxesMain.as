@@ -29,6 +29,7 @@ package {
 	import med.animation.HighlightController;
 	import med.animation.HomeAnimationController;
 	import med.animation.HomeAnimationData;
+	import med.infographic.InfographicCenterBox;
 	import med.infographic.InfographicData;
 	import med.animation.SproutingAnimationData;
 	import med.display.BackButton;
@@ -41,6 +42,7 @@ package {
 	import med.display.HomeBox;
 	import med.display.TextContent;
 	import med.display.TiledBackgroundEffect;
+	import med.story.BoxPlacement;
 	import med.story.Chapter;
 	import med.story.ContentInfo;
 	import med.story.Story;
@@ -410,19 +412,48 @@ package {
 			
 			var chapterID:int = 0;
 			if (currentChapter) chapterID = currentChapter.id;
-			
-			var offset:Point = new Point(450, 0);
 
-			var container:Sprite = new Sprite();
-			boxesLayer.addChild(container);
-			container.x = offset.x;
-			container.y = offset.y;
-			
-			var homeAnim:HomeAnimationController = new HomeAnimationController(null, offset, ZERO_POINT, container, StorySet.baseAnimationData);
-			homeAnimations.push(homeAnim);
-			currentHomeAnimation = homeAnim;
-			
-			transitionToChapter(homeAnim.boxes[chapterID]);
+			var story:Story;
+			if (currentInfographic.data.xml.hasOwnProperty("Story")) story = StorySet.getStory(currentInfographic.data.xml.Story[0].toString());
+
+			if (story) {
+				
+				var animIndex:int = 0;
+				for (var i:int = 0;  i <= 3; i++) {
+					if (story.animationInfos[i]) {
+						animIndex = i;
+						break;
+					}
+				}
+				
+				var fakeParentBox:Box = new Box(0x0);
+				fakeParentBox.widthAsHeader = InfographicCenterBox.CENTER_BOX_WIDTH;
+				fakeParentBox.heightAsHeader = InfographicCenterBox.CENTER_BOX_HEIGHT;
+				var fakeContentInfo:ContentInfo = new ContentInfo();
+				var fakePlacement:BoxPlacement = new BoxPlacement();
+				fakePlacement.unitsWide = InfographicCenterBox.CENTER_BOX_WIDTH / Box.SIZE;
+				fakePlacement.unitsHigh = InfographicCenterBox.CENTER_BOX_HEIGHT / Box.SIZE;
+				fakeParentBox.showContentInfo(fakeContentInfo, fakePlacement);
+				
+				var boxHighlightPosition:Point = new Point(0, 0);
+				expandStoryFrom(story, animIndex, false, fakeParentBox, boxHighlightPosition, false, true);				
+				
+			} else {
+				
+				var offset:Point = new Point(450, 0);
+				
+				var container:Sprite = new Sprite();
+				boxesLayer.addChild(container);
+				container.x = offset.x;
+				container.y = offset.y;
+				
+				var homeAnim:HomeAnimationController = new HomeAnimationController(null, offset, ZERO_POINT, container, StorySet.baseAnimationData);
+				homeAnimations.push(homeAnim);
+				currentHomeAnimation = homeAnim;
+				
+				transitionToChapter(homeAnim.boxes[chapterID]);
+				
+			}
 			
 			mover.addChild(currentInfographic);
 			currentInfographic.x = 0;
@@ -549,6 +580,7 @@ package {
 						launchRect = box.getBounds(this);
 						
 						killAnimations(null);
+						background.fadeToColor(homeBox.chapter.bgColor, 300);
 						beginInfographic(homeBox.chapter.baseInfographic, launchRect);
 						showBlip = true;
 					} else if (homeBox.chapter.baseStory) {

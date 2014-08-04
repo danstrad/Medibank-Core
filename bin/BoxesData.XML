@@ -5,7 +5,7 @@
 		<Title>OUR VISION.</Title>
 		<BackgroundColour>#e4002b</BackgroundColour>		
 		<BoxColour>#e4002b</BoxColour>
-		<Infographic>vision1</Infographic>
+		<Infographic>vision info1</Infographic>
 	</Chapter>	
 	
 	<Chapter>
@@ -1062,12 +1062,91 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	<Infographic id="info6">
 	</Infographic>
 	
-	<Infographic id="vision1">
-		<slide type="center_text_box" duration="1000" animateOn="launch" animateOff="squash">
+	<Infographic id="vision info1">
+		<!-- 
+		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
 			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
 			<featuredText>OUR VISION.</featuredText>
 		</slide>			
+		<slide type="center_text_box" duration="4000" animateOn="rotate" animateOff="squash">
+			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
+			<featuredText>Health is one of the biggest challenges facing Australian society.</featuredText>
+		</slide>			
+		 -->
+		 <!-- 
+		<slide type="people_graph">
+			<appearance backgroundColor="#E4002B" />
+			<graphstate value="63" featuredText="63" usePercentage="true" topText="" bottomText="We’re getting bigger. 
+Obesity rates in Australia are climbing faster than anywhere else in the worldand 63% of Australian adults are now overweight." />			
+			<graphstate value="14" featuredText="14.4" usePercentage="true" topText="" bottomText="We’re getting older. 
+By 2060, Australians aged 75 or more are expected to account for 14.4% of the population
+(up from 6.4% in 2012)." />
+			<graphstate value="90" featuredText="90" usePercentage="true" topText="" bottomText="We’re getting sicker.
+Chronic disease is on the rise, accounting for 90% of all deaths in 2011." />
+			<graphstate value="189" featuredText="189" usePercentage="true" topText="" bottomText="And to cope with all of these issues, we’re spending up big.
+Over the past decade, government spending on healthcare has skyrocketed and is projected to increase by 189% by 2033, reflecting 12.4% of GDP." />
+		</slide>			
+
+		<slide type="center_text_box" duration="4000" animateOn="squash" animateOff="none">
+			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
+			<featuredText>It’s pretty clear
+Australia’s healthcare challenge is significant… 
+But so is the opportunity.</featuredText>			
+		</slide>
+		 -->
+		<slide type="center_text_box" duration="4000" animateOn="rotate" animateOff="none">
+			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
+			<featuredText>At Medibank, we believe we have an important role to play in meeting this challenge, from prevention through to policy.</featuredText>			
+		</slide>
+		
+		<Story>vision story section</Story>
 	</Infographic>
+	
+	<Story id="vision story section">
+		<Box id="A">
+			<Image url="assets/prof9/BOX B.jpg" />
+			<Text type="Splash" textScale="0.85">WE ARE ONE OF AUSTRALIA’S LEADING
+HEALTH COMPANIES. AND WE STAND FOR
+BETTER HEALTH. FOR EVERYONE.</Text>
+		</Box>
+		<Box id="B">
+			<Text type="Quote">For better health choices and better health outcomes. For a better health system that truly delivers the care you need, when you need it.
+
+We are committed to supporting Australians with their health and wellbeing and guiding them towards the best choices and outcomes.</Text>
+		</Box>
+		<Box id="C">
+			<Image url="assets/prof9/BOX B.jpg" />
+		</Box>
+		<Box id="D">
+			<Text type="Stats">People know and trust Medibank and ahm. 
+[b]3.8 million[/b]
+people trust us with their health every day.</Text>
+		</Box>
+		<Box id="E">
+			<Image url="assets/prof9/BOX B.jpg" />
+		</Box>
+		<Box id="F">
+			<Text type="Quote">As well as being Australia’s largest health insurer, we are also Australia’s largest provider of tele-healthcare solutions. We partner with government and other organisations to provide scalable, multi-channel healthcare services that reduce the burden on the public system while providing high quality, accessible care at an efficient cost.
+			
+And at a policy level, we are working with government to find long-term solutions to ensure all Australians have access to healthcare.</Text>
+		</Box>
+		<Box id="G">
+			<Text type="Stats">And we pay out more than
+[b]$4.6 billion[/b]
+in medical claims on their behalf each year</Text>
+		</Box>
+
+		
+		<Animation type="Sprouting" direction="170" randomSeed="41">
+			<Box id="A" x="3.5" y="2.215" width="7" height="4" color="#ec4d6b" />
+			<Box id="B" width="3" height="2" color="#ec4d6b" />
+			<Box id="C" width="3" height="2" color="#ec4d6b" />
+			<Box id="D" width="2" height="1.5" color="#ec4d6b" />
+			<Box id="E" width="3" height="2" color="#ec4d6b" />
+			<Box id="F" xOffset="3.25" yOffset="1" width="3.5" height="1.5" color="#ec4d6b" />
+			<Box id="G" xOffset="-5.75" yOffset="-0.1666" width="2" height="1.5" color="#ec4d6b" /> <!-- Offsets relative to F, but needs to hang off E -->
+		</Animation>
+	</Story>	
 	
 	
 	

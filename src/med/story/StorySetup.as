@@ -165,6 +165,7 @@
 					if (boxXML.hasOwnProperty("@xOffset") || boxXML.hasOwnProperty("@yOffset")) {
 						placement.offset = new Point((parseFloat(boxXML.@xOffset) || 0) * Box.SIZE, (parseFloat(boxXML.@yOffset) || 0) * Box.SIZE);
 					}
+					if (boxXML.hasOwnProperty("@color")) placement.color = uint(boxXML.@color.toString().replace("#", "0x"));
 					var boxID:String = boxXML.@id.toString();
 					info = infos[boxID];
 					var boxIndex:int = story.contentInfos.indexOf(info);

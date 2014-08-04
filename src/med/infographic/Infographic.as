@@ -34,7 +34,7 @@ package med.infographic {
 			this.background = background;
 
 			// we store this so we can return to it when we're done with the infographic
-			initialBackgroundColor = background.getColor();
+			initialBackgroundColor = background.getTargetColor();
 			
 			// any user inputted data that needs to persist between slides, passed in to slides that may need it
 			inputVars = { }

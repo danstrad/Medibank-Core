@@ -62,6 +62,7 @@ package  {
 				
 		
 		public static function fillText(textField:TextField, text:String, regularFormat:TextFormat, boldFormat:TextFormat, addGaps:Boolean = true):void {
+			textField.defaultTextFormat = boldFormat;
 			textField.text = "";
 			var carat:int = 0
 			var len:int;

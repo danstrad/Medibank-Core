@@ -219,10 +219,10 @@ package med.infographic {
 			textPanelMask.x = textPanel.x;
 
 			// text panels contents and animation
-			var bottomTextString:String = graphStateXML.@bottomText;
-			var topTextString:String = graphStateXML.@topText;
+			var bottomTextString:String = TextUtils.safeText(graphStateXML.@bottomText);
+			var topTextString:String = TextUtils.safeText(graphStateXML.@topText);
 			
-			var featuredTextString:String = graphStateXML.@featuredText;
+			var featuredTextString:String = TextUtils.safeText(graphStateXML.@featuredText);
 			var usePercentage:Boolean = (graphStateXML.@usePercentage == "true");
 
 			

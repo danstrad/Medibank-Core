@@ -51,7 +51,7 @@ package med.animation {
 			
 			var dirPool:Array = [];
 			for (i = 0; i < len; i++) {
-
+			
 				if (dirPool.length <= 0) dirPool = dirsTemplate.concat();
 				var index:int = int(dirPool.length * Rndm.random());
 				currentDir = dirPool[index];
@@ -61,16 +61,29 @@ package med.animation {
 				var info:ContentInfo = contentInfos[i];
 				var placement:BoxPlacement = animationInfo.placements[i];
 				var bounds:Rectangle = placement.getBounds();
+				var w:Number = bounds.width;
+				var h:Number = bounds.height;
+				var xShift:Number;
+				var yShift:Number;
+				var dDivisor:Number;
 				if (placement.position) {
 					state.x = placement.position.x;
 					state.y = placement.position.y;
+					xShift = state.x - x;
+					yShift = state.y - y;
+					dDivisor = Math.max(Math.abs(xShift), Math.abs(yShift)) * 2;
+					dx = xShift / dDivisor;
+					dy = yShift / dDivisor;					
 				} else if (placement.offset) {
 					var offsetState:BoxState = data.boxEndStates[Math.max(0, i - 1)];
 					state.x = offsetState.x + placement.offset.x;
 					state.y = offsetState.y + placement.offset.y;
+					xShift = state.x - x;
+					yShift = state.y - y;
+					dDivisor = Math.max(Math.abs(xShift), Math.abs(yShift)) * 2;
+					dx = xShift / dDivisor;
+					dy = yShift / dDivisor;					
 				} else {
-					var w:Number = bounds.width;
-					var h:Number = bounds.height;					
 					var X_EDGE:Number = 0.5;
 					var Y_EDGE:Number = 0.5;
 					var rnd:Number = Rndm.random();
@@ -80,56 +93,53 @@ package med.animation {
 					var dy:Number = 0;
 					switch(currentDir) {
 						case 0:
-							state.source = "tl";
 							dx = X_EDGE;
 							dy = Y_SLIDE;
 							break;
 						case 1:
-							state.source = "tl";
 							dx = X_SLIDE;
 							dy = Y_EDGE;
 							break;
 						case 2:
-							state.source = "tr";
 							dx = -X_SLIDE;
 							dy = Y_EDGE;
 							break;
 						case 3:
-							state.source = "tr";
 							dx = -X_EDGE;
 							dy = Y_SLIDE;
 							break;
 						case 4:
-							state.source = "br";
 							dx = -X_EDGE;
 							dy = -Y_SLIDE;
 							break;
 						case 5:
-							state.source = "br";
 							dx = -X_SLIDE;
 							dy = -Y_EDGE;
 							break;
 						case 6:
-							state.source = "bl";
 							dx = X_SLIDE;
 							dy = -Y_EDGE;
 							break;
 						case 7:
-							state.source = "bl";
 							dx = X_EDGE;
 							dy = -Y_SLIDE;
 							break;
 					}
-					x += dx * (currentW + w);
-					y += dy * (currentH + h);
-					x = roundCoordinate(x, w, gridOffset);
-					y = roundCoordinate(y, h, gridOffset);
-					state.x = x;
-					state.y = y;
-					lastPlacedState = state;
-					lastPlacedBounds = bounds;
-					if (!data.originVector) data.originVector = new Point(dx * 2, dy * 2);
+					xShift = dx * (currentW + w);
+					yShift = dy * (currentH + h);
 				}
+				state.source = getSourceFromDir(currentDir);
+				x += xShift;
+				y += yShift;
+				x = roundCoordinate(x, w, gridOffset);
+				y = roundCoordinate(y, h, gridOffset);
+				state.x = x;
+				state.y = y;
+				lastPlacedState = state;
+				lastPlacedBounds = bounds;
+				if (!data.originVector) data.originVector = new Point(dx * 2, dy * 2);
+					
+				
 				state.startTime = time;
 				state.endTime = state.startTime + 60 + 80 * Math.sqrt(Math.pow(bounds.width, 2) + Math.pow(bounds.height, 2)) / Box.SIZE;
 				data.totalTime = state.endTime;
@@ -189,6 +199,20 @@ package med.animation {
 			data.generateFocus(homeRect);
 			
 			return data;
+		}
+		
+		static protected function getSourceFromDir(dir:uint):String {
+			switch(dir) {
+				default:
+				case 0:
+				case 1: return "tl";
+				case 2:
+				case 3: return "tr";
+				case 4:
+				case 5: return "br";
+				case 6:
+				case 7: return "bl";
+			}
 		}
 				
 		public function generateFocus(homeRect:Rectangle):void {

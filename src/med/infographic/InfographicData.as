@@ -2,13 +2,13 @@ package med.infographic {
 
 	public class InfographicData {
 		
+		public var xml:XML;		
 		public var id:String;		
 		public var slides:Vector.<InfographicSlideData>;
-
 		
 		
 		public function InfographicData(xml:XML) {
-
+			this.xml = xml;
 			this.id = xml.@id.toString();
 			
 			slides = new Vector.<InfographicSlideData>();
