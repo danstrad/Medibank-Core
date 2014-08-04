@@ -1,13 +1,16 @@
 package med.infographic {
+	import com.greensock.easing.ExpoIn;
+	import com.greensock.easing.ExpoOut;
 	import com.greensock.TweenMax;
+	import flash.display.Sprite;
 
 	public class FlipNumberNumeral extends _FlipNumberNumeral {
 
 		
 		public static const SLIDE_IN_DURATION_SECS:Number = 0.5;
 		
-		protected static const DELAY_BETWEEN_TOP_AND_BOTTOM_SEC:Number = 0.03; // 0.07; // 0.03;
-		protected static const DELAY_BEFORE_STARTING_NEXT_FLIP_SEC:Number = 0.025; // 0.1; // 0.025;
+		protected static const DELAY_BETWEEN_TOP_AND_BOTTOM_SEC:Number = 0.15; // 0.03;
+		protected static const DELAY_BEFORE_STARTING_NEXT_FLIP_SEC:Number = 0.15; // 0.025;
 		
 		
 		protected var currentValue:int = 0;
@@ -15,11 +18,49 @@ package med.infographic {
 				
 		protected var callback:Function;
 		
+		protected var bgColor:uint;
+				
+		protected var upperHalfTemp:FlipNumberUpperHalf;
+		protected var lowerHalfTemp:FlipNumberLowerHalf;
 		
-		public function FlipNumberNumeral() {
+		
+		public function FlipNumberNumeral(bgColor:uint) {
+			this.bgColor = bgColor;
+			
 			// start blank
 			setValue(-1, true);
+			
+			// draw the bg on the halves
+			drawCardForNumeralHalf(upperHalf);
+			drawCardForNumeralHalf(lowerHalf);
+			
+			
+			lowerHalfTemp = new FlipNumberLowerHalf();
+			drawCardForNumeralHalf(lowerHalfTemp);
+			addChild(lowerHalfTemp);
+
+			upperHalfTemp = new FlipNumberUpperHalf();
+			drawCardForNumeralHalf(upperHalfTemp);
+			addChild(upperHalfTemp);
+						
+			lowerHalfTemp.visible = false;
+			upperHalfTemp.visible = false;
+			
 		}
+		
+		
+		protected function drawCardForNumeralHalf(half:Sprite):void {
+			half.graphics.beginFill(bgColor, 1);
+			
+			if (half is FlipNumberLowerHalf) {
+				half.graphics.drawRect(-30, 0, 60, 50);
+			} else {
+				half.graphics.drawRect(-30, -50, 60, 50);
+			}
+				
+			half.graphics.endFill();		
+		}
+		
 		
 		
 		public function setValue(newValue:int, changeInstantly:Boolean, callback:Function=null):void {
@@ -30,15 +71,10 @@ package med.infographic {
 			
 			if (changeInstantly) {			
 				
-				if (newValue == -1) {
-					upperHalf.numberField.text = "";
-					lowerHalf.numberField.text = "";					
-				} else {				
-					upperHalf.numberField.text = String(newValue);
-					lowerHalf.numberField.text = String(newValue);	
-				}
-				
 				this.currentValue = newValue;
+
+				upperHalf.numberField.text = currentValueAsString;
+				lowerHalf.numberField.text = currentValueAsString;				
 				
 				if (callback != null)  callback();
 				
@@ -89,11 +125,27 @@ package med.infographic {
 			else						return String(currentValue);
 		}
 		
+		protected function get targetValueAsString():String {
+			if (currentValue == -1) 	return "";
+			else						return String(targetValue);
+		}
+
+		
 		
 		protected function flipLowerHalfUp():void {
 						
 			if (currentValue < targetValue) {
-				currentValue++;							
+				
+				// flip the old value
+				lowerHalfTemp.numberField.text = currentValueAsString;
+				
+				currentValue++;		
+				
+				if (targetValue == -1) {
+					// it only takes one flip to get back to blank
+					currentValue = -1;	
+				}
+				
 			} else {
 				// we've reached our target, break the loop
 				if (callback != null)  callback();
@@ -103,24 +155,55 @@ package med.infographic {
 			// change the bottom half immediately, change the upper one on a timer
 			lowerHalf.numberField.text = currentValueAsString;
 				
-			TweenMax.to(this, DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { onComplete: flipUpperHalfUp } );
+			lowerHalfTemp.visible = true;
+			upperHalfTemp.visible = false;			
+			TweenMax.fromTo(lowerHalfTemp, DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { scaleY:1.0 }, { scaleY:0, immediateRender:true, onComplete: flipUpperHalfUp, ease:ExpoIn.ease} );
+			
+//			TweenMax.to(this, DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { onComplete: flipUpperHalfUp } );
 			
 		}
 		
 		
 		protected function flipUpperHalfUp():void {
-			upperHalf.numberField.text = currentValueAsString;
 			
-			TweenMax.to(this, DELAY_BEFORE_STARTING_NEXT_FLIP_SEC, { onComplete: flipLowerHalfUp } );
+			
+			lowerHalfTemp.visible = false;
+			upperHalfTemp.visible = true;			
+			TweenMax.fromTo(upperHalfTemp, DELAY_BEFORE_STARTING_NEXT_FLIP_SEC, { scaleY:0 }, { scaleY:1, immediateRender:true, onComplete:lockInValueUpper, ease:ExpoOut.ease } );
+			
+			upperHalfTemp.numberField.text = currentValueAsString;
+			
+			
+//			TweenMax.to(this, DELAY_BEFORE_STARTING_NEXT_FLIP_SEC, { onComplete: flipLowerHalfUp } );
 		}
 		
 
+		protected function lockInValueUpper():void {
+			upperHalf.numberField.text = currentValueAsString;
+			flipLowerHalfUp();
+		}
+		
+		protected function lockInValueLower():void {
+			lowerHalf.numberField.text = currentValueAsString;
+			flipUpperHalfDown();
+		}		
+		
 		
 		
 		protected function flipUpperHalfDown():void {
 						
 			if (currentValue > targetValue) {
-				currentValue--;							
+				
+				// flip the old value
+				upperHalfTemp.numberField.text = currentValueAsString;
+				
+				currentValue--;		
+				
+				if (targetValue == -1) {
+					// it only takes one flip to get back to blank
+					currentValue = -1;	
+				}
+				
 			} else {
 				// we've reached our target, break the loop
 				if (callback != null)   callback();
@@ -130,15 +213,26 @@ package med.infographic {
 			// change the top half immediately, change the bottom one on a timer
 			upperHalf.numberField.text = currentValueAsString;
 			
-			TweenMax.to(this, DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { onComplete: flipLowerHalfDown } );
+			lowerHalfTemp.visible = false;
+			upperHalfTemp.visible = true;			
+			TweenMax.fromTo(upperHalfTemp, DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { scaleY:1.0 }, { scaleY:0, immediateRender:true, onComplete: flipLowerHalfDown, ease:ExpoOut.ease } );
+			
+			
+//			TweenMax.to(this, DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { onComplete: flipLowerHalfDown } );
 			
 		}
 		
 		
 		protected function flipLowerHalfDown():void {
-			lowerHalf.numberField.text = currentValueAsString;
+//			lowerHalf.numberField.text = currentValueAsString;
 			
-			TweenMax.to(this, DELAY_BEFORE_STARTING_NEXT_FLIP_SEC, { onComplete: flipUpperHalfDown } );
+			lowerHalfTemp.visible = true;
+			upperHalfTemp.visible = false;			
+			TweenMax.fromTo(lowerHalfTemp, DELAY_BEFORE_STARTING_NEXT_FLIP_SEC, { scaleY:0 }, { scaleY:1, immediateRender:true, onComplete:lockInValueLower, ease:ExpoIn.ease } );
+			
+			lowerHalfTemp.numberField.text = currentValueAsString;
+			
+//			TweenMax.to(this, DELAY_BEFORE_STARTING_NEXT_FLIP_SEC, { onComplete: flipUpperHalfDown } );
 		}		
 		
 		
