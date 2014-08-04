@@ -1025,7 +1025,7 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 		
 	</Infographic>
 	<Infographic id="info3">
-		<slide type="spin_number" duration="10000">
+		<slide type="spin_number" duration="30000">
 			<appearance backgroundColor="#B0008E" />
 			<graphstate value="1234567" featuredText="Testing something" />		
 			<graphstate value="7654321" featuredText="Testing something else" />	

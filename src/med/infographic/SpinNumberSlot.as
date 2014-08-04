@@ -13,6 +13,7 @@ package med.infographic {
 		
 		public static const MIN_SPIN_TIME_SECONDS:Number = 1.0;
 		
+//		public static const 
 		
 		
 		public function SpinNumberSlot() {
@@ -26,15 +27,16 @@ package med.infographic {
 		public function startSpinning():void {
 			
 			isSpinning = true;
-			addEventListener(Event.ENTER_FRAME, onSpinFrame, false, 0, true);
 			
 		}
 		
 		
 		
-		protected function onSpinFrame(e:Event):void {
+		public function spin(dTime:Number):void {
+			if (!isSpinning)	return;
 			
-			var moved:Number = 0;
+			// temp, needs acceleration
+			var moved:Number = 0.01 * dTime;
 			
 			block1.y += moved;
 			block2.y += moved;
@@ -51,9 +53,9 @@ package med.infographic {
 			}
 			
 			
-			// if one block has moved too far up, put it back on the bottom
-			if (topBlock.y < (SpinNumberSlide.ENTRY_HEIGHT * 10)) {
-				topBlock.y = bottomBlock.y + (SpinNumberSlide.ENTRY_HEIGHT * 9.5); 
+			// if one block has moved too far down, put it back on the top
+			if (bottomBlock.y > ((BoxesMain.STAGE_HEIGHT * 0.5) + SpinNumberSlide.ENTRY_HEIGHT)) {
+				bottomBlock.y = topBlock.y - (SpinNumberSlide.ENTRY_HEIGHT * 10); 
 			}
 			
 		}

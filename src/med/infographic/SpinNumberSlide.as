@@ -11,6 +11,9 @@ package med.infographic {
 		
 		protected static const SLOT_GAP_X:Number = 62;
 
+		protected static const RIGHT_EDGE_SLOT_OFFSET:Number = 40;
+		
+		
 		
 		protected var featuredTextPanel:Sprite;
 		protected var featuredTextEntries:Vector.<FeaturedTextEntry>;
@@ -98,7 +101,18 @@ package med.infographic {
 			alphaShadingLayer.graphics.drawRect(-512, (2.5 * ENTRY_HEIGHT), 1024, ENTRY_HEIGHT);
 			alphaShadingLayer.graphics.endFill();
 			
+			// draw completely solid strips at the very top and bottom
+			alphaShadingLayer.graphics.beginFill(slideData.backgroundColor, 1.0);
+			alphaShadingLayer.graphics.drawRect(-512, (-BoxesMain.STAGE_HEIGHT*0.5)-98, 1024, 100);
+			alphaShadingLayer.graphics.endFill();
+			
+			alphaShadingLayer.graphics.beginFill(slideData.backgroundColor, 1.0);
+			alphaShadingLayer.graphics.drawRect(-512, (BoxesMain.STAGE_HEIGHT*0.5)-2, 1024, 100);
+			alphaShadingLayer.graphics.endFill();
+			
 
+			
+			
 			loadGraphState(0);
 		}
 
@@ -140,7 +154,7 @@ package med.infographic {
 			targetValues = value.toString().split("");
 
 			// add slots
-			var slot:SpinNumberSlot
+			var slot:SpinNumberSlot;
 						
 			if (targetValues.length > slots.length) {
 				// do we need more numerals?				
@@ -205,14 +219,12 @@ package med.infographic {
 				
 				if ((significantDigitIndex != 0) && ((significantDigitIndex % 3) == 0)) {
 					// insert comma here
-					commas[commaIndex].x = -30 - totalWidth + 20;
+					commas[commaIndex].x = 512 - RIGHT_EDGE_SLOT_OFFSET - totalWidth + 15;
 					totalWidth += 26;
 					commaIndex--;
 				}				
-				
-				// remember that the origin of the numerals is in their center.. need to add half the width to this
-				
-				slot.x = 512 - 25 - totalWidth;
+								
+				slot.x = 512 - RIGHT_EDGE_SLOT_OFFSET - totalWidth;
 
 				if (i == 0)		totalWidth += 50;
 				else			totalWidth += SLOT_GAP_X;
@@ -264,6 +276,8 @@ package med.infographic {
 			// we don't need to do anything with this-- it's aready mined and the entries created in the constructor
 			
 			
+			initForNumber(value);
+			
 			flipToTargetValue();
 			
 		}		
@@ -273,7 +287,11 @@ package med.infographic {
 		protected function flipToTargetValue():void {
 			
 			for each (var slot:SpinNumberSlot in slots) {
+<<<<<<< HEAD
+				slot.startSpinning();
+=======
 				//slot.
+>>>>>>> origin/master
 			}
 			
 //			flipNumber.flipToNumber(value);
@@ -303,7 +321,21 @@ package med.infographic {
 		}		
 		
 		
+<<<<<<< HEAD
+		public function animate(dTime:Number):void {
+			
+			for each (var slot:SpinNumberSlot in slots) {
+				if (slot.isSpinning) {
+					slot.spin(dTime);
+				}
+			}
+			
+		}
+		
+		
+=======
 		public function animate(dTime:Number):void { }
+>>>>>>> origin/master
 		
 		
 	}
