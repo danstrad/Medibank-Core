@@ -20,6 +20,8 @@ package med.infographic {
 		
 		protected var initialBackgroundColor:uint;
 		
+		protected var inputVars:Object;
+		
 		
 		public function Infographic(data:InfographicData, background:Background) {
 			this.data = data;
@@ -27,6 +29,9 @@ package med.infographic {
 
 			// we store this so we can return to it when we're done with the infographic
 			initialBackgroundColor = background.getColor();
+			
+			// any user inputted data that needs to persist between slides, passed in to slides that may need it
+			inputVars = { }
 			
 			// load first slide	
 			currentSlideIndex = -1;
@@ -206,7 +211,7 @@ package med.infographic {
 						
 					case InfographicSlideData.TIME_DIALS:
 						
-						var dialsSlide:TimeDialsSlide = new TimeDialsSlide(slideData, initialBackgroundColor, removeSlideSpriteFromStage);
+						var dialsSlide:TimeDialsSlide = new TimeDialsSlide(slideData, initialBackgroundColor, inputVars, removeSlideSpriteFromStage);
 						addSlideSprite(dialsSlide);
 						dialsSlide.animateOn();
 						
