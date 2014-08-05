@@ -80,6 +80,9 @@ package med.infographic {
 		
 		
 		
+		protected const BOX_ANIM_TIME_SECONDS:Number = 0.75;
+		
+		
 		
 		protected function bringBoxToFront(boxIndex:int):void {
 			this.showingBoxIndex = boxIndex;
@@ -88,11 +91,11 @@ package med.infographic {
 				
 				if (box == boxes[boxIndex]) {
 					// bring target box forward
-					TweenMax.to(box, 1.0, { scaleX:1.0, scaleY:1.0, alpha:1.0, blurFilter: { blurX:0, blurY:0 }, ease:SineIn.ease}); 					
+					TweenMax.to(box, BOX_ANIM_TIME_SECONDS, { scaleX:1.0, scaleY:1.0, alpha:1.0, blurFilter: { blurX:0, blurY:0 }, ease:SineIn.ease}); 					
 				
 				} else {
 					// send all other boxes back
-					TweenMax.to(box, 1.0, { scaleX:BACK_BOX_SCALE, scaleY:BACK_BOX_SCALE, alpha:BACK_BOX_ALPHA, blurFilter:{ blurX:BACK_BOX_BLUR, blurY:BACK_BOX_BLUR }, ease:SineOut.ease}); 
+					TweenMax.to(box, BOX_ANIM_TIME_SECONDS, { scaleX:BACK_BOX_SCALE, scaleY:BACK_BOX_SCALE, alpha:BACK_BOX_ALPHA, blurFilter:{ blurX:BACK_BOX_BLUR, blurY:BACK_BOX_BLUR }, ease:SineOut.ease}); 
 				}
 				
 			}
