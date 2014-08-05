@@ -145,6 +145,13 @@ package med.infographic {
 						addSlideSprite(slidingTagsSlide);						
 						slidingTagsSlide.animateOn();
 						break;
+
+						
+					case InfographicSlideData.FLOATING_BOXES:							
+						var floatingBoxesSlide:FloatingBoxesSlide = new FloatingBoxesSlide(slideData);
+						addSlideSprite(floatingBoxesSlide);						
+						floatingBoxesSlide.animateOn();
+						break;
 						
 						
 					case InfographicSlideData.SPIN_NUMBER_STRIP:						

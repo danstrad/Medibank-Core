@@ -986,6 +986,13 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	
 	<Infographic id="info1">		
 		
+		<slide type="floating_boxes" duration="10000">
+			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#FF9330"/>
+			<featuredText>The service is offered across Australia in:</featuredText>	
+			<box value="500" text="GP practices" />
+			<box value="100" text="Aged care facilities" />
+		</slide>		
+		
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
 			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"/>
 			<featuredText>Accessing specialist care in regional Australia presents many challenges for GPs and their patients.</featuredText>
@@ -1002,7 +1009,7 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#ff9330"/>
 			<featuredText>Anywhere Healthcare improves access to specialist care in regional and remote Australia.</featuredText>
 		</slide>
-		
+
 		<slide type="sliding_tags" duration="18000">
 			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#ff9330"/>
 			<featuredText>Anywhere Healthcare connects regional communities with</featuredText>			
@@ -1030,10 +1037,11 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			<tag size="large" startLeft="true">
 				<tagstate text="General Physicians" />
 				<tagstate text="Nephrologists" />
-				<tagstate text="Palliative car specialists" />				
+				<tagstate text="Palliative care specialists" />				
 			</tag>							
 		</slide>		
 		<slide type="flip_number">
+			<appearance backgroundColor="#E4002B" />
 			<graphstate value="80" featuredText="Psychology and psychiatry consultations take place each month." topText="About" />		
 		</slide>		
 		<slide type="people_graph">

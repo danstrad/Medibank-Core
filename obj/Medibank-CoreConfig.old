@@ -46,6 +46,7 @@
       <path-element>C:\Users\Cuuble\Documents\GitHub\Medibank-Core\lib\Pick3.swc</path-element>
       <path-element>C:\Users\Cuuble\Documents\GitHub\Medibank-Core\lib\SpinNumber.swc</path-element>
       <path-element>C:\Users\Cuuble\Documents\GitHub\Medibank-Core\lib\SlidingTags.swc</path-element>
+      <path-element>C:\Users\Cuuble\Documents\GitHub\Medibank-Core\lib\FloatingBoxes.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

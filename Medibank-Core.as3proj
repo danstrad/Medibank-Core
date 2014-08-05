@@ -61,6 +61,7 @@
     <element path="lib\Pick3.swc" />
     <element path="lib\SpinNumber.swc" />
     <element path="lib\SlidingTags.swc" />
+    <element path="lib\FloatingBoxes.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
