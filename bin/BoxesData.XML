@@ -224,6 +224,10 @@
 			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians</Text>
 			<Story>doc3</Story>
 		</Box>
+		<Box id="E">
+			<Text>ahm – A more flexible choice</Text>
+			<Story>doc10</Story>
+		</Box>
 
 		<Animation type="Sliding" direction="90" slidingWidth="2">
 			<Box id="C" size="2" />
@@ -741,6 +745,23 @@ The Medibank Community fund is proud to be working with the Heart Foundation to 
 			<Box id="E" width="3" height="2.5" />
 		</Animation>
 	</Story>
+	
+	<Story id="doc10">
+		<Box id="D">
+			<Text type="Stats">[b]50,000[/b]
+Australians have chosen ahm over the past 40 years</Text>
+		</Box>
+		<Box id="E">
+			<Text type="Content">At Medibank, we believe that all Australians have the right to better health and access to health cover that suits them.
+ahm, with the backing of Medibank, is there to provide health insurance for people looking for a more affordable and flexible policy. Its philosophy is to offer a more basic level of cover that focuses only on the things its customers need, and stripping out anything they don’t. It’s a different approach and one that ensures more people can get the health cover they need, when they need it.</Text>
+		</Box>
+		
+		<Animation type="Sliding" direction="180" randomSeed="41" slidingWidth="2.5">
+			<Box id="D" x="2" y="1" width="1.5" height="1" />
+			<Box id="E" width="2.5" height="2" />
+		</Animation>
+	</Story>	
+	
 	
 	
 	<Story id="prof1">
