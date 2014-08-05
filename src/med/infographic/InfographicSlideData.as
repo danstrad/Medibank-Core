@@ -36,6 +36,15 @@ package med.infographic {
 			}
 		}
 		
+		public function get textColor():uint {
+			if (xml.hasOwnProperty("appearance") && xml.appearance.hasOwnProperty("@textColor")) {
+				return uint(xml.appearance.@textColor.toString().replace("#", "0x"));	
+			} else {
+				return 0;
+			}
+		}		
+		
+		
 		public function get animateOn():String {
 			return xml.@animateOn;	
 		}
@@ -49,16 +58,14 @@ package med.infographic {
 		public static const CENTER_TEXT_BOX:String 				= "center_text_box";		// a simple text box (text in center of screen)					
 		public static const CENTER_TEXT_BOX_QUOTE:String 		= "center_text_box_quote";	// text box with different font sizes and weights (end of info6)
 		
-		public static const PEOPLE_GRAPH:String					= "people_graph";		// a "moving dots" graph
-		
+		public static const PEOPLE_GRAPH:String					= "people_graph";		// a "moving dots" graph		
 		public static const SPIN_NUMBER_STRIP:String			= "spin_number";			// a "number strip" where each number slot rotates up/down until it reaches the correct value
-
 		public static const FLIP_NUMBER:String					= "flip_number";		// a fullscreen number-based text that acts like a flipboard
 		
 		
 		public static const FULLSCREEN_TEXT_TOP:String			= "fullscreen_text_top";	// fullscreen text on background with the text at the top (see info4)
 		
-		public static const FALLING_TAGS:String					= "falling_tags";	// falling tags with text on the left side of the background (info1)
+		public static const SLIDING_TAGS:String					= "sliding_tags";	// sliding tags with text on the left side of the background (info1)
 		
 		public static const CLOCK_ANIMATION:String				= "clock";		// clock animation with text (info4)
 		
