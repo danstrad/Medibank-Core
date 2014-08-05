@@ -1,4 +1,6 @@
 package {
+	import com.greensock.easing.Quad;
+	import com.greensock.TweenMax;
 	import com.gskinner.utils.Rndm;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -17,6 +19,7 @@ package {
 	import flash.text.TextField;
 	import flash.ui.Multitouch;
 	import flash.utils.getTimer;
+	import med.display.ContinueButton;
 	import med.display.CoreInfographic;
 	import med.infographic.Infographic;
 	import med.animation.AnimationAction;
@@ -89,6 +92,7 @@ package {
 		protected var clickBlips:Vector.<ClickBlip>;
 		protected var backgroundEffects:Vector.<BackgroundEffect>;
 		protected var backButton:BackButton;
+		protected var continueButton:ContinueButton;
 		
 		protected var currentStory:Story;
 		protected var currentChapter:Chapter;
@@ -144,6 +148,11 @@ package {
 			backButton.x = STAGE_WIDTH - (backButton.width / 2) - 10;
 			backButton.y = STAGE_HEIGHT - (backButton.height / 2) - 10;
 			
+			continueButton = new ContinueButton();
+			continueButton.x = STAGE_WIDTH - 50;
+			continueButton.y = STAGE_HEIGHT / 2;
+			continueButton.visible = false;
+			
 			//mover.addChild(grid = new Grid());
 			mover.addChild(boxesLayer);
 			
@@ -152,6 +161,7 @@ package {
 			addChild(backgroundEffectsLayer);
 			addChild(mover);
 			//addChild(backButton);
+			addChild(continueButton);
 			
 			camera = new Camera(mover, new Point(mover.x, mover.y));
 			camera.setScreenSize(stage.stageWidth, stage.stageHeight);
@@ -383,11 +393,26 @@ package {
 			currentStory = story;
 			currentAnimation = animation;
 			
+			if (story.continueStoryID || story.continueInfographicID) {
+				continueButton.visible = true;
+				continueButton.alpha = 0;
+				if (story.continueStoryID) continueButton.story = StorySet.getStory(story.continueStoryID);
+				else continueButton.story = null;
+				if (story.continueInfographicID) continueButton.infographic = StorySet.getInfographic(story.continueInfographicID);
+				else continueButton.infographic = null;
+				showContinueButton();
+			} else {
+				continueButton.story = null;
+				continueButton.infographic = null;
+				hideContinueButton();
+			}
+			
 			updateCameraBounds();
 			if (panTo) animation.playCameraAnimation();
 				
 			return animation;
 		}
+		
 		
 		protected function beginInfographic(data:InfographicData, launchRect:Rectangle):void {
 			mover.mouseChildren = false;
@@ -467,6 +492,23 @@ package {
 		}
 		
 		
+		protected function showContinueButton():void {
+			continueButton.mouseEnabled = true;
+			TweenMax.to(continueButton, 1, { alpha:1, delay:2, ease:Quad.easeOut, onComplete:finishedContinueButtonTween } );
+		}
+		
+		protected function hideContinueButton():void {
+			if (continueButton.visible) {
+				continueButton.mouseEnabled = false;
+				TweenMax.to(continueButton, 1, { alpha:0, delay:0, ease:Quad.easeIn, onComplete:finishedContinueButtonTween } );
+			}
+		}
+
+		protected function finishedContinueButtonTween():void {
+			continueButton.visible = (continueButton.alpha > 0.5);
+		}
+		
+		
 		protected function updateCameraBounds():void {
 			
 			var margin:Number = Box.SIZE * (1 + 1.5 / 6);
@@ -511,7 +553,7 @@ package {
 			}
 			for (i = currentAnimations.length - 1; i >= 0; i--) {
 				var anim:AnimationController = currentAnimations[i];
-				if ((anim.contentBoxes.length == 0) || (anim.contentBoxes[0].home.ending)) {
+				if ((anim.contentBoxes.length == 0) || !anim.contentBoxes[0].home || anim.contentBoxes[0].home.ending) {
 					anim.end();
 					endingAnimations.push(anim);
 					currentAnimations.splice(i, 1);
@@ -529,14 +571,21 @@ package {
 
 		protected function handleMouseDown(event:MouseEvent):void {
 			idleTime = 0;
-			
-			/*
-			for each(var anim:AnimationController in currentAnimations) {
-				if (!anim.finished) return;
-			}
-			*/
-			
+						
 			if (currentInfographic) return;
+			
+			if (event.target == continueButton) {
+				if (continueButton.story) {
+					// Not implemented
+					//killAnimations(null);
+					//hideContinueButton();
+				}
+				if (continueButton.infographic) {
+					killAnimations(null);
+					beginInfographic(continueButton.infographic, new Rectangle(0, 0, 0, 0));
+					hideContinueButton();
+				}				
+			}
 			
 			if (checkClick(event)) return;
 			

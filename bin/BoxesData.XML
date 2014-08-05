@@ -1116,7 +1116,6 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	</Infographic>
 	
 	<Infographic id="vision info1">
-		<!-- 
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
 			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
 			<featuredText>OUR VISION.</featuredText>
@@ -1125,8 +1124,6 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
 			<featuredText>Health is one of the biggest challenges facing Australian society.</featuredText>
 		</slide>			
-		 -->
-		 <!-- 
 		<slide type="people_graph">
 			<appearance backgroundColor="#E4002B" />
 			<graphstate value="63" featuredText="63" usePercentage="true" topText="" bottomText="We’re getting bigger. 
@@ -1146,7 +1143,6 @@ Over the past decade, government spending on healthcare has skyrocketed and is p
 Australia’s healthcare challenge is significant… 
 But so is the opportunity.</featuredText>			
 		</slide>
-		 -->
 		<slide type="center_text_box" duration="4000" animateOn="rotate" animateOff="none">
 			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
 			<featuredText>At Medibank, we believe we have an important role to play in meeting this challenge, from prevention through to policy.</featuredText>			
@@ -1188,6 +1184,10 @@ And at a policy level, we are working with government to find long-term solution
 [b]$4.6 billion[/b]
 in medical claims on their behalf each year</Text>
 		</Box>
+		
+		<ContinueButton>
+			<Infographic>vision info2</Infographic>
+		</ContinueButton>
 
 		
 		<Animation type="Sprouting" direction="170" randomSeed="41">
@@ -1201,6 +1201,26 @@ in medical claims on their behalf each year</Text>
 		</Animation>
 	</Story>	
 	
+	<Infographic id="vision info2">
+		<!-- Flashing boxes, timeline -->
+		<slide type="center_text_box" duration="4000" animateOn="squash" animateOff="none">
+			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
+			<featuredText>And today we provide an unmatched combination of health cover and healthcare services that deliver better health to millions of people around the country.</featuredText>
+		</slide>			
+		<slide type="center_text_box" duration="4000" animateOn="rotate" animateOff="ignore">
+			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
+			<featuredText>So how do we do it?</featuredText>
+		</slide>
+		<slide type="chapter_summary" duration="9000">
+			<wipe color="#653179" text="BY ENCOURAGING A HEALTHIER NATION." animation="Floating" source="right" />
+			<wipe color="#ff9330" text="BY CREATING BETTER HEALTHCARE CONNECTIONS." animation="Sprouting" source="bottom" />
+			<wipe color="#00a2e0" text="AND BY BUILDING AN EFFECTIVE HEALTHCARE SYSTEM" animation="Sliding" source="left" />
+		</slide>
+		<slide type="center_text_box" duration="4000" animateOn="slideLeft" animateOff="squash">
+			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
+			<featuredText>A better health system makes a real difference in people’s lives.</featuredText>
+		</slide>
+	</Infographic>
 	
 	
 </BoxesData>

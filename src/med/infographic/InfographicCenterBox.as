@@ -107,6 +107,12 @@ package med.infographic {
 			TweenMax.fromTo(box, ANIMATE_ON_TIME, { rotation:-180, colorTransform:{ tint:previousBoxColor, tintAmount:1.0} }, { rotation:0, colorTransform:{ tint:previousBoxColor, tintAmount:0}, immediateRender:true, onComplete:rollOutText } );
 		}
 		
+		public function animateOnSlide(dir:Number):void {
+			// slide on screen in a certain direction. -1 = slide left (from the right)
+			var from:Number = (dir > 0) ? -1024 : 1024;
+			TweenMax.fromTo(box, ANIMATE_ON_TIME, { x:from }, { x:0, immediateRender:true, onComplete:rollOutText } );			
+		}
+		
 		
 		public function animateOnNone():void {
 			// no animation, just roll the text out
@@ -124,6 +130,10 @@ package med.infographic {
 			slideTextOff(callback);
 		}
 		
+		public function animateOffIgnore(callback:Function):void {
+			callback(this);
+		}
+		
 		public function animateOffSquash(callback:Function):void {								
 			// squash to a point
 			// note: this isn't used if the next slide is also an InfographicCenterBox
@@ -139,6 +149,7 @@ package med.infographic {
 		}
 		
 		public function animate(dTime:Number):void { }
+		
 		
 		
 

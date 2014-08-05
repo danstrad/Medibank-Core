@@ -60,8 +60,15 @@
     <element path="lib\TimeDials.swc" />
     <element path="lib\Pick3.swc" />
     <element path="lib\SpinNumber.swc" />
+<<<<<<< HEAD
+    <element path="lib\ChapterSummary.swc" />
+=======
     <element path="lib\SlidingTags.swc" />
+<<<<<<< HEAD
     <element path="lib\FloatingBoxes.swc" />
+=======
+>>>>>>> b277ce185102c8ff1e2b4cc2483ab8c1264be753
+>>>>>>> ac249be4c30048248b02dbe7d379256ff6986018
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

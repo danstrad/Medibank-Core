@@ -16,6 +16,8 @@ package med.story {
 		public var animationInfos:Array;
 		public var smallAnimationInfos:Array;
 		
+		public var continueStoryID:String; // for 'Continue' button
+		public var continueInfographicID:String;
 		
 		public function Story() {
 			contentInfos = new Vector.<ContentInfo>();

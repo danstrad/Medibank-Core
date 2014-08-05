@@ -16,6 +16,7 @@ package  {
 		public static var statBoldFormat:TextFormat;
 		public static var splashFormat:TextFormat;
 		public static var infographicSplashFormat:TextFormat;
+		public static var infographicChapterHeaderFormat:TextFormat;
 		
 
 		public static function createTextFormats():void {
@@ -57,6 +58,10 @@ package  {
 			format.leading = -5;
 			format.letterSpacing = -0.35;
 			format.align = TextFormatAlign.CENTER;
+			infographicChapterHeaderFormat = format = new TextFormat("DINCond-Black", 66);
+			format.leading = -17;
+			format.letterSpacing = -0.35;
+			
 		}
 
 				

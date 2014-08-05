@@ -82,6 +82,12 @@
 				}
 			}
 			
+			if (storyXML.hasOwnProperty("ContinueButton")) {
+				var continueXML:XML = storyXML.ContinueButton[0];
+				if (continueXML.hasOwnProperty("Story")) story.continueStoryID = continueXML.Story[0].toString();
+				if (continueXML.hasOwnProperty("Infographic")) story.continueInfographicID = continueXML.Infographic[0].toString();
+			}
+			
 			for each(var boxXML:XML in storyXML.Box) {
 				var info:ContentInfo = new ContentInfo();
 				story.contentInfos.push(info);

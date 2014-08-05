@@ -1,0 +1,1 @@
+package med.display {	import flash.display.BlendMode;	import med.infographic.InfographicData;	import med.story.Story;	public class ContinueButton extends _ContinueButton {				public var story:Story;		public var infographic:InfographicData;				public function ContinueButton() {						blendMode = BlendMode.LAYER;			mouseChildren = false;		}			}}
