@@ -1,3 +1,6 @@
+#directories
+obj/
+
 # Asset files to ignore
 *.jpg
 *.png
@@ -5,20 +8,6 @@
 
 # Generated files
 *.swf
-RECOVER*.fla
-<<<<<<< HEAD
-.obj/
-=======
-obj/
-obj/*.*
-<<<<<<< HEAD
->>>>>>> fdb3b8786a9238b8926c956bd0f5a1c3d9f68519
-=======
->>>>>>> 575e215eba30e7450a5d3b2140088a3d6a37afe7
 
 # System files
 thumbs.db
-
-obj/Medibank-CoreConfig.old
-obj/Medibank-CoreConfig.old
-obj/Medibank-CoreConfig.xml
