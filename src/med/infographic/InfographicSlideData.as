@@ -76,6 +76,8 @@ package med.infographic {
 
 		public static const PICK3_INPUT:String					= "pick3_input";	// pick 3 options from 12 toggleable boxes
 		public static const PICK3_RESULTS:String				= "pick3_results";	// display the chosen options in a graph of predefined data for each option
+
+		public static const CHAPTER_SUMMARY:String				= "chapter_summary";	// animation moving through the headers of the 3 chapters
 		
 				
 

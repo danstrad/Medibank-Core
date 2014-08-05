@@ -26,6 +26,8 @@ package med.infographic {
 		protected var launchRect:Rectangle;
 		
 		protected var endCallback:Function;
+		
+		protected var previousSlideSprite:Sprite;
 
 		
 		public function Infographic(data:InfographicData, background:Background, launchRect:Rectangle = null) {
@@ -81,11 +83,14 @@ package med.infographic {
 						InfographicCenterBox(oldSlideSprite).animateOffSquash(onSlideFinished);
 						break;
 						
+					case "ignore":
+						InfographicCenterBox(oldSlideSprite).animateOffIgnore(onSlideFinished);
+						break;
+				
 					default:	
 					case "none":
 						ISlide(oldSlideSprite).animateOff(onSlideFinished);
 						break;
-				
 				}
 				
 				
@@ -198,6 +203,12 @@ package med.infographic {
 								}
 								break;
 					
+							case "slideLeft":
+								box.animateOnSlide(-1);
+								break;
+							case "slideRight":
+								box.animateOnSlide(1);
+								break;
 						}
 						
 						break;
@@ -243,6 +254,14 @@ package med.infographic {
 						
 						break;
 						
+					case InfographicSlideData.CHAPTER_SUMMARY:
+						
+						var chapterSummary:ChapterSummarySlide = new ChapterSummarySlide(slideData, initialBackgroundColor, previousSlideSprite);
+						addSlideSprite(chapterSummary);
+						chapterSummary.animateOn();
+						
+						break;
+						
 					default:
 						lastFrameReached();
 						break;
@@ -266,6 +285,7 @@ package med.infographic {
 		
 		
 		protected function onSlideFinished(sprite:Sprite):void {
+			previousSlideSprite = sprite;
 			if (sprite && sprite.parent)  sprite.parent.removeChild(sprite);
 			slideSprite = null;
 			if (endCallback != null) {
