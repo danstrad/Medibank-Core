@@ -138,33 +138,31 @@ package med.infographic {
 				// this is a placeholder approach
 				switch (slideData.type) {
 					
-					case InfographicSlideData.PEOPLE_GRAPH:	
-						
+					case InfographicSlideData.PEOPLE_GRAPH:							
 						var graph:PeopleGraph = new PeopleGraph(slideData);
-						addSlideSprite(graph);
-						
-						graph.animateOn();
-						
+						addSlideSprite(graph);						
+						graph.animateOn();						
 						break;
 	
 						
-					case InfographicSlideData.SPIN_NUMBER_STRIP:
-						
-						var spinNumberSlide:SpinNumberSlide = new SpinNumberSlide(slideData);
-						addSlideSprite(spinNumberSlide);
-						
-						spinNumberSlide.animateOn();
-						
+					case InfographicSlideData.SLIDING_TAGS:							
+						var slidingTagsSlide:SlidingTagsSlide = new SlidingTagsSlide(slideData);
+						addSlideSprite(slidingTagsSlide);						
+						slidingTagsSlide.animateOn();
 						break;
 						
 						
-					case InfographicSlideData.FLIP_NUMBER:
-							
+					case InfographicSlideData.SPIN_NUMBER_STRIP:						
+						var spinNumberSlide:SpinNumberSlide = new SpinNumberSlide(slideData);
+						addSlideSprite(spinNumberSlide);						
+						spinNumberSlide.animateOn();						
+						break;
+						
+						
+					case InfographicSlideData.FLIP_NUMBER:							
 						var flipNumberSlide:FlipNumberSlide = new FlipNumberSlide(slideData);
-						addSlideSprite(flipNumberSlide);
-						
-						flipNumberSlide.animateOn();
-						
+						addSlideSprite(flipNumberSlide);						
+						flipNumberSlide.animateOn();						
 						break;
 						
 						

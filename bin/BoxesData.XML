@@ -985,10 +985,11 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	
 	
 	<Infographic id="info1">		
+		
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
 			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"/>
 			<featuredText>Accessing specialist care in regional Australia presents many challenges for GPs and their patients.</featuredText>
-		</slide>		
+		</slide>				
 		<slide type="center_text_box" duration="4000" animateOn="rotate" animateOff="none">
 			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"/>
 			<featuredText>Many patients have to travel more than 200km to see a specialist, not to mention the associated costs. Some choose to miss out on care altogether.</featuredText>
@@ -1001,6 +1002,37 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#ff9330"/>
 			<featuredText>Anywhere Healthcare improves access to specialist care in regional and remote Australia.</featuredText>
 		</slide>
+		
+		<slide type="sliding_tags" duration="18000">
+			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#ff9330"/>
+			<featuredText>Anywhere Healthcare connects regional communities with</featuredText>			
+			<tag size="small" startLeft="true">
+				<tagstate text="Allergists" />
+				<tagstate text="Gynaecologists and obstetricians" />
+				<tagstate text="Neurologists" />
+				<tagstate text="Psychiatrists" />				
+			</tag>			
+			<tag size="medium" startLeft="false">
+				<tagstate text="Cardiologists" />
+				<tagstate text="Geriatricians" />
+				<tagstate text="Oncologists" />				
+			</tag>
+			<tag size="medium" startLeft="false">
+				<tagstate text="Dermatologists" />
+				<tagstate text="Haematologists" />
+				<tagstate text="Opthalmologists" />				
+			</tag>			
+			<tag size="small" startLeft="false">
+				<tagstate text="Endocrinologists" />
+				<tagstate text="Immunologists" />
+				<tagstate text="Paediatricians" />				
+			</tag>					
+			<tag size="large" startLeft="true">
+				<tagstate text="General Physicians" />
+				<tagstate text="Nephrologists" />
+				<tagstate text="Palliative car specialists" />				
+			</tag>							
+		</slide>		
 		<slide type="flip_number">
 			<graphstate value="80" featuredText="Psychology and psychiatry consultations take place each month." topText="About" />		
 		</slide>		
@@ -1010,15 +1042,13 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			<graphstate value="5" featuredText="95" usePercentage="true" topText="Thanks to Anywhere Healthcare" bottomText="Of patients avoid travelling long distances." />
 			<graphstate value="92" featuredText="92" usePercentage="true" topText="Thanks to Anywhere Healthcare" bottomText="Of patients save money on travel costs." />
 			<graphstate value="50" featuredText="50" usePercentage="true" textOnRightEdge="true" topText="Thanks to Anywhere Healthcare more than" bottomText="Of patients avoid having to take time off work." />
-		</slide>
-			
+		</slide>			
 		<slide type="center_text_box" duration="4000" animateOn="zoom" animateOff="squash">
 			<appearance textColor="#ffffff" backgroundColor="#ff9330" boxColor="#E4002B"/>
 			<featuredText>Contributing to communities.</featuredText>
 		</slide>		
 	</Infographic>
-	<Infographic id="info2">
-			
+	<Infographic id="info2">			
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="zoomIn">
 			<appearance textColor="#FFFFFF" backgroundColor="#ff9330" boxColor="#E4002B"/>
 			<featuredText>Making advice and care accessible.</featuredText>
@@ -1036,8 +1066,7 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 		<slide type="center_text_box" duration="4000" animateOn="zoom" animateOff="squash">
 			<appearance textColor="#FFFFFF" backgroundColor="#ff9330" boxColor="#E4002B"/>
 			<featuredText>Making advice and care more accessible.</featuredText>
-		</slide>			
-		
+		</slide>					
 	</Infographic>
 	<Infographic id="info3">
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="zoomIn">
