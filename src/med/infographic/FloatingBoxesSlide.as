@@ -127,8 +127,7 @@ package med.infographic {
 				var delay:Number = 0.5 + (Rndm.integer(0, 500) * 0.001);
 				TweenMax.fromTo(box, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-1000 }, { x:box.x, immediateRender:true, delay:delay, ease:Strong.easeIn } );
 			}
-			
-			
+						
 			// feature text
 			TweenMax.fromTo(featuredText, 1.0, { x: -800 }, { x: featuredText.x, immediateRender:true, ease:Strong.easeOut } );
 			

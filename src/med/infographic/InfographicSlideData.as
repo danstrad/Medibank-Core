@@ -62,16 +62,14 @@ package med.infographic {
 		public static const SPIN_NUMBER_STRIP:String			= "spin_number";			// a "number strip" where each number slot rotates up/down until it reaches the correct value
 		public static const FLIP_NUMBER:String					= "flip_number";		// a fullscreen number-based text that acts like a flipboard
 		
-		
-		public static const FULLSCREEN_TEXT_TOP:String			= "fullscreen_text_top";	// fullscreen text on background with the text at the top (see info4)
+		public static const TIMELINE:String	 					= "timeline";   		// fullscreen simple text with timeline (info5)
+		public static const TIMELINE_NUMBER:String	 			= "timeline_number";   		// timeline with flipNumber (info4)
 		
 		public static const SLIDING_TAGS:String					= "sliding_tags";	// sliding tags with text on the left side of the background (info1)
 		public static const FLOATING_BOXES:String				= "floating_boxes";		// floating boxes with a number
 		
 		public static const CLOCK_ANIMATION:String				= "clock";		// clock animation with text (info4)
 		
-		public static const TIMELINE_WITH_NUMBER:String			= "timeline_number";	// fullscreen number-based text with timeline (info4)
-		public static const TIMELINE:String	 					= "timeline";   // fullscreen simple text with timeline (info5)
 		
 		
 		public static const HOTSPOT:String						= "hotspot";	// image background with clickable hotspots
