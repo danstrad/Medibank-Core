@@ -1007,13 +1007,7 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	
 	<Infographic id="info1">
 		
-		<slide type="floating_boxes" duration="10000">
-			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#FF9330"/>
-			<featuredText>The service is offered across Australia in:</featuredText>	
-			<box value="500" text="GP practices" />
-			<box value="100" text="Aged care facilities" />
-		</slide>		
-		
+
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
 			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"/>
 			<featuredText>Accessing specialist care in regional Australia presents many challenges for GPs and their patients.</featuredText>
@@ -1030,7 +1024,12 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#ff9330"/>
 			<featuredText>Anywhere Healthcare improves access to specialist care in regional and remote Australia.</featuredText>
 		</slide>
-
+		<slide type="floating_boxes" duration="10000">
+			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#FF9330"/>
+			<featuredText>The service is offered across Australia in:</featuredText>	
+			<box value="500" text="GP practices" />
+			<box value="100" text="Aged care facilities" />
+		</slide>		
 		<slide type="sliding_tags" duration="18000">
 			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#ff9330"/>
 			<featuredText>Anywhere Healthcare connects regional communities with</featuredText>			
@@ -1082,6 +1081,25 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			<appearance textColor="#FFFFFF" backgroundColor="#ff9330" boxColor="#E4002B"/>
 			<featuredText>Making advice and care accessible.</featuredText>
 		</slide>	
+		
+		<slide type="floating_boxes" duration="70000">
+			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#FF9330"/>
+			<featuredText>Our members connected with:</featuredText>	
+			<box value="1163" text="Hospital providers" />
+			<box value="25726" text="Medical specialists" />
+			<box value="393" text="Cardiologists" />			
+			<box value="160" text="Cardio-thoracic surgeons" />
+			<box value="1253" text="Obstetricians and Gynaecologists" />
+			<box value="957" text="Orthopaedic surgeons" />
+			<box value="579" text="Medical Oncologists" />			
+			<box value="74947" text="Ancillary providers" />
+			<box value="12187" text="Dentists" />
+			<box value="7348" text="Psychologists" />
+			<box value="3829" text="Optometrists" />
+			<box value="1433" text="Occupational Therapists" />
+			<box value="2216" text="Speech Therapists" />
+		</slide>	
+		
 		<slide type="flip_number">
 			<appearance backgroundColor="#E4002B" />
 			<graphstate value="1555252" featuredText="Dentist scale cleans" topText="In one year, we supported" />	
