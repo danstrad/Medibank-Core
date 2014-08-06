@@ -19,10 +19,13 @@ package med.story {
 		
 		public var videoURL:String;
 		
+		public var infographicID:String;
+		public var infographicScale:Number;
+
 		public var linkedStoryID:String;
 		public var linkedInfographicID:String;
 		public var action:String;
-
+		
 		public function get linkedStory():Story {
 			if (linkedStoryID) return StorySet.getStory(linkedStoryID);
 			else return null;
@@ -39,6 +42,7 @@ package med.story {
 			textScale = 1;
 			subtextScale = 1;
 			imageScrollMargin = 20;
+			infographicScale = 1;
 		}
 		
 		

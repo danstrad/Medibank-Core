@@ -5,7 +5,7 @@
 		<Title>OUR VISION.</Title>
 		<BackgroundColour>#e4002b</BackgroundColour>		
 		<BoxColour>#e4002b</BoxColour>
-		<Infographic>vision info1</Infographic>
+		<LinkedInfographic>vision info1</LinkedInfographic>
 	</Chapter>	
 	
 	<Chapter>
@@ -14,7 +14,7 @@
 		<BoxColour>#845b95</BoxColour>
 		<BoxColour>#754787</BoxColour>
 		<BoxColour>#9470a0</BoxColour>
-		<Story>Chapter 1</Story>		
+		<LinkedStory>Chapter 1</LinkedStory>		
 	</Chapter>	
 	
 	<Chapter>
@@ -22,7 +22,7 @@
 		<BackgroundColour>#ff9330</BackgroundColour>
 		<BoxColour>#ff9e45</BoxColour>
 		<BoxColour>#ffa95a</BoxColour>
-		<Story>Chapter 2</Story>
+		<LinkedStory>Chapter 2</LinkedStory>
 	</Chapter>
 	
 	<Chapter>
@@ -31,7 +31,7 @@
 		<BoxColour>#1bace3</BoxColour>
 		<BoxColour>#33b5e7</BoxColour>
 		<BoxColour>#4ebfe9</BoxColour>
-		<Story>Chapter 3</Story>
+		<LinkedStory>Chapter 3</LinkedStory>
 	</Chapter>
 	
 		
@@ -39,71 +39,71 @@
 	<Story id="Chapter 1">
 		<Box id="A">
 			<Text>Is it time to unplug?</Text>
-			<Story>art1</Story>
+			<LinkedStory>art1</LinkedStory>
 		</Box>
 		<Box id="B">
 			<Text>Delivering quality care across New Zealand</Text>
-			<Story>doc1</Story>
+			<LinkedStory>doc1</LinkedStory>
 		</Box>
 		<Box id="C">
 			<Text>To go to the doctor? Or, not to go to the doctor?</Text>
-			<Infographic>info6</Infographic> <!-- Healthline -->
+			<LinkedInfographic>info6</LinkedInfographic> <!-- Healthline -->
 		</Box>				
 		<Box id="D">
 			<Text>Creating a system for Better Health</Text>
-			<Story>doc4</Story>
+			<LinkedStory>doc4</LinkedStory>
 		</Box>		
 		<Box id="E">
 			<Text>Funding Aboriginal and Torres Strait Islander health and wellbeing programs</Text>
-			<Story>prof2</Story>
+			<LinkedStory>prof2</LinkedStory>
 		</Box>
 		<Box id="F">
 			<Text>Walking side-by-side with Heart Foundation</Text>
-			<Story>doc9</Story>
+			<LinkedStory>doc9</LinkedStory>
 		</Box>
 		<Box id="G">
 			<Text>Meet Jayde, Yalari scholarship recipient</Text>
-			<Story>prof3</Story>
+			<LinkedStory>prof3</LinkedStory>
 		</Box>
 		<Box id="H">
 			<Text>BLIND SPORTS VICTORIA 2014 - $10,000 Grant Recipient for Victoria</Text>
-			<Story>prof5</Story>
+			<LinkedStory>prof5</LinkedStory>
 		</Box>
 		<Box id="I">
 			<Text>Burdekin Police Citizen Youth Welfare Association - 2014 Grant Recipient for Queensland</Text>
-			<Story>prof6</Story>
+			<LinkedStory>prof6</LinkedStory>
 		</Box>
 		<Box id="J">
 			<Text>Taking action on reconciliation</Text>
-			<Story>doc6</Story>
+			<LinkedStory>doc6</LinkedStory>
 		</Box>
 		<Box id="K">
 			<Text>Bankstown Woman’s Community Garden - 2014 Grant Recipient for New South Wales</Text>
-			<Story>prof7</Story>
+			<LinkedStory>prof7</LinkedStory>
 		</Box>
 		<Box id="L">
 			<Text>Whyalla Men's Shed - 2014 Grant Recipient for South Australia</Text>
-			<Story>prof8</Story>
+			<LinkedStory>prof8</LinkedStory>
 		</Box>
 		<Box id="M">
 			<Text>We’re embracing a healthier way of working</Text>
-			<Story>prof9</Story>
+			<LinkedStory>prof9</LinkedStory>
 		</Box>
 		<Box id="N">
 			<Text>Making healthcare affordable.</Text>
-			<Infographic>info3</Infographic> <!-- Affordable -->
+			<LinkedInfographic>info3</LinkedInfographic> <!-- Affordable -->
 		</Box>		
 		<Box id="O">
 			<Text>Healthy Weight for Life</Text>
-			<Story>doc5</Story>
+			<LinkedStory>doc5</LinkedStory>
 		</Box>		
 		<Box id="P">
 			<Text>Fair Game sports equipment - 2014 Community Fund Grant Recipient for Western Australia</Text>
-			<Story>prof4</Story>
+			<LinkedStory>prof4</LinkedStory>
 		</Box>
 		<Box id="Q">
 			<Text>1800 RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault</Text>
-			<Story>doc8</Story>
+			<LinkedStory>doc8</LinkedStory>
 		</Box>		
 		
 		<Animation type="Floating" direction="90" randomSeed="24">
@@ -119,79 +119,79 @@
 	<Story id="Chapter 2">	
 		<Box id="A">
 			<Text>Delivering quality care across New Zealand</Text>
-			<Story>doc1</Story>
+			<LinkedStory>doc1</LinkedStory>
 		</Box>
 		<Box id="I">
 			<Text>Meet Leith, Medibank nurse</Text>
-			<Story>prof1</Story>
+			<LinkedStory>prof1</LinkedStory>
 		</Box>
 		<Box id="O">
 			<Text>How far is too far for specialist healthcare?</Text>
-			<Infographic>info1</Infographic> <!-- Anywhere Healthcare -->
+			<LinkedInfographic>info1</LinkedInfographic> <!-- Anywhere Healthcare -->
 		</Box>
 		<Box id="B">
 			<Text>Meeting the mental health challenge</Text>
-			<Story>doc2</Story>
+			<LinkedStory>doc2</LinkedStory>
 		</Box>
 		<Box id="C">
 			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians</Text>
-			<Story>doc3</Story>
+			<LinkedStory>doc3</LinkedStory>
 		</Box>		
 		<Box id="P">
 			<Text>Making advice and care more accessible.</Text>
-			<Infographic>info2</Infographic> <!-- Accessible -->
+			<LinkedInfographic>info2</LinkedInfographic> <!-- Accessible -->
 		</Box>
 		<Box id="J">
 			<Text>Fair Game sports equipment - 2014 Community Fund Grant Recipient for Western Australia</Text>
-			<Story>prof4</Story>
+			<LinkedStory>prof4</LinkedStory>
 		</Box>
 		<Box id="D">
 			<Text>Creating a system for Better Health</Text>
-			<Story>doc4</Story>
+			<LinkedStory>doc4</LinkedStory>
 		</Box>			
 		<Box id="E">
 			<Text>Healthy Weight for Life</Text>
-			<Story>doc5</Story>
+			<LinkedStory>doc5</LinkedStory>
 		</Box>		
 		<Box id="K">
 			<Text>BLIND SPORTS VICTORIA 2014 - $10,000 Grant Recipient for Victoria </Text>
-			<Story>prof5</Story>
+			<LinkedStory>prof5</LinkedStory>
 		</Box>
 		<Box id="Q">
 			<Text>Making healthcare affordable.</Text>
-			<Infographic>info3</Infographic> <!-- Affordable -->
+			<LinkedInfographic>info3</LinkedInfographic> <!-- Affordable -->
 		</Box>
 		<Box id="F">
 			<Text>Rewarding better health with flybuys and Medibank</Text>
-			<Story>doc7</Story>
+			<LinkedStory>doc7</LinkedStory>
 		</Box>
 		<Box id="L">
 			<Text>Burdekin Police Citizen Youth Welfare Association - 2014 Grant Recipient for Queensland</Text>
-			<Story>prof6</Story>
+			<LinkedStory>prof6</LinkedStory>
 		</Box>
 		<Box id="R">
 			<Text>Contributing to communities.</Text>
-			<Infographic>info4</Infographic> <!-- Communities -->
+			<LinkedInfographic>info4</LinkedInfographic> <!-- Communities -->
 		</Box>
 		<Box id="G">
 			<Text>1800 RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault</Text>
-			<Story>doc8</Story>
+			<LinkedStory>doc8</LinkedStory>
 		</Box>
 		<Box id="M">
 			<Text>Bankstown Woman’s Community Garden - 2014 Grant Recipient for New South Wales</Text>
-			<Story>prof7</Story>
+			<LinkedStory>prof7</LinkedStory>
 		</Box>
 		<Box id="H">
 			<Text>Walking side-by-side with Heart Foundation</Text>
-			<Story>doc9</Story>
+			<LinkedStory>doc9</LinkedStory>
 		</Box>
 		<Box id="S">
 			<Text>To go to the doctor? Or, not to go to the doctor?</Text>
-			<Infographic>info6</Infographic> <!-- Healthline -->
+			<LinkedInfographic>info6</LinkedInfographic> <!-- Healthline -->
 		</Box>
 		<Box id="N">
 			<Text>Whyalla Men's Shed - 2014 Grant Recipient for South Australia </Text>
-			<Story>prof8</Story>
+			<LinkedStory>prof8</LinkedStory>
 		</Box>
 
 		<Animation type="Sprouting" direction="40" randomSeed="30">
@@ -206,27 +206,27 @@
 	<Story id="Chapter 3">
 		<Box id="A">
 			<Text>Meet Leith, Medibank nurse</Text>
-			<Story>prof1</Story>
+			<LinkedStory>prof1</LinkedStory>
 		</Box>
 		<Box id="B">
 			<Text>Driving discussion about mental health reform</Text>
-			<Story>art2</Story>
+			<LinkedStory>art2</LinkedStory>
 		</Box>
 		<Box id="C">
 			<Text>Meeting the mental health challenge</Text>
-			<Story>doc2</Story>
+			<LinkedStory>doc2</LinkedStory>
 		</Box>		
 		<Box id="F">
 			<Text>Growing with Australia.</Text>
-			<Infographic>info5</Infographic> <!-- Timeline -->
+			<LinkedInfographic>info5</LinkedInfographic> <!-- Timeline -->
 		</Box>
 		<Box id="D">
 			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians</Text>
-			<Story>doc3</Story>
+			<LinkedStory>doc3</LinkedStory>
 		</Box>
 		<Box id="E">
 			<Text>ahm – A more flexible choice</Text>
-			<Story>doc10</Story>
+			<LinkedStory>doc10</LinkedStory>
 		</Box>
 
 		<Animation type="Sliding" direction="90" slidingWidth="2">
@@ -250,7 +250,7 @@
 			<Text type="Quote">A new Medibank study finds we’re averaging nine hours a day looking at computers, TVs, smartphones and tablets. How does this impact our health?</Text>
 		</Box>
 		<Box id="D">
-			<Text type="Label">Infographic</Text>
+			<Infographic scale="0.35">art1 Box D</Infographic>
 		</Box>
 		<Box id="E">
 			<Text type="Content">Australian adults are spending more time in front of screens than sleeping, according to a new community survey commissioned by Medibank.
@@ -278,19 +278,19 @@ Dr Boyd said that enough concern had been raised about screen-time to warrant fu
 Read the full Medibank Health Check – is it time to unplug? report for more information.</Text>
 		</Box>
 		<Box id="F">
-			<Text type="Label">Infographic</Text>
+			<Infographic scale="0.35">art1 Box F</Infographic>
 		</Box>
 		<Box id="G">
-			<Text type="Label">Infographic</Text>
+			<Infographic scale="0.4">art1 Box G</Infographic>
 		</Box>
 		
 		
 		<Animation type="Floating" direction="90" randomSeed="41" >
 			<Box id="C" width="2.5" height="1.5" />
-			<Box id="D" width="2.5" height="2" />
+			<Box id="D" width="2" height="1.8333" />
 			<Box id="E" width="3" height="2.5" />
 			<Box id="F" size="0.8333" />
-			<Box id="G" size="0.8333" />			
+			<Box id="G" width="4.333" height="2.1666" />			
 		</Animation>
 	</Story>
 	
@@ -299,7 +299,7 @@ Read the full Medibank Health Check – is it time to unplug? report for more in
 			<Text type="Quote">Mental illness is a significant and growing challenge for Australia, with Medibank research revealing the overall cost of supporting people with a mental illness across the nation exceeds $28.6 billion each year – four times previous estimates.</Text>
 		</Box>
 		<Box id="D">
-			<Text type="Label">Infographic</Text>
+			<Text type="Stats">Infographic D</Text>
 		</Box>
 		<Box id="E">
 			<Text type="Content">Released in May 2013 by Medibank and leading management consulting firm, The Nous Group, the compelling research paper – The Case for Mental Health Reform in Australia – provided an in-depth review of healthcare expenditure and system design. The research:
@@ -317,17 +317,17 @@ Demonstrating commitment to the cause, in November 2013 Medibank partnered with 
 Medibank has since taken the outcomes of the research and roundtable event to inform a submission to the National Mental Health Commission – the government agency responsible for building a better mental health system – as part of Medibank’s mission to take the lead on policy reform in mental health.</Text>
 		</Box>
 		<Box id="F">
-			<Text type="Label">Infographic</Text>
+			<Infographic scale="0.3">art2 Box F</Infographic>
 		</Box>
 		<Box id="G">
-			<Text type="Label">Infographic</Text>
+			<Text type="Stats">Infographic G</Text>
 		</Box>		
 		
 		<Animation type="Sliding" direction="180" randomSeed="41" slidingWidth="2.5">
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="2.5" height="2" />
 			<Box id="E" width="2.5" height="3" />
-			<Box id="F" size="0.8333" x="1.6666" y="2.0888" />
+			<Box id="F" width="2.8333" height="1.666" x="2.666" y="2" />
 			<Box id="G" size="0.8333" x="1.6666" y="3.911" />			
 		</Animation>
 	</Story>
@@ -1005,8 +1005,8 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	
 	
 	
-	<Infographic id="info1">		
 
+	<Infographic id="info1">
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
 			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"/>
 			<featuredText>Accessing specialist care in regional Australia presents many challenges for GPs and their patients.</featuredText>
@@ -1222,7 +1222,7 @@ But so is the opportunity.</featuredText>
 			<featuredText>At Medibank, we believe we have an important role to play in meeting this challenge, from prevention through to policy.</featuredText>			
 		</slide>
 		
-		<Story>vision story section</Story>
+		<LinkedStory>vision story section</LinkedStory>
 	</Infographic>
 	
 	<Story id="vision story section">
@@ -1260,7 +1260,7 @@ in medical claims on their behalf each year</Text>
 		</Box>
 		
 		<ContinueButton>
-			<Infographic>vision info2</Infographic>
+			<LinkedInfographic>vision info2</LinkedInfographic>
 		</ContinueButton>
 
 		
@@ -1296,5 +1296,63 @@ in medical claims on their behalf each year</Text>
 		</slide>
 	</Infographic>
 	
+	
+	
+	<Infographic id="art1 Box D">
+		<slide type="pie_graph">
+			<title>Screen Use - Daily Breakdown</title>
+			<subtitle>(Including Work and Study, total 9.5 Hours)</subtitle>
+			
+			<appearance startAngle="-20" />
+			
+			<slice text="Computer" value="40" />
+			<slice text="Video games" value="4" />
+			<slice text="Television" value="31" />
+			<slice text="Smartphone" value="15" />
+			<slice text="Tablet" value="10" />
+		</slide>			
+	</Infographic>
+	
+	<Infographic id="art1 Box F">
+		
+	</Infographic>
+
+	<Infographic id="art1 Box G">
+		<slide type="bar_graph">
+			<title>What would you do instead?</title>
+			<subtitle>(Three Responses Required)</subtitle>
+			<!-- <optionColor1>#744686</optionColor1>  -->
+			<optionColor1>#7b4e8e</optionColor1>
+			<optionColor2>#845b94</optionColor2>
+
+			<bar id="A" text="Cycling" value="0.3333333333333333" />
+			<bar id="B" text="Family time" value="0.4219931271477663" />
+			<bar id="C" text="Walking" value="0.511340206185567" />				
+			<bar id="G" text="Cooking" value="0.888659793814433" />
+			<bar id="F" text="Socialising" value="1" />
+			<bar id="D" text="Shopping" value="0.888659793814433" />				
+			<bar id="H" text="Reading" value="0.6666666666666667" />
+			<bar id="E" text="Hobbies" value="0.4446735395189003" />
+			<bar id="I" text="Sleeping" value="0.3333333333333333" />
+			<bar id="K" text="Drive" value="0.2701030927835052" />
+			<bar id="L" text="House-keeping" value="0.4446735395189003" />
+			<bar id="J" text="Run" value="0.3333333333333333" />
+		</slide>
+	</Infographic>
+	
+	<Infographic id="art2 Box F">
+		<slide type="pie_graph">
+			<title>Where does the money go?</title>
+			
+			<appearance startAngle="45" />
+			
+			<slice text="$13.8 billion
+Direct health costs
+E.g. Hospital and health services" value="49" />
+			<slice text="$14.8 billion
+Non-direct health costs
+E.g. Support and insurance payments" value="51" />
+		</slide>			
+	</Infographic>
 	
 </BoxesData>

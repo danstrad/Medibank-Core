@@ -1,0 +1,1 @@
+package med.display {	import flash.geom.Rectangle;	import med.infographic.Infographic;	import med.infographic.InfographicData;	public class InfographicContent extends Infographic {				public function InfographicContent(data:InfographicData) {			super(data, null, null);		}			}}

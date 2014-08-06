@@ -178,7 +178,7 @@ package {
 			xmlLoader.load(new URLRequest("BoxesData.XML"));
 
 			CONFIG::release {
-				addEventListener(MouseEvent.CLICK, handleFullScreenClick);
+				stage.addEventListener(MouseEvent.CLICK, handleFullScreenClick);
 			}
 			
 			stage.addEventListener(FullScreenEvent.FULL_SCREEN, handleFullScreenChange);
@@ -951,7 +951,7 @@ package {
 		}
 		protected function handleFullScreenChange(event:FullScreenEvent):void {
 			if (stage.displayState == StageDisplayState.NORMAL) {
-				addEventListener(MouseEvent.CLICK, handleFullScreenClick);
+				stage.addEventListener(MouseEvent.CLICK, handleFullScreenClick);
 				camera.setScreenSize(stage.stageWidth, stage.stageHeight);
 			} else {
 				camera.setScreenSize(stage.fullScreenWidth, stage.fullScreenHeight);
