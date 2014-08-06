@@ -1006,7 +1006,6 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	
 	
 	<Infographic id="info1">		
-		
 
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
 			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"/>
@@ -1149,8 +1148,44 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	</Infographic>
 	<Infographic id="info4">
 	</Infographic>
+	
 	<Infographic id="info5">
+		
+		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="zoomIn">
+			<appearance textColor="#FFFFFF" backgroundColor="#00A3E0" boxColor="#2C5697"/>
+			<featuredText>Growing with Australia.</featuredText>
+		</slide>				
+		
+		<slide type="timeline" duration="42000">
+			<appearance backgroundColor="#2C5697" /> 
+			<graphstate value="1976" bottomText="1976" featuredText="Medibank established." />
+			<graphstate value="1981" bottomText="1981" featuredText="Medibank becomes Australia's
+largest health insurance fund.
+2 million people covered." />
+			<graphstate value="1990" bottomText="1990" featuredText="Merge with Health Australia." />
+			<graphstate value="1998" bottomText="1998-1999" featuredText="Medibank separates from Medicare." />
+			<graphstate value="2006" bottomText="2006/2007" featuredText="Introduce Travel and Life insurance.
+3 million people covered." />
+			<graphstate value="2009" bottomText="2009" featuredText="Acquisition of ahm.
+Merge with Health Services Australia." />
+			<graphstate value="2010" bottomText="2010" featuredText="Medibank Health Solutions created from 
+acquisition of McKesson and Carepoint." />
+			<graphstate value="2011" bottomText="2011" featuredText="Launch of After-hours GP helpline." />
+			<graphstate value="2012" bottomText="2012" featuredText="Launch of MiHealth member services.
+3.5 million people covered." />
+			<graphstate value="2013" bottomText="2013" featuredText="Launch of Anywhere Healthcare.
+Flybuys Partnership Announced." />		
+		</slide>
+		
+		
+		<slide type="center_text_box" duration="4000" animateOn="zoom" animateOff="squash">
+			<appearance textColor="#FFFFFF" backgroundColor="#00A3E0" boxColor="#2C5697"/>
+			<featuredText>Growing with
+Australia.</featuredText>
+		</slide>		
+		
 	</Infographic>
+	
 	<Infographic id="info6">
 	</Infographic>
 	

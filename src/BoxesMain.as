@@ -834,25 +834,28 @@ package {
 			var time:Number = getTimer();
 			var dTime:Number = time - lastFrameTime;
 			
-			/*
-			if (!secondTime) secondTime = time;
-			if (time - secondTime >= 1000) {
-				secondTime += 1000;
+			CONFIG::debug {
+			
+				if (!secondTime) secondTime = time;
+				if (time - secondTime >= 1000) {
+					secondTime += 1000;
 
-				if (!debugField) {
-					debugField = new TextField();
-					debugField.width = 200;
-					debugField.height = 50;
-					debugField.mouseEnabled = false;
-					stage.addChild(debugField);
+					if (!debugField) {
+						debugField = new TextField();
+						debugField.width = 200;
+						debugField.height = 50;
+						debugField.mouseEnabled = false;
+						stage.addChild(debugField);
+					}
+					debugField.text = "" + frameCount;
+					//trace(frameCount);
+
+					frameCount = 0;
 				}
-				debugField.text = "" + frameCount;
-				//trace(frameCount);
-
-				frameCount = 0;
+				frameCount++;
+				
 			}
-			frameCount++;
-			*/
+			
 			
 			if (endingInfographic) {
 				if (endingInfographic.ended) {
