@@ -33,8 +33,8 @@
 				if (chapterXML.hasOwnProperty("Title")) chapter.title = chapterXML.Title[0].toString().toUpperCase();
 				if (chapterXML.hasOwnProperty("BackgroundColour")) chapter.bgColor = uint(chapterXML.BackgroundColour[0].toString().replace("#", "0x"));
 				else chapter.bgColor = 0x555500;
-				if (chapterXML.hasOwnProperty("Story")) chapter.baseStoryID = chapterXML.Story[0].toString();
-				if (chapterXML.hasOwnProperty("Infographic")) chapter.baseInfographicID = chapterXML.Infographic[0].toString();
+				if (chapterXML.hasOwnProperty("LinkedStory")) chapter.baseStoryID = chapterXML.LinkedStory[0].toString();
+				if (chapterXML.hasOwnProperty("LinkedInfographic")) chapter.baseInfographicID = chapterXML.LinkedInfographic[0].toString();
 				StorySet.chapters.push(chapter);
 
 				var colors:Vector.<uint> = new Vector.<uint>();
@@ -84,8 +84,8 @@
 			
 			if (storyXML.hasOwnProperty("ContinueButton")) {
 				var continueXML:XML = storyXML.ContinueButton[0];
-				if (continueXML.hasOwnProperty("Story")) story.continueStoryID = continueXML.Story[0].toString();
-				if (continueXML.hasOwnProperty("Infographic")) story.continueInfographicID = continueXML.Infographic[0].toString();
+				if (continueXML.hasOwnProperty("LinkedStory")) story.continueStoryID = continueXML.LinkedStory[0].toString();
+				if (continueXML.hasOwnProperty("LinkedInfographic")) story.continueInfographicID = continueXML.LinkedInfographic[0].toString();
 			}
 			
 			for each(var boxXML:XML in storyXML.Box) {
@@ -116,12 +116,17 @@
 					var videoXML:XML = boxXML.Video[0];
 					if (videoXML.hasOwnProperty("@url")) info.videoURL = videoXML.@url.toString();
 				}
-				
-				if (boxXML.hasOwnProperty("Story")) {
-					info.linkedStoryID = boxXML.Story[0].toString();
-				}
 				if (boxXML.hasOwnProperty("Infographic")) {
-					info.linkedInfographicID = boxXML.Infographic[0].toString();
+					var infographicXML:XML = boxXML.Infographic[0];
+					if (infographicXML.hasOwnProperty("@scale")) info.infographicScale = parseFloat(infographicXML.@scale.toString());
+					info.infographicID = infographicXML.toString();
+				}
+				
+				if (boxXML.hasOwnProperty("LinkedStory")) {
+					info.linkedStoryID = boxXML.LinkedStory[0].toString();
+				}
+				if (boxXML.hasOwnProperty("LinkedInfographic")) {
+					info.linkedInfographicID = boxXML.LinkedInfographic[0].toString();
 				}
 				
 				if (boxXML.hasOwnProperty("Break")) {

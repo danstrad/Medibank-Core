@@ -36,7 +36,7 @@ package med.infographic {
 			this.background = background;
 
 			// we store this so we can return to it when we're done with the infographic
-			initialBackgroundColor = background.getTargetColor();
+			if (background) initialBackgroundColor = background.getTargetColor();
 			
 			// any user inputted data that needs to persist between slides, passed in to slides that may need it
 			inputVars = { }
@@ -130,7 +130,7 @@ package med.infographic {
 				if (slideIndex > 0)		previousSlideData = data.slides[slideIndex - 1];
 				
 				
-				if (slideData.backgroundColor && (slideData.backgroundColor != background.getColor())) {
+				if (background && slideData.backgroundColor && (slideData.backgroundColor != background.getColor())) {
 					background.showColor(slideData.backgroundColor);
 				}
 						
@@ -264,6 +264,22 @@ package med.infographic {
 						var chapterSummary:ChapterSummarySlide = new ChapterSummarySlide(slideData, initialBackgroundColor, previousSlideSprite);
 						addSlideSprite(chapterSummary);
 						chapterSummary.animateOn();
+						
+						break;
+						
+					case InfographicSlideData.PIE_GRAPH:
+						
+						var pieGraph:PieGraphSlide = new PieGraphSlide(slideData, initialBackgroundColor);
+						addSlideSprite(pieGraph);
+						pieGraph.animateOn();
+						
+						break;
+						
+					case InfographicSlideData.BAR_GRAPH:
+						
+						var barGraph:BarGraphSlide = new BarGraphSlide(slideData, initialBackgroundColor, inputVars);
+						addSlideSprite(barGraph);
+						barGraph.animateOn();
 						
 						break;
 						

@@ -10,8 +10,10 @@ package med.display {
 	import med.animation.AnimationAction;
 	import med.animation.BoxState;
 	import med.animation.HomeAnimationController;
+	import med.infographic.InfographicData;
 	import med.story.BoxPlacement;
 	import med.story.ContentInfo;
+	import med.story.StorySet;
 
 	public class Box extends _Box {
 		
@@ -28,6 +30,7 @@ package med.display {
 		public var textContent:TextContent;
 		public var videoContent:VideoContent;
 		public var imageContent:ImageContent;
+		public var infographicContent:InfographicContent;
 		public var substoryFlash:SubstoryFlash;
 		
 		protected var bg:Sprite;
@@ -76,7 +79,7 @@ package med.display {
 			}
 		}
 		protected function updateCacheAsBitmap():void {
-			content.cacheAsBitmap = !_inverted && !videoContent && BoxesMain.CACHE_AND_SNAP;			
+			content.cacheAsBitmap = !_inverted && !videoContent && !infographicContent && BoxesMain.CACHE_AND_SNAP;
 		}
 		
 		override public function get x():Number { trace("Do not access box x/y directly"); return super.x; }
@@ -173,6 +176,7 @@ package med.display {
 		public function animate(dTime:Number):void {
 			if (textContent) textContent.animate(dTime);
 			if (videoContent) videoContent.animate(dTime);
+			if (infographicContent) infographicContent.animate(dTime);
 			if (substoryFlash) substoryFlash.animate(dTime);
 		}
 
@@ -196,15 +200,20 @@ package med.display {
 				blendMode = BlendMode.LAYER;
 			}
 			
+			if (contentInfo.text) {
+				showText(contentInfo.text, w, h, contentInfo.textType, contentInfo.textScale, contentInfo.subtext, contentInfo.subtextScale);
+			}
 			if (contentInfo.imageURL) {
 				showImage(contentInfo.imageURL, w, h, contentInfo.imageScrollMargin);
 			}
 			if (contentInfo.videoURL) {
 				showVideo(contentInfo.videoURL, w, h);
 			}
-			if (contentInfo.text) {
-				showText(contentInfo.text, w, h, contentInfo.textType, contentInfo.textScale, contentInfo.subtext, contentInfo.subtextScale);
+			if (contentInfo.infographicID) {
+				var data:InfographicData = StorySet.getInfographic(contentInfo.infographicID);
+				showInfographic(data, w, h, contentInfo.infographicScale);
 			}
+			
 			if (contentInfo.linkedStory) {
 				addFlash = true;
 			}
@@ -248,6 +257,18 @@ package med.display {
 			
 			updateCacheAsBitmap();
 		}
+				
+		public function showInfographic(data:InfographicData, width:Number, height:Number, infographicScale:Number):void {
+			bg.scaleX = bgMask.scaleX = contentMask.scaleX = width / Box.SIZE;
+			bg.scaleY = bgMask.scaleY = contentMask.scaleY = height / Box.SIZE;
+			bg.visible = true;
+			
+			infographicContent = new InfographicContent(data);
+			infographicContent.scaleX = infographicContent.scaleY = infographicScale;
+			content.addChild(infographicContent);
+			
+			updateCacheAsBitmap();
+		}
 		
 		public function stopFlashing():void {
 			if (substoryFlash) substoryFlash.visible = false;
@@ -268,6 +289,7 @@ package med.display {
 			if (substoryFlash) substoryFlash.width = bg.width;
 			if (imageContent) imageContent.setPadding(padding);
 			if (textContent) textContent.x = -padding / 2;
+			if (infographicContent) infographicContent.x = -padding / 2;
 		}
 		
 		public function setColor(color:Number):void {

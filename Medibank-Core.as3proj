@@ -63,6 +63,7 @@
     <element path="lib\ChapterSummary.swc" />
     <element path="lib\FloatingBoxes.swc" />
     <element path="lib\SlidingTags.swc" />
+    <element path="lib\PieGraph.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

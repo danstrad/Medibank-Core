@@ -1,24 +1,12 @@
-Last entry in Chapter 3 still to come
-
-give 1800respect image a border/background
-
-allow overriding the dir for each box in Sprouting
-
-Feature versions
-
-Gen Better video?
-
-
-are cacheAsBitmap and rounded camera movements needed?
-
+give 1800respect image a border/background?
 
 
 art1:
-	D, F, G infographics
+	F infographic (vertical dual bar graph)
 	
 art2:
 	Background image
-	D, F, G infographics
+	D and G aren't infographics
 	E - infographic included in content?
 	
 	
@@ -27,6 +15,7 @@ doc1:
 	Text on a light image doesn't show up well
 	
 doc2:
+	B isn't an infographic
 	Image for F, G
 	
 doc3:

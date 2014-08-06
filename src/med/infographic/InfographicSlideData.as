@@ -85,6 +85,9 @@ package med.infographic {
 
 		public static const CHAPTER_SUMMARY:String				= "chapter_summary";	// animation moving through the headers of the 3 chapters
 		
+		public static const PIE_GRAPH:String					= "pie_graph";	// a pie graph
+		public static const BAR_GRAPH:String					= "bar_graph";	// bare bones version of Pick3Results
+		
 				
 
 
