@@ -158,6 +158,29 @@ package com.garin  {
 			return str;
 		}
 		
+		
+		
+		public static function addCommasToNumberString(numberString:String):String {
+			if (numberString.length < 4)	return numberString;
+
+			var str:String = "";
+			
+			
+			for (var i:int = numberString.length-3; i > 0; i -= 3) {
+				
+				// cut off the last 3 digits
+				var lastDigits:String = numberString.slice(i, i+3);
+				str = "," + lastDigits + str;
+			}
+				
+			if (numberString.length % 3) {
+				str = numberString.slice(0, numberString.length % 3) + str;
+			}
+			
+			return str;
+		}
+		
+		
 	}
 
 }

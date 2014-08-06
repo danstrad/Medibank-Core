@@ -92,6 +92,7 @@ package med.infographic {
 			TweenMax.fromTo(box, ANIMATE_ON_TIME, { scaleX:0, scaleY:0 }, { scaleX:1, scaleY:1, immediateRender:true, onComplete:rollOutText } );
 		}
 		
+		
 		public function animateOnLaunch(launchRect:Rectangle):void {
 			// roll out from a specific point. Used in tansition from BoxesMain into Infographic
 			var startRot:Number = (launchRect.x + launchRect.width / 2 < 0) ? -180 : 180;
@@ -102,10 +103,12 @@ package med.infographic {
 			TweenMax.fromTo(box, ANIMATE_ON_TIME, { x:startX, y:startY, scaleX:startScaleX, scaleY:startScaleY, rotation:startRot }, { x:0, y:0, scaleX:1, scaleY:1, rotation:0, immediateRender:true, onComplete:rollOutText } );
 		}
 		
+		
 		public function animateOnRotate(previousBoxColor:uint):void {
 			// animation when transitioning from a previous box			
 			TweenMax.fromTo(box, ANIMATE_ON_TIME, { rotation:-180, colorTransform:{ tint:previousBoxColor, tintAmount:1.0} }, { rotation:0, colorTransform:{ tint:previousBoxColor, tintAmount:0}, immediateRender:true, onComplete:rollOutText } );
 		}
+		
 		
 		public function animateOnSlide(dir:Number):void {
 			// slide on screen in a certain direction. -1 = slide left (from the right)
