@@ -1,8 +1,11 @@
 package med.infographic {
+	import com.garin.Drawing;
 	import com.greensock.TweenMax;
 	import com.greensock.easing.*;
 	import com.garin.Text;
+	import com.gskinner.utils.Rndm;
 	import flash.filters.BlurFilter;
+	import flash.geom.Rectangle;
 	
 	
 	public class FloatingBoxesSlide extends _FloatingBoxesSlide implements ISlide {
@@ -15,10 +18,12 @@ package med.infographic {
 		protected var showingBoxIndex:int;
 		
 		
-		protected static const BACK_BOX_SCALE:Number = 0.25;
-		protected static const BACK_BOX_ALPHA:Number = 0.5;		
-		protected static const BACK_BOX_BLUR:Number = 4;
-		
+		protected static const BOX_ANIMATE_ON_DURATION_SECONDS:Number = 2.0;	
+
+		protected static const ANIMATE_ON_DURATION_SECONDS:Number = 3.0;
+		protected static const ANIMATE_OFF_DURATION_SECONDS:Number = 3.0;
+				
+		public static const BOX_DISPLAY_TIME_SECONDS:Number = 4.0;
 		
 		
 		public function FloatingBoxesSlide(slideData:InfographicSlideData) {
@@ -41,25 +46,49 @@ package med.infographic {
 
 			boxes = new Vector.<FloatingBox>();
 			
+			
+			// work out bounds for boxes
+			// we need to bear in mind their size once expanded			
+			var topBorder:Number = -288 + 10 + (FloatingBox.BOX_SIZE * 0.5);
+			var boundsHeight:Number = 576 - ((10 + (FloatingBox.BOX_SIZE * 0.5)) * 2);
+			var boundsWidth:Number = (512 + 150) - 10 - (FloatingBox.BOX_SIZE * 0.5);
+				
+			var leftBoxBounds:Rectangle = new Rectangle(-150, topBorder, boundsWidth / 2, boundsHeight);
+			var rightBoxBounds:Rectangle = new Rectangle(leftBoxBounds.left + (boundsWidth * 0.5), topBorder, boundsWidth / 2, boundsHeight);			
+			
+			// draw for debug
+			/*
+			this.graphics.lineStyle(1, 0x000000, 0.7);
+			Drawing.drawRectangle(this.graphics, leftBoxBounds);
+			Drawing.drawRectangle(this.graphics, rightBoxBounds);
+			*/
+			
 			for (var i:int = 0; i < slideData.xml.box.length(); i++) {
 				var boxXML:XML = slideData.xml.box[i];
 				
-				var box:FloatingBox = new FloatingBox(boxXML.@value, boxXML.@text, slideData.boxColor, slideData.textColor);
+				var box:FloatingBox = new FloatingBox(int(boxXML.@value), boxXML.@text, slideData.boxColor, slideData.textColor);
 				boxes.push(box);
 				
-				box.x = i * 300;
-				box.y = 0;
+				
+				// figure out box positions								
+				// mostly we want them to alternate l->r->l			
+				
+				if ((i % 2) == 0) {
+					// even -> right
+					box.x = rightBoxBounds.x + Rndm.integer(0, rightBoxBounds.width);
+					box.y = rightBoxBounds.y + Rndm.integer(0, rightBoxBounds.height);
+
+				} else {
+					// odd -> left			
+					box.x = leftBoxBounds.x + Rndm.integer(0, leftBoxBounds.width);
+					box.y = leftBoxBounds.y + Rndm.integer(0, leftBoxBounds.height);				
+									
+				}
 				
 				addChild(box);
 				
-				// set it to background state
-				box.alpha = BACK_BOX_ALPHA;
-				box.scaleX = box.scaleY = BACK_BOX_SCALE;
-				box.filters.push(new BlurFilter(BACK_BOX_BLUR, BACK_BOX_BLUR, 1));
-				
 			}
-						
-			
+									
 			showingBoxIndex = -1;
 		}
 
@@ -75,50 +104,37 @@ package med.infographic {
 			bringBoxToFront(showingBoxIndex + 1);
 			
 			// timer
-			TweenMax.to(this, 4.0, { onComplete:showNextBox } );
+			TweenMax.to(this, BOX_DISPLAY_TIME_SECONDS + 0.4, { onComplete:showNextBox } );
 		}
 		
-		
-		
-		protected const BOX_ANIM_TIME_SECONDS:Number = 0.75;
-		
-		
+
 		
 		protected function bringBoxToFront(boxIndex:int):void {
 			this.showingBoxIndex = boxIndex;
-						
-			for each (var box:FloatingBox in boxes) {
-				
-				if (box == boxes[boxIndex]) {
-					// bring target box forward
-					TweenMax.to(box, BOX_ANIM_TIME_SECONDS, { scaleX:1.0, scaleY:1.0, alpha:1.0, blurFilter: { blurX:0, blurY:0 }, ease:SineIn.ease}); 					
-				
-				} else {
-					// send all other boxes back
-					TweenMax.to(box, BOX_ANIM_TIME_SECONDS, { scaleX:BACK_BOX_SCALE, scaleY:BACK_BOX_SCALE, alpha:BACK_BOX_ALPHA, blurFilter:{ blurX:BACK_BOX_BLUR, blurY:BACK_BOX_BLUR }, ease:SineOut.ease}); 
-				}
-				
-			}
-				
+					
+			// boxes send themselves back now
+			var box:FloatingBox = boxes[boxIndex];			
+			box.bringForward();
+			addChild(box);
+			
 		}
 		
 		
-		
-		
+
 		public function animateOn():void {
-			
-			/*
-			for each (var tag:SlidingTag in tags) {
-				var delay:Number = Rndm.integer(0, 100) * 0.001;
-				TweenMax.fromTo(tag, TAGS_ANIMATE_ON_DURATION_SECONDS, { x:-2000 }, { x:tag.startX, immediateRender:true, delay:delay, onComplete:tag.startSway } );
+						
+			for each (var box:FloatingBox in boxes) {
+				var delay:Number = 0.5 + (Rndm.integer(0, 500) * 0.001);
+				TweenMax.fromTo(box, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-1000 }, { x:box.x, immediateRender:true, delay:delay, ease:Strong.easeIn } );
 			}
-			*/
+			
 			
 			// feature text
 			TweenMax.fromTo(featuredText, 1.0, { x: -800 }, { x: featuredText.x, immediateRender:true, ease:Strong.easeOut } );
 			
-			showNextBox();
+			TweenMax.to(this, ANIMATE_ON_DURATION_SECONDS + 0.3, { onComplete:showNextBox } );
 		}
+		
 		
 		
 		public function animateOff(callback:Function):void {		
@@ -126,19 +142,23 @@ package med.infographic {
 			// feature text
 			TweenMax.fromTo(featuredText, 1.0, { x:featuredText.x }, { x:-800, immediateRender:true, ease:Strong.easeIn } );
 			
+			for each (var box:FloatingBox in boxes) {
+				var delay:Number = 0.5 + (Rndm.integer(0, 500) * 0.001);
+				TweenMax.fromTo(box, BOX_ANIMATE_ON_DURATION_SECONDS, { x:box.x }, { x:1000, immediateRender:true, delay:delay, ease:Strong.easeOut } );
+			}
+			
 			// tween for timer
-			TweenMax.to(this, 2.0, { onComplete:callback, onCompleteParams:[this] } );
+			TweenMax.to(this, ANIMATE_OFF_DURATION_SECONDS, { onComplete:callback, onCompleteParams:[this] } );
 			
 		}
 	
 		
 		public function animate(dTime:Number):void {
 			
-			/*
+			
 			for each (var box:FloatingBox in boxes) {
-				box.animate();
+				box.animate(dTime);
 			}
-			*/
 			
 		}
 		
