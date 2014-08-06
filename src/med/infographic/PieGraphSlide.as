@@ -107,7 +107,7 @@ package med.infographic {
 
 			g = graphColor.graphics;
 			g.clear();			
-			g.beginFill(0xFFFFFF, 0.25);
+			g.beginFill(0xFFFFFF, 0.2);
 			g.drawCircle(0, 0, RADIUS);
 			g.endFill();
 

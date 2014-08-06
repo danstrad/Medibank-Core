@@ -289,7 +289,7 @@ Read the full Medibank Health Check – is it time to unplug? report for more in
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="2" height="1.8333" />
 			<Box id="E" width="3" height="2.5" />
-			<Box id="F" size="0.8333" />
+			<Box id="F" width="3.5" height="2" />
 			<Box id="G" width="4.333" height="2.1666" />			
 		</Animation>
 	</Story>
@@ -299,7 +299,11 @@ Read the full Medibank Health Check – is it time to unplug? report for more in
 			<Text type="Quote">Mental illness is a significant and growing challenge for Australia, with Medibank research revealing the overall cost of supporting people with a mental illness across the nation exceeds $28.6 billion each year – four times previous estimates.</Text>
 		</Box>
 		<Box id="D">
-			<Text type="Stats">Infographic D</Text>
+			<Text type="Stats">Our report revealed the overall cost of supporting people with a mental illness exceeds
+[b]$28.6 billion[/b]
+each year.
+[b]4 times[/b]
+more than previous estimates.</Text>
 		</Box>
 		<Box id="E">
 			<Text type="Content">Released in May 2013 by Medibank and leading management consulting firm, The Nous Group, the compelling research paper – The Case for Mental Health Reform in Australia – provided an in-depth review of healthcare expenditure and system design. The research:
@@ -320,7 +324,9 @@ Medibank has since taken the outcomes of the research and roundtable event to in
 			<Infographic scale="0.3">art2 Box F</Infographic>
 		</Box>
 		<Box id="G">
-			<Text type="Stats">Infographic G</Text>
+			<Text type="Stats">The costs of mental health care add up to more than
+[b]2%[/b]
+of Australia’s GDP</Text>
 		</Box>		
 		
 		<Animation type="Sliding" direction="180" randomSeed="41" slidingWidth="2.5">
@@ -371,7 +377,14 @@ Testament to his positive spirit, Grant hopes to represent New Zealand in target
 	
 	<Story id="doc2">
 		<Box id="B">
-			<Text type="Label">Infographic</Text>
+			<Text type="Stats">[b]Every year[/b]
+more than one in five Australians experiences a mental illness, and almost half the Australian population will experience a mental illness at some point in their life.
+[b]In any one year[/b]
+about 1 million Australian adults will experience depression and more than 2 million will suffer from anxiety.
+[b]Every day[/b]
+six Australians take their own life – almost double the national road toll – and suicide is Australia’s biggest health crisis for people between 15 and 44.
+[b]Every year[/b]
+it costs $28.6 billion to support people with a mental illness in Australia, not including indirect costs like lost productivity.</Text>
 		</Box>
 		<Box id="C">
 			<Text type="Quote">Mental health is an issue close to the heart of Medibank and we believe Australia has an unprecedented opportunity to meet the mental health challenge, delivering better outcomes at a lower cost.</Text>
@@ -1006,6 +1019,15 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	
 	
 	<Infographic id="info1">
+		<slide type="center_text_box" duration="1000" animateOn="launch" animateOff="squash">
+			<appearance textColor="#ff9330" boxColor="#FFFFFF"/>
+			<featuredText>Contributing to communities.</featuredText>
+		</slide>			
+		<slide type="clock">
+			<appearance clockTextColor="#e4002b" />
+			<clockText>2030</clockText>
+			<featuredText>Hours of employee volunteering in the last 12 months.</featuredText>
+		</slide>		
 		
 
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
@@ -1147,7 +1169,16 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 		</slide>
 		
 	</Infographic>
-	<Infographic id="info4">
+	<Infographic id="info4" duration="4000">
+		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="squash">
+			<appearance textColor="#ff9330" boxColor="#FFFFFF"/>
+			<featuredText>Contributing to communities.</featuredText>
+		</slide>			
+		<slide type="clock">
+			<appearance clockTextColor="#e4002b" />
+			<clockText>2030</clockText>
+			<featuredText>Hours of employee volunteering in the last 12 months.</featuredText>
+		</slide>		
 	</Infographic>
 	<Infographic id="info5">
 	</Infographic>
@@ -1279,7 +1310,20 @@ in medical claims on their behalf each year</Text>
 	</Infographic>
 	
 	<Infographic id="art1 Box F">
-		
+		<slide type="dual_bar_graph">
+			<title>Average Hours of Screen Use</title>
+
+			<channel color="#7b4e8e" text="Average hours per day excluding work and study (total 6.3 hours)" />
+			<channel color="#845b94" text="Average hours per day, work and study (total 3.2 hours)" />
+			
+			<category text="TV" value1="2.4" value2="0.5" />
+			<category text="Smartphone" value1="1.0" value2="0.5" />
+			<category text="Tablet" value1="0.6" value2="0.4" />
+			<category text="Computer" value1="2.0" value2="1.7" />
+			<category text="Video games" value1="0.3" value2="0.1" />
+			<category text="Total" value1="6.3" value2="3.2" />
+			
+		</slide>
 	</Infographic>
 
 	<Infographic id="art1 Box G">

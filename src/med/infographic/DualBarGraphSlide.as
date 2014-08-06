@@ -4,17 +4,14 @@ package med.infographic {
 	import flash.events.MouseEvent;
 	import flash.geom.ColorTransform;
 
-	public class BarGraphSlide extends _BarGraph implements ISlide {
+	public class DualBarGraphSlide extends _DualBarGraph implements ISlide {
 		
 		protected const SCROLL_TIME:Number = 0.6;
 		protected const SCROLL_X:Number = 1200;
 		
-		protected var inputVars:Object;
-		
-		protected var graph:BarGraph;
+		protected var graph:DualBarGraph;
 
-		public function BarGraphSlide(slideData:InfographicSlideData, initialBackgroundColor:uint, inputVars:Object) {
-			this.inputVars = inputVars;
+		public function DualBarGraphSlide(slideData:InfographicSlideData, initialBackgroundColor:uint) {
 			
 			var xml:XML = slideData.xml;
 			if (xml.hasOwnProperty("title")) titleField.text = xml.title[0].toString();
@@ -22,8 +19,9 @@ package med.infographic {
 			if (xml.hasOwnProperty("subtitle")) subtitleField.text = xml.subtitle[0].toString();
 			else subtitleField.text = "";
 			
-			graph = new BarGraph(xml, inputVars);
-			graph.y = -130;
+			graph = new DualBarGraph(xml, 800, 420);
+			graph.x = -400
+			graph.y = -165;			
 			addChild(graph);
 			
 		}
