@@ -1,17 +1,32 @@
-give 1800respect image a border/background?
 Give infographics a set background color so it doesnt interfere with bar colors
 
 When clicking "time to unplug", then transitioning to blue, camera is dumb
+Camera focus is messed up for nested floating
+
+drop shadow on text over bitmap
+
+bring floaters in closer to their source
+
+remove snap to grid?
 
 
 art1:
 	F and G expand
-	Redo Layout
 
 art2:
-	Source background image
 	D and G aren't infographics - Used Stats text for now
 	E - infographic included in content?
 	Gap in expansion? according to  art2 box.pdf
-	Redo Layout
-
+	
+doc6:
+	Jumbled text
+	
+doc7:
+	awkwardly sized images don't snap to grid
+	
+doc10:
+	do we want sound on video?
+	
+	
+	
+Build for release

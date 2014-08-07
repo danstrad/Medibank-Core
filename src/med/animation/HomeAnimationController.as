@@ -21,7 +21,7 @@ package med.animation {
 		
 		static public const ANIM_KEY:String = "home anim";
 
-		protected var container:Sprite;
+		public var container:Sprite;
 
 		public var boxes:Vector.<HomeBox>;
 		public var data:HomeAnimationData;

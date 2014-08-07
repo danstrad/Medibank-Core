@@ -25,7 +25,7 @@ package med.animation {
 		protected static const ZERO_POINT:Point = new Point(0, 0);
 		protected static const END_SPEED_MULTIPLIER:Number = 2;
 
-		protected var container:DisplayObjectContainer;
+		public var container:DisplayObjectContainer;
 		protected var camera:Camera;
 		public var parentBox:Box;
 		public var currentParentPosition:Point;
@@ -432,13 +432,13 @@ package med.animation {
 		}
 		
 
+		/*
 		public function expandBoundsForFloating(bounds:Rectangle, camArea:Rectangle):void {
 			var minX:Number = 0;
 			var maxX:Number = 0;
 			var minY:Number = 0;
 			var maxY:Number = 0;
 
-			trace("?", bounds);
 			var data:FloatingAnimationData = animationData as FloatingAnimationData;
 			const SCALE_CHANGE:Number = 0.3;
 			var len:int = contentBoxes.length;
@@ -463,10 +463,11 @@ package med.animation {
 			bounds.right += maxX;
 			bounds.top += minY;
 			bounds.bottom += maxY;
-			trace("!", bounds);
 		}
+		*/
 		protected function moveFloatingZ(camFocus:Point):void {
 			var data:FloatingAnimationData = animationData as FloatingAnimationData;
+			/*
 			var midX:Number = container.x + data.bounds.x + data.bounds.width / 2;
 			var midY:Number = container.y + data.bounds.y + data.bounds.height / 2;
 			var xDif:Number = (camFocus.x - midX);
@@ -476,6 +477,17 @@ package med.animation {
 			for (var i:int = 0; i < len; i++) {
 				var box:Box = contentBoxes[i];
 				var state:BoxState = box.endState;
+				box.setPosition(xDif * state.zMoveFactor * SCALE_CHANGE, yDif * state.zMoveFactor * SCALE_CHANGE, Z_KEY);
+			}			
+			*/
+			const SCALE_CHANGE:Number = 0.3;
+			var len:int = contentBoxes.length;
+			for (var i:int = 0; i < len; i++) {
+				var box:Box = contentBoxes[i];
+				var state:BoxState = box.endState;
+				var normalPos:Point = box.getPositionExcluding(Z_KEY);
+				var xDif:Number = (camFocus.x - (box.parent.x + normalPos.x));
+				var yDif:Number = (camFocus.y - (box.parent.y + normalPos.y));
 				box.setPosition(xDif * state.zMoveFactor * SCALE_CHANGE, yDif * state.zMoveFactor * SCALE_CHANGE, Z_KEY);
 			}			
 		}
@@ -649,6 +661,7 @@ package med.animation {
 			var multiplier:Number = 1 / Math.max(Math.abs(vector.x), Math.abs(vector.y));
 			vector.x *= multiplier;
 			vector.y *= multiplier;
+			
 			
 			var length:Number = isChapter ? 300 : 450;
 			var yMultiplier:Number = ((BoxesMain.STAGE_HEIGHT + Box.SIZE) / (BoxesMain.STAGE_WIDTH + Box.SIZE));

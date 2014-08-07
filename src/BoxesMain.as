@@ -278,9 +278,9 @@ package {
 			var currentChapterID:int = (currentChapter != null) ? currentChapter.id : 0;
 
 			if (chapter) {
-				var homeTarget:Point = homeAnimation.getTargetPosition();
-				var boxHighlightPosition:Point = new Point(homeBox.destination.x + homeTarget.x, homeBox.destination.y + homeTarget.y);
-				//var boxHighlightPosition:Point = new Point(homeBox.destination.x + homeBox.parent.x, homeBox.destination.y + homeBox.parent.y);
+				//var homeTarget:Point = homeAnimation.getTargetPosition();
+				//var boxHighlightPosition:Point = new Point(homeBox.destination.x + homeTarget.x, homeBox.destination.y + homeTarget.y);
+				var boxHighlightPosition:Point = new Point(homeBox.destination.x + homeBox.parent.x, homeBox.destination.y + homeBox.parent.y);
 				expandStoryFrom(chapter.baseStory, chapter.id, false, homeBox, boxHighlightPosition, false, true);
 			} else {
 				currentAnimation = null;
@@ -514,10 +514,26 @@ package {
 		}
 		
 		
-		protected function expandCameraBounds():void {
-			// Expands based on current graphics. ALlows for more leeway with floaters
+		protected function expandCameraBounds():void {			
+			// Expands based on current graphics. Allows for more leeway with floaters
+			
 			var margin:Number = Box.SIZE * (1 + 1.5 / 6);
-			var camArea:Rectangle = mover.getBounds(mover);
+			
+			var camArea:Rectangle;
+			var b:Rectangle;
+			for each(var anim:AnimationController in currentAnimations) {
+				b = anim.container.getBounds(mover);
+				if (camArea) camArea = camArea.union(b);
+				else camArea = b;
+			}
+			for each(var homeAnim:HomeAnimationController in homeAnimations) {
+				if (!homeAnim.currentParentPosition || (homeAnim.parentBox && homeAnim.parentBox.ending)) return;
+				b = homeAnim.container.getBounds(mover);
+				if (camArea) camArea = camArea.union(b);
+				else camArea = b;
+			}
+			if (!camArea) return;
+			
 			var camFocus:Point = camera.getFocus();
 			var camTarget:Point = camera.getTarget();
 			camArea.left = Math.min(camArea.left, camFocus.x, camTarget.x);
@@ -647,6 +663,8 @@ package {
 			var showBlip:Boolean = false;
 			
 			if (homeBox) {
+				
+				if ((homeBox.alpha < 0) || (homeBox.parent.alpha < 0)) return false;
 				
 				if (homeBox.videoContent) {
 					homeBox.videoContent.expand();

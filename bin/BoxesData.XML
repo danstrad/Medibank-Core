@@ -295,6 +295,10 @@ Read the full Medibank Health Check – is it time to unplug? report for more in
 	</Story>
 	
 	<Story id="art2"> <!-- Driving discussion about mental health reform -->
+		<Background>
+			<Image url="assets/art2/Rejuvinate.png" />
+		</Background>
+
 		<Box id="C">
 			<Text type="Quote">Mental illness is a significant and growing challenge for Australia, with Medibank research revealing the overall cost of supporting people with a mental illness across the nation exceeds $28.6 billion each year – four times previous estimates.</Text>
 		</Box>
@@ -435,21 +439,22 @@ Demonstrating our commitment to better mental health, we also partner with like-
 	
 	<Story id="doc3"> <!-- beyondblue and Medibank. Side by side to support the mental health of young Australians -->
 		<Box id="B">
+			<Image url="assets/doc3/B.png" />
 			<Text type="Splash">“We’re making it easier for Australians to get help and advice on mental health – when, where and how they need it.”</Text>
 		</Box>
 		<Box id="C">
 			<Text type="Quote">Mental health is one of Australia’s biggest health challenges – and young Australians are particularly vulnerable. Every year, one in three young Australians faces mental illness, and only one in four of those people will actually receive professional help.</Text>
 		</Box>
-		<!-- <Box id="F">
-			<Image url="assets/doc1/doc1 Delivering quality care across New Zealand IMAGE.jpg" />
-		</Box> -->
+		<Box id="F">
+			<Image url="assets/doc3/F.png" />
+		</Box>
 		<Box id="D">
 			<Text type="Stats">[b]75%[/b]
 of mental illness emerges before the age of 25.</Text>
 		</Box>
-		<!-- <Box id="G">
-			<Image url="assets/doc1/doc1 Delivering quality care across New Zealand IMAGE.jpg" />
-		</Box> -->
+		<Box id="G">
+			<Image url="assets/doc3/G.png" />
+		</Box>
 		<Box id="H">
 			<Text type="Stats">[b]100,000:[/b]
 the total number of phone, chat and email consultations delivered through the 24 hour service.</Text>
@@ -462,16 +467,20 @@ The beyondblue Support Service is just one way Medibank is using its clinical ex
 		</Box>
 		
 		<Animation type="Sprouting" direction="90" randomSeed="41">
-			<Box id="B" width="2.5" height="3" />
+			<Box id="B" width="4" height="2.3" /> <!-- 1000, 575 -->
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="1.5" height="1" />
 			<Box id="E" width="3" height="2.5" />
+			<Box id="F" width="3" height="2" /> <!-- 600, 400 -->
+			<Box id="G" width="3" height="2" /> <!-- 600, 400 -->
 		</Animation>
 		<Animation type="Sliding" direction="180" randomSeed="41" slidingWidth="2.5">
-			<Box id="B" width="2.5" height="3" />
+			<Box id="B" width="4" height="2.3" /> <!-- 1000, 575 -->
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="1.5" height="1" />
 			<Box id="E" width="3" height="2.5" />
+			<Box id="F" width="3" height="2" /> <!-- 600, 400 -->
+			<Box id="G" width="3" height="2" /> <!-- 600, 400 -->
 		</Animation>
 	</Story>
 	
@@ -575,8 +584,8 @@ The 18-week program has already improved the lives of more than 450 members. The
 	
 	<Story id="doc6"> <!-- Taking action on reconciliation -->
 		<Box id="B">
-			<Text type="Splash">Aboriginal and Torres Strait Islander peoples can be achieved through a whole-of-community effort.</Text>
-			<!-- <Image url="assets/doc4/box B.jpg" />  -->
+			<Image url="assets/doc6/B.png" />
+			<Text type="Splash">Reconciliation with Aboriginal and Torres Strait Islander peoples can be achieved through a whole-of-community effort.</Text>
 		</Box>
 		<Box id="C">
 			<Text type="Quote">In 2012, we became the first private health insurer to develop a Reconciliation Action Plan (RAP). In it we outlined the action we would take to improve the health and wellbeing outcomes of Aboriginal and Torres Strait Islander health.</Text>
@@ -613,7 +622,7 @@ We’re making progress, but we can’t stop now. We know that until there is ge
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
-			<Box id="B" width="4.5" height="3" /> <!-- 5616, 3744  1.5 -->
+			<Box id="B" width="4.5" height="3" /> <!-- 1000, 667 -->
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="1.5" height="1" />
 			<Box id="E" width="3" height="2.5" />
@@ -623,13 +632,13 @@ We’re making progress, but we can’t stop now. We know that until there is ge
 	<Story id="doc7"> <!-- Rewarding better health with flybuys and Medibank -->
 		<Box id="B">
 			<Text type="Splash">“Rewarding members for their activity is making the benefits of better health even better.”</Text>
-			<!-- <Image url="assets/doc7/box B.jpg" />  -->
+			<Image url="assets/doc7/B.png" />
 		</Box>		
 		<Box id="C">
 			<Text type="Quote">Rewarding regular daily activity is a key to better health. Even a simple activity such as walking can have huge benefits for people’s health. Healthy adults are recommended to take at least 10,000 steps per day.</Text>
 		</Box>
 		<Box id="F">
-			<!-- <Image url="assets/doc7/box B.jpg" />  -->
+			<Image url="assets/doc7/F.png" scroll="0" />
 		</Box>
 		<Box id="D">
 			<Text type="Stats">[b]300,000[/b]
@@ -638,7 +647,7 @@ Medibank members already earn points with flybuys
 the number of flybuys points members can earn each day they reach 10,000 steps</Text>
 		</Box>
 		<Box id="G">
-			<!-- <Image url="assets/doc7/box B.jpg" />  -->
+			<Image url="assets/doc7/G.png" scroll="0" />
 		</Box>
 		<Box id="H">
 			<Text type="Splash">“Medibank and flybuys members are choosing to buy more fruit and vegetables than ever before”</Text>
@@ -659,10 +668,12 @@ Since 2013, over 300,000 members have already joined the program.</Text>
 		</Box>
 		
 		<Animation type="Sprouting" direction="110" randomSeed="41">
-			<Box id="B" width="4.5" height="3" />
-			<Box id="C" width="2.5" height="1.5" />
+			<Box id="B" width="3" height="2" /> <!-- 600, 399 -->
+			<Box id="C" width="2.5" height="1.5" /> 
 			<Box id="D" width="1.5" height="1" />
 			<Box id="E" width="3" height="2.5" />
+			<Box id="F" width="2.275" height="1.165" /> <!-- 455, 233 -->
+			<Box id="G" width="2.425" height="3" /> <!-- 485, 600 -->
 		</Animation>
 	</Story>
 	
@@ -677,7 +688,7 @@ Since 2013, over 300,000 members have already joined the program.</Text>
 			<Text type="Splash">One in three Australian women experiences family or domestic violence.</Text>
 		</Box>
 		<Box id="G">
-			<Image url="assets/doc8/1800RESPECT_logo_RGB.png" scroll="0" />
+			<Image url="assets/doc8/1800RESPECT.png" scroll="0" />
 		</Box>
 		<Box id="H">
 			<Text type="Splash">There are a lot of reasons to take action.</Text>
@@ -701,14 +712,14 @@ It also offers online resources for workers across sectors including health, dis
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="1.5" height="1" />
 			<Box id="E" width="3" height="2.5" />
-			<Box id="G" width="3.058" height="0.842" /> <!-- 1529, 421 -->
+			<Box id="G" width="3" height="0.96" /> <!-- 600, 192 -->
 		</Animation>
 		<Animation type="Sprouting" direction="110" randomSeed="41">
 			<Box id="B" width="4.5" height="3" />
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="1.5" height="1" />
 			<Box id="E" width="3" height="2.5" />
-			<Box id="G" width="3.058" height="0.842" /> <!-- 1529, 421 -->
+			<Box id="G" width="3" height="0.96" /> <!-- 600, 192 -->
 		</Animation>
 	</Story>
 	
@@ -770,14 +781,22 @@ The Medibank Community fund is proud to be working with the Heart Foundation to 
 			<Text type="Stats">[b]50,000[/b]
 Australians have chosen ahm over the past 40 years</Text>
 		</Box>
+		<Box id="B">
+			<Video url="assets/doc10/ahm-ad.mp4" />
+		</Box>
 		<Box id="E">
 			<Text type="Content">At Medibank, we believe that all Australians have the right to better health and access to health cover that suits them.
 ahm, with the backing of Medibank, is there to provide health insurance for people looking for a more affordable and flexible policy. Its philosophy is to offer a more basic level of cover that focuses only on the things its customers need, and stripping out anything they don’t. It’s a different approach and one that ensures more people can get the health cover they need, when they need it.</Text>
 		</Box>
+		<Box id="F">
+			<Image url="assets/doc10/ahm.png" scroll="0" />
+		</Box>
 		
 		<Animation type="Sliding" direction="180" randomSeed="41" slidingWidth="2.5">
-			<Box id="D" x="2" y="1" width="1.5" height="1" />
+			<Box id="B" width="2.5" height="1.40625" /> <!-- 640, 360 -->
 			<Box id="E" width="2.5" height="2" />
+			<Box id="D" x="2" y="1" width="1.5" height="1" />
+			<Box id="F" x="-2" y="2" width="1.5" height="0.99" /> <!-- 600, 395 -->
 		</Animation>
 	</Story>	
 	
@@ -785,7 +804,7 @@ ahm, with the backing of Medibank, is there to provide health insurance for peop
 	
 	<Story id="prof1"> <!-- Meet Leith, Medibank nurse -->
 		<Box id="B">
-			<!-- <Image url="assets/doc8/1800RESPECT_logo_RGB.png" /> -->
+			<Image url="assets/prof1/B.png" />
 		</Box>
 		<Box id="C">
 			<Text type="Quote">“My work-life balance is brilliant.”</Text>
@@ -802,12 +821,12 @@ By working from home, Leith benefits too because she gets to enjoy more valuable
 		</Box>
 		
 		<Animation type="Sprouting" direction="110" randomSeed="41">
-			<Box id="B" width="4.5" height="3" />
+			<Box id="B" width="4.5" height="3" /> <!-- 1000, 667 -->
 			<Box id="C" width="1.5" height="1.5" />
 			<Box id="D" width="3" height="2.5" />
 		</Animation>
 		<Animation type="Sliding" direction="180" randomSeed="41" sliderWidth="2.5">
-			<Box id="B" width="4.5" height="3" />
+			<Box id="B" width="4.5" height="3" /> <!-- 1000, 667 -->
 			<Box id="C" width="1.5" height="1.5" />
 			<Box id="D" width="2.5" height="3" />
 		</Animation>
@@ -924,11 +943,9 @@ Jayde is now considering moving forward towards university education, an opportu
 	</Story>
 	
 	<Story id="prof6"> <!-- Burdekin Police Citizen Youth Welfare Association - 2014 Grant Recipient for Queensland -->
-		<!-- 
 		<Box id="B">
-			<Image url="assets/prof5/Box B.jpg" />
+			<Image url="assets/prof6/KinderGym.png" />
 		</Box>
-		 -->
 		<Box id="C">
 			<Text type="Quote">“We are giving families living in extreme poverty the opportunity to access KinderGym classes to  enhance the development of young children, and invite parents to socially connect with the community”.</Text>
 		</Box>
@@ -937,12 +954,12 @@ Jayde is now considering moving forward towards university education, an opportu
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
-			<!-- <Box id="B" width="6.23" height="4.14" /> <!-- 623, 414  -->  -->
+			<Box id="B" width="3.24" height="2.33" /> <!-- 648, 466  -->
 			<Box id="C" width="1.5" height="1.5" />
 			<Box id="D" width="3" height="2.5" />
 		</Animation>
 		<Animation type="Sprouting" direction="110" randomSeed="41">
-			<!-- <Box id="B" width="6.23" height="4.14" /> <!-- 623, 414  -->  -->
+			<Box id="B" width="3.24" height="2.33" /> <!-- 648, 466  -->
 			<Box id="C" width="1.5" height="1.5" />
 			<Box id="D" width="3" height="2.5" />
 		</Animation>		

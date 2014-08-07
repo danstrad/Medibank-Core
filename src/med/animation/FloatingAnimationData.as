@@ -191,6 +191,7 @@ package med.animation {
 			data.endPoint = data.homePoint.clone();
 			
 			data.focus = new Point(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
+			data.focus.normalize(Math.min(400, data.focus.length));
 			data.focusTime = 600 + data.boxEndStates.length * 100;			
 			
 		}

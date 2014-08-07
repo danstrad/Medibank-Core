@@ -94,6 +94,16 @@ package med.display {
 		public function getWidth():Number { return w * super.scaleX; }
 		public function getHeight():Number { return h * super.scaleY; }
 		
+		public function getPositionExcluding(exclude:String):Point {
+			var p:Point = new Point(0, 0);
+			for (var key:String in positions) {
+				if (key == exclude) continue;
+				var pos:Pos = positions[key];
+				p.x += pos.x;
+				p.y += pos.y;
+			}
+			return p;
+		}
 		public function getPositionPart(key:String):Point { 
 			for (var s:String in positions) {
 				trace(s, positions[s].x, positions[s].y);
@@ -208,9 +218,6 @@ package med.display {
 				blendMode = BlendMode.LAYER;
 			}
 			
-			if (contentInfo.text) {
-				showText(contentInfo.text, w, h, contentInfo.textType, contentInfo.textScale, contentInfo.subtext, contentInfo.subtextScale);
-			}
 			if (contentInfo.imageURL) {
 				showImage(contentInfo.imageURL, w, h, contentInfo.imageScrollMargin);
 			}
@@ -220,6 +227,9 @@ package med.display {
 			if (contentInfo.infographicID) {
 				var data:InfographicData = StorySet.getInfographic(contentInfo.infographicID);
 				showInfographic(data, w, h, contentInfo.infographicScale);
+			}
+			if (contentInfo.text) {
+				showText(contentInfo.text, w, h, contentInfo.textType, contentInfo.textScale, contentInfo.subtext, contentInfo.subtextScale);
 			}
 			
 			if (contentInfo.linkedStory) {
@@ -309,6 +319,7 @@ package med.display {
 			g.drawRect( -Box.SIZE / 2, -Box.SIZE / 2, Box.SIZE, Box.SIZE);
 			g.endFill();
 		}
+		
 		
 		
 		
