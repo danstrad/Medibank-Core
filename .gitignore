@@ -6,6 +6,7 @@
 # Generated files
 *.swf
 *.as3proj
+RECOVER_*.*
 obj/
 
 # System files
