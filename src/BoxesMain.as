@@ -3,6 +3,7 @@ package {
 	import com.greensock.TweenMax;
 	import com.gskinner.utils.Rndm;
 	import flash.display.DisplayObject;
+	import flash.display.Graphics;
 	import flash.display.MovieClip;
 	import flash.display.Shape;
 	import flash.display.Sprite;
@@ -96,6 +97,8 @@ package {
 		
 		protected var currentStory:Story;
 		protected var currentChapter:Chapter;
+		
+		protected var floaterOnScreen:Boolean;
 		
 		protected var dragging:Boolean;
 		protected var dragPoint:Point;
@@ -275,7 +278,9 @@ package {
 			var currentChapterID:int = (currentChapter != null) ? currentChapter.id : 0;
 
 			if (chapter) {
-				var boxHighlightPosition:Point = new Point(homeBox.destination.x + homeBox.parent.x, homeBox.destination.y + homeBox.parent.y);
+				var homeTarget:Point = homeAnimation.getTargetPosition();
+				var boxHighlightPosition:Point = new Point(homeBox.destination.x + homeTarget.x, homeBox.destination.y + homeTarget.y);
+				//var boxHighlightPosition:Point = new Point(homeBox.destination.x + homeBox.parent.x, homeBox.destination.y + homeBox.parent.y);
 				expandStoryFrom(chapter.baseStory, chapter.id, false, homeBox, boxHighlightPosition, false, true);
 			} else {
 				currentAnimation = null;
@@ -509,18 +514,40 @@ package {
 		}
 		
 		
-		protected function updateCameraBounds():void {
+		protected function expandCameraBounds():void {
+			// Expands based on current graphics. ALlows for more leeway with floaters
+			var margin:Number = Box.SIZE * (1 + 1.5 / 6);
+			var camArea:Rectangle = mover.getBounds(mover);
+			var camFocus:Point = camera.getFocus();
+			var camTarget:Point = camera.getTarget();
+			camArea.left = Math.min(camArea.left, camFocus.x, camTarget.x);
+			camArea.right = Math.max(camArea.right, camFocus.x, camTarget.x);
+			camArea.top = Math.min(camArea.top, camFocus.y, camTarget.y);
+			camArea.bottom = Math.max(camArea.bottom, camFocus.y, camTarget.y);
+			camArea.inflate(Math.max(margin, (Camera.WIDTH - camArea.width) / 2), Math.max(margin, (Camera.HEIGHT - camArea.height) / 2));
 			
+			var current:Rectangle = camera.getPanArea().clone();
+			current.inflate(STAGE_WIDTH / 2, STAGE_HEIGHT / 2);
+			camArea = camArea.union(current);
+
+			camera.setPanArea(camArea);
+		}
+		protected function updateCameraBounds():void {
 			var margin:Number = Box.SIZE * (1 + 1.5 / 6);
 			
 			var camArea:Rectangle;
 			var b:Rectangle
+			
+			camArea = null;
+			
+			floaterOnScreen = false;
 			for each(var anim:AnimationController in currentAnimations) {
 				b = anim.animationData.bounds.clone();
 				b.offsetPoint(anim.parentHighlightPosition);
 				b.offsetPoint(anim.animationData.getOriginOffsetFor(anim.parentBox));
+				if (anim.animationInfo.type == AnimationType.FLOATING) floaterOnScreen = true;
 				if (camArea) camArea = camArea.union(b);
-				else camArea = b;
+				else camArea = b;				
 			}
 			for each(var homeAnim:HomeAnimationController in homeAnimations) {
 				b = homeAnim.currentBounds.clone();
@@ -533,10 +560,20 @@ package {
 				if (camArea) camArea = camArea.union(b);
 				else camArea = b;
 			}
-
-			//var camArea:Rectangle = mover.getBounds(mover);
 			
 			camArea.inflate(Math.max(margin, (Camera.WIDTH - camArea.width) / 2), Math.max(margin, (Camera.HEIGHT - camArea.height) / 2));
+			
+
+			/*
+			// Tricky because each bounds are dependent on the float of any previous bounds
+			for each(anim in currentAnimations) {
+				if (anim.animationInfo.type == AnimationType.FLOATING) {
+					//anim.expandBoundsForFloating(b, camArea);
+					anim.expandBoundsForFloating(camArea, camArea.clone());
+				}
+			}
+			*/
+			
 			camera.setPanArea(camArea);
 		}
 		
@@ -756,6 +793,7 @@ package {
 		}
 		
 		protected function animateCamera(dTime:Number):void {
+			if (floaterOnScreen) expandCameraBounds();
 			
 			if (dragging) {
 				const OLD_CHECK:Number = 0.8;
@@ -825,6 +863,7 @@ package {
 			camera.animateFloat(dTime);			
 			camera.animate(dTime, dragging);
 		}
+		
 		
 		protected var secondTime:Number = 0;
 		protected var frameCount:Number = 0;
@@ -938,8 +977,6 @@ package {
 				if (anim.ended) endingAnimations.splice(i, 1);
 			}
 			
-			//updateCameraBounds();			
-
 			lastFrameTime = time;
 		}
 		

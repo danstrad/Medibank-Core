@@ -161,6 +161,13 @@
 					story.animationInfos[typeIndex] = animationInfo;
 				}
 				
+				var colors:Vector.<uint>;
+				switch(animationInfo.type) {
+					case AnimationType.FLOATING: colors = FloatingAnimationData.COLORS; break;
+					case AnimationType.SPROUTING: colors = SproutingAnimationData.COLORS; break;
+					case AnimationType.SLIDING: colors = SlidingAnimationData.COLORS; break;
+				}
+				
 				var placements:Array = new Array();
 				
 				for each(boxXML in animXML.Box) {
@@ -177,6 +184,9 @@
 						placement.offset = new Point((parseFloat(boxXML.@xOffset) || 0) * Box.SIZE, (parseFloat(boxXML.@yOffset) || 0) * Box.SIZE);
 					}
 					if (boxXML.hasOwnProperty("@color")) placement.color = uint(boxXML.@color.toString().replace("#", "0x"));
+					else if (boxXML.hasOwnProperty("@colorIndex")) placement.color = colors[int(boxXML.@colorIndex.toString()) % colors.length];
+					if (boxXML.hasOwnProperty("@branch")) placement.branch = boxXML.@branch.toString();
+					
 					var boxID:String = boxXML.@id.toString();
 					info = infos[boxID];
 					var boxIndex:int = story.contentInfos.indexOf(info);
@@ -188,16 +198,20 @@
 					if (!placement) placement = new BoxPlacement();
 					animationInfo.placements[i] = placement;
 				}
-				
-				var colors:Vector.<uint>;
-				switch(animationInfo.type) {
-					case AnimationType.FLOATING: colors = FloatingAnimationData.COLORS; break;
-					case AnimationType.SPROUTING: colors = SproutingAnimationData.COLORS; break;
-					case AnimationType.SLIDING: colors = SlidingAnimationData.COLORS; break;
-				}
+								
+				var colorIndex:int = 0;
 				for each(placement in animationInfo.placements) {
 					if (!placement.color) {
-						placement.color = colors[int(Math.random() * colors.length)];
+						switch(animationInfo.type) {
+							case AnimationType.FLOATING:
+							case AnimationType.SPROUTING:
+								placement.color = colors[int(Math.random() * colors.length)];
+								break;
+							case AnimationType.SLIDING:
+								placement.color = colors[colorIndex];
+								colorIndex = (colorIndex + 1) % colors.length;
+								break;
+						}						
 					}
 				}
 

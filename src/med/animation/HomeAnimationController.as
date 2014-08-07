@@ -228,11 +228,18 @@ package med.animation {
 			if (parentBox && parentBox.parent && !parentBox.ending) {
 				currentParentPosition.x = parentBox.parent.x + parentBox.getX();
 				currentParentPosition.y = parentBox.parent.y + parentBox.getY();
+				/*
+				var part1:Point = parentBox.getPositionPart(AnimationController.ANIM_KEY);
+				var part2:Point = parentBox.getPositionPart("Highlight");
+				trace("??", part1, part2, parentBox.getX(), parentBox.getY());
+				currentParentPosition.x = parentBox.parent.x + part1.x + part2.x;
+				currentParentPosition.y = parentBox.parent.y + part1.y + part2.y;
+				*/
 			} else {
 				currentParentPosition = null;
 			}
 		}
-		public function alignContainer():void {
+		public function alignContainer():void {			
 			updateParentPosition();
 			if (currentParentPosition) {
 				container.x = currentParentPosition.x + offsetFromParent.x;

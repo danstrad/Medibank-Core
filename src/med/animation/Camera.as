@@ -57,6 +57,8 @@ package med.animation {
 			update();
 		}
 		
+		public function getTarget():Point { return target.clone(); }
+
 		public function getFocus():Point { return current.clone(); }
 		public function setFocus(focus:Point):void {
 			target.x = clampX(focus.x);
@@ -71,8 +73,10 @@ package med.animation {
 			this.easing = easing;
 			start.x = current.x;
 			start.y = current.y;
-			target.x = clampX(focusX);
-			target.y = clampY(focusY);
+			//target.x = clampX(focusX);
+			//target.y = clampY(focusY);
+			target.x = focusX;
+			target.y = focusY;
 			animProgress = 0;
 			animLength = time;
 			startScale = scale;

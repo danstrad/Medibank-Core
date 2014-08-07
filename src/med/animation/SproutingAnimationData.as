@@ -63,6 +63,22 @@ package med.animation {
 				var bounds:Rectangle = placement.getBounds();
 				var w:Number = bounds.width;
 				var h:Number = bounds.height;
+				
+				if (placement.branch) {
+					var branchDir:uint = 0;
+					switch(placement.branch) {
+						case "rd": branchDir = 0; break;
+						case "dr": branchDir = 1; break;
+						case "dl": branchDir = 2; break;
+						case "ld": branchDir = 3; break;
+						case "lu": branchDir = 4; break;
+						case "ul": branchDir = 5; break;
+						case "ur": branchDir = 6; break;
+						case "ru": branchDir = 7; break;
+					}
+					currentDir = branchDir;
+				}
+				
 				var xShift:Number;
 				var yShift:Number;
 				var dDivisor:Number;

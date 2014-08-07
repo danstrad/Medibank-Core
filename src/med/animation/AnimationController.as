@@ -432,7 +432,39 @@ package med.animation {
 		}
 		
 
-		
+		public function expandBoundsForFloating(bounds:Rectangle, camArea:Rectangle):void {
+			var minX:Number = 0;
+			var maxX:Number = 0;
+			var minY:Number = 0;
+			var maxY:Number = 0;
+
+			trace("?", bounds);
+			var data:FloatingAnimationData = animationData as FloatingAnimationData;
+			const SCALE_CHANGE:Number = 0.3;
+			var len:int = contentBoxes.length;
+			for each(var camFocus:Point in [camArea.topLeft, camArea.bottomRight]) {
+				var midX:Number = container.x + data.bounds.x + data.bounds.width / 2;
+				var midY:Number = container.y + data.bounds.y + data.bounds.height / 2;
+				var xDif:Number = (camFocus.x - midX);
+				var yDif:Number = (camFocus.y - midY);
+				for (var i:int = 0; i < len; i++) {
+					var box:Box = contentBoxes[i];
+					var state:BoxState = box.endState;
+					var floatedX:Number = xDif * state.zMoveFactor * SCALE_CHANGE;
+					var floatedY:Number = yDif * state.zMoveFactor * SCALE_CHANGE;
+					minX = Math.min(minX, floatedX);
+					maxX = Math.max(maxX, floatedX);
+					minY = Math.min(minY, floatedY);
+					maxY = Math.max(maxY, floatedY);
+				}
+			}
+			
+			bounds.left += minX;			
+			bounds.right += maxX;
+			bounds.top += minY;
+			bounds.bottom += maxY;
+			trace("!", bounds);
+		}
 		protected function moveFloatingZ(camFocus:Point):void {
 			var data:FloatingAnimationData = animationData as FloatingAnimationData;
 			var midX:Number = container.x + data.bounds.x + data.bounds.width / 2;

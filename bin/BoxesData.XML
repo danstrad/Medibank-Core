@@ -361,18 +361,18 @@ Testament to his positive spirit, Grant hopes to represent New Zealand in target
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
-			<Box id="B" width="2.5" height="4.444" /> <!-- 1152, 2048  1.77777 -->
+			<Box id="B" width="2.5" height="4.444" /> <!-- 1152, 2048 -->
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="1.5" height="1" />
 			<Box id="F" size="0.8333" x="1.6666" y="2.0888" />
-			<Box id="E" width="3" height="2.5" />
+			<Box id="E" width="3" height="2.666" />
 		</Animation>
 		<Animation type="Sprouting" direction="90" randomSeed="41">
-			<Box id="B" width="2.5" height="4.444" /> <!-- 1152, 2048  1.77777 -->
-			<Box id="C" width="2.5" height="1.5" />
+			<Box id="B" width="2.5" height="4.444" /> <!-- 1152, 2048 -->
+			<Box id="C" width="2.5" height="1.5" branch="ru" />
 			<Box id="D" width="1.5" height="1" />
 			<Box id="F" size="0.8333" x="1.6666" y="2.0888" />
-			<Box id="E" width="3" height="2.5" />
+			<Box id="E" width="3" height="2.666" />
 		</Animation>
 	</Story>
 	
@@ -714,20 +714,21 @@ It also offers online resources for workers across sectors including health, dis
 	
 	<Story id="doc9"> <!-- Walking side-by-side with Heart Foundation -->
 		<Box id="B">
+			<Image url="assets/doc9/B.png" />
 			<Text type="Splash">“Inactivity and being overweight are both risk factors for the development of chronic disease. Walking can help address both.”</Text>
-		</Box>		
+		</Box>
 		<Box id="C">
 			<Text type="Quote">The Heart Foundation Walking program is Australia’s largest walking group. With 1300 groups and 21,000 members, around 42,000 Australians have already participated and have started walking their way to better health.</Text>
 		</Box>
 		<Box id="F">
-			<!-- <Image url="assets/doc8/1800RESPECT_logo_RGB.png" /> -->
+			<Image url="assets/doc9/F.png" />
 		</Box>
 		<Box id="D">
 			<Text type="Stats">[b]$0[/b]
 the cost of the walking program to participants</Text>
 		</Box>
 		<Box id="G">
-			<!-- <Image url="assets/doc8/1800RESPECT_logo_RGB.png" /> -->
+			<Image url="assets/doc9/G.png" />
 		</Box>
 		<Box id="H">
 			<Text type="Stats">Over
@@ -747,16 +748,20 @@ The Medibank Community fund is proud to be working with the Heart Foundation to 
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
-			<Box id="B" width="4.5" height="3" />
+			<Box id="B" width="3.333" height="5" /> <!-- 667, 1000 -->
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="1.5" height="1" />
 			<Box id="E" width="3" height="2.5" />
+			<Box id="F" width="2.5" height="1.5" /> <!-- 600, 400 -->
+			<Box id="G" width="2.25" height="1.5" /> <!-- 600, 400 -->
 		</Animation>
 		<Animation type="Sprouting" direction="110" randomSeed="41">
-			<Box id="B" width="4.5" height="3" />
+			<Box id="B" width="3.333" height="5" /> <!-- 667, 1000 -->
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="1.5" height="1" />
 			<Box id="E" width="3" height="2.5" />
+			<Box id="F" width="2.5" height="1.5" /> <!-- 600, 400 -->
+			<Box id="G" width="2.25" height="1.5" /> <!-- 600, 400 -->
 		</Animation>
 	</Story>
 	
