@@ -91,13 +91,15 @@ package med.infographic {
 				boxText = "“" + boxText + "”";
 				
 				// show the person who said it
-				quoteByField.visible = true;
-				quoteByField.text = String(slideData.xml.quoteBy);
+				var quoteString:String = String(slideData.xml.quoteBy);
+				
+				if (quoteString != "")		quoteByField.visible = true;
+				
+				quoteByField.text = quoteString;
 				quoteByField.textColor = textColor;
 				Text.setTextSpacing(quoteByField, -0.5);
 				
 				quoteByField.autoSize = TextFieldAutoSize.CENTER;
-				
 				
 				// add the little speech mark thing coming out of the box
 				box.graphics.lineStyle();

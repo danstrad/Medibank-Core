@@ -11,14 +11,18 @@ package med.infographic {
 		
 		protected static const LINE_HEIGHT_NORMAL:Number 		= 21.35;
 		protected static const LINE_HEIGHT_ENTRY:Number 		= 37.35;
-		protected static const LINE_HEIGHT_DECADE:Number 		= 32;
-		protected static const LINE_HEIGHT_DECADE_ENTRY:Number 	= 48.05;
+		protected static const LINE_HEIGHT_MARKER:Number 		= 32;
+		protected static const LINE_HEIGHT_MARKER_ENTRY:Number 	= 48.05;
 
 		protected static const LINE_HEIGHT_CURRENT:Number 		= 111.45;
 		
 		protected static const LINE_WIDTH:Number = 2.65;
 		
-		protected static const LINE_HORIZONTAL_SPACING:Number 	= 22;
+		
+//		protected static const LINE_HORIZONTAL_SPACING:Number 		= 22;
+//		protected static const LINE_HORIZONTAL_SPACING_WIDE:Number 	= 63;
+		
+		protected var horizontalSpacing:Number = 22;
 		
 		
 		protected var lines:Vector.<Shape>;
@@ -37,16 +41,18 @@ package med.infographic {
 		protected var targetIndex:int;		
 		public var isScrolling:Boolean;
 			
-		protected var callbackOnReachEntry:Function;
+		public var callbackOnReachEntry:Function;
 	
 		protected static const SCROLL_SPEED_PER_SECOND:Number = 200;
 		
 				
+		protected var alwaysShowYear:Boolean;
 		
 		
-		
-		public function Timeline(slideData:InfographicSlideData, callbackOnReachEntry:Function) {
+		public function Timeline(slideData:InfographicSlideData, markerFrequency:int, callbackOnReachEntry:Function, alwaysShowYear:Boolean, horizontalSpacing:Number) {
 			this.callbackOnReachEntry = callbackOnReachEntry;
+			this.horizontalSpacing = horizontalSpacing;
+			this.alwaysShowYear = alwaysShowYear;
 			this.slideData = slideData;
 			
 			
@@ -58,12 +64,13 @@ package med.infographic {
 			// parse all the graphstates
 			// this is a slow way to do it
 
-			const YEAR_EDGE_BUFFER:int = 10;
+			var YEAR_EDGE_BUFFER:int = 10;	
 			
 			startYear = int(slideData.xml.graphstate[0].@value) - YEAR_EDGE_BUFFER;
 			endYear = int(slideData.xml.graphstate[slideData.xml.graphstate.length()-1].@value) + YEAR_EDGE_BUFFER;
 			
 			numYears = (endYear-startYear);
+			
 			
 			
 			for (var i:int = 0; i < numYears; i++) {
@@ -75,12 +82,12 @@ package med.infographic {
 				
 				var lineHeight:Number;
 				
-				if (((startYear + i) % 10) == 0) {
-					// decade marker
+				if (markerFrequency && (((startYear + i) % markerFrequency) == 0)) {
+					// 'decade' marker
 					if (isEntry) {
-						lineHeight = LINE_HEIGHT_DECADE_ENTRY;
+						lineHeight = LINE_HEIGHT_MARKER_ENTRY;
 					} else {
-						lineHeight = LINE_HEIGHT_DECADE;
+						lineHeight = LINE_HEIGHT_MARKER;
 					}
 				
 				} else {
@@ -101,7 +108,7 @@ package med.infographic {
 				line.graphics.drawRect(-LINE_WIDTH * 0.5, -lineHeight, LINE_WIDTH, lineHeight);
 				line.graphics.endFill();
 				
-				line.x = i * LINE_HORIZONTAL_SPACING;
+				line.x = i * horizontalSpacing;
 				line.y = 0;
 				
 				scrollingLayer.addChild(line);
@@ -113,13 +120,15 @@ package med.infographic {
 			
 			entryIndex = -1;
 			
-			jumpToLineIndex(-INDEX_OFFSET_TO_GET_OFF_SCREEN);
+			
+			indexOffsetToGetOffScreen = Math.ceil(500 / horizontalSpacing);
+			jumpToLineIndex(-indexOffsetToGetOffScreen);
 			
 			updateYearField();
 		}
 
 		
-		protected static const INDEX_OFFSET_TO_GET_OFF_SCREEN:int = 22;
+		protected var indexOffsetToGetOffScreen:int = 22;
 
 		
 		
@@ -144,7 +153,7 @@ package med.infographic {
 		
 		
 		public function jumpToLineIndex(index:int):void {
-			var targetX:Number = index * LINE_HORIZONTAL_SPACING;
+			var targetX:Number = index * horizontalSpacing;
 			
 			// jump
 			scrollingLayer.x = -targetX;
@@ -159,7 +168,7 @@ package med.infographic {
 
 			if (entryIndex >= slideData.xml.graphstate.length()) {
 				// no more entries! just advance to )past) the end
-				targetIndex = numYears + INDEX_OFFSET_TO_GET_OFF_SCREEN;
+				targetIndex = numYears + indexOffsetToGetOffScreen;
 				isScrolling = true;
 				TweenMax.to(yearText, 0.5, { delay:1.0, alpha:0 } );
 				return;
@@ -174,7 +183,7 @@ package med.infographic {
 		
 
 		protected function get currentIndex():int {
-			return -(Math.floor(scrollingLayer.x / LINE_HORIZONTAL_SPACING));
+			return -(Math.floor(scrollingLayer.x / horizontalSpacing));
 		}
 		
 		
@@ -212,6 +221,9 @@ package med.infographic {
 		public static const REACHED_ENTRY_ANIMATION_DURATION_SECONDS:Number = 0.5;
 		
 		
+		public var expandEntryLineWhenReached:Boolean = true;
+		
+		
 		public function finishedAdvance():void {			
 			
 			var featuredString:String = "";
@@ -223,10 +235,12 @@ package med.infographic {
 			if (entryXML) {
 				featuredString = entryXML.@featuredText;
 
-				var centerLine:Shape = lines[currentIndex];			
-				var repeatDelay:Number = TimelineSlide.FEATURED_TEXT_DISPLAY_TIME_SECONDS - (2 * Timeline.REACHED_ENTRY_ANIMATION_DURATION_SECONDS);
+				if (expandEntryLineWhenReached) {					
+					var centerLine:Shape = lines[currentIndex];			
+					var repeatDelay:Number = TimelineSlide.FEATURED_TEXT_DISPLAY_TIME_SECONDS - (2 * Timeline.REACHED_ENTRY_ANIMATION_DURATION_SECONDS);
 
-				TweenMax.to(centerLine, REACHED_ENTRY_ANIMATION_DURATION_SECONDS, { y:20, height: LINE_HEIGHT_CURRENT, repeat:1, yoyo:true, repeatDelay:repeatDelay, ease:Strong.easeInOut } );
+					TweenMax.to(centerLine, REACHED_ENTRY_ANIMATION_DURATION_SECONDS, { y:20, height: LINE_HEIGHT_CURRENT, repeat:1, yoyo:true, repeatDelay:repeatDelay, ease:Strong.easeInOut } );
+				}
 				
 			}
 			
@@ -237,17 +251,22 @@ package med.infographic {
 		
 		
 		
+		
 		protected function updateYearField(atEntry:Boolean=false):void {
 			
+			if ((alwaysShowYear == false) && (atEntry == false)) {
+				yearText.visible = false;
+				return;
+			}
 			
 			if (currentIndex < 0) {
 				yearText.visible = false;
 				return;
-				
+					
 			} else if (currentIndex == 0) {	
-				yearText.visible = true;
 				TweenMax.fromTo(yearText, 0.5, { alpha:0 }, {alpha:1.0, immediateRender:true} );
 			}
+			
 			
 			
 			var string:String;
@@ -266,6 +285,7 @@ package med.infographic {
 				string = String(startYear + currentIndex); 
 			}
 
+			yearText.visible = true;
 			
 			yearText.text = string;
 			

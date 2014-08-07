@@ -16,17 +16,28 @@ package med.infographic {
 		
 		public function TimelineSlide(slideData:InfographicSlideData) {
 			this.slideData = slideData;
-			
-			
+						
 			// change color of fade
 			var colorTransform:ColorTransform = fade.transform.colorTransform;
 			colorTransform.color = slideData.backgroundColor;
 			fade.transform.colorTransform = colorTransform;
 			
 			
-			featuredText.visible = false;
+			var markerFrequency:int = int(slideData.xml.@markerFrequency);
+			if (markerFrequency <= 1)	markerFrequency = 10;
 			
-			timeline = new Timeline(slideData, showFeaturedText);
+			var alwaysShowYear:Boolean = (slideData.xml.@alwaysShowYear == "true");
+			var horizontalSpacing:Number = Number(slideData.xml.@lineSpacing);
+			var fadeAtScreenEdges:Boolean = (slideData.xml.@fadeAtScreenEdges == "true");
+
+			
+			fade.visible = fadeAtScreenEdges;
+			
+			topText.visible = false;
+			
+			featuredText.visible = false;
+						
+			timeline = new Timeline(slideData, markerFrequency, showFeaturedText, alwaysShowYear, horizontalSpacing);
 			timeline.y = 118;
 			addChild(timeline);
 			
