@@ -1211,10 +1211,7 @@ Australia.</featuredText>
 		
 	</Infographic>
 	
-<<<<<<< HEAD
 	<Infographic id="info6"> <!-- To go to the doctor? Or, not to go to the doctor? -->
-=======
-	<Infographic id="info6">
 		
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
 			<appearance textColor="#653279" backgroundColor="#653279" boxColor="#FFFFFF"/>
@@ -1263,7 +1260,6 @@ on the phone and
 very reassuring.</featuredText>
 			<quoteBy>Sarah, Auckland Mum.</quoteBy>
 		</slide>
->>>>>>> 6fa23be11f2b6428d5d9eb0c33750b73d329cad2
 	</Infographic>
 	
 	<Infographic id="vision info1">
