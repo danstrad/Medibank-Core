@@ -167,6 +167,7 @@ package med.infographic {
 		
 		protected var numeralsFinishedCount:int = 0;
 		
+		
 		public function numeralFinished():void {
 			numeralsFinishedCount++;
 			

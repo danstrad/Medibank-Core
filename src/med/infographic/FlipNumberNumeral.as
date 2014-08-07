@@ -215,7 +215,7 @@ package med.infographic {
 			
 			lowerHalfTemp.visible = false;
 			upperHalfTemp.visible = true;			
-			TweenMax.fromTo(upperHalfTemp, DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { scaleY:1.0 }, { scaleY:0, immediateRender:true, onComplete: flipLowerHalfDown, ease:ExpoOut.ease } );
+			TweenMax.fromTo(upperHalfTemp, DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { scaleY:1.0 }, { scaleY:0, immediateRender:true, onComplete: flipLowerHalfDown, ease:ExpoIn.ease } );
 			
 			
 //			TweenMax.to(this, DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { onComplete: flipLowerHalfDown } );
@@ -228,7 +228,7 @@ package med.infographic {
 			
 			lowerHalfTemp.visible = true;
 			upperHalfTemp.visible = false;			
-			TweenMax.fromTo(lowerHalfTemp, DELAY_BEFORE_STARTING_NEXT_FLIP_SEC, { scaleY:0 }, { scaleY:1, immediateRender:true, onComplete:lockInValueLower, ease:ExpoIn.ease } );
+			TweenMax.fromTo(lowerHalfTemp, DELAY_BEFORE_STARTING_NEXT_FLIP_SEC, { scaleY:0 }, { scaleY:1, immediateRender:true, onComplete:lockInValueLower, ease:ExpoOut.ease } );
 			
 			lowerHalfTemp.numberField.text = currentValueAsString;
 			

@@ -39,7 +39,7 @@ package med.infographic {
 		protected var currentValue:int;
 		
 		
-		public function FloatingBox(value:int, testString:String, boxColor:uint, textColor:uint) {
+		public function FloatingBox(value:int, showNumber:Boolean, textString:String, topTextString:String, boxColor:uint, textColor:uint) {
 			
 			this.targetValue = value;
 			
@@ -52,13 +52,30 @@ package med.infographic {
 			}		
 			*/
 
-			numberField.textColor = textColor;
-			showNumberValue(0);
-
-			textField.text = testString;
+			if (showNumber) {
+				numberField.textColor = textColor;
+				showNumberValue(0);
+			} else {
+				numberField.visible = false;
+			}
+			
+				
+			textField.text = textString;
 			textField.textColor = textColor;
 			Text.boldText(textField);
-						
+					
+			if (topTextString != "") {
+				topTextField.text = topTextString;
+				topTextField.textColor = textColor;
+				Text.boldText(topTextField);
+			
+				// move number down
+				numberField.y += 15;
+				
+			} else {
+				topTextField.visible = false;
+			}
+				
 			textField.autoSize = TextFieldAutoSize.LEFT;
 			textField.y = (BOX_SIZE * 0.5) - textField.height - 15; 
 			

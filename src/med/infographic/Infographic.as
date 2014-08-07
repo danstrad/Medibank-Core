@@ -152,6 +152,13 @@ package med.infographic {
 						break;
 						
 						
+					case InfographicSlideData.TIMELINE_NUMBER:	
+						var timelineNumber:TimelineNumberSlide = new TimelineNumberSlide(slideData);
+						addSlideSprite(timelineNumber);
+						timelineNumber.animateOn();
+						break;	
+						
+						
 					case InfographicSlideData.SLIDING_TAGS:							
 						var slidingTagsSlide:SlidingTagsSlide = new SlidingTagsSlide(slideData);
 						addSlideSprite(slidingTagsSlide);						

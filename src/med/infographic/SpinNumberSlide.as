@@ -20,7 +20,7 @@ package med.infographic {
 	
 		
 		protected var featuredTextPanel:Sprite;
-		protected var featuredTextEntries:Vector.<FeaturedTextEntry>;
+		protected var featuredTextEntries:Vector.<_FeaturedTextEntry>;
 		
 		protected var graphStateIndex:int = 0;
 		protected var graphStatesXML:Vector.<XML> = new Vector.<XML>();
@@ -64,13 +64,13 @@ package med.infographic {
 			
 			
 			// add entries
-			featuredTextEntries = new Vector.<FeaturedTextEntry>();
+			featuredTextEntries = new Vector.<_FeaturedTextEntry>();
 			
 			for each (graphStateXML in graphStatesXML) {
 	
-				var featuredTextEntry:FeaturedTextEntry = new FeaturedTextEntry(); 			
-				featuredTextEntry.textField.text = graphStateXML.@featuredText;
-			
+				var featuredTextEntry:_FeaturedTextEntry = new _FeaturedTextEntry(); 			
+				featuredTextEntry.textField.text = TextUtils.safeText(graphStateXML.@featuredText);
+
 				featuredTextEntry.y = (featuredTextEntries.length * ENTRY_HEIGHT);
 				featuredTextEntries.push(featuredTextEntry);
 				featuredTextPanel.addChild(featuredTextEntry);

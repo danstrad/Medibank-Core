@@ -66,7 +66,9 @@ package med.infographic {
 			for (var i:int = 0; i < slideData.xml.box.length(); i++) {
 				var boxXML:XML = slideData.xml.box[i];
 				
-				var box:FloatingBox = new FloatingBox(int(boxXML.@value), boxXML.@text, slideData.boxColor, slideData.textColor);
+				var showNumber:Boolean = boxXML.hasOwnProperty("@value");
+				
+				var box:FloatingBox = new FloatingBox(int(boxXML.@value), showNumber, boxXML.@text, boxXML.@topText, slideData.boxColor, slideData.textColor);
 				boxes.push(box);
 				
 				
