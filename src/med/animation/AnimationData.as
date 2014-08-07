@@ -48,7 +48,8 @@ package med.animation {
 		
 		protected static const SIXTH:Number = Box.SIZE / 6
 		static protected function roundCoordinate(n:Number, centering:Number, gridOffset:Number):Number {
-			return Math.round((n - centering / 2 + gridOffset) / SIXTH) * SIXTH+ centering / 2 - gridOffset;
+			//return Math.round((n - centering / 2 + gridOffset) / SIXTH) * SIXTH + centering / 2 - gridOffset;
+			return n;
 		}
 		
 		public function frameFocus(isChapter:Boolean):void {

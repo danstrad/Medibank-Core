@@ -3,6 +3,7 @@ package med.display {
 	import flash.display.DisplayObject;
 	import flash.display.Graphics;
 	import flash.display.Sprite;
+	import flash.filters.DropShadowFilter;
 	import flash.geom.ColorTransform;
 	import flash.geom.Point;
 	import flash.text.TextFormat;
@@ -229,7 +230,7 @@ package med.display {
 				showInfographic(data, w, h, contentInfo.infographicScale);
 			}
 			if (contentInfo.text) {
-				showText(contentInfo.text, w, h, contentInfo.textType, contentInfo.textScale, contentInfo.subtext, contentInfo.subtextScale);
+				showText(contentInfo.text, w, h, contentInfo.textType, contentInfo.textScale, contentInfo.subtext, contentInfo.subtextScale, (imageContent != null));
 			}
 			
 			if (contentInfo.linkedStory) {
@@ -249,11 +250,27 @@ package med.display {
 			}
 		}
 		
-		public function showText(text:String, width:Number, height:Number, textType:String, textScale:Number = 1, subtext:String = "", subtextScale:Number = 1):void {
-			textContent = new TextContent(text, textType, textScale, subtext, subtextScale, width - 2 * TextContent.MARGIN, height - 2 * TextContent.MARGIN);
-			addChild(textContent);
-			content.addChild(textContent);
+		public function showText(text:String, width:Number, height:Number, textType:String, textScale:Number = 1, subtext:String = "", subtextScale:Number = 1, addShadow:Boolean = false):void {
+			textContent = generateTextContent(text, width, height, textType, textScale, subtext, subtextScale);
 			bg.visible = true;
+			
+			if (addShadow) {
+				var shadow:TextContent = generateTextContent(text, width, height, textType, textScale, subtext, subtextScale);
+				shadow.transform.colorTransform = new ColorTransform(0, 0, 0, 1);
+				shadow.x = shadow.y = 1;
+				shadow.alpha = 0.8;
+				textContent.addChildAt(shadow, 0);
+				shadow = generateTextContent(text, width, height, textType, textScale, subtext, subtextScale);
+				shadow.transform.colorTransform = new ColorTransform(0, 0, 0, 1);
+				shadow.x = shadow.y = -0.5;
+				shadow.alpha = 0.2;
+				textContent.addChildAt(shadow, 0);
+			}
+			content.addChild(textContent);
+		}
+		
+		protected static function generateTextContent(text:String, width:Number, height:Number, textType:String, textScale:Number = 1, subtext:String = "", subtextScale:Number = 1):TextContent {
+			return new TextContent(text, textType, textScale, subtext, subtextScale, width - 2 * TextContent.MARGIN, height - 2 * TextContent.MARGIN);
 		}
 		
 		public function showImage(imageURL:String, width:Number, height:Number, scrollMargin:Number):void {

@@ -35,7 +35,7 @@ package med.animation {
 			//var centreDistance:Number = bounds.width * 0.9;// 1.05;
 			
 			var bounds:Rectangle = new Rectangle(0, 0, total * 0.7, Math.max(400, total * 0.3));// , total * 0.4));
-			var centreDistance:Number = 200 + bounds.width * 0.5;
+			var centreDistance:Number =  50 + bounds.width * 0.5;// 200 + bounds.width * 0.5;
 
 			var mid:Point = Point.polar(centreDistance, animationInfo.direction);
 			

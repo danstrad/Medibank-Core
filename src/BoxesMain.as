@@ -15,6 +15,7 @@ package {
 	import flash.geom.ColorTransform;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.media.SoundTransform;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.text.TextField;
@@ -126,6 +127,8 @@ package {
 			
 			new _FontDump();
 			TextUtils.createTextFormats();
+			
+			soundTransform = new SoundTransform(0);
 			
 			backgroundImages = new Vector.<BackgroundImage>();
 			homeAnimations = new Vector.<HomeAnimationController>();
@@ -278,9 +281,9 @@ package {
 			var currentChapterID:int = (currentChapter != null) ? currentChapter.id : 0;
 
 			if (chapter) {
-				//var homeTarget:Point = homeAnimation.getTargetPosition();
-				//var boxHighlightPosition:Point = new Point(homeBox.destination.x + homeTarget.x, homeBox.destination.y + homeTarget.y);
-				var boxHighlightPosition:Point = new Point(homeBox.destination.x + homeBox.parent.x, homeBox.destination.y + homeBox.parent.y);
+				var homeTarget:Point = homeAnimation.getTargetPosition();
+				var boxHighlightPosition:Point = new Point(homeBox.destination.x + homeTarget.x, homeBox.destination.y + homeTarget.y);
+				//var boxHighlightPosition:Point = new Point(homeBox.destination.x + homeBox.parent.x, homeBox.destination.y + homeBox.parent.y);
 				expandStoryFrom(chapter.baseStory, chapter.id, false, homeBox, boxHighlightPosition, false, true);
 			} else {
 				currentAnimation = null;

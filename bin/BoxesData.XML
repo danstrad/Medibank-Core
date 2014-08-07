@@ -107,11 +107,15 @@
 		</Box>		
 		
 		<Animation type="Floating" direction="90" randomSeed="24">
-			<!-- 
 			<Box id="B" size="1.1666" />
-			<Box id="D" size="0.666" />
 			<Box id="E" size="0.8333" />
-			 -->
+			<Box id="F" size="1.1666" />
+			<Box id="H" size="0.8333" />
+			<Box id="J" size="1.1666" />
+			<Box id="L" size="0.8333" />
+			<Box id="M" size="1.1666" />
+			<Box id="O" size="0.8333" />
+			<Box id="P" size="0.8333" />
 		</Animation>
 	</Story>
 	
@@ -121,84 +125,92 @@
 			<Text>Delivering quality care across New Zealand</Text>
 			<LinkedStory>doc1</LinkedStory>
 		</Box>
-		<Box id="I">
+		<Box id="B">
 			<Text>Meet Leith, Medibank nurse</Text>
 			<LinkedStory>prof1</LinkedStory>
 		</Box>
-		<Box id="O">
+		<Box id="C">
 			<Text>How far is too far for specialist healthcare?</Text>
 			<LinkedInfographic>info1</LinkedInfographic>
 		</Box>
-		<Box id="B">
+		<Box id="D">
 			<Text>Meeting the mental health challenge</Text>
 			<LinkedStory>doc2</LinkedStory>
 		</Box>
-		<Box id="C">
+		<Box id="E">
 			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians</Text>
 			<LinkedStory>doc3</LinkedStory>
 		</Box>		
-		<Box id="P">
+		<Box id="F">
 			<Text>Making advice and care more accessible.</Text>
 			<LinkedInfographic>info2</LinkedInfographic>
 		</Box>
-		<Box id="J">
+		<Box id="G">
 			<Text>Fair Game sports equipment - 2014 Community Fund Grant Recipient for Western Australia</Text>
 			<LinkedStory>prof4</LinkedStory>
 		</Box>
-		<Box id="D">
+		<Box id="H">
 			<Text>Creating a system for Better Health</Text>
 			<LinkedStory>doc4</LinkedStory>
 		</Box>			
-		<Box id="E">
+		<Box id="I">
 			<Text>Healthy Weight for Life</Text>
 			<LinkedStory>doc5</LinkedStory>
 		</Box>		
-		<Box id="K">
+		<Box id="J">
 			<Text>BLIND SPORTS VICTORIA 2014 - $10,000 Grant Recipient for Victoria</Text>
 			<LinkedStory>prof5</LinkedStory>
 		</Box>
-		<Box id="Q">
+		<Box id="K">
 			<Text>Making healthcare affordable.</Text>
 			<LinkedInfographic>info3</LinkedInfographic>
 		</Box>
-		<Box id="F">
+		<Box id="L">
 			<Text>Rewarding better health with flybuys and Medibank</Text>
 			<LinkedStory>doc7</LinkedStory>
 		</Box>
-		<Box id="L">
+		<Box id="M">
 			<Text>Burdekin Police Citizen Youth Welfare Association - 2014 Grant Recipient for Queensland</Text>
 			<LinkedStory>prof6</LinkedStory>
 		</Box>
-		<Box id="R">
+		<Box id="N">
 			<Text>Contributing to communities.</Text>
 			<LinkedInfographic>info4</LinkedInfographic>
 		</Box>
-		<Box id="G">
+		<Box id="O">
 			<Text>1800 RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault</Text>
 			<LinkedStory>doc8</LinkedStory>
 		</Box>
-		<Box id="M">
+		<Box id="P">
 			<Text>Bankstown Woman’s Community Garden - 2014 Grant Recipient for New South Wales</Text>
 			<LinkedStory>prof7</LinkedStory>
 		</Box>
-		<Box id="H">
+		<Box id="Q">
 			<Text>Walking side-by-side with Heart Foundation</Text>
 			<LinkedStory>doc9</LinkedStory>
 		</Box>
-		<Box id="S">
+		<Box id="R">
 			<Text>To go to the doctor? Or, not to go to the doctor?</Text>
 			<LinkedInfographic>info6</LinkedInfographic>
 		</Box>
-		<Box id="N">
+		<Box id="S">
 			<Text>Whyalla Men's Shed - 2014 Grant Recipient for South Australia</Text>
 			<LinkedStory>prof8</LinkedStory>
 		</Box>
 
 		<Animation type="Sprouting" direction="40" randomSeed="30">
-			<Box id="A" size="0.666" />
-			<Box id="C" size="1.5" />
-			<Box id="D" size="1.5" />
-			<Box id="F" size="0.5" />
+			<Box id="A" size="0.8333" />
+			<Box id="C" size="1.1666" />
+			<Box id="D" size="1.1666" />
+			<Box id="F" size="0.8333" />
+			<Box id="H" size="1.1666" />
+			<Box id="J" size="0.8333" />
+			<Box id="L" size="1.1666" />
+			<Box id="M" size="0.8333" />
+			<Box id="O" size="1.1666" />
+			<Box id="P" size="0.8333" />
+			<Box id="R" size="0.8333" />
+
 		</Animation>
 	</Story>
 	
@@ -216,17 +228,17 @@
 			<Text>Meeting the mental health challenge</Text>
 			<LinkedStory>doc2</LinkedStory>
 		</Box>		
-		<Box id="F">
+		<Box id="E">
 			<Text>Growing with Australia.</Text>
 			<LinkedInfographic>info5</LinkedInfographic>
 		</Box>
-		<Box id="D">
-			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians</Text>
-			<LinkedStory>doc3</LinkedStory>
-		</Box>
-		<Box id="E">
+		<Box id="F">
 			<Text>ahm – A more flexible choice</Text>
 			<LinkedStory>doc10</LinkedStory>
+		</Box>
+		<Box id="F">
+			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians</Text>
+			<LinkedStory>doc3</LinkedStory>
 		</Box>
 
 		<Animation type="Sliding" direction="90" slidingWidth="2">
@@ -282,15 +294,14 @@ Read the full Medibank Health Check – is it time to unplug? report for more in
 		</Box>
 		<Box id="G">
 			<Infographic scale="0.4">art1 Box G</Infographic>
-		</Box>
+		</Box>		
 		
-		
-		<Animation type="Floating" direction="90" randomSeed="41" >
-			<Box id="C" width="2.5" height="1.5" />
-			<Box id="D" width="3" height="2" />
-			<Box id="E" width="3.5" height="2.5" />
-			<Box id="F" width="3.5" height="2" />
-			<Box id="G" width="4.333" height="2.1666" />			
+		<Animation type="Floating" direction="90" randomSeed="2" >
+			<Box id="C" x="2" y="0.5" width="2.5" height="1.5" />
+			<Box id="D" x="4" y="-1.666" width="3" height="2" colorIndex="0" />
+			<Box id="E" x="5.666" y="1.5" width="3.5" height="2.5" />
+			<Box id="F" x="9" y="-2" width="3.5" height="2" colorIndex="2" />
+			<Box id="G" x="10.666" y="1.5" width="4.333" height="2.1666" colorIndex="2" />			
 		</Animation>
 	</Story>
 	
@@ -337,8 +348,8 @@ of Australia’s GDP</Text>
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="2.5" height="2" />
 			<Box id="E" width="2.5" height="3" />
-			<Box id="F" width="3" height="2" x="2.75" y="2" />
-			<Box id="G" size="0.8333" x="1.6666" y="3.911" />			
+			<Box id="G" x="1.75" y="1.5" size="1" />			
+			<Box id="F" x="2.75" y="5" width="3" height="2" colorIndex="1" />
 		</Animation>
 	</Story>
 	
@@ -354,9 +365,9 @@ of Australia’s GDP</Text>
 		<Box id="D">
 			<Text type="Splash">Medibank is supporting Grant on his Road to Rio</Text>
 		</Box>
-		<!-- <Box id="F">
-			<Image url="assets/doc1/doc1 Delivering quality care across New Zealand IMAGE.jpg" />
-		</Box> -->
+		<Box id="F">
+			<Image url="assets/doc1/F.png" />
+		</Box>
 		<Box id="E">
 			<Text type="Content">Grant had always been very active, hiking and camping with the scouts, but a diving accident in 1989 broke his neck and left him with tetraplegia. 
 Now, with the help of his carers, Grant stays active with different sports and activities, including abseiling, blo-karting and river rafting. “If it is possible for me to do it, I will!”
@@ -368,14 +379,14 @@ Testament to his positive spirit, Grant hopes to represent New Zealand in target
 			<Box id="B" width="2.5" height="4.444" /> <!-- 1152, 2048 -->
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="1.5" height="1" />
-			<Box id="F" size="0.8333" x="1.6666" y="2.0888" />
+			<Box id="F" width="2" height="1.666" /> <!-- 600, 500 -->
 			<Box id="E" width="3" height="2.666" />
 		</Animation>
 		<Animation type="Sprouting" direction="90" randomSeed="41">
 			<Box id="B" width="2.5" height="4.444" /> <!-- 1152, 2048 -->
 			<Box id="C" width="2.5" height="1.5" branch="ru" />
 			<Box id="D" width="1.5" height="1" />
-			<Box id="F" size="0.8333" x="1.6666" y="2.0888" />
+			<Box id="F" width="2" height="1.666" /> <!-- 600, 500 -->
 			<Box id="E" width="3" height="2.666" />
 		</Animation>
 	</Story>
@@ -391,18 +402,18 @@ six Australians take their own life – almost double the national road toll –
 [b]Every year[/b]
 it costs $28.6 billion to support people with a mental illness in Australia, not including indirect costs like lost productivity.</Text>
 		</Box>
+		<Box id="F">
+			<Image url="assets/doc2/F.png" />
+		</Box>
 		<Box id="C">
 			<Text type="Quote">Mental health is an issue close to the heart of Medibank and we believe Australia has an unprecedented opportunity to meet the mental health challenge, delivering better outcomes at a lower cost.</Text>
 		</Box>
-		<!-- <Box id="F">
-			<Image url="assets/doc1/doc1 Delivering quality care across New Zealand IMAGE.jpg" />
-		</Box> -->
 		<Box id="D">
 			<Text type="Splash">Australia has an unprecedented opportunity to meet the mental health challenge.</Text>
 		</Box>
-		<!-- <Box id="G">
-			<Image url="assets/doc1/doc1 Delivering quality care across New Zealand IMAGE.jpg" />
-		</Box> -->
+		<Box id="G">
+			<Image url="assets/doc2/G.png" />
+		</Box>
 		<Box id="E">
 			<Text type="Content">Australia has an unprecedented opportunity to meet the mental health challenge.
 A mental health system with:
@@ -425,15 +436,19 @@ Demonstrating our commitment to better mental health, we also partner with like-
 		
 		<Animation type="Sprouting" direction="90" randomSeed="41">
 			<Box id="B" width="2.5" height="3" />
+			<Box id="F" width="3" height="2" /> <!-- 600, 400 -->
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="1.5" height="1" />
 			<Box id="E" width="3" height="2.5" />
+			<Box id="G" width="3" height="2" /> <!-- 600, 400 -->
 		</Animation>
 		<Animation type="Sliding" direction="180" randomSeed="41" slidingWidth="2.5">
 			<Box id="B" width="2.5" height="3" />
+			<Box id="F" width="2.5" height="1.666" /> <!-- 600, 400 -->
 			<Box id="C" width="2.5" height="1.5" />
-			<Box id="D" width="1.5" height="1" />
-			<Box id="E" width="3" height="2.5" />
+			<Box id="D" x="-2" y="7" width="1.5" height="1" />
+			<Box id="E" width="2.5" height="3" />
+			<Box id="G" width="2.5" height="1.666" /> <!-- 600, 400 -->
 		</Animation>
 	</Story>
 	
@@ -475,12 +490,13 @@ The beyondblue Support Service is just one way Medibank is using its clinical ex
 			<Box id="G" width="3" height="2" /> <!-- 600, 400 -->
 		</Animation>
 		<Animation type="Sliding" direction="180" randomSeed="41" slidingWidth="2.5">
-			<Box id="B" width="4" height="2.3" /> <!-- 1000, 575 -->
+			<Box id="B" width="2.5" height="1.4375" /> <!-- 1000, 575 -->
 			<Box id="C" width="2.5" height="1.5" />
-			<Box id="D" width="1.5" height="1" />
-			<Box id="E" width="3" height="2.5" />
-			<Box id="F" width="3" height="2" /> <!-- 600, 400 -->
-			<Box id="G" width="3" height="2" /> <!-- 600, 400 -->
+			<Box id="F" width="2.5" height="1.666" /> <!-- 600, 400 -->
+			<Box id="D" x="-2" y="3.75" width="1.5" height="1" />
+			<Box id="G" width="2.5" height="1.666" /> <!-- 600, 400 -->
+			<Box id="H" x="2" y="5.5" width="1.5" height="1" />
+			<Box id="E" width="2.5" height="2.5" />
 		</Animation>
 	</Story>
 	
@@ -541,12 +557,9 @@ Norm, 67, Queensland</Text>
 		<Box id="F">
 			<Text type="Splash">“The program has shown me that keeping my weight low has reduced the load on my hip/back and has given me back a lot of mobility, flexibility and strength.”
 David, 64, Victoria</Text>
-			<!-- <Image url="assets/doc4/box B.jpg" />  -->
+			<!-- <Image url="assets/doc5/F.png" />  -->
 		</Box>
 		<Box id="D">
-			<!-- <Text type="Label">1.6 million Australians living with osteoarthritis (2010 statistic - overall source)
-
-Osteoarthritis of the knee and hip are the most common forms of arthritis in Australia</Text> -->
 			<Text type="Stats">[b]1.6[/b]
 million Australians living with osteoarthritis
 
@@ -555,7 +568,7 @@ Osteoarthritis of the knee and hip are the most common forms of arthritis in Aus
 		<Box id="G">
 			<Text type="Splash">“I've never felt so good in years, have become more aware of the foods I should be eating and am very happy within myself. Never ever thought that by losing weight my hip would feel so good.”
 Gloria, Tasmania</Text>
-			<!-- <Image url="assets/doc4/box B.jpg" />  -->
+			<!-- <Image url="assets/doc5/G.png" />  -->
 		</Box>
 		<Box id="H">
 			<Text type="Splash">Weight control and activity are the best forms of preventing arthritis</Text>
@@ -795,8 +808,8 @@ ahm, with the backing of Medibank, is there to provide health insurance for peop
 		<Animation type="Sliding" direction="180" randomSeed="41" slidingWidth="2.5">
 			<Box id="B" width="2.5" height="1.40625" /> <!-- 640, 360 -->
 			<Box id="E" width="2.5" height="2" />
-			<Box id="D" x="2" y="1" width="1.5" height="1" />
-			<Box id="F" x="-2" y="2" width="1.5" height="0.99" /> <!-- 600, 395 -->
+			<Box id="D" x="2" y="0.7" width="1.5" height="1" />
+			<Box id="F" x="-2" y="2.40625" width="1.5" height="0.99" /> <!-- 600, 395 -->
 		</Animation>
 	</Story>	
 	
@@ -826,9 +839,9 @@ By working from home, Leith benefits too because she gets to enjoy more valuable
 			<Box id="D" width="3" height="2.5" />
 		</Animation>
 		<Animation type="Sliding" direction="180" randomSeed="41" sliderWidth="2.5">
-			<Box id="B" width="4.5" height="3" /> <!-- 1000, 667 -->
-			<Box id="C" width="1.5" height="1.5" />
+			<Box id="B" width="2.5" height="1.666" /> <!-- 1000, 667 -->
 			<Box id="D" width="2.5" height="3" />
+			<Box id="C" x="1.75" y="0.888" width="1" height="1" />
 		</Animation>
 	</Story>
 	
@@ -1358,7 +1371,7 @@ government spending on
 healthcare has skyrocketed and 
 is projected to increase by 189% 
 by 2033, reflecting 12.4% of GDP." />
-		</slide>			
+ 		</slide>			
 
 		<slide type="center_text_box" duration="4000" animateOn="squash" animateOff="none">
 			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
@@ -1381,7 +1394,7 @@ to policy.</featuredText>
 	
 	<Story id="vision story section">
 		<Box id="A">
-			<Image url="assets/prof9/BOX B.jpg" />
+			<Image url="assets/vision/A.png" />
 			<Text type="Splash" textScale="0.85">WE ARE ONE OF AUSTRALIA’S LEADING
 HEALTH COMPANIES. AND WE STAND FOR
 BETTER HEALTH. FOR EVERYONE.</Text>
@@ -1392,7 +1405,7 @@ BETTER HEALTH. FOR EVERYONE.</Text>
 We are committed to supporting Australians with their health and wellbeing and guiding them towards the best choices and outcomes.</Text>
 		</Box>
 		<Box id="C">
-			<Image url="assets/prof9/BOX B.jpg" />
+			<Image url="assets/vision/C.png" />
 		</Box>
 		<Box id="D">
 			<Text type="Stats">People know and trust Medibank and ahm. 
@@ -1400,7 +1413,7 @@ We are committed to supporting Australians with their health and wellbeing and g
 people trust us with their health every day.</Text>
 		</Box>
 		<Box id="E">
-			<Image url="assets/prof9/BOX B.jpg" />
+			<Image url="assets/vision/E.png" />
 		</Box>
 		<Box id="F">
 			<Text type="Quote">As well as being Australia’s largest health insurer, we are also Australia’s largest provider of tele-healthcare solutions. We partner with government and other organisations to provide scalable, multi-channel healthcare services that reduce the burden on the public system while providing high quality, accessible care at an efficient cost.
@@ -1418,19 +1431,18 @@ in medical claims on their behalf each year</Text>
 		</ContinueButton>
 
 		
-		<Animation type="Sprouting" direction="170" randomSeed="41">
-			<Box id="A" x="3.5" y="2.215" width="7" height="4" color="#ec4d6b" />
-			<Box id="B" width="3" height="2" color="#ec4d6b" />
-			<Box id="C" width="3" height="2" color="#ec4d6b" />
-			<Box id="D" width="2" height="1.5" color="#ec4d6b" />
-			<Box id="E" width="3" height="2" color="#ec4d6b" />
-			<Box id="F" xOffset="3.25" yOffset="1" width="3.5" height="1.5" color="#ec4d6b" />
-			<Box id="G" xOffset="-5.75" yOffset="-0.1666" width="2" height="1.5" color="#ec4d6b" /> <!-- Offsets relative to F, but needs to hang off E -->
+		<Animation type="Sprouting" direction="180" randomSeed="0">
+			<Box id="A" x="1" y="1.5" width="5" height="3" color="#ec4d6b" branch="dr" /> <!-- 1000, 600 -->
+			<Box id="B" width="3" height="2" color="#ec4d6b" branch="dl" />
+			<Box id="C" width="3" height="2" color="#ec4d6b" branch="rd" /> <!-- 600, 400 -->
+			<Box id="D" width="2" height="1.5" color="#ec4d6b" branch="rd" />
+			<Box id="E" width="3" height="2" color="#ec4d6b" branch="dl" /> <!-- 600, 400 -->
+			<Box id="F" width="3.5" height="1.5" branch="rd" color="#ec4d6b" />
+			<Box id="G" xOffset="-5.75" yOffset="-0.1666" width="2" height="1.5" color="#ec4d6b" branch="ld" /> <!-- Offsets relative to F, but needs to hang off E -->
 		</Animation>
 	</Story>	
 	
 	<Infographic id="vision info2">
-		<!-- Flashing boxes, timeline -->
 		<slide type="floating_boxes" duration="20000">
 			<appearance textColor="#E4002B" backgroundColor="#E4002B" boxColor="#FFFFFF"/>
 			<featuredText>Better health is our business, 
@@ -1553,7 +1565,6 @@ healthier lives.</featuredText>
 		<slide type="bar_graph">
 			<title>What would you do instead?</title>
 			<subtitle>(Three Responses Required)</subtitle>
-			<!-- <optionColor1>#744686</optionColor1>  -->
 			<optionColor1>#7b4e8e</optionColor1>
 			<optionColor2>#845b94</optionColor2>
 
@@ -1576,11 +1587,6 @@ healthier lives.</featuredText>
 		<slide type="pie_graph">
 			<title>Where does the money go?</title>
 			
-			<!-- 
-			<centerValue>9.5h</centerValue>
-			<centerText>Total screen time</centerText>
-			 -->
-
 			<appearance startAngle="45" />
 
 			<slice text="Direct health costs" subtext="E.g. Hospital and health services" valueText="$13.8 billion" value="49" />
