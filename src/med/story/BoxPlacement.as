@@ -14,6 +14,8 @@ package med.story {
 		public var color:uint;
 		public var inverted:Boolean;
 		
+		public var branch:String; // direction it sprouts in when using Sprouting animation style
+		
 		
 		public function BoxPlacement() {
 			unitsWide = 1;

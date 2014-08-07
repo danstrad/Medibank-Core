@@ -94,6 +94,14 @@ package med.display {
 		public function getWidth():Number { return w * super.scaleX; }
 		public function getHeight():Number { return h * super.scaleY; }
 		
+		public function getPositionPart(key:String):Point { 
+			for (var s:String in positions) {
+				trace(s, positions[s].x, positions[s].y);
+			}
+			var pos:Pos = positions[key];
+			if (pos) return new Point(pos.x, pos.y);
+			else return new Point(0, 0);
+		}
 		public function getX():Number { return super.x; }
 		public function getY():Number { return super.y; }
 		protected var positions:Dictionary;
@@ -301,6 +309,7 @@ package med.display {
 			g.drawRect( -Box.SIZE / 2, -Box.SIZE / 2, Box.SIZE, Box.SIZE);
 			g.endFill();
 		}
+		
 		
 		
 		protected static function createBlock(color:uint):Sprite {
