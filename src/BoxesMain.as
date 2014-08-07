@@ -439,7 +439,7 @@ package {
 			if (currentChapter) chapterID = currentChapter.id;
 
 			var story:Story;
-			if (currentInfographic.data.xml.hasOwnProperty("Story")) story = StorySet.getStory(currentInfographic.data.xml.Story[0].toString());
+			if (currentInfographic.data.xml.hasOwnProperty("LinkedStory")) story = StorySet.getStory(currentInfographic.data.xml.LinkedStory[0].toString());
 
 			if (story) {
 				

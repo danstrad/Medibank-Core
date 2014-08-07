@@ -20,7 +20,6 @@ also BackgroundImage
 
 Make extra storyHeaders expand instantly to avoid animation slowdown
 
-
 allow overriding the dir for each box in Sprouting
 
 

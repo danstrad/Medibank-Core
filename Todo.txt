@@ -1,0 +1,19 @@
+give 1800respect image a border/background?
+Give infographics a set background color so it doesnt interfere with bar colors
+
+When clicking "time to unplug", then transitioning to blue, camera is dumb
+
+Vision break
+
+
+art1:
+	F and G expand
+	Redo Layout
+
+art2:
+	Source background image
+	D and G aren't infographics - Used Stats text for now
+	E - infographic included in content?
+	Gap in expansion? according to  art2 box.pdf
+	Redo Layout
+
