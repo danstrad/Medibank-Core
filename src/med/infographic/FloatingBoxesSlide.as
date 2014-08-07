@@ -5,6 +5,9 @@ package med.infographic {
 	import com.greensock.easing.*;
 	import com.garin.Text;
 	import com.gskinner.utils.Rndm;
+	import flash.display.DisplayObject;
+	import flash.display.MovieClip;
+	import flash.display.Sprite;
 	import flash.filters.BlurFilter;
 	import flash.geom.Rectangle;
 	
@@ -146,13 +149,29 @@ package med.infographic {
 				
 			}
 							
-			// based on the number of "real" boxes we have, we might want to add some "dummy" boxes to flesh it out a bit
-			// todo
+			// find dummy boxes
+			findDummyBoxes();
 			
 			
 			showingBoxIndex = -1;
 		}
 
+		
+		protected var dummyBoxes:Vector.<DisplayObject>;
+		
+		
+		protected function findDummyBoxes():void {
+		
+			dummyBoxes = new Vector.<DisplayObject>();
+			
+			for (var i:int = 0; i < this.numChildren; i++) {
+				var childObject:DisplayObject = getChildAt(i);
+				if (childObject is _DummyFloatingBox) {
+					dummyBoxes.push(childObject);
+				}
+			}
+		}
+		
 		
 		
 		protected function showNextBox():void {
@@ -183,17 +202,29 @@ package med.infographic {
 		
 
 		public function animateOn():void {
-						
+			var delay:Number;
+			
 			for each (var box:FloatingBox in boxes) {
-				var delay:Number = (Rndm.integer(0, 500) * 0.001);
-				
-				if (hasFeatureText) {
-					delay += 0.5;
-				}
+				delay = (Rndm.integer(0, 500) * 0.001);
+				if (hasFeatureText) delay += 0.5;
 				
 				TweenMax.fromTo(box, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-1000 }, { x:box.x, immediateRender:true, delay:delay, ease:Strong.easeIn } );
 			}
-						
+					
+			
+			var blurFilter:BlurFilter = new BlurFilter(FloatingBox.BACK_BOX_BLUR, FloatingBox.BACK_BOX_BLUR, FloatingBox.BLUR_QUALITY);	
+				
+			
+			for each (var dummyBox:DisplayObject in dummyBoxes) {
+				delay = (Rndm.integer(0, 500) * 0.001);
+				if (hasFeatureText) delay += 0.5;
+
+				dummyBox.filters = [blurFilter];
+				
+				TweenMax.fromTo(dummyBox, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-1000 }, { x:dummyBox.x, immediateRender:true, delay:delay, ease:Strong.easeIn, onComplete:initDummyBox, onCompleteParams:[dummyBox] } );
+			}
+			
+			
 			// feature text
 			TweenMax.fromTo(featuredText, 1.0, { x: -800 }, { x: featuredText.x, immediateRender:true, ease:Strong.easeOut } );
 			
@@ -202,16 +233,32 @@ package med.infographic {
 		
 		
 		
+		protected function initDummyBox(dummyBox:DisplayObject):void {
+			var targetAlpha:Number = Math.max(0.1, dummyBox.alpha - (Rndm.integer(0, 15) * 0.01));
+			var delay:Number = Rndm.integer(0, 100) * 0.001;
+			var duration:Number = 1.0 + (Rndm.integer(0, 500) * 0.001);			
+			TweenMax.to(dummyBox, duration, { alpha: targetAlpha, repeat: -1, yoyo:true, delay:0 } );
+		}
+		
+		
+		
 		public function animateOff(callback:Function):void {		
+			var delay:Number;
 		
 			// feature text
 			TweenMax.fromTo(featuredText, 1.0, { x:featuredText.x }, { x:-800, immediateRender:true, ease:Strong.easeIn } );
 			
 			for each (var box:FloatingBox in boxes) {
-				var delay:Number = 0.5 + (Rndm.integer(0, 500) * 0.001);
+				delay = 0.5 + (Rndm.integer(0, 500) * 0.001);
 				TweenMax.fromTo(box, BOX_ANIMATE_ON_DURATION_SECONDS, { x:box.x }, { x:1000, immediateRender:true, delay:delay, ease:Strong.easeOut } );
 			}
 			
+			for each (var dummyBox:DisplayObject in dummyBoxes) {
+				delay = 0.5 + (Rndm.integer(0, 500) * 0.001);
+				TweenMax.fromTo(dummyBox, BOX_ANIMATE_ON_DURATION_SECONDS, { x:dummyBox.x }, { x:1000, immediateRender:true, delay:delay, ease:Strong.easeOut } );
+			
+			}
+				
 			// tween for timer
 			TweenMax.to(this, ANIMATE_OFF_DURATION_SECONDS, { onComplete:callback, onCompleteParams:[this] } );
 			
