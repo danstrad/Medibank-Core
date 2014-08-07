@@ -19,10 +19,10 @@ package med.infographic {
 		public static const BOX_SIZE_LARGE:Number = 295;
 		
 //		protected static const BACK_BOX_SCALE:Number = 0.2;
-		protected static const BACK_BOX_ALPHA:Number = 0.5;		
-		protected static const BACK_BOX_BLUR:Number = 16;	
-
-		protected static const BLUR_QUALITY:int = 2;
+		protected static const BACK_BOX_ALPHA:Number = 0.5;
+		
+		public static const BACK_BOX_BLUR:Number = 16;	
+		public static const BLUR_QUALITY:int = 2;
 				
 		protected static const BOX_ANIM_TIME_SECONDS:Number = 0.6;
 
@@ -95,7 +95,7 @@ package med.infographic {
 			
 			graphics.endFill();
 			
-			backScale = Rndm.integer(10, 20) * 0.01;
+			backScale = Rndm.integer(8, 20) * 0.01;
 			
 			initForBack();
 			
