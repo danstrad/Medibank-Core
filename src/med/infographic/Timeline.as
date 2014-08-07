@@ -42,6 +42,7 @@ package med.infographic {
 		public var isScrolling:Boolean;
 			
 		public var callbackOnReachEntry:Function;
+		public var callbackOnLastEntryPassed:Function;
 	
 		protected static const SCROLL_SPEED_PER_SECOND:Number = 200;
 		
@@ -162,6 +163,7 @@ package med.infographic {
 		
 		
 		
+		
 		public function advanceToNextEntry():void {
 			
 			entryIndex++;
@@ -171,6 +173,10 @@ package med.infographic {
 				targetIndex = numYears + indexOffsetToGetOffScreen;
 				isScrolling = true;
 				TweenMax.to(yearText, 0.5, { delay:1.0, alpha:0 } );
+				
+				if (callbackOnLastEntryPassed != null) {
+					callbackOnLastEntryPassed();
+				}				
 				return;
 			}
 			

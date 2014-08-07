@@ -139,15 +139,19 @@ package med.infographic {
 		public function animateOff(callback:Function):void {
 				
 			// close up the color line
-			TweenMax.to(colorLine, 1.0, { x:-1024, onComplete:callback, onCompleteParams:[this] } );
+//			TweenMax.to(colorLine, 1.0, { x:-1024, onComplete:callback, onCompleteParams:[this] } );
+			
+			TweenMax.to(colorLine, 0.75, { height:0, onComplete:callback, onCompleteParams:[this] } );
+	
 			
 			// scroll up all the numbers
-			for each (var slot:SpinNumberSlot in slots) {
-				TweenMax.to(slot, 1.0, { y: -1000, alpha:0 } );
+			for each (var slot:SpinNumberSlot in slots) {				
+				slot.moveToTopAndRetainValue();
+				TweenMax.to(slot, 1.0, { y: -1000 } );
 			}
 			
 			for each (var comma:SpinNumberComma in commas) {
-				TweenMax.to(comma, 1.0, { y: -1000, alpha:0 } );
+				TweenMax.to(comma, 1.0, { y: -1000 } );
 			}
 			
 			TweenMax.to(dollarSign, 1.0, { y: -1000, alpha:0 } );			

@@ -1096,7 +1096,7 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			<appearance textColor="#FFFFFF" backgroundColor="#ff9330" boxColor="#E4002B"/>
 			<featuredText>Making advice and care accessible.</featuredText>
 		</slide>			
-		<slide type="floating_boxes" duration="70000">
+		<slide type="floating_boxes" duration="62000"> 
 			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#FF9330"/>
 			<featuredText>Our members connected with:</featuredText>	
 			<box value="1163" text="Hospital providers" />
@@ -1163,7 +1163,7 @@ health insurance partners." />
 	</Infographic>
 	
 	<Infographic id="info4" duration="4000"> <!-- Contributing to communities. -->
-		<slide type="center_text_box" duration="1000" animateOn="launch" animateOff="none">
+		<slide type="center_text_box" duration="3000" animateOn="launch" animateOff="none">
 			<appearance textColor="#ff9330" boxColor="#FFFFFF"/>
 			<featuredText>Contributing to communities.</featuredText>
 		</slide>			
@@ -1297,11 +1297,10 @@ on the phone and
 very reassuring.</featuredText>
 			<quoteBy>Sarah, Auckland Mum.</quoteBy>
 		</slide>
->>>>>>> 6fa23be11f2b6428d5d9eb0c33750b73d329cad2
 	</Infographic>
 	
 	<Infographic id="vision info1">
-				
+								
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
 			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
 			<featuredText>OUR VISION.</featuredText>
@@ -1315,14 +1314,28 @@ Australian society.</featuredText>
 		<slide type="people_graph">
 			<appearance backgroundColor="#E4002B" boxColor="#EC4D6B" />
 			<graphstate value="63" featuredText="63" usePercentage="true" topText="" bottomText="We’re getting bigger. 
-Obesity rates in Australia are climbing faster than anywhere else in the worldand 63% of Australian adults are now overweight." />			
+Obesity rates in Australia 
+are climbing faster than 
+anywhere else in the world 
+and 63% of Australian 
+adults are now overweight." />			
 			<graphstate value="14" featuredText="14.4" usePercentage="true" topText="" bottomText="We’re getting older. 
-By 2060, Australians aged 75 or more are expected to account for 14.4% of the population
+By 2060, Australians 
+aged 75 or more are 
+expected to account for 
+14.4% of the population
 (up from 6.4% in 2012)." />
 			<graphstate value="90" featuredText="90" usePercentage="true" topText="" bottomText="We’re getting sicker.
-Chronic disease is on the rise, accounting for 90% of all deaths in 2011." />
-			<graphstate value="189" featuredText="189" usePercentage="true" topText="" bottomText="And to cope with all of these issues, we’re spending up big.
-Over the past decade, government spending on healthcare has skyrocketed and is projected to increase by 189% by 2033, reflecting 12.4% of GDP." />
+Chronic disease is on 
+the rise, accounting for 
+90% of all deaths in 2011." />
+			<graphstate value="100" featuredText="189" usePercentage="true" topText="" bottomText="And to cope with all of these 
+issues, we’re spending up big.
+Over the past decade, 
+government spending on 
+healthcare has skyrocketed and 
+is projected to increase by 189% 
+by 2033, reflecting 12.4% of GDP." />
 		</slide>			
 
 		<slide type="center_text_box" duration="4000" animateOn="squash" animateOff="none">
@@ -1413,7 +1426,7 @@ specialists and GPs to
 provide better quality 
 and lower cost
 healthcare." />
-			<box topText="And as one of the largest
+			<box largeBox="true" topText="And as one of the largest
 purchasers of health
 services in the country,
 we use our influence and

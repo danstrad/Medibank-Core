@@ -63,7 +63,7 @@ package med.infographic {
 		
 		
 		
-		public function setValue(newValue:int, changeInstantly:Boolean, callback:Function=null):void {
+		public function setValue(newValue:int, changeInstantly:Boolean, delay:Number=0, callback:Function=null):void {
 			this.callback = callback;
 			
 			// now we have "blank card" as a thing
@@ -84,13 +84,22 @@ package med.infographic {
 				
 				// this begins the cycle of flipping until we reach the target
 				
-				if (targetValue > currentValue) {		
+				// new: we always flip up now
+				
+				if (targetValue != currentValue) {		
 					// flip up
-					flipLowerHalfUp();
 					
+					if (delay > 0) {
+						TweenMax.to(this, delay, { onComplete:flipLowerHalfUp } );
+					} else {
+						flipLowerHalfUp();
+					}
+					
+					/*
 				} else if (targetValue < currentValue) {
 					// flip down
 					flipUpperHalfDown();
+					*/
 					
 				} else {
 					// already there
@@ -125,21 +134,25 @@ package med.infographic {
 			else						return String(currentValue);
 		}
 		
+		
 		protected function get targetValueAsString():String {
 			if (currentValue == -1) 	return "";
 			else						return String(targetValue);
 		}
 
-		
-		
+				
 		protected function flipLowerHalfUp():void {
 						
-			if (currentValue < targetValue) {
+			if (currentValue != targetValue) {
 				
 				// flip the old value
 				lowerHalfTemp.numberField.text = currentValueAsString;
 				
 				currentValue++;		
+				
+				if (currentValue >= 10) {
+					currentValue = 0;
+				}
 				
 				if (targetValue == -1) {
 					// it only takes one flip to get back to blank
@@ -165,8 +178,7 @@ package med.infographic {
 		
 		
 		protected function flipUpperHalfUp():void {
-			
-			
+						
 			lowerHalfTemp.visible = false;
 			upperHalfTemp.visible = true;			
 			TweenMax.fromTo(upperHalfTemp, DELAY_BEFORE_STARTING_NEXT_FLIP_SEC, { scaleY:0 }, { scaleY:1, immediateRender:true, onComplete:lockInValueUpper, ease:ExpoOut.ease } );
@@ -183,13 +195,14 @@ package med.infographic {
 			flipLowerHalfUp();
 		}
 		
+		/*
 		protected function lockInValueLower():void {
 			lowerHalf.numberField.text = currentValueAsString;
 			flipUpperHalfDown();
 		}		
+		*/
 		
-		
-		
+		/*
 		protected function flipUpperHalfDown():void {
 						
 			if (currentValue > targetValue) {
@@ -235,7 +248,7 @@ package med.infographic {
 //			TweenMax.to(this, DELAY_BEFORE_STARTING_NEXT_FLIP_SEC, { onComplete: flipUpperHalfDown } );
 		}		
 		
-		
+		*/
 		
 		
 	}

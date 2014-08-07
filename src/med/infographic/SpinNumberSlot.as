@@ -55,8 +55,6 @@ package med.infographic {
 		public function startSpinning(targetValue:int, delayMsec:Number):void {
 			if (isSpinning)	return;
 			
-			trace(name + " startValue " + startValue + ", targetValue: " + targetValue);
-			
 			this.targetValue = targetValue;
 			
 //			debugField.text = startValue + ">" + targetValue;
@@ -76,10 +74,17 @@ package med.infographic {
 		}
 		
 		
+		public function moveToTopAndRetainValue():void {
+			// used when animating off. move the blocks as far up as we can while still showing the same number
+			while (bottomBlock.y >= SpinNumberSlide.ENTRY_HEIGHT) {
+				block1.y -= (SpinNumberSlide.ENTRY_HEIGHT * 10);
+				block2.y -= (SpinNumberSlide.ENTRY_HEIGHT * 10);
+			}
+		}
+		
 		
 		protected function reachedFullSpeed():void {
 			accelerationDistance = currentDistanceSpun;
-//			trace("Acceleration distance: "+accelerationDistance);
 		}
 		
 		
@@ -110,7 +115,6 @@ package med.infographic {
 
 			
 			// our stopping distance is equal to our acceleration distance
-//			trace(this.name + ".stopSpinning() - accelerationDistance: " + accelerationDistance+ ", minimumDistance: " + minimumDistance+", targetDistance: " + targetDistance); 
 			
 			// try something new. immediately cut animate() out of the picture
 			// tween to final result
@@ -158,28 +162,12 @@ package med.infographic {
 				ratio = ExpoIn.ease.getRatio(p);
 				speed = Math.min(MAXIMUM_SPEED, ratio * MAXIMUM_SPEED);
 				
-//				trace(currentSpinTimeMsec, accelerationDurationMsec, p, speed);
-
 				if (speed == MAXIMUM_SPEED) {
 					reachedFullSpeed();
 				}
 			
 			} 
-			/*
-			else if (isDecelerating && (speed > 0)) {
-				
-				p = 1.0 - (decelerationSpinTimeMsec / accelerationDurationMsec);
-				ratio = ExpoIn.ease.getRatio(p);
-				speed = Math.max(0, ratio * MAXIMUM_SPEED);
-				
-//				trace(decelerationSpinTimeMsec, accelerationDurationMsec, p, speed);
-				
-//				if (name == "instance263") {
-//					trace(decelerationSpinTimeMsec, p, ratio, speed);
-//				}
 
-			}
-			*/
 			
 			var moved:Number = speed * dTime; 
 
@@ -215,7 +203,6 @@ package med.infographic {
 				
 				if (speed == 0) {
 					stopped();
-//					trace("stopped - stopping distance ", decelerationDistance, "accelerationDistance", accelerationDistance);
 				}				
 			}
 			

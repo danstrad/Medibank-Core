@@ -1,4 +1,5 @@
 package com.garin {
+	import com.gskinner.utils.Rndm;
 	
 	/**
 	 * ...
@@ -32,6 +33,39 @@ package com.garin {
 			
 			return a;
 		}
+		
+		
+		public static function shuffle(array:Array, seedRandomizer:Rndm = null):Array {
+            // returns a copy
+            var shuffled:Array = [];
+            if (array == null) return shuffled;
+             
+            // copy to temp array
+            var temp:Array = array.slice();
+            var i:int;
+ 
+            // shuffle temp array into new array
+            if (seedRandomizer == null) {
+                while (temp.length) {
+                    i = randomInt(0, temp.length - 1);
+                    shuffled = shuffled.concat(temp.splice(i, 1));              
+                }
+             
+            } else {
+                while (temp.length) {
+                    i = seedRandomizer.integer(0, temp.length);
+                    shuffled = shuffled.concat(temp.splice(i, 1));      
+                }
+            }
+ 
+            return shuffled;
+        }		
+		
+		
+		static private function randomInt(min:int, max:int, rndm:Rndm = null):int {          
+            if (rndm == null)           return Math.round(Math.random() * (max - min)) + min;
+            else                        return rndm.integer(min, max+1);
+        }		
 		
 	}
 

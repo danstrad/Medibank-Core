@@ -20,12 +20,18 @@ package med.infographic {
 			// overwrite the timeline's callback for reaching an entry
 			timeline.callbackOnReachEntry = changeFlipNumber;
 			
+			timeline.callbackOnLastEntryPassed = flipNumberFinished;
+			
 			timeline.expandEntryLineWhenReached = false;
 			
 			flipNumber = new FlipNumber(slideData.backgroundColor);
 			flipNumber.y = -10;
 			addChild(flipNumber);
-						
+
+			
+			
+			flipNumber.setStartingValue(0, 2);
+			
 			var topString:String = slideData.xml.featuredText;
 			
 			if (topString != "") {
@@ -41,7 +47,16 @@ package med.infographic {
 			}
 			
 		}
-
+		
+		
+		public function flipNumberFinished():void {
+			TweenMax.to(this, 1.5, { onComplete:flipToBlank } );
+		}
+		
+		protected function flipToBlank():void {
+			flipNumber.flipToBlank(null, null);
+		}
+		
 		
 		public function changeFlipNumber(string:String):void {
 			

@@ -15,6 +15,8 @@ package med.infographic {
 
 		
 		public static const BOX_SIZE:Number = 256;
+
+		public static const BOX_SIZE_LARGE:Number = 295;
 		
 //		protected static const BACK_BOX_SCALE:Number = 0.2;
 		protected static const BACK_BOX_ALPHA:Number = 0.5;		
@@ -39,7 +41,7 @@ package med.infographic {
 		protected var currentValue:int;
 		
 		
-		public function FloatingBox(value:int, showNumber:Boolean, textString:String, topTextString:String, boxColor:uint, textColor:uint) {
+		public function FloatingBox(value:int, showNumber:Boolean, textString:String, topTextString:String, boxColor:uint, textColor:uint, largeSize:Boolean=false) {
 			
 			this.targetValue = value;
 			
@@ -60,17 +62,19 @@ package med.infographic {
 			}
 			
 				
-			textField.text = textString;
+			textField.text = TextUtils.safeText(textString);
 			textField.textColor = textColor;
 			Text.boldText(textField);
 					
 			if (topTextString != "") {
-				topTextField.text = topTextString;
+				
+				topTextField.text = TextUtils.safeText(topTextString);
 				topTextField.textColor = textColor;
 				Text.boldText(topTextField);
-			
+				Text.setTextSpacing(topTextField, -0.4);
+				
 				// move number down
-				numberField.y += 15;
+				numberField.y += 20;
 				
 			} else {
 				topTextField.visible = false;
@@ -82,10 +86,16 @@ package med.infographic {
 			// draw the box
 			graphics.clear();
 			graphics.beginFill(boxColor, 1.0);
-			graphics.drawRect(-BOX_SIZE * 0.5, -BOX_SIZE * 0.5, BOX_SIZE, BOX_SIZE);
+			
+			if (largeSize) {
+				graphics.drawRect( -BOX_SIZE * 0.5, -BOX_SIZE * 0.5, BOX_SIZE_LARGE, BOX_SIZE_LARGE);
+			} else {
+				graphics.drawRect( -BOX_SIZE * 0.5, -BOX_SIZE * 0.5, BOX_SIZE, BOX_SIZE);
+			}
+			
 			graphics.endFill();
 			
-			backScale = Rndm.integer(10, 30) * 0.01;
+			backScale = Rndm.integer(10, 20) * 0.01;
 			
 			initForBack();
 			

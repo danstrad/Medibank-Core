@@ -113,7 +113,7 @@ package med.infographic {
 			textPanelMask = new Shape();
 			
 			textPanelMask.graphics.beginFill(0x00FF00, 0.5);
-			textPanelMask.graphics.drawRect(-30, 0, 250, 600); 
+			textPanelMask.graphics.drawRect(-30, 0, 300, 600); 
 			textPanelMask.graphics.endFill();
 			
 			textPanelMask.x = textPanel.x;
@@ -231,7 +231,7 @@ package med.infographic {
 				textAnimationStartOffset = TEXT_ANIMATE_OFFSET_LEFT;
 
 			} else {
-				textPanel.x = (RIGHTMOST_X_POSITION - (Math.floor((100 - value) / 10) * PEOPLE_SPACING)) - 254;	
+				textPanel.x = (RIGHTMOST_X_POSITION - (Math.floor(value / 10) * PEOPLE_SPACING)) - 280;	
 				textAnimationStartOffset = TEXT_ANIMATE_OFFSET_RIGHT;
 			}
 				
@@ -279,13 +279,16 @@ package med.infographic {
 			if (usePercentage) {
 				
 				textPanel.percentageField.x = 0;
-				textPanel.percentageSignField.x = 118;
 				
 				textPanel.percentageField.text = featuredTextString;
 				Text.boldText(textPanel.percentageField);
-				Text.setTextSpacing(textPanel.percentageField, -7);				
+				Text.setTextSpacing(textPanel.percentageField, -7);	
+				textPanel.percentageField.autoSize = TextFieldAutoSize.LEFT;				
 				textPanel.percentageField.visible = true;
+
 				textPanel.percentageSignField.visible = true;
+				textPanel.percentageSignField.x = textPanel.percentageField.x + textPanel.percentageField.width + 1;
+				
 				
 				textPanel.featuredField.visible = false;
 				
@@ -352,7 +355,11 @@ package med.infographic {
 		}		
 		
 		
-		public function animateToGraphState(numTargetPeopleOnLeft:int, leftSideIsWhite:Boolean, isTextOnRightEdge:Boolean):void {
+		protected var previousStateWasOffsetFromRightEdge:Boolean = false;
+		
+		
+		
+		public function animateToGraphState(value:int, leftSideIsWhite:Boolean, isTextOnRightEdge:Boolean):void {
 			// move the dots and change their color until we have the correct number of colored dots on each side
 			
 			var i:int;
@@ -387,8 +394,22 @@ package med.infographic {
 			}
 			
 			
+			
+			
 			// determine how many in each row SHOULD NEXT be on each side
-			var numTargetPeopleOnRight:int = 100 - numTargetPeopleOnLeft;
+			var numTargetPeopleOnLeft:int;
+			var numTargetPeopleOnRight:int;
+			
+			// the 'value' parameter is how many white dots there should be
+			// so we need to assign that either to the right or left, depending on which is white
+			if (leftSideIsWhite) {
+				numTargetPeopleOnLeft = value;
+				numTargetPeopleOnRight = 100 - value;			
+			} else {
+				numTargetPeopleOnRight = value;
+				numTargetPeopleOnLeft = 100 - value;				
+			}
+				
 			
 			
 			for (i = 0; i < numTargetPeopleOnRight; i++) {				
@@ -444,7 +465,7 @@ package med.infographic {
 					} else {
 						
 						// it needs to go to the right
-						if ((person.state != PeopleGraphPerson.STATE_RIGHT) || isTextOnRightEdge) {
+						if ((person.state != PeopleGraphPerson.STATE_RIGHT) || isTextOnRightEdge || previousStateWasOffsetFromRightEdge) {
 							
 							person.state = PeopleGraphPerson.STATE_RIGHT;
 															
@@ -484,6 +505,7 @@ package med.infographic {
 			}
 			
 			
+			this.previousStateWasOffsetFromRightEdge = isTextOnRightEdge;
 		}
 
 		

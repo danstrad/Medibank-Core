@@ -135,7 +135,6 @@ package med.infographic {
 				}
 						
 				
-				// this is a placeholder approach
 				switch (slideData.type) {
 					
 					case InfographicSlideData.PEOPLE_GRAPH:							
@@ -181,7 +180,7 @@ package med.infographic {
 						
 						
 					case InfographicSlideData.FLIP_NUMBER:							
-						var flipNumberSlide:FlipNumberSlide = new FlipNumberSlide(slideData);
+						var flipNumberSlide:FlipNumberSlide = new FlipNumberSlide(slideData, onSlideFinished);
 						addSlideSprite(flipNumberSlide);						
 						flipNumberSlide.animateOn();						
 						break;
@@ -372,7 +371,7 @@ package med.infographic {
 			
 			if ((data.slides[currentSlideIndex].displayTimeMsec > 0) && data.slides[currentSlideIndex] && (currentSlideTime >= data.slides[currentSlideIndex].displayTimeMsec)) { 
 				
-					if (currentSlideIndex < (data.slides.length-1)) {
+				if (currentSlideIndex < (data.slides.length-1)) {
 					// remove previous slide, wait for callback to start next slide
 					removePreviousSlide();
 				

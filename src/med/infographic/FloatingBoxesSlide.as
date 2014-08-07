@@ -1,4 +1,5 @@
 package med.infographic {
+	import com.garin.ArrayFunctions;
 	import com.garin.Drawing;
 	import com.greensock.TweenMax;
 	import com.greensock.easing.*;
@@ -26,6 +27,9 @@ package med.infographic {
 		public static const BOX_DISPLAY_TIME_SECONDS:Number = 4.0;
 		
 		
+		protected var hasFeatureText:Boolean;
+		
+		
 		public function FloatingBoxesSlide(slideData:InfographicSlideData) {
 			this.slideData = slideData;
 	
@@ -40,6 +44,8 @@ package med.infographic {
 			
 			var featuredString:String = slideData.xml.featuredText;
 			
+			hasFeatureText = (featuredString != "");
+			
 			featuredText.text = featuredString;
 			Text.boldText(featuredText);
 			Text.setTextSpacing(featuredText, 0.4);
@@ -48,13 +54,24 @@ package med.infographic {
 			
 			
 			// work out bounds for boxes
-			// we need to bear in mind their size once expanded			
-			var topBorder:Number = -288 + 10 + (FloatingBox.BOX_SIZE * 0.5);
-			var boundsHeight:Number = 576 - ((10 + (FloatingBox.BOX_SIZE * 0.5)) * 2);
-			var boundsWidth:Number = (512 + 150) - 10 - (FloatingBox.BOX_SIZE * 0.5);
+			// we need to bear in mind their size once expanded		
+			const EDGE_BUFFER:Number = 10;
+			
+			var topBorder:Number = -288 + EDGE_BUFFER + (FloatingBox.BOX_SIZE * 0.5);
+			var boundsHeight:Number = 576 - ((EDGE_BUFFER + (FloatingBox.BOX_SIZE * 0.5)) * 2);
+			var boundsWidth:Number = (512 + 140) - EDGE_BUFFER - (FloatingBox.BOX_SIZE * 0.5);
 				
-			var leftBoxBounds:Rectangle = new Rectangle(-150, topBorder, boundsWidth / 2, boundsHeight);
+			var leftBoxBounds:Rectangle = new Rectangle(-140, topBorder, boundsWidth / 2, boundsHeight);
 			var rightBoxBounds:Rectangle = new Rectangle(leftBoxBounds.left + (boundsWidth * 0.5), topBorder, boundsWidth / 2, boundsHeight);			
+			
+			if (hasFeatureText == false) {
+				// with no featured string, we increase the bounds. our usable area is larger when we don't have to worry about overlapping the text
+				boundsWidth = 512 - EDGE_BUFFER - (FloatingBox.BOX_SIZE * 0.5);
+				
+				leftBoxBounds = new Rectangle(-512 + EDGE_BUFFER + (FloatingBox.BOX_SIZE * 0.5), topBorder, boundsWidth, boundsHeight);
+				rightBoxBounds = new Rectangle(0, topBorder, boundsWidth, boundsHeight);			
+			}
+			
 			
 			// draw for debug
 			/*
@@ -63,34 +80,76 @@ package med.infographic {
 			Drawing.drawRectangle(this.graphics, rightBoxBounds);
 			*/
 			
+			// new: align to invisible grid
+			var gridLineCount:int = 3;
+			var gridSize:Number = Math.floor(boundsWidth / (gridLineCount + 2));
+	
+			var gridPositionsOnLeft:Array = [];
+			var gridPositionsOnRight:Array = [];
+			
+						
+			for (var j:int = 0; j < gridLineCount * gridLineCount; j++ ) {
+				gridPositionsOnLeft.push(j);
+				gridPositionsOnRight.push(j);	
+			}
+
+			
+			gridPositionsOnLeft = ArrayFunctions.shuffle(gridPositionsOnLeft);
+			gridPositionsOnRight = ArrayFunctions.shuffle(gridPositionsOnRight);
+					
+			
+			
+
+			
+			
 			for (var i:int = 0; i < slideData.xml.box.length(); i++) {
 				var boxXML:XML = slideData.xml.box[i];
 				
 				var showNumber:Boolean = boxXML.hasOwnProperty("@value");
 				
-				var box:FloatingBox = new FloatingBox(int(boxXML.@value), showNumber, boxXML.@text, boxXML.@topText, slideData.boxColor, slideData.textColor);
+				var box:FloatingBox = new FloatingBox(int(boxXML.@value), showNumber, boxXML.@text, boxXML.@topText, slideData.boxColor, slideData.textColor, (boxXML.@largeBox == "true"));
 				boxes.push(box);
 				
 				
 				// figure out box positions								
 				// mostly we want them to alternate l->r->l			
 				
+				
+				
+				var gridPosition:int;
+				
+				
 				if ((i % 2) == 0) {
 					// even -> right
-					box.x = rightBoxBounds.x + Rndm.integer(0, rightBoxBounds.width);
-					box.y = rightBoxBounds.y + Rndm.integer(0, rightBoxBounds.height);
+					
+					gridPosition = gridPositionsOnRight.pop();
+					
+					box.x = rightBoxBounds.x + (gridSize * 0.5) + ((gridPosition % gridLineCount) * gridSize) + Rndm.integer((gridSize * -0.2), (gridSize * 0.2));
+					box.y = rightBoxBounds.y + (gridSize * 0.5) + (Math.floor(gridPosition / gridLineCount) * gridSize) + Rndm.integer((gridSize * -0.2), (gridSize * 0.2));
+					
+//					box.x = rightBoxBounds.x + Rndm.integer(0, rightBoxBounds.width);
+//					box.y = rightBoxBounds.y + Rndm.integer(0, rightBoxBounds.height);
 
 				} else {
-					// odd -> left			
-					box.x = leftBoxBounds.x + Rndm.integer(0, leftBoxBounds.width);
-					box.y = leftBoxBounds.y + Rndm.integer(0, leftBoxBounds.height);				
+					// odd -> left
+					gridPosition = gridPositionsOnLeft.pop();
+
+					box.x = leftBoxBounds.x + (gridSize * 0.5) + ((gridPosition % gridLineCount) * gridSize) + Rndm.integer((gridSize * -0.2), (gridSize * 0.2));
+					box.y = leftBoxBounds.y + (gridSize * 0.5) + (Math.floor(gridPosition / gridLineCount) * gridSize) + Rndm.integer((gridSize * -0.2), (gridSize * 0.2));
+					
+//					box.x = leftBoxBounds.x + Rndm.integer(0, leftBoxBounds.width);
+//					box.y = leftBoxBounds.y + Rndm.integer(0, leftBoxBounds.height);				
 									
 				}
 				
 				addChild(box);
 				
 			}
-									
+							
+			// based on the number of "real" boxes we have, we might want to add some "dummy" boxes to flesh it out a bit
+			// todo
+			
+			
 			showingBoxIndex = -1;
 		}
 
@@ -126,7 +185,12 @@ package med.infographic {
 		public function animateOn():void {
 						
 			for each (var box:FloatingBox in boxes) {
-				var delay:Number = 0.5 + (Rndm.integer(0, 500) * 0.001);
+				var delay:Number = (Rndm.integer(0, 500) * 0.001);
+				
+				if (hasFeatureText) {
+					delay += 0.5;
+				}
+				
 				TweenMax.fromTo(box, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-1000 }, { x:box.x, immediateRender:true, delay:delay, ease:Strong.easeIn } );
 			}
 						
@@ -154,9 +218,9 @@ package med.infographic {
 		}
 	
 		
+		
 		public function animate(dTime:Number):void {
-			
-			
+					
 			for each (var box:FloatingBox in boxes) {
 				box.animate(dTime);
 			}

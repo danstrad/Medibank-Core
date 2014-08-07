@@ -122,21 +122,26 @@ package med.infographic {
 		}
 		
 		
-		public function initForNumber(value:int):void {
+		public function initForNumber(value:int, forceLengthTo:int=-1):void {
 			var i:int;
 								
 			targetValues = value.toString().split("");
 
+			while (targetValues.length < forceLengthTo) {
+				targetValues.unshift("0");
+			}
 			
-			if (targetValues.length > numerals.length) {
+			var length:int = Math.max(forceLengthTo, targetValues.length);
+						
+			if (length > numerals.length) {
 				// do we need more numerals?				
-				while (targetValues.length > numerals.length) {
+				while (length > numerals.length) {
 					addNewNumeral();
 				}
 				
-			} else if (targetValues.length < numerals.length) {
+			} else if (length < numerals.length) {
 				// need fewer numerals
-				while (targetValues.length < numerals.length) {
+				while (length < numerals.length) {
 					removeNumeral();
 				}
 			}
@@ -148,15 +153,17 @@ package med.infographic {
 		
 		
 		protected var afterFlipCallback:Function;
+		protected var afterFlipCallbackParam:Object;
 		
-		
-		public function flipToBlank(callback:Function):void {
+		public function flipToBlank(callback:Function, callbackParam:Object):void {
 			afterFlipCallback = callback;
+			afterFlipCallbackParam = callbackParam;
 			
 			numeralsFinishedCount = 0;
 			
-			for each (var numeral:FlipNumberNumeral in numerals) {
-				numeral.setValue(-1, false, numeralFinished);
+			for (var i:int = 0; i < numerals.length; i++) {
+				var numeral:FlipNumberNumeral = numerals[i];
+				numeral.setValue(-1, false, i * 0.1, numeralFinished);
 			}
 			
 			for each (var comma:FlipNumberComma in commas) {
@@ -173,7 +180,12 @@ package med.infographic {
 			
 			if (numeralsFinishedCount >= numerals.length) {
 				if (afterFlipCallback != null) {
-					afterFlipCallback();
+					
+					if (afterFlipCallbackParam != null) {
+						afterFlipCallback(afterFlipCallbackParam);
+					} else {
+						afterFlipCallback();
+					}
 				}
 			}
 		}
@@ -192,13 +204,35 @@ package med.infographic {
 				
 				var targetValue:int = int(String(targetValues[i]));				
 
+				var delay:Number = i * 0.12;
+				
 				// tell it to flip to this value
-				numerals[i].setValue(targetValue, false);
+				numerals[i].setValue(targetValue, false, delay, null);
 				
 			}
 
 			
 		}
+		
+		
+		public function setStartingValue(value:int, numDigits:int):void {
+
+			// if numDigits is higher than it should be, we padd the value with leading zeroes
+			targetValues = value.toString().split("");
+
+			while (targetValues.length < numDigits) {
+				targetValues.unshift("0");
+			}
+						
+			initForNumber(value, numDigits);
+			
+			for (var i:int = 0; i < targetValues.length; i++) {
+				var targetValue:int = int(String(targetValues[i]));				
+				numerals[i].setValue(targetValue, true);
+			}
+			
+		}
+		
 		
 		/*
 		public function setRandomStartingNumber():void {

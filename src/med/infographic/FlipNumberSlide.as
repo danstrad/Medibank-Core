@@ -12,7 +12,7 @@ package med.infographic {
 		protected var graphStatesXML:Vector.<XML> = new Vector.<XML>();
 		
 		public static const ANIMATE_ON_TIME_SEC:Number = 0.75;
-		public static const NUMBER_DISPLAYED_DURATION_SEC:Number = 6.0;
+		public static const NUMBER_DISPLAYED_DURATION_SEC:Number = 4.0;
 		
 		protected static const TEXT_SLIDE_ON_DURATION_SEC:Number = 0.5;
 		protected static const TEXT_SLIDE_OFF_DURATION_SEC:Number = 0.5;
@@ -25,10 +25,13 @@ package med.infographic {
 		
 		protected var normalTopFieldY:Number;
 		protected var normalFeaturedFieldY:Number;
+		
+		protected var finishedCallback:Function;
 			
 		
 		
-		public function FlipNumberSlide(slideData:InfographicSlideData) {
+		public function FlipNumberSlide(slideData:InfographicSlideData, finishedCallback:Function) {
+			this.finishedCallback = finishedCallback;
 				
 			for each (var graphStateXML:XML in slideData.xml.graphstate) {
 				graphStatesXML.push(graphStateXML);
@@ -87,8 +90,9 @@ package med.infographic {
 		
 		
 		public function animateOff(callback:Function):void {
-			callback(this);
+			flipNumber.flipToBlank(callback, this);
 		}
+		
 		
 		public function animate(dTime:Number):void { }
 		
@@ -172,8 +176,8 @@ package med.infographic {
 						
 			if (graphStateIndex >= graphStatesXML.length) {
 				// there are no more!
-				// just do nothing and wait for Infographic to remove us
-//				flipNumber.slideOff();
+				// tell Infographic to remove us				
+				animateOff(finishedCallback);				
 				return;
 			}
 			
@@ -212,7 +216,7 @@ package med.infographic {
 			
 				} else {					
 					// we need to "flip to blank" first
-					flipNumber.flipToBlank(afterFlipToBlank);		
+					flipNumber.flipToBlank(afterFlipToBlank, null);		
 				
 				}
 				
