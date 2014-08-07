@@ -250,6 +250,14 @@ package med.infographic {
 						
 						break;
 						
+					case InfographicSlideData.CLOCK:
+						
+						var clockSlide:ClockSlide = new ClockSlide(slideData, initialBackgroundColor, onSlideFinished);
+						addSlideSprite(clockSlide);
+						clockSlide.animateOn();
+						
+						break;
+						
 					case InfographicSlideData.PICK3_INPUT:
 						
 						var pick3InputSlide:Pick3InputSlide = new Pick3InputSlide(slideData, initialBackgroundColor, inputVars, onSlideFinished);
@@ -287,6 +295,14 @@ package med.infographic {
 						var barGraph:BarGraphSlide = new BarGraphSlide(slideData, initialBackgroundColor, inputVars);
 						addSlideSprite(barGraph);
 						barGraph.animateOn();
+						
+						break;
+						
+					case InfographicSlideData.DUAL_BAR_GRAPH:
+						
+						var dualBarGraph:DualBarGraphSlide = new DualBarGraphSlide(slideData, initialBackgroundColor);
+						addSlideSprite(dualBarGraph);
+						dualBarGraph.animateOn();
 						
 						break;
 						

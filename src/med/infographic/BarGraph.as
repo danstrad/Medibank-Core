@@ -42,7 +42,7 @@ package med.infographic {
 						
 		}
 		
-		public function arrange():void {
+		public function showFinalValues():void {
 			for each(var bar:Pick3Bar in bars) {
 				bar.x = BAR_X + bar.value * BAR_WIDTH;
 				bar.barWidth = bar.value * BAR_WIDTH;

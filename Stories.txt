@@ -1,12 +1,12 @@
 give 1800respect image a border/background?
+Give infographics a set background color so it doesnt interfere with bar colors
 
 
 art1:
-	F infographic (vertical dual bar graph)
 	
 art2:
 	Background image
-	D and G aren't infographics
+	D and G aren't infographics - Used Stats text for now
 	E - infographic included in content?
 	
 	
@@ -15,7 +15,7 @@ doc1:
 	Text on a light image doesn't show up well
 	
 doc2:
-	B isn't an infographic
+	B isn't an infographic - Used Stats text for now
 	Image for F, G
 	
 doc3:
@@ -63,5 +63,7 @@ prof7:
 prof8:
 	
 prof9:
-	
+
+Vision:
+	New images from TVC footage
 	

@@ -77,6 +77,7 @@ package med.infographic {
 		public static const SPLASH_TEXT:String					= "splash_text";	// plain bold text, with or without image
 		
 		public static const TIME_DIALS:String					= "time_dials";	// dials to show different number of hours
+		public static const CLOCK:String						= "clock";	// clock with circular wipe to reveal text
 
 		public static const PICK3_INPUT:String					= "pick3_input";	// pick 3 options from 12 toggleable boxes
 		public static const PICK3_RESULTS:String				= "pick3_results";	// display the chosen options in a graph of predefined data for each option
@@ -85,6 +86,7 @@ package med.infographic {
 		
 		public static const PIE_GRAPH:String					= "pie_graph";	// a pie graph
 		public static const BAR_GRAPH:String					= "bar_graph";	// bare bones version of Pick3Results
+		public static const DUAL_BAR_GRAPH:String				= "dual_bar_graph";	// vertical bar graph with 2 channels displayed side by side for each category
 		
 				
 
