@@ -12,7 +12,7 @@ package med.infographic {
 	public class InfographicCenterBox extends _InfographicCenterBox implements ISlide {
 
 		
-		public static const CENTER_BOX_WIDTH:Number = 464.1;
+		public static const CENTER_BOX_WIDTH:Number = 464;
 		public static const CENTER_BOX_HEIGHT:Number = 443;
 		
 		public static const BOX_X:Number = -CENTER_BOX_WIDTH * 0.5;
@@ -32,10 +32,13 @@ package med.infographic {
 		protected var box:Shape;
 		protected var textMask:Shape;
 	
-		protected var textFieldOriginalX:Number;
+//		protected var textFieldOriginalX:Number;
 		
 		protected var data:InfographicSlideData;
 		protected var boxColor:uint;
+		
+		
+		protected var textLayer:Sprite;
 		
 		
 		
@@ -50,6 +53,7 @@ package med.infographic {
 				
 			var boxText:String = TextUtils.safeText(slideData.xml.featuredText);
 			
+
 			
 			// draw box
 			box = new Shape();
@@ -67,21 +71,68 @@ package med.infographic {
 			textMask.graphics.endFill();
 			addChild(textMask);			
 			
+			
+			// create text layer (used so we can easily move multiple instances of text at once)
+			textLayer = new Sprite();
+			addChild(textLayer);
+			
+			removeChild(textField);
+			removeChild(quoteByField);
+			
+			textLayer.addChild(textField);
+			textLayer.addChild(quoteByField);
+			
+				
+			
+			
+						
+			if (slideData.xml.@quote == "true") {
+				// wrap the text in quote marks
+				boxText = "“" + boxText + "”";
+				
+				// show the person who said it
+				quoteByField.visible = true;
+				quoteByField.text = String(slideData.xml.quoteBy);
+				quoteByField.textColor = textColor;
+				Text.setTextSpacing(quoteByField, -0.5);
+				
+				quoteByField.autoSize = TextFieldAutoSize.CENTER;
+				
+				
+				// add the little speech mark thing coming out of the box
+				box.graphics.lineStyle();
+				box.graphics.beginFill(boxColor, 1);
+				box.graphics.moveTo( -CENTER_BOX_WIDTH * 0.5, -21);
+				box.graphics.lineTo(( -CENTER_BOX_WIDTH * 0.5) - 21, 0);
+				box.graphics.lineTo(( -CENTER_BOX_WIDTH * 0.5), 21);
+				box.graphics.lineTo(( -CENTER_BOX_WIDTH * 0.5), -21);				
+				box.graphics.endFill();
+				
+			} else {
+				quoteByField.visible = false;
+			}
+						
+			
 			// set text
-//			textField.htmlText = "<font color='#" + textColor.toString(16) + "'>" + boxText + "</font>";
 			textField.text = boxText;
 			textField.textColor = textColor;
 			Text.boldText(textField);
 			Text.setTextSpacing(textField, -2);
 			
 			textField.autoSize = TextFieldAutoSize.CENTER;						
-			textField.y = 0 - (textField.height * 0.5);
-						
-			// move the text to the left, outside of its mask
-			textFieldOriginalX = textField.x;
-			textField.x -= 450;
 			
-			textField.mask = textMask;
+			if (quoteByField.visible == false) {
+				textField.y = 0 - (textField.height * 0.5);
+			} else {
+				var gapBetweenFields:Number = 5;
+				
+				textField.y = 0 - ((textField.height + quoteByField.height + gapBetweenFields) * 0.5);
+				quoteByField.y =  0 - ((textField.height + quoteByField.height) * 0.5) + textField.height + gapBetweenFields;
+			}
+				
+			// move the text to the left, outside of its mask
+			textLayer.mask = textMask;
+			textLayer.x -= 450;			
 			
 		}
 
@@ -164,16 +215,16 @@ package med.infographic {
 
 		protected function slideTextOff(callback:Function = null):void {
 			if (callback != null) {
-				TweenMax.to(textField, TEXT_TRANSITION_OFF_TIME, { x:textFieldOriginalX + 450, onComplete:callback, onCompleteParams:[this] } );	
+				TweenMax.to(textLayer, TEXT_TRANSITION_OFF_TIME, { x:450, onComplete:callback, onCompleteParams:[this] } );	
 			} else {
-				TweenMax.to(textField, TEXT_TRANSITION_OFF_TIME, { x:textFieldOriginalX + 450 } );	
+				TweenMax.to(textLayer, TEXT_TRANSITION_OFF_TIME, { x:450 } );	
 			}
 		}
 		
 		
 		protected function rollOutText():void {
 			// once our animation is done, we have the text appear from the left hand side
-			TweenMax.to(textField, TEXT_TRANSITION_ON_TIME, { x:textFieldOriginalX } );			
+			TweenMax.to(textLayer, TEXT_TRANSITION_ON_TIME, { x:0 } );			
 		}
 		
 		

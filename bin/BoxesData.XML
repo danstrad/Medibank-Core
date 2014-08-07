@@ -1211,7 +1211,59 @@ Australia.</featuredText>
 		
 	</Infographic>
 	
+<<<<<<< HEAD
 	<Infographic id="info6"> <!-- To go to the doctor? Or, not to go to the doctor? -->
+=======
+	<Infographic id="info6">
+		
+		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
+			<appearance textColor="#653279" backgroundColor="#653279" boxColor="#FFFFFF"/>
+			<featuredText>To go to the doctor?
+Or, not to go to the doctor?
+It's a question we all ask ourselves.</featuredText>
+		</slide>
+		<slide type="center_text_box" duration="3000" animateOn="none" animateOff="none">
+			<appearance textColor="#653279" backgroundColor="#653279" boxColor="#FFFFFF"/>
+			<featuredText>There's help on the line 
+with Healthline.</featuredText>
+		</slide>	
+		<slide type="center_text_box" duration="6000" animateOn="rotate" animateOff="zoomIn">
+			<appearance textColor="#FFFFFF" backgroundColor="#653279" boxColor="#B0008E"/>
+			<featuredText>Healthline provides 
+24/7 practical advice 
+and reassurance 
+from registered nurses 
+to callers across 
+New Zealand.</featuredText>
+		</slide>
+		<slide type="center_text_box" duration="6000" animateOn="squash" animateOff="squash">
+			<appearance textColor="#FFFFFF" backgroundColor="#B0008E" boxColor="#653279"/>
+			<featuredText>Healthline is operated 
+by Medibank for the 
+New Zealand Ministry 
+of Health.</featuredText>
+		</slide>
+		<slide type="people_graph">
+			<appearance backgroundColor="#B0008E" boxColor="#653279" />
+			<graphstate value="40" featuredText="40" usePercentage="true" textOnRightEdge="true" topText="Up to" bottomText="of callers are given information to safely manage the condition at home." />
+			<graphstate value="50" featuredText="" usePercentage="false" topText="" bottomText="Other callers are advised to see a GP." />
+			<graphstate value="10" featuredText="" usePercentage="false" topText="" bottomText="Only a small number of callers are referred to emergency or urgent care." />			
+		</slide>	
+		<slide type="flip_number">
+			<appearance backgroundColor="#B0008E" />
+			<graphstate value="1000" featuredText="Calls are handled by Healthline" topText="Every day, an average of more than" />	
+		</slide>
+		<slide type="center_text_box" quote="true" duration="4000" animateOn="zoom" animateOff="squash">
+			<appearance textColor="#FFFFFF" backgroundColor="#653279" boxColor="#B0008E"/>
+			<featuredText>I usually ring to 
+check that I’m on the 
+right track. The 
+nurses are so lovely 
+on the phone and 
+very reassuring.</featuredText>
+			<quoteBy>Sarah, Auckland Mum.</quoteBy>
+		</slide>
+>>>>>>> 6fa23be11f2b6428d5d9eb0c33750b73d329cad2
 	</Infographic>
 	
 	<Infographic id="vision info1">
