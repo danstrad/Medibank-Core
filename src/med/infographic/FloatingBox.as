@@ -70,7 +70,7 @@ package med.infographic {
 				
 				topTextField.text = TextUtils.safeText(topTextString);
 				topTextField.textColor = textColor;
-				Text.boldText(topTextField);
+//				Text.boldText(topTextField);
 				Text.setTextSpacing(topTextField, -0.4);
 				
 				// move number down

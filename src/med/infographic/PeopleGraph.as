@@ -6,6 +6,7 @@ package med.infographic {
 	import com.greensock.plugins.ColorMatrixFilterPlugin;
 	import com.greensock.plugins.ColorTransformPlugin;
 	import com.greensock.plugins.TweenPlugin;
+	import com.greensock.TimelineMax;
 	import com.greensock.TweenMax;
 	import com.gskinner.utils.Rndm;
 	import flash.display.Shape;

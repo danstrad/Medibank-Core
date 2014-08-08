@@ -135,7 +135,7 @@ package med.infographic {
 				
 				
 				// store color information on the slideData to pass to the ISlide
-				slideData.currentColors = this.colors;
+				slideData.currentColors = this.colors.slice();
 				
 				slideData.currentBackgroundColor = getBackgroundColor(slideData);
 				slideData.currentTextColor = getTextColor(slideData);
