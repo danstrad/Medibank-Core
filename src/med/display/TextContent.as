@@ -230,6 +230,7 @@ package med.display {
 						autoWait = Math.max(autoWait, END_WAIT);
 					}
 				} else {
+					/* disable autoscroll
 					if (autoWait > 0) {
 						autoWait = Math.max(0, autoWait - dTime);
 					} else {
@@ -252,6 +253,7 @@ package med.display {
 							}
 						}
 					}
+					*/
 				}
 			}
 		}

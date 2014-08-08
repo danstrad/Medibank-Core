@@ -830,6 +830,7 @@ package {
 				camera.pan(dragMomentum.x, dragMomentum.y);
 			}
 			
+			/* disable autoscroll
 			if (currentAnimation && !camera.animating && (idleTime > 3000)) {
 				if (autoAnimateWaitTime > 0) {
 					autoAnimateWaitTime = Math.max(0, autoAnimateWaitTime - dTime);
@@ -843,7 +844,7 @@ package {
 						target = currentAnimation.autoPanStart;
 						source = currentAnimation.autoPanEnd;
 					}
-					if (target) {					
+					if (target) {
 						target = target.clone();
 						target.x = camera.clampX(target.x);
 						target.y = camera.clampY(target.y);
@@ -874,6 +875,7 @@ package {
 					}
 				}
 			}
+			*/
 				
 			frameDrag.x = 0;
 			frameDrag.y = 0;

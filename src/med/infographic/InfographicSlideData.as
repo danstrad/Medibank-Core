@@ -95,6 +95,8 @@ package med.infographic {
 		public static const PIE_GRAPH:String					= "pie_graph";	// a pie graph
 		public static const BAR_GRAPH:String					= "bar_graph";	// bare bones version of Pick3Results
 		public static const DUAL_BAR_GRAPH:String				= "dual_bar_graph";	// vertical bar graph with 2 channels displayed side by side for each category
+
+		public static const VIDEO:String						= "video";	// video playing with optional splash text or text popups
 		
 				
 

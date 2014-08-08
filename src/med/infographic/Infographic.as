@@ -28,6 +28,10 @@ package med.infographic {
 		protected var endCallback:Function;
 		
 		protected var previousSlideSprite:Sprite;
+<<<<<<< HEAD
+		
+=======
+>>>>>>> origin/master
 		
 		protected var colors:Vector.<uint>;
 		
@@ -304,6 +308,14 @@ package med.infographic {
 						var dualBarGraph:DualBarGraphSlide = new DualBarGraphSlide(slideData, initialBackgroundColor);
 						addSlideSprite(dualBarGraph);
 						dualBarGraph.animateOn();						
+						break;
+						
+					case InfographicSlideData.VIDEO:
+						
+						var videoSlide:VideoSlide = new VideoSlide(slideData, initialBackgroundColor);
+						addSlideSprite(videoSlide);
+						videoSlide.animateOn();
+						
 						break;
 						
 					default:
