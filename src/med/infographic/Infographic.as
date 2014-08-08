@@ -13,6 +13,8 @@ package med.infographic {
 
 	public class Infographic extends Sprite {
 		
+		public static var WIDTH:Number = 1024;
+		public static var HEIGHT:Number = 576;
 		
 		public var data:InfographicData;		
 		protected var background:Background;
@@ -28,10 +30,6 @@ package med.infographic {
 		protected var endCallback:Function;
 		
 		protected var previousSlideSprite:Sprite;
-<<<<<<< HEAD
-		
-=======
->>>>>>> origin/master
 		
 		protected var colors:Vector.<uint>;
 		

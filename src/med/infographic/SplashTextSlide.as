@@ -3,13 +3,14 @@ package med.infographic {
 	import com.greensock.TweenMax;
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
+	import flash.text.AntiAliasType;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 
 	public class SplashTextSlide extends Sprite implements ISlide {
 		
-		protected const SCROLL_TIME:Number = 0.6;
-		protected const SCROLL_X:Number = 1200;
+		public static const SCROLL_TIME:Number = 0.6;
+		public static const SCROLL_X:Number = 1200;
 		
 		protected var textField:TextField;
 		protected var bitmaps:Vector.<Bitmap>;
@@ -37,25 +38,10 @@ package med.infographic {
 			if (xml.hasOwnProperty("text")) {
 				var textXML:XML = xml.text[0];
 				
-				textField = new TextField();
-				textField.mouseEnabled = false;
-				textField.width = 1;
-				textField.height = 1;
-				textField.defaultTextFormat = TextUtils.infographicSplashFormat;
-				textField.autoSize = TextFieldAutoSize.LEFT;
-				textField.textColor = 0xFFFFFF;
-				
 				var text:String = TextUtils.safeText(textXML.toString());
-				textField.text = text;
-				textField.width = Math.min(textField.width, 1024);
-				
-				if (textXML.hasOwnProperty("@textScale")) {
-					var textScale:Number = parseFloat(textXML.@textScale);
-					textField.scaleX = textField.scaleY = textScale;
-				}
-
-				textField.x = -textField.width / 2;
-				textField.y = -textField.height / 2;
+				var textScale:Number = 1;
+				if (textXML.hasOwnProperty("@textScale")) textScale = parseFloat(textXML.@textScale);
+				textField = createTextField(text, textScale);
 
 				addChild(textField);
 			}
@@ -63,6 +49,24 @@ package med.infographic {
 			animateOnType = xml.@animateOn;
 			animateOffType = xml.@animateOff;
 			
+		}
+		
+		public static function createTextField(text:String, textScale:Number):TextField {
+			var textField:TextField = new TextField();
+			textField.mouseEnabled = false;
+			textField.width = 1;
+			textField.height = 1;
+			textField.defaultTextFormat = TextUtils.infographicSplashFormat;
+			textField.autoSize = TextFieldAutoSize.LEFT;
+			textField.textColor = 0xFFFFFF;
+
+			textField.text = text;
+			textField.width = Math.min(textField.width, 1024);
+			textField.scaleX = textField.scaleY = textScale;
+			textField.x = -textField.width / 2;
+			textField.y = -textField.height / 2;
+			
+			return textField;
 		}
 		
 		public function animateOn():void {
