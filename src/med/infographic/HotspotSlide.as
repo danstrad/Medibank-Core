@@ -7,6 +7,7 @@ package med.infographic {
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
+	import flash.text.TextField;
 
 	public class HotspotSlide extends Sprite implements ISlide {
 		
@@ -17,7 +18,7 @@ package med.infographic {
 		//76b82a
 		
 		protected var bitmap:Bitmap;
-		protected var intro:MovieClip;
+		protected var intro:Sprite;
 		protected var disclaimer:MovieClip;
 		
 		protected var hotspotsLayer:Sprite;
@@ -57,16 +58,22 @@ package med.infographic {
 			
 			if (xml.hasOwnProperty("intro")) {
 				var introXML:XML = xml.intro[0];
-				var explanationText:String = null;
-				var instructionsText:String = null;
-				if (introXML.hasOwnProperty("explanationText")) explanationText = TextUtils.safeText(introXML.explanationText[0].toString());
-				if (introXML.hasOwnProperty("instructionsText")) instructionsText = TextUtils.safeText(introXML.instructionsText[0].toString());
-				if (explanationText || instructionsText) {
-					intro = new _HotspotIntroAssets();
-					if (explanationText) intro.explanationField.text = explanationText;
-					else intro.explanationField.visible = false;
-					if (instructionsText) intro.instructionsField.text = instructionsText;
-					else intro.instructionsField.visible = false;
+				var cornerText:String = null;
+				var splashText:String = null;
+				if (introXML.hasOwnProperty("cornerText")) cornerText = TextUtils.safeText(introXML.cornerText[0].toString());
+				if (introXML.hasOwnProperty("splashText")) splashText = TextUtils.safeText(introXML.splashText[0].toString());
+				if (cornerText || splashText) {
+					intro = new Sprite();
+					if (cornerText) {
+						var cornerAssets:MovieClip = new _CornerText();						
+						var cornerField:TextField = cornerAssets.textField;
+						cornerField.text = cornerText;
+						intro.addChild(cornerField);
+					}					
+					if (splashText) {
+						var splashField:TextField = SplashTextSlide.createTextField(splashText, 1);
+						intro.addChild(splashField);
+					}
 				}				
 			}
 			if (xml.hasOwnProperty("disclaimer")) {

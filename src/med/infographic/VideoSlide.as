@@ -5,6 +5,7 @@ package med.infographic {
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Graphics;
 	import flash.display.MovieClip;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.AsyncErrorEvent;
 	import flash.events.Event;
@@ -22,6 +23,7 @@ package med.infographic {
 
 	public class VideoSlide extends Sprite implements ISlide {
 		
+		static public const WIPE_TIME:Number = 0.9;
 		static public const POP_TIME:Number = 0.5;
 		
 		protected var url:String;
@@ -33,8 +35,19 @@ package med.infographic {
 		protected var stateIndex:int;
 		protected var textStates:Vector.<TextState>
 		
+		protected var boxColor:uint;
+		
+		protected var animateOnType:String;
+		protected var animateOffType:String;
+
+		protected var finishedCallback:Function;
+		
+		
 		public function VideoSlide(slideData:InfographicSlideData, initialBackgroundColor:uint) {
 			var xml:XML = slideData.xml;
+						
+			if (xml.hasOwnProperty("@animateOn")) animateOnType = xml.@animateOn;
+			if (xml.hasOwnProperty("@animateOff")) animateOffType = xml.@animateOff;
 			
 			if (xml.hasOwnProperty("video")) {
 				var videoXML:XML = xml.video[0];
@@ -42,6 +55,12 @@ package med.infographic {
 				var scale:Number = 1;
 				if (videoXML.hasOwnProperty("@scale")) scale = parseFloat(videoXML.@scale.toString());
 				showVideo(url, 1920 * scale, 1080 * scale);
+			}
+			
+			boxColor = 0xFF8080;
+			if (xml.hasOwnProperty("appearance")) {
+				var appearanceXML:XML = xml.appearance[0];
+				if (appearanceXML.hasOwnProperty("@boxColor")) boxColor = slideData.currentColors[parseInt(appearanceXML.@boxColor)];
 			}
 			
 			textStates = new Vector.<TextState>();
@@ -63,7 +82,10 @@ package med.infographic {
 		}
 		
 		public function dispose():void {
-			if (ns) ns.close();
+			if (ns) {
+				ns.pause();
+				ns.close();
+			}
 			if (video) {
 				video.clear();
 				video.attachNetStream(null);
@@ -111,17 +133,31 @@ package med.infographic {
 		
 		
 		public function animateOn():void {
-			// Fade?
+			switch(animateOnType) {
+				// Fade?				
+			}
 			ns.resume();
 			stateIndex = 0;
 			showNextTextState();
 		}
 
 		public function animateOff(callback:Function):void {
-			ns.pause();
-			dispose();
-		}
+			finishedCallback = callback;
 
+			switch(animateOffType) {
+				// Fade?	
+				
+				case "box_wipe":
+					wipeOff();
+					break;
+					
+				default:
+					dispose();
+					callback(this);
+					break;
+			}
+		}
+		
 		public function animate(dTime:Number):void {
 			
 		}
@@ -165,7 +201,7 @@ package med.infographic {
 						margin = 18;
 						box = new _VideoText();
 						g = box.graphics;
-						g.beginFill(0xFF7070)
+						g.beginFill(boxColor)
 						g.drawRect( -boxSize / 2, -boxSize / 2, boxSize, boxSize);
 						g.endFill();
 						addChild(box);
@@ -197,7 +233,7 @@ package med.infographic {
 						
 						break;
 								
-					case "edge":
+					case "bottom":
 						margin = 45;
 						box = new _VideoText();
 						addChild(box);
@@ -218,7 +254,7 @@ package med.infographic {
 						
 						var edgeHeight:Number = textField.height + margin * 2;
 						g = box.graphics;
-						g.beginFill(0xFF7070)
+						g.beginFill(boxColor)
 						g.drawRect(0, 0, Infographic.WIDTH, edgeHeight);
 						g.endFill();
 
@@ -235,7 +271,7 @@ package med.infographic {
 				}
 			}
 			
-			TweenMax.to(this, duration / 1000, { onComplete:onStateFinished } );
+			if (duration > 0) TweenMax.to(this, duration / 1000, { onComplete:onStateFinished } );
 			
 			stateIndex++;
 		}
@@ -248,6 +284,34 @@ package med.infographic {
 			showNextTextState();
 		}
 		
+
+		protected function wipeOff():void {
+			for (var i:int = numChildren - 1; i >= 0; i--) {
+				var box:MovieClip = getChildAt(i) as _VideoText;
+				if (box) {
+					var bounds:Rectangle = box.getBounds(box);
+					var textField:TextField = box.textField;
+					if (textField) {
+						TweenMax.to(textField, POP_TIME, { y:(bounds.bottom + 1), ease:Quad.easeIn } );
+					}
+				}
+			}
+			var wiper:Shape = new Shape();
+			var g:Graphics = wiper.graphics;
+			g.beginFill(boxColor);
+			g.drawRect( -Infographic.WIDTH / 2, -Infographic.HEIGHT, Infographic.WIDTH, Infographic.HEIGHT);
+			g.endFill();
+			wiper.y = Infographic.HEIGHT / 2;
+			addChild(wiper);
+			wiper.scaleY = 0;
+			TweenMax.to(wiper, WIPE_TIME, { scaleY:1, ease:Quad.easeIn, onComplete:onWipeComplete } );
+		}
+		
+		protected function onWipeComplete():void {
+			dispose();
+			if (finishedCallback != null) finishedCallback(this);
+		}
+
 		
 
 		
