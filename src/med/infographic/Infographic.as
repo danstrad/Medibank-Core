@@ -28,7 +28,7 @@ package med.infographic {
 		protected var endCallback:Function;
 		
 		protected var previousSlideSprite:Sprite;
-
+		
 		
 		public function Infographic(data:InfographicData, background:Background, launchRect:Rectangle = null) {
 			this.launchRect = launchRect;
@@ -309,6 +309,14 @@ package med.infographic {
 						var dualBarGraph:DualBarGraphSlide = new DualBarGraphSlide(slideData, initialBackgroundColor);
 						addSlideSprite(dualBarGraph);
 						dualBarGraph.animateOn();
+						
+						break;
+						
+					case InfographicSlideData.VIDEO:
+						
+						var videoSlide:VideoSlide = new VideoSlide(slideData, initialBackgroundColor);
+						addSlideSprite(videoSlide);
+						videoSlide.animateOn();
 						
 						break;
 						
