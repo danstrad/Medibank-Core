@@ -53,7 +53,7 @@ package med.infographic {
 			
 			featuredText.text = featuredString;
 			Text.boldText(featuredText);
-			Text.setTextSpacing(featuredText, 0.4);
+			Text.setTextSpacing(featuredText, -0.4);
 
 			boxes = new Vector.<FloatingBox>();
 			
