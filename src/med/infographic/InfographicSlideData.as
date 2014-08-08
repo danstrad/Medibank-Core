@@ -8,6 +8,14 @@ package med.infographic {
 		public var displayTimeMsec:Number;	
 		public var xml:XML;
 		
+		// temporary info to pass from infographic to slide
+		public var currentColors:Vector.<uint>;
+		
+		public var currentTextColor:uint;
+		public var currentBoxColor:uint;
+		public var currentBackgroundColor:uint;
+		
+		
 		
 		public function InfographicSlideData(type:String, displayTimeMsec:int, xml:XML) {
 			this.type = type;
@@ -19,7 +27,7 @@ package med.infographic {
 		//--------------------------------------------------------------------------------------
 		// helper functions to quickly grab often-used (but not universal) things from the xml		
 		//--------------------------------------------------------------------------------------
-		
+		/*
 		public function get backgroundColor():uint {
 			if (xml.hasOwnProperty("appearance") && xml.appearance.hasOwnProperty("@backgroundColor")) {
 				return uint(xml.appearance.@backgroundColor.toString().replace("#", "0x"));
@@ -43,7 +51,7 @@ package med.infographic {
 				return 0;
 			}
 		}		
-		
+		*/
 		
 		public function get animateOn():String {
 			return xml.@animateOn;	

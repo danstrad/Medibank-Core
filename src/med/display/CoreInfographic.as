@@ -6,6 +6,7 @@ package med.display {
 	import med.display.Background;
 	import med.infographic.Infographic;
 	import med.infographic.InfographicData;
+	import med.story.Chapter;
 
 	public class CoreInfographic extends Infographic {
 
@@ -26,11 +27,29 @@ package med.display {
 		protected var ending:Boolean;
 		public var ended:Boolean;
 		
-		public function CoreInfographic(data:InfographicData, mover:Sprite, launchRect:Rectangle, backgroundImageLayer:Sprite, background:Background) {			
+		public function CoreInfographic(data:InfographicData, mover:Sprite, launchRect:Rectangle, backgroundImageLayer:Sprite, background:Background, chapter:Chapter) {			
 			this.mover = mover;
 			this.backgroundImageLayer = backgroundImageLayer;
-			super(data, background, launchRect);
+			
+			
+			// get the infographicColors from the relevant Chapter, then pass them to our superclass
+			var infographicColors:Vector.<uint> = new Vector.<uint>();
+
+			if (chapter) {
+				infographicColors.push(chapter.infographicColor1);
+				infographicColors.push(chapter.infographicColor2);
+				infographicColors.push(chapter.infographicColor3);
+			} else {
+				// default colors for fallback
+				infographicColors.push(0xe4002b);
+				infographicColors.push(0xFFFFFF);
+				infographicColors.push(0xEC4D6B);				
+			}			
+			
+			
+			super(data, background, infographicColors, launchRect);
 		
+			
 			moverOrigin = new Point(mover.x, mover.y);
 						
 			mainScrollingOff = true;

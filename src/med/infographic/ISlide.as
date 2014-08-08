@@ -8,7 +8,7 @@ package med.infographic {
 		
 		function animate(dTime:Number):void;
 		
-
+		
 	}
 
 }

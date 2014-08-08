@@ -28,13 +28,16 @@ package med.infographic {
 		protected var endCallback:Function;
 		
 		protected var previousSlideSprite:Sprite;
-
 		
-		public function Infographic(data:InfographicData, background:Background, launchRect:Rectangle = null) {
+		protected var colors:Vector.<uint>;
+		
+		
+		public function Infographic(data:InfographicData, background:Background, colors:Vector.<uint>, launchRect:Rectangle = null) {
 			this.launchRect = launchRect;
 			this.data = data;
 			this.background = background;
-
+			this.colors = colors;
+			
 			// we store this so we can return to it when we're done with the infographic
 			if (background) initialBackgroundColor = background.getTargetColor();
 			
@@ -130,8 +133,19 @@ package med.infographic {
 				if (slideIndex > 0)		previousSlideData = data.slides[slideIndex - 1];
 				
 				
-				if (background && slideData.backgroundColor && (slideData.backgroundColor != background.getColor())) {
-					background.showColor(slideData.backgroundColor);
+				
+				// store color information on the slideData to pass to the ISlide
+				slideData.currentColors = this.colors;
+				
+				slideData.currentBackgroundColor = getBackgroundColor(slideData);
+				slideData.currentTextColor = getTextColor(slideData);
+				slideData.currentBoxColor = getBoxColor(slideData);
+				
+				
+				
+				// change the background color, if we need to
+				if (background && slideData.currentBackgroundColor && (slideData.currentBackgroundColor != background.getColor())) {
+					background.showColor(slideData.currentBackgroundColor);
 				}
 						
 				
@@ -144,30 +158,30 @@ package med.infographic {
 						break;
 	
 						
-					case InfographicSlideData.TIMELINE:	
+					case InfographicSlideData.TIMELINE:
 						var timeline:TimelineSlide = new TimelineSlide(slideData);
 						addSlideSprite(timeline);
 						timeline.animateOn();
 						break;
 						
 						
-					case InfographicSlideData.TIMELINE_NUMBER:	
+					case InfographicSlideData.TIMELINE_NUMBER:
 						var timelineNumber:TimelineNumberSlide = new TimelineNumberSlide(slideData);
 						addSlideSprite(timelineNumber);
 						timelineNumber.animateOn();
 						break;	
 						
 						
-					case InfographicSlideData.SLIDING_TAGS:							
+					case InfographicSlideData.SLIDING_TAGS:						
 						var slidingTagsSlide:SlidingTagsSlide = new SlidingTagsSlide(slideData);
 						addSlideSprite(slidingTagsSlide);						
 						slidingTagsSlide.animateOn();
 						break;
 
 						
-					case InfographicSlideData.FLOATING_BOXES:							
-						var floatingBoxesSlide:FloatingBoxesSlide = new FloatingBoxesSlide(slideData);
-						addSlideSprite(floatingBoxesSlide);						
+					case InfographicSlideData.FLOATING_BOXES:			
+						var floatingBoxesSlide:FloatingBoxesSlide = new FloatingBoxesSlide(slideData, onSlideFinished);
+						addSlideSprite(floatingBoxesSlide);
 						floatingBoxesSlide.animateOn();
 						break;
 						
@@ -215,9 +229,9 @@ package med.infographic {
 								
 							case "rotate":
 								if (previousSlideData && (previousSlideData.type == InfographicSlideData.CENTER_TEXT_BOX)) {
-									box.animateOnRotate(previousSlideData.boxColor);
+									box.animateOnRotate(previousSlideData.currentBoxColor);
 								} else {
-									box.animateOnRotate(slideData.boxColor);	// this is an unusual situation
+									box.animateOnRotate(slideData.currentBoxColor);	// this is an unusual situation
 								}
 								break;
 					
@@ -232,84 +246,64 @@ package med.infographic {
 						break;
 					
 						
-					case InfographicSlideData.HOTSPOT:
-						
+					case InfographicSlideData.HOTSPOT:						
 						var hotspotSlide:HotspotSlide = new HotspotSlide(slideData, initialBackgroundColor);
 						addSlideSprite(hotspotSlide);
-						hotspotSlide.animateOn();
-						
+						hotspotSlide.animateOn();						
 						break;
 						
-					case InfographicSlideData.SPLASH_TEXT:
-						
+					case InfographicSlideData.SPLASH_TEXT:						
 						var splashSlide:SplashTextSlide = new SplashTextSlide(slideData, initialBackgroundColor);
 						addSlideSprite(splashSlide);
-						splashSlide.animateOn();
-						
+						splashSlide.animateOn();						
 						break;
 						
-					case InfographicSlideData.TIME_DIALS:
-						
+					case InfographicSlideData.TIME_DIALS:						
 						var dialsSlide:TimeDialsSlide = new TimeDialsSlide(slideData, initialBackgroundColor, inputVars, onSlideFinished);
 						addSlideSprite(dialsSlide);
-						dialsSlide.animateOn();
-						
+						dialsSlide.animateOn();						
 						break;
 						
-					case InfographicSlideData.CLOCK:
-						
+					case InfographicSlideData.CLOCK:						
 						var clockSlide:ClockSlide = new ClockSlide(slideData, initialBackgroundColor, onSlideFinished);
 						addSlideSprite(clockSlide);
-						clockSlide.animateOn();
-						
+						clockSlide.animateOn();						
 						break;
 						
-					case InfographicSlideData.PICK3_INPUT:
-						
+					case InfographicSlideData.PICK3_INPUT:						
 						var pick3InputSlide:Pick3InputSlide = new Pick3InputSlide(slideData, initialBackgroundColor, inputVars, onSlideFinished);
 						addSlideSprite(pick3InputSlide);
-						pick3InputSlide.animateOn();
-						
+						pick3InputSlide.animateOn();					
 						break;
 						
-					case InfographicSlideData.PICK3_RESULTS:
-						
+					case InfographicSlideData.PICK3_RESULTS:					
 						var pick3ResultsSlide:Pick3ResultsSlide = new Pick3ResultsSlide(slideData, initialBackgroundColor, inputVars, onSlideFinished);
 						addSlideSprite(pick3ResultsSlide);
-						pick3ResultsSlide.animateOn();
-						
+						pick3ResultsSlide.animateOn();						
 						break;
 						
-					case InfographicSlideData.CHAPTER_SUMMARY:
-						
+					case InfographicSlideData.CHAPTER_SUMMARY:						
 						var chapterSummary:ChapterSummarySlide = new ChapterSummarySlide(slideData, initialBackgroundColor, previousSlideSprite);
 						addSlideSprite(chapterSummary);
-						chapterSummary.animateOn();
-						
+						chapterSummary.animateOn();						
 						break;
 						
-					case InfographicSlideData.PIE_GRAPH:
-						
+					case InfographicSlideData.PIE_GRAPH:						
 						var pieGraph:PieGraphSlide = new PieGraphSlide(slideData, initialBackgroundColor);
 						addSlideSprite(pieGraph);
-						pieGraph.animateOn();
-						
+						pieGraph.animateOn();						
 						break;
 						
-					case InfographicSlideData.BAR_GRAPH:
-						
+					case InfographicSlideData.BAR_GRAPH:						
 						var barGraph:BarGraphSlide = new BarGraphSlide(slideData, initialBackgroundColor, inputVars);
 						addSlideSprite(barGraph);
-						barGraph.animateOn();
-						
+						barGraph.animateOn();						
 						break;
 						
-					case InfographicSlideData.DUAL_BAR_GRAPH:
-						
+					case InfographicSlideData.DUAL_BAR_GRAPH:						
 						var dualBarGraph:DualBarGraphSlide = new DualBarGraphSlide(slideData, initialBackgroundColor);
 						addSlideSprite(dualBarGraph);
-						dualBarGraph.animateOn();
-						
+						dualBarGraph.animateOn();						
 						break;
 						
 					default:
@@ -398,6 +392,39 @@ package med.infographic {
 			
 		}
 		
+		
+		
+	
+		protected function getBackgroundColor(slideData:InfographicSlideData):uint {
+			if (slideData.xml.hasOwnProperty("appearance") && slideData.xml.appearance.hasOwnProperty("@backgroundColor")) {
+				var colorIndex:int = Math.max(0, int(slideData.xml.appearance.@backgroundColor) - 1);
+				return colors[colorIndex];
+			} else {
+				return 0;
+			}
+		}
+		
+		
+		protected function getBoxColor(slideData:InfographicSlideData):uint {		
+			if (slideData.xml.hasOwnProperty("appearance") && slideData.xml.appearance.hasOwnProperty("@boxColor")) {
+				var colorIndex:int = Math.max(0, int(slideData.xml.appearance.@boxColor) - 1);
+				return colors[colorIndex];
+			} else {
+				return 0;
+			}
+
+		}
+		
+		
+		protected function getTextColor(slideData:InfographicSlideData):uint {		
+			if (slideData.xml.hasOwnProperty("appearance") && slideData.xml.appearance.hasOwnProperty("@textColor")) {
+				var colorIndex:int = Math.max(0, int(slideData.xml.appearance.@textColor) - 1);
+				return colors[colorIndex];
+			} else {
+				return 0;
+			}
+
+		}		
 		
 		
 

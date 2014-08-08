@@ -19,7 +19,7 @@ package med.infographic {
 		
 		public var rowIndex:int = -1;
 		public var state:uint;
-		protected var drawColor:uint;		
+		public var drawColor:uint;		
 		
 		// animation constants
 		private static const ANIMATE_ON_EXPAND_TIME:Number = 0.5;

@@ -59,11 +59,11 @@ package med.infographic {
 		
 		
 		
+		
 		public function PeopleGraph(slideData:InfographicSlideData) {
 			var i:int;
 			
 			this.slideData = slideData;
-						
 			
 			for each (var graphStateXML:XML in slideData.xml.graphstate) {
 				graphStatesXML.push(graphStateXML);
@@ -71,13 +71,13 @@ package med.infographic {
 				
 			graphStateIndex = -1;
 			
-			
+
 			if (people == null) {
 				// create vector for graphical representation of people for the first time
 				people = new Vector.<PeopleGraphPerson>();
 				
 				for (i = 0; i < 100; i++) {
-					var person:PeopleGraphPerson = new PeopleGraphPerson(slideData.boxColor);
+					var person:PeopleGraphPerson = new PeopleGraphPerson(slideData.currentBoxColor);
 					people.push(person);	 
 				}
 			}
@@ -98,6 +98,7 @@ package med.infographic {
 				people[i].state = PeopleGraphPerson.STATE_NEUTRAL;
 				
 				people[i].visible = false;
+				people[i].drawColor = slideData.currentBoxColor;
 				people[i].reset();
 				
 				if (people[i].parent) {
@@ -106,6 +107,7 @@ package med.infographic {
 				
 				addChild(people[i]);
 			}
+			
 			
 			isInNeutralState = true;
 			
@@ -490,10 +492,10 @@ package med.infographic {
 
 					if (leftSideIsWhite) {
 						if (person.state == PeopleGraphPerson.STATE_LEFT)		tintColor = 0xFFFFFF;
-						else													tintColor = slideData.boxColor;
+						else													tintColor = slideData.currentBoxColor;
 					
 					} else {
-						if (person.state == PeopleGraphPerson.STATE_LEFT)		tintColor = slideData.boxColor;
+						if (person.state == PeopleGraphPerson.STATE_LEFT)		tintColor = slideData.currentBoxColor;
 						else													tintColor = 0xFFFFFF;
 
 					}

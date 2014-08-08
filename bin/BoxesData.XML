@@ -6,6 +6,7 @@
 		<BackgroundColour>#e4002b</BackgroundColour>		
 		<BoxColour>#e4002b</BoxColour>
 		<LinkedInfographic>vision info1</LinkedInfographic>
+		<InfographicColors color1="#e4002b" color2="#FFFFFF" color3="#EC4D6B" />
 	</Chapter>	
 	
 	<Chapter>
@@ -14,7 +15,8 @@
 		<BoxColour>#845b95</BoxColour>
 		<BoxColour>#754787</BoxColour>
 		<BoxColour>#9470a0</BoxColour>
-		<LinkedStory>Chapter 1</LinkedStory>		
+		<LinkedStory>Chapter 1</LinkedStory>
+		<InfographicColors color1="#653279" color2="#FFFFFF" color3="#B0008E" />
 	</Chapter>	
 	
 	<Chapter>
@@ -23,6 +25,7 @@
 		<BoxColour>#ff9e45</BoxColour>
 		<BoxColour>#ffa95a</BoxColour>
 		<LinkedStory>Chapter 2</LinkedStory>
+		<InfographicColors color1="#FF9330" color2="#FFFFFF" color3="#E4002B" />
 	</Chapter>
 	
 	<Chapter>
@@ -32,6 +35,7 @@
 		<BoxColour>#33b5e7</BoxColour>
 		<BoxColour>#4ebfe9</BoxColour>
 		<LinkedStory>Chapter 3</LinkedStory>
+		<InfographicColors color1="#00A3E0" color2="#FFFFFF" color3="#2C5697" />
 	</Chapter>
 	
 		
@@ -1056,30 +1060,31 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 	
 
 	<Infographic id="info1"> <!-- How far is too far for specialist healthcare? -->
+
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
-			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"/>
+			<appearance textColor="1" backgroundColor="1" boxColor="2"/>
 			<featuredText>Accessing specialist care in regional Australia presents many challenges for GPs and their patients.</featuredText>
 		</slide>				
 		<slide type="center_text_box" duration="4000" animateOn="rotate" animateOff="none">
-			<appearance textColor="#ff9330" backgroundColor="#ff9330" boxColor="#FFFFFF"/>
+			<appearance textColor="1" backgroundColor="1" boxColor="2"/>
 			<featuredText>Many patients have to travel more than 200km to see a specialist, not to mention the associated costs. Some choose to miss out on care altogether.</featuredText>
 		</slide>
 		<slide type="center_text_box" duration="4000" animateOn="rotate" animateOff="zoomIn">
-			<appearance textColor="#FFFFFF" backgroundColor="#ff9330" boxColor="#E4002B"/>
+			<appearance textColor="2" backgroundColor="1" boxColor="3"/>
 			<featuredText>That was before Anywhere Healthcare – Australia’s largest panel of online specialists that connects patients with specialists via video.</featuredText>
 		</slide>	
 		<slide type="center_text_box" duration="4000" animateOn="squash" animateOff="squash">
-			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#ff9330"/>
+			<appearance textColor="2" backgroundColor="3" boxColor="1"/>
 			<featuredText>Anywhere Healthcare improves access to specialist care in regional and remote Australia.</featuredText>
 		</slide>
-		<slide type="floating_boxes" duration="10000">
-			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#FF9330"/>
+		<slide type="floating_boxes">
+			<appearance textColor="2" backgroundColor="3" boxColor="1"/>
 			<featuredText>The service is offered across Australia in:</featuredText>	
 			<box value="500" text="GP practices" />
 			<box value="100" text="Aged care facilities" />
 		</slide>		
 		<slide type="sliding_tags" duration="18000">
-			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#ff9330"/>
+			<appearance textColor="2" backgroundColor="3" boxColor="1"/>
 			<featuredText>Anywhere Healthcare connects regional communities with</featuredText>			
 			<tag size="small" startLeft="true">
 				<tagstate text="Allergists" />
@@ -1109,18 +1114,18 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			</tag>							
 		</slide>		
 		<slide type="flip_number">
-			<appearance backgroundColor="#E4002B" />
+			<appearance backgroundColor="3" />
 			<graphstate value="80" featuredText="Psychology and psychiatry consultations take place each month." topText="About" />		
 		</slide>		
 		<slide type="people_graph">
-			<appearance backgroundColor="#E4002B" boxColor="#ff9330" />
+			<appearance backgroundColor="3" boxColor="1" />
 			<graphstate value="33" featuredText="1 in 3" usePercentage="false" topText="" bottomText="Consultations for patients up to the age of 15 are for dermatology." />
 			<graphstate value="5" featuredText="95" usePercentage="true" topText="Thanks to Anywhere Healthcare" bottomText="Of patients avoid travelling long distances." />
 			<graphstate value="92" featuredText="92" usePercentage="true" topText="Thanks to Anywhere Healthcare" bottomText="Of patients save money on travel costs." />
 			<graphstate value="50" featuredText="50" usePercentage="true" textOnRightEdge="true" topText="Thanks to Anywhere Healthcare more than" bottomText="Of patients avoid having to take time off work." />
 		</slide>			
 		<slide type="center_text_box" duration="4000" animateOn="zoom" animateOff="squash">
-			<appearance textColor="#ffffff" backgroundColor="#ff9330" boxColor="#E4002B"/>
+			<appearance textColor="2" backgroundColor="1" boxColor="3"/>
 			<featuredText>Contributing to communities.</featuredText>
 		</slide>		
 	</Infographic>
@@ -1128,11 +1133,11 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 
 	<Infographic id="info2"> <!-- Making advice and care more accessible. -->
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="zoomIn">
-			<appearance textColor="#FFFFFF" backgroundColor="#ff9330" boxColor="#E4002B"/>
+			<appearance textColor="2" backgroundColor="1" boxColor="3"/>
 			<featuredText>Making advice and care accessible.</featuredText>
 		</slide>			
-		<slide type="floating_boxes" duration="62000"> 
-			<appearance textColor="#FFFFFF" backgroundColor="#E4002B" boxColor="#FF9330"/>
+		<slide type="floating_boxes"> 
+			<appearance textColor="2" backgroundColor="3" boxColor="1"/>
 			<featuredText>Our members connected with:</featuredText>	
 			<box value="1163" text="Hospital providers" />
 			<box value="25726" text="Medical specialists" />
@@ -1149,7 +1154,7 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			<box value="2216" text="Speech Therapists" />
 		</slide>			
 		<slide type="flip_number">
-			<appearance backgroundColor="#E4002B" />
+			<appearance backgroundColor="3" />
 			<graphstate value="1555252" featuredText="Dentist scale cleans" topText="In one year, we supported" />	
 			<graphstate value="1462572" featuredText="Teeth fillings" topText="In one year, we supported" />	
 			<graphstate value="22491" featuredText="Births" topText="In one year, we supported" />	
@@ -1159,18 +1164,19 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			<graphstate value="2736" featuredText="Pacemakers" topText="In one year, we supported" />	
 		</slide>	
 		<slide type="center_text_box" duration="4000" animateOn="zoom" animateOff="squash">
-			<appearance textColor="#FFFFFF" backgroundColor="#ff9330" boxColor="#E4002B"/>
+			<appearance textColor="1" backgroundColor="1" boxColor="3"/>
 			<featuredText>Making advice and care more accessible.</featuredText>
 		</slide>					
 	</Infographic>
 	
+	
 	<Infographic id="info3"> <!-- Making healthcare affordable. -->
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="zoomIn">
-			<appearance textColor="#FFFFFF" backgroundColor="#653279" boxColor="#B0008E"/>
+			<appearance textColor="2" backgroundColor="1" boxColor="3"/>
 			<featuredText>Making healthcare affordable.</featuredText>
 		</slide>	
 		<slide type="flip_number">
-			<appearance backgroundColor="#B0008E" />
+			<appearance backgroundColor="3" />
 			<graphstate value="3800000" featuredText="Medibank members." topText="Making healthcare affordable" />	
 			<graphstate value="137576" featuredText="Overseas Student Health Cover members." topText="Making healthcare affordable" />	
 			<graphstate value="16150" featuredText="Overseas visitors covered." topText="Making healthcare affordable" />	
@@ -1178,67 +1184,68 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			<graphstate value="34832" featuredText="Life insurance policies." topText="Making healthcare affordable" />	
 		</slide>		
 		<slide type="spin_number">
-			<appearance backgroundColor="#B0008E" boxColor="#653279" />
+			<appearance backgroundColor="3" boxColor="1" />
 			<graphstate value="4600000000" featuredText="Benefits paid on behalf of private 
 health insurance partners." />	
 		</slide>
 		<slide type="people_graph">
-			<appearance backgroundColor="#B0008E" boxColor="#653279" />
+			<appearance backgroundColor="3" boxColor="1" />
 			<graphstate value="78" featuredText="78" usePercentage="true" topText="" bottomText="Of medical claims for Medibank members had no out of pocket costs." />
 		</slide>		
 		<slide type="spin_number">
-			<appearance backgroundColor="#B0008E" boxColor="#653279" />
+			<appearance backgroundColor="3" boxColor="1" />
 			<graphstate value="12794842.60" featuredText="Pet insurance benefits paid." />		
 			<graphstate value="8758284.75" featuredText="Travel insurance benefits paid." />	
 		</slide>
 		<slide type="center_text_box" duration="4000" animateOn="zoom" animateOff="squash">
-			<appearance textColor="#FFFFFF" backgroundColor="#653279" boxColor="#B0008E"/>
+			<appearance textColor="2" backgroundColor="1" boxColor="3"/>
 			<featuredText>Making healthcare affordable.</featuredText>
 		</slide>		
 	</Infographic>
+
 	
 	<Infographic id="info4" duration="4000"> <!-- Contributing to communities. -->
 		<slide type="center_text_box" duration="3000" animateOn="launch" animateOff="none">
-			<appearance textColor="#ff9330" boxColor="#FFFFFF"/>
+			<appearance textColor="1" boxColor="2"/>
 			<featuredText>Contributing to communities.</featuredText>
 		</slide>			
 		<slide type="center_text_box" duration="6000" animateOn="rotate" animateOff="none">
-			<appearance backgroundColor="#ff9330" textColor="#FFFFFF" boxColor="#E4002B"/>
+			<appearance backgroundColor="1" textColor="2" boxColor="3"/>
 			<featuredText>We want to encourage people to eat well, stay physically and mentally active and connect with their communities.</featuredText>
 		</slide>
 		<slide type="center_text_box" duration="4000" animateOn="none" animateOff="squash">
-			<appearance backgroundColor="#ff9330" textColor="#FFFFFF" boxColor="#E4002B"/>
+			<appearance backgroundColor="1" textColor="2" boxColor="3"/>
 			<featuredText>That's why we created the Medibank Community Fund.</featuredText>
 		<!--	<featuredText>Encouraging people to take part.</featuredText> -->
 		</slide>
 		<slide type="clock">
-			<appearance clockTextColor="#e4002b" />
+			<appearance clockTextColor="3" />
 			<clockText>2030</clockText>
 			<featuredText>Hours of employee volunteering in the last 12 months.</featuredText>
 		</slide>		
 		<slide type="people_graph">
-			<appearance backgroundColor="#ff9330" boxColor="#E4002B" />
+			<appearance backgroundColor="1" boxColor="3" />
 			<graphstate value="33" featuredText="1 in 3" usePercentage="false" topText="" bottomText="Australians participated in RU OK day." />
 		</slide>	
-		<slide type="floating_boxes" duration="11000">
-			<appearance textColor="#ffffff" backgroundColor="#ff9330" boxColor="#E4002B"/>
+		<slide type="floating_boxes">
+			<appearance textColor="2" backgroundColor="1" boxColor="3"/>
 			<featuredText></featuredText>	
 			<box value="200" text="Students involved in learning opportunities." topText="Over" />
 			<box value="68580" text="Participants in our healthy living programs." />
 		</slide>	
 		<slide type="center_text_box" duration="6000" animateOn="squash" animateOff="squash">
-			<appearance backgroundColor="#ff9330" textColor="#ff9330" boxColor="#FFFFFF"/>
+			<appearance backgroundColor="1" textColor="1" boxColor="2"/>
 			<featuredText>Backing those who share our vision.</featuredText>
 		</slide>
 		<slide type="spin_number">
-			<appearance backgroundColor="#ff9330" boxColor="#E4002B" />
+			<appearance backgroundColor="1" boxColor="3" />
 			<graphstate value="11500000" featuredText="Since the MCF was launched in 
 February 2011 we have invested" />		
 			<graphstate value="2400000" featuredText="168 community grants have been 
 awarded since 2011 totalling more than" />	
 		</slide>
 		<slide type="timeline_number" duration="27000" markerFrequency="4" lineSpacing="63" alwaysShowYear="false">
-			<appearance backgroundColor="#ff9330" /> 
+			<appearance backgroundColor="1" /> 
 			<featuredText>Community grants awarded</featuredText>
 			<graphstate value="0" bottomText="Financial year 2011" featuredText="25" />		
 			<graphstate value="4" bottomText="Financial year 2012" featuredText="50" />	
@@ -1246,7 +1253,7 @@ awarded since 2011 totalling more than" />
 			<graphstate value="12" bottomText="Financial year 2014" featuredText="42" />	
 		</slide>	
 		<slide type="center_text_box" duration="4000" animateOn="squash" animateOff="squash">
-			<appearance backgroundColor="#ff9330" textColor="#ff9330" boxColor="#FFFFFF"/>
+			<appearance backgroundColor="1" textColor="1" boxColor="2"/>
 			<featuredText>Contributing to communities.</featuredText>
 		</slide>
 	</Infographic>
@@ -1254,11 +1261,11 @@ awarded since 2011 totalling more than" />
 
 	<Infographic id="info5"> <!-- Growing with Australia. -->
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="zoomIn">
-			<appearance textColor="#FFFFFF" backgroundColor="#00A3E0" boxColor="#2C5697"/>
+			<appearance textColor="2" backgroundColor="1" boxColor="3"/>
 			<featuredText>Growing with Australia.</featuredText>
 		</slide>						
 		<slide type="timeline" duration="42000" markerFrequency="10" fadeAtScreenEdges="true" alwaysShowYear="true" lineSpacing="22" >
-			<appearance backgroundColor="#2C5697" /> 
+			<appearance backgroundColor="3" /> 
 			<graphstate value="1976" bottomText="1976" featuredText="Medibank established." />
 			<graphstate value="1981" bottomText="1981" featuredText="Medibank becomes Australia's
 largest health insurance fund.
@@ -1284,20 +1291,21 @@ Australia.</featuredText>
 		</slide>				
 	</Infographic>
 	
+	
 	<Infographic id="info6"> <!-- To go to the doctor? Or, not to go to the doctor? -->
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
-			<appearance textColor="#653279" backgroundColor="#653279" boxColor="#FFFFFF"/>
+			<appearance textColor="1" backgroundColor="1" boxColor="2"/>
 			<featuredText>To go to the doctor?
 Or, not to go to the doctor?
 It's a question we all ask ourselves.</featuredText>
 		</slide>
 		<slide type="center_text_box" duration="3000" animateOn="none" animateOff="none">
-			<appearance textColor="#653279" backgroundColor="#653279" boxColor="#FFFFFF"/>
+			<appearance textColor="1" backgroundColor="1" boxColor="2"/>
 			<featuredText>There's help on the line 
 with Healthline.</featuredText>
 		</slide>	
 		<slide type="center_text_box" duration="6000" animateOn="rotate" animateOff="zoomIn">
-			<appearance textColor="#FFFFFF" backgroundColor="#653279" boxColor="#B0008E"/>
+			<appearance textColor="2" backgroundColor="1" boxColor="3"/>
 			<featuredText>Healthline provides 
 24/7 practical advice 
 and reassurance 
@@ -1306,24 +1314,24 @@ to callers across
 New Zealand.</featuredText>
 		</slide>
 		<slide type="center_text_box" duration="6000" animateOn="squash" animateOff="squash">
-			<appearance textColor="#FFFFFF" backgroundColor="#B0008E" boxColor="#653279"/>
+			<appearance textColor="2" backgroundColor="3" boxColor="1"/>
 			<featuredText>Healthline is operated 
 by Medibank for the 
 New Zealand Ministry 
 of Health.</featuredText>
 		</slide>
 		<slide type="people_graph">
-			<appearance backgroundColor="#B0008E" boxColor="#653279" />
+			<appearance backgroundColor="3" boxColor="1" />
 			<graphstate value="40" featuredText="40" usePercentage="true" textOnRightEdge="true" topText="Up to" bottomText="of callers are given information to safely manage the condition at home." />
 			<graphstate value="50" featuredText="" usePercentage="false" topText="" bottomText="Other callers are advised to see a GP." />
 			<graphstate value="10" featuredText="" usePercentage="false" topText="" bottomText="Only a small number of callers are referred to emergency or urgent care." />			
 		</slide>	
 		<slide type="flip_number">
-			<appearance backgroundColor="#B0008E" />
+			<appearance backgroundColor="3" />
 			<graphstate value="1000" featuredText="Calls are handled by Healthline" topText="Every day, an average of more than" />	
 		</slide>
 		<slide type="center_text_box" quote="true" duration="4000" animateOn="zoom" animateOff="squash">
-			<appearance textColor="#FFFFFF" backgroundColor="#653279" boxColor="#B0008E"/>
+			<appearance textColor="2" backgroundColor="1" boxColor="3"/>
 			<featuredText>I usually ring to 
 check that I’m on the 
 right track. The 
@@ -1334,20 +1342,20 @@ very reassuring.</featuredText>
 		</slide>
 	</Infographic>
 	
+	
 	<Infographic id="vision info1">
-								
 		<slide type="center_text_box" duration="4000" animateOn="launch" animateOff="none">
-			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
+			<appearance textColor="1" boxColor="2"/>
 			<featuredText>OUR VISION.</featuredText>
 		</slide>			
 		<slide type="center_text_box" duration="4000" animateOn="none" animateOff="squash">
-			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
+			<appearance textColor="1" boxColor="2"/>
 			<featuredText>Health is one of the 
 biggest challenges facing 
 Australian society.</featuredText>
 		</slide>			
 		<slide type="people_graph">
-			<appearance backgroundColor="#E4002B" boxColor="#EC4D6B" />
+			<appearance backgroundColor="1" boxColor="3" />
 			<graphstate value="63" featuredText="63" usePercentage="true" topText="" bottomText="We’re getting bigger. 
 Obesity rates in Australia 
 are climbing faster than 
@@ -1374,13 +1382,13 @@ by 2033, reflecting 12.4% of GDP." />
  		</slide>			
 
 		<slide type="center_text_box" duration="4000" animateOn="squash" animateOff="none">
-			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
+			<appearance textColor="1" boxColor="2"/>
 			<featuredText>It’s pretty clear
 Australia’s healthcare challenge is significant… 
 But so is the opportunity.</featuredText>			
 		</slide>
 		<slide type="center_text_box" duration="4000" animateOn="rotate" animateOff="none">
-			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
+			<appearance textColor="1" boxColor="2"/>
 			<featuredText>At Medibank, we believe 
 we have an important 
 role to play in meeting 
@@ -1442,9 +1450,10 @@ in medical claims on their behalf each year</Text>
 		</Animation>
 	</Story>	
 	
+	
 	<Infographic id="vision info2">
-		<slide type="floating_boxes" duration="20000">
-			<appearance textColor="#E4002B" backgroundColor="#E4002B" boxColor="#FFFFFF"/>
+		<slide type="floating_boxes">
+			<appearance textColor="1" backgroundColor="1" boxColor="2"/>
 			<featuredText>Better health is our business, 
 and our purpose.</featuredText>	
 			<box topText="It's not about insurance, 
@@ -1472,12 +1481,12 @@ including managing the
 health of our armed forces." />
 		</slide>	
 		<slide type="timeline_number" duration="10000" markerFrequency="0" lineSpacing="22" alwaysShowYear="false">
-			<appearance backgroundColor="#e4002b" /> 
+			<appearance backgroundColor="1" /> 
 			<featuredText>We've been on this journey for more than</featuredText>
 			<graphstate value="37" bottomText="years" featuredText="37" />		
 		</slide>
 		<slide type="center_text_box" duration="4000" animateOn="squash" animateOff="none">
-			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
+			<appearance textColor="1" boxColor="2"/>
 			<featuredText>And today we provide 
 an unmatched 
 combination of health 
@@ -1488,7 +1497,7 @@ millions of people
 around the country.</featuredText>
 		</slide>			
 		<slide type="center_text_box" duration="4000" animateOn="rotate" animateOff="ignore">
-			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
+			<appearance textColor="1" boxColor="2"/>
 			<featuredText>So how do we do it?</featuredText>
 		</slide>
 		<slide type="chapter_summary" duration="9000">
@@ -1497,11 +1506,11 @@ around the country.</featuredText>
 			<wipe color="#00a2e0" text="AND BY BUILDING AN EFFECTIVE HEALTHCARE SYSTEM" animation="Sliding" source="left" />
 		</slide>
 		<slide type="center_text_box" duration="4000" animateOn="slideLeft" animateOff="squash">
-			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
+			<appearance textColor="1" boxColor="2"/>
 			<featuredText>A better health system makes a real difference in people’s lives.</featuredText>
 		</slide>		
 		<slide type="sliding_tags" duration="10000">
-			<appearance textColor="#e4002b" backgroundColor="#e4002b" boxColor="#ffffff"/>
+			<appearance textColor="1" backgroundColor="1" boxColor="2"/>
 			<featuredText></featuredText>			
 			<tag size="large" startLeft="true">
 				<tagstate text="Better health is better for everyone--" />				
@@ -1517,7 +1526,7 @@ around the country.</featuredText>
 			</tag>					
 		</slide>	
 		<slide type="center_text_box" duration="4000" animateOn="slideLeft" animateOff="squash">
-			<appearance textColor="#e4002b" boxColor="#FFFFFF"/>
+			<appearance textColor="1" boxColor="2"/>
 			<featuredText>It’s about empowering 
 and rewarding all of
 us to live better, 

@@ -31,9 +31,11 @@ package med.infographic {
 		
 		
 		protected var hasFeatureText:Boolean;
+		protected var finishedCallback:Function;
 		
 		
-		public function FloatingBoxesSlide(slideData:InfographicSlideData) {
+		public function FloatingBoxesSlide(slideData:InfographicSlideData, finishedCallback:Function) {
+			this.finishedCallback = finishedCallback;
 			this.slideData = slideData;
 	
 			/*
@@ -59,20 +61,24 @@ package med.infographic {
 			// work out bounds for boxes
 			// we need to bear in mind their size once expanded		
 			const EDGE_BUFFER:Number = 10;
+			const GAP_BETWEEN_LEFT_AND_RIGHT:Number = 20;
 			
 			var topBorder:Number = -288 + EDGE_BUFFER + (FloatingBox.BOX_SIZE * 0.5);
 			var boundsHeight:Number = 576 - ((EDGE_BUFFER + (FloatingBox.BOX_SIZE * 0.5)) * 2);
-			var boundsWidth:Number = (512 + 140) - EDGE_BUFFER - (FloatingBox.BOX_SIZE * 0.5);
+			var boundsWidth:Number = (512 + 150) - (GAP_BETWEEN_LEFT_AND_RIGHT * 0.5) - EDGE_BUFFER - (FloatingBox.BOX_SIZE * 0.5);
 				
-			var leftBoxBounds:Rectangle = new Rectangle(-140, topBorder, boundsWidth / 2, boundsHeight);
-			var rightBoxBounds:Rectangle = new Rectangle(leftBoxBounds.left + (boundsWidth * 0.5), topBorder, boundsWidth / 2, boundsHeight);			
+			var leftBoxBounds:Rectangle = new Rectangle(-150, topBorder, boundsWidth / 2, boundsHeight);
+			var rightBoxBounds:Rectangle = new Rectangle(leftBoxBounds.left + GAP_BETWEEN_LEFT_AND_RIGHT + (boundsWidth * 0.5), topBorder, boundsWidth / 2, boundsHeight);			
 			
 			if (hasFeatureText == false) {
 				// with no featured string, we increase the bounds. our usable area is larger when we don't have to worry about overlapping the text
+				// new: not any more
+				/*
 				boundsWidth = 512 - EDGE_BUFFER - (FloatingBox.BOX_SIZE * 0.5);
 				
 				leftBoxBounds = new Rectangle(-512 + EDGE_BUFFER + (FloatingBox.BOX_SIZE * 0.5), topBorder, boundsWidth, boundsHeight);
-				rightBoxBounds = new Rectangle(0, topBorder, boundsWidth, boundsHeight);			
+				rightBoxBounds = new Rectangle(0, topBorder, boundsWidth, boundsHeight);
+				*/
 			}
 			
 			
@@ -93,7 +99,22 @@ package med.infographic {
 						
 			for (var j:int = 0; j < gridLineCount * gridLineCount; j++ ) {
 				gridPositionsOnLeft.push(j);
-				gridPositionsOnRight.push(j);	
+				gridPositionsOnRight.push(j);
+				
+				// draw for debug		
+				/*
+				var rightX:Number = rightBoxBounds.x + (gridSize * 0.25) + ((j % gridLineCount) * gridSize);
+				var rightY:Number = rightBoxBounds.y + (gridSize * 0.5) + (Math.floor(j / gridLineCount) * gridSize);
+
+				var leftX:Number = leftBoxBounds.x + (gridSize * 0.25) + ((j % gridLineCount) * gridSize);
+				var leftY:Number = leftBoxBounds.y + (gridSize * 0.5) + (Math.floor(j / gridLineCount) * gridSize);
+					
+				this.graphics.lineStyle(2, 0x0000FF, 0.7);
+				this.graphics.drawCircle(rightX, rightY, (gridSize * 0.2));
+
+				this.graphics.lineStyle(2, 0x00FF00, 0.7);
+				this.graphics.drawCircle(leftX, leftY, (gridSize * 0.2));				
+				*/
 			}
 
 			
@@ -102,7 +123,6 @@ package med.infographic {
 					
 			
 			
-
 			
 			
 			for (var i:int = 0; i < slideData.xml.box.length(); i++) {
@@ -110,15 +130,12 @@ package med.infographic {
 				
 				var showNumber:Boolean = boxXML.hasOwnProperty("@value");
 				
-				var box:FloatingBox = new FloatingBox(int(boxXML.@value), showNumber, boxXML.@text, boxXML.@topText, slideData.boxColor, slideData.textColor, (boxXML.@largeBox == "true"));
+				var box:FloatingBox = new FloatingBox(int(boxXML.@value), showNumber, boxXML.@text, boxXML.@topText, slideData.currentBoxColor, slideData.currentTextColor, (boxXML.@largeBox == "true"));
 				boxes.push(box);
 				
 				
 				// figure out box positions								
 				// mostly we want them to alternate l->r->l			
-				
-				
-				
 				var gridPosition:int;
 				
 				
@@ -127,22 +144,16 @@ package med.infographic {
 					
 					gridPosition = gridPositionsOnRight.pop();
 					
-					box.x = rightBoxBounds.x + (gridSize * 0.5) + ((gridPosition % gridLineCount) * gridSize) + Rndm.integer((gridSize * -0.2), (gridSize * 0.2));
+					box.x = rightBoxBounds.x + (gridSize * 0.25) + ((gridPosition % gridLineCount) * gridSize) + Rndm.integer((gridSize * -0.2), (gridSize * 0.2));
 					box.y = rightBoxBounds.y + (gridSize * 0.5) + (Math.floor(gridPosition / gridLineCount) * gridSize) + Rndm.integer((gridSize * -0.2), (gridSize * 0.2));
 					
-//					box.x = rightBoxBounds.x + Rndm.integer(0, rightBoxBounds.width);
-//					box.y = rightBoxBounds.y + Rndm.integer(0, rightBoxBounds.height);
-
 				} else {
 					// odd -> left
 					gridPosition = gridPositionsOnLeft.pop();
 
-					box.x = leftBoxBounds.x + (gridSize * 0.5) + ((gridPosition % gridLineCount) * gridSize) + Rndm.integer((gridSize * -0.2), (gridSize * 0.2));
+					box.x = leftBoxBounds.x + (gridSize * 0.25) + ((gridPosition % gridLineCount) * gridSize) + Rndm.integer((gridSize * -0.2), (gridSize * 0.2));
 					box.y = leftBoxBounds.y + (gridSize * 0.5) + (Math.floor(gridPosition / gridLineCount) * gridSize) + Rndm.integer((gridSize * -0.2), (gridSize * 0.2));
-					
-//					box.x = leftBoxBounds.x + Rndm.integer(0, leftBoxBounds.width);
-//					box.y = leftBoxBounds.y + Rndm.integer(0, leftBoxBounds.height);				
-									
+														
 				}
 				
 				addChild(box);
@@ -178,6 +189,10 @@ package med.infographic {
 			
 			if ((showingBoxIndex + 1) >= boxes.length) {
 				// don't have another one to show
+				// we want to animate off, then call finishedCallback
+				// but we want to allow time for the current box to move to the background
+				TweenMax.to(this, FloatingBox.BOX_ANIM_TIME_SECONDS, { onComplete:animateOff, onCompleteParams:[finishedCallback] } );
+//				animateOff(finishedCallback);
 				return;
 			}
 			
@@ -206,9 +221,9 @@ package med.infographic {
 			
 			for each (var box:FloatingBox in boxes) {
 				delay = (Rndm.integer(0, 500) * 0.001);
-				if (hasFeatureText) delay += 0.5;
+//				if (hasFeatureText) delay += 0.5;
 				
-				TweenMax.fromTo(box, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-1000 }, { x:box.x, immediateRender:true, delay:delay, ease:Strong.easeIn } );
+				TweenMax.fromTo(box, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-800 }, { x:box.x, immediateRender:true, delay:delay, ease:Strong.easeIn } );
 			}
 					
 			
@@ -217,16 +232,16 @@ package med.infographic {
 			
 			for each (var dummyBox:DisplayObject in dummyBoxes) {
 				delay = (Rndm.integer(0, 500) * 0.001);
-				if (hasFeatureText) delay += 0.5;
+//				if (hasFeatureText) delay += 0.5;
 
 				dummyBox.filters = [blurFilter];
 				
-				TweenMax.fromTo(dummyBox, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-1000 }, { x:dummyBox.x, immediateRender:true, delay:delay, ease:Strong.easeIn, onComplete:initDummyBox, onCompleteParams:[dummyBox] } );
+				TweenMax.fromTo(dummyBox, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-800 }, { x:dummyBox.x, immediateRender:true, delay:delay, ease:Strong.easeIn, onComplete:initDummyBox, onCompleteParams:[dummyBox] } );
 			}
 			
 			
 			// feature text
-			TweenMax.fromTo(featuredText, 1.0, { x: -800 }, { x: featuredText.x, immediateRender:true, ease:Strong.easeOut } );
+			TweenMax.fromTo(featuredText, 0.7, { x: -800 }, { x: featuredText.x, immediateRender:true, ease:Strong.easeOut } );
 			
 			TweenMax.to(this, ANIMATE_ON_DURATION_SECONDS + 0.3, { onComplete:showNextBox } );
 		}
