@@ -58,7 +58,7 @@ package med.infographic {
 			
 			// draw correct color for color line
 			colorLine.graphics.clear();
-			colorLine.graphics.beginFill(slideData.boxColor, 1.0);
+			colorLine.graphics.beginFill(slideData.currentBoxColor, 1.0);
 			colorLine.graphics.drawRect(-512, -ENTRY_HEIGHT * 0.5, 1024, ENTRY_HEIGHT);
 			colorLine.graphics.endFill();
 			
@@ -84,40 +84,40 @@ package med.infographic {
 			addChild(alphaShadingLayer);
 			
 			// 90% (directly above and below)
-			alphaShadingLayer.graphics.beginFill(slideData.backgroundColor, 0.9);
+			alphaShadingLayer.graphics.beginFill(slideData.currentBackgroundColor, 0.9);
 			alphaShadingLayer.graphics.drawRect(-512, -(1.5 * ENTRY_HEIGHT), 1024, ENTRY_HEIGHT);
 			alphaShadingLayer.graphics.endFill();
 
-			alphaShadingLayer.graphics.beginFill(slideData.backgroundColor, 0.9);
+			alphaShadingLayer.graphics.beginFill(slideData.currentBackgroundColor, 0.9);
 			alphaShadingLayer.graphics.drawRect(-512, (0.5 * ENTRY_HEIGHT), 1024, ENTRY_HEIGHT);
 			alphaShadingLayer.graphics.endFill();
 			
 			
 			// 97% (next)
-			alphaShadingLayer.graphics.beginFill(slideData.backgroundColor, 0.97);
+			alphaShadingLayer.graphics.beginFill(slideData.currentBackgroundColor, 0.97);
 			alphaShadingLayer.graphics.drawRect(-512, -(2.5 * ENTRY_HEIGHT), 1024, ENTRY_HEIGHT);
 			alphaShadingLayer.graphics.endFill();
 
-			alphaShadingLayer.graphics.beginFill(slideData.backgroundColor, 0.97);
+			alphaShadingLayer.graphics.beginFill(slideData.currentBackgroundColor, 0.97);
 			alphaShadingLayer.graphics.drawRect(-512, (1.5 * ENTRY_HEIGHT), 1024, ENTRY_HEIGHT);
 			alphaShadingLayer.graphics.endFill();
 			
 			
 			// 98% (last)
-			alphaShadingLayer.graphics.beginFill(slideData.backgroundColor, 0.98);
+			alphaShadingLayer.graphics.beginFill(slideData.currentBackgroundColor, 0.98);
 			alphaShadingLayer.graphics.drawRect(-512, -(3.5 * ENTRY_HEIGHT), 1024, ENTRY_HEIGHT);
 			alphaShadingLayer.graphics.endFill();
 			
-			alphaShadingLayer.graphics.beginFill(slideData.backgroundColor, 0.98);
+			alphaShadingLayer.graphics.beginFill(slideData.currentBackgroundColor, 0.98);
 			alphaShadingLayer.graphics.drawRect(-512, (2.5 * ENTRY_HEIGHT), 1024, ENTRY_HEIGHT);
 			alphaShadingLayer.graphics.endFill();
 			
 			// draw completely solid strips at the very top and bottom
-			alphaShadingLayer.graphics.beginFill(slideData.backgroundColor, 1.0);
+			alphaShadingLayer.graphics.beginFill(slideData.currentBackgroundColor, 1.0);
 			alphaShadingLayer.graphics.drawRect(-512, -288-98, 1024, 100);
 			alphaShadingLayer.graphics.endFill();
 			
-			alphaShadingLayer.graphics.beginFill(slideData.backgroundColor, 1.0);
+			alphaShadingLayer.graphics.beginFill(slideData.currentBackgroundColor, 1.0);
 			alphaShadingLayer.graphics.drawRect(-512, 288-2, 1024, 100);
 			alphaShadingLayer.graphics.endFill();
 			

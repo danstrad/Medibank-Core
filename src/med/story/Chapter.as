@@ -9,10 +9,14 @@ package med.story {
 		public var title:String;
 		public var bgColor:uint;
 		
-
 		public var baseStoryID:String;
 		public var baseInfographicID:String;
-
+		
+		public var infographicColor1:uint;
+		public var infographicColor2:uint;
+		public var infographicColor3:uint;
+		
+		
 		public function get baseStory():Story {
 			if (baseStoryID) return StorySet.getStory(baseStoryID);
 			else return null;

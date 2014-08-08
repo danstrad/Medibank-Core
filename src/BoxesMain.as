@@ -428,7 +428,7 @@ package {
 			launchRect = launchRect.clone();
 			launchRect.offset(-STAGE_WIDTH / 2, -STAGE_HEIGHT / 2);
 			
-			var infographic:CoreInfographic = new CoreInfographic(data, mover, launchRect, backgroundImageLayer, background);
+			var infographic:CoreInfographic = new CoreInfographic(data, mover, launchRect, backgroundImageLayer, background, currentChapter);
 			currentInfographic = infographic;
 			infographic.x = STAGE_WIDTH / 2;
 			infographic.y = STAGE_HEIGHT/ 2;
@@ -436,6 +436,7 @@ package {
 			currentInfographic.enable();
 			
 		}
+		
 		
 		protected function restoreAfterInfographic():void {
 			mover.mouseChildren = true;

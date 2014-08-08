@@ -24,7 +24,7 @@ package med.infographic {
 			
 			timeline.expandEntryLineWhenReached = false;
 			
-			flipNumber = new FlipNumber(slideData.backgroundColor);
+			flipNumber = new FlipNumber(slideData.currentBackgroundColor);
 			flipNumber.y = -10;
 			addChild(flipNumber);
 
@@ -55,6 +55,9 @@ package med.infographic {
 		
 		protected function flipToBlank():void {
 			flipNumber.flipToBlank(null, null);
+			
+			// tween off the top text
+			TweenMax.fromTo(topText, 0.5, {y:topText.y, alpha:0}, { y:topText.y+50, alpha:1, delay:0.5, immediateRender:true, ease:Strong.easeInOut } ); 				
 		}
 		
 		

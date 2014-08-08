@@ -19,7 +19,7 @@ package med.infographic {
 						
 			// change color of fade
 			var colorTransform:ColorTransform = fade.transform.colorTransform;
-			colorTransform.color = slideData.backgroundColor;
+			colorTransform.color = slideData.currentBackgroundColor;
 			fade.transform.colorTransform = colorTransform;
 			
 			
@@ -97,6 +97,9 @@ package med.infographic {
 			callback(this);
 		}
 
+	
+		
+		
 		
 	}
 

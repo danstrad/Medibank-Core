@@ -46,11 +46,6 @@ package med.infographic {
 			this.data = slideData;
 			
 			// get details from xml
-			var textColor:uint = uint(slideData.xml.appearance.@textColor.toString().replace("#", "0x"));
-			var backgroundColor:uint = uint(slideData.xml.appearance.@backgroundColor.toString().replace("#", "0x"));
-			
-			this.boxColor = uint(slideData.xml.appearance.@boxColor.toString().replace("#", "0x"));	
-				
 			var boxText:String = TextUtils.safeText(slideData.xml.featuredText);
 			
 
@@ -58,7 +53,7 @@ package med.infographic {
 			// draw box
 			box = new Shape();
 			box.graphics.clear();
-			box.graphics.beginFill(boxColor);
+			box.graphics.beginFill(slideData.currentBoxColor);
 			box.graphics.drawRect(BOX_X, BOX_Y, CENTER_BOX_WIDTH, CENTER_BOX_HEIGHT);
 			box.graphics.endFill();
 			addChildAt(box, 0);
@@ -96,14 +91,14 @@ package med.infographic {
 				if (quoteString != "")		quoteByField.visible = true;
 				
 				quoteByField.text = quoteString;
-				quoteByField.textColor = textColor;
+				quoteByField.textColor = slideData.currentTextColor;
 				Text.setTextSpacing(quoteByField, -0.5);
 				
 				quoteByField.autoSize = TextFieldAutoSize.CENTER;
 				
 				// add the little speech mark thing coming out of the box
 				box.graphics.lineStyle();
-				box.graphics.beginFill(boxColor, 1);
+				box.graphics.beginFill(slideData.currentBoxColor, 1);
 				box.graphics.moveTo( -CENTER_BOX_WIDTH * 0.5, -21);
 				box.graphics.lineTo(( -CENTER_BOX_WIDTH * 0.5) - 21, 0);
 				box.graphics.lineTo(( -CENTER_BOX_WIDTH * 0.5), 21);
@@ -117,7 +112,7 @@ package med.infographic {
 			
 			// set text
 			textField.text = boxText;
-			textField.textColor = textColor;
+			textField.textColor = slideData.currentTextColor;
 			Text.boldText(textField);
 			Text.setTextSpacing(textField, -2);
 			

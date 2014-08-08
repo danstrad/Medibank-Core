@@ -47,7 +47,7 @@ package med.infographic {
 			for (var i:int = 0; i < slideData.xml.tag.length(); i++) {				
 				var tagXML:XML = slideData.xml.tag[i];
 				
-				var tag:SlidingTag = new SlidingTag(tagXML, slideData.boxColor, slideData.textColor);
+				var tag:SlidingTag = new SlidingTag(tagXML, slideData.currentBoxColor, slideData.currentTextColor);
 				
 				tags.push(tag);
 				addChild(tag);

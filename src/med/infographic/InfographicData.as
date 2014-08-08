@@ -32,12 +32,6 @@ package med.infographic {
 					// calculate duration automatically based on slide count, ignore what's in the xml (if anything)
 					displayTimeMsec = 2000 + ((SpinNumberSlot.MIN_SPIN_TIME_SECS + SpinNumberSlide.AFTER_SPINNING_WAIT_TIME_SECONDS) * slideXML.graphstate.length()) * 1000;
 									
-				/*	
-				} else if (type == InfographicSlideData.FLIP_NUMBER) {
-					// calculate duration automatically based on slide count, ignore what's in the xml (if anything)
-					displayTimeMsec = (FlipNumberSlide.ANIMATE_ON_TIME_SEC + (slideXML.graphstate.length() * FlipNumberSlide.NUMBER_DISPLAYED_DURATION_SEC) + 2.0) * 1000;
-				*/	
-					
 				} else {
 					
 					displayTimeMsec = int(slideXML.@duration);

@@ -37,7 +37,7 @@ package med.infographic {
 				graphStatesXML.push(graphStateXML);
 			}
 										
-			flipNumber = new FlipNumber(slideData.backgroundColor);
+			flipNumber = new FlipNumber(slideData.currentBackgroundColor);
 			flipNumber.x = 0;
 			flipNumber.y = -10;
 			addChild(flipNumber);			

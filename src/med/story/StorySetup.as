@@ -47,6 +47,13 @@
 					case 3: SlidingAnimationData.COLORS = colors; break;
 				}
 				
+				if (chapterXML.hasOwnProperty("InfographicColors")) {
+					var infographicColorsXML:XML = chapterXML.InfographicColors[0] as XML;
+					chapter.infographicColor1 = uint(infographicColorsXML.@color1.toString().replace("#", "0x"));
+					chapter.infographicColor2 = uint(infographicColorsXML.@color2.toString().replace("#", "0x"));
+					chapter.infographicColor3 = uint(infographicColorsXML.@color3.toString().replace("#", "0x"));
+				}
+				
 				chapterCount++;
 			}
 									

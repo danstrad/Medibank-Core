@@ -24,7 +24,7 @@ package med.infographic {
 		public static const BACK_BOX_BLUR:Number = 16;	
 		public static const BLUR_QUALITY:int = 2;
 				
-		protected static const BOX_ANIM_TIME_SECONDS:Number = 0.6;
+		public static const BOX_ANIM_TIME_SECONDS:Number = 0.6;
 
 		protected static const NUMBER_COUNT_UP_TIME_MSEC:Number = 1000;
 				
