@@ -18,6 +18,8 @@ package med.infographic {
 		
 		
 		public var rowIndex:int = -1;
+		public var columnIndex:int = -1;
+		
 		public var state:uint;
 		public var drawColor:uint;		
 		

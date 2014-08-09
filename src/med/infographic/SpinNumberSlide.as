@@ -1,9 +1,11 @@
 package med.infographic {
+	import com.garin.Text;
 	import com.greensock.easing.BounceInOut;
 	import com.greensock.TweenMax;
 	import com.gskinner.utils.Rndm;
 	import flash.display.Shape;
 	import flash.display.Sprite;
+	import flash.text.TextFieldAutoSize;
 
 	
 	public class SpinNumberSlide extends _SpinNumberSlide implements ISlide {
@@ -69,8 +71,14 @@ package med.infographic {
 			for each (graphStateXML in graphStatesXML) {
 	
 				var featuredTextEntry:_FeaturedTextEntry = new _FeaturedTextEntry(); 			
+				
 				featuredTextEntry.textField.text = TextUtils.safeText(graphStateXML.@featuredText);
-
+				Text.boldText(featuredTextEntry.textField);
+				Text.setTextSpacing(featuredTextEntry.textField, -0.3);
+				featuredTextEntry.textField.autoSize = TextFieldAutoSize.LEFT;
+				
+				featuredTextEntry.textField.y = (ENTRY_HEIGHT - featuredTextEntry.textField.height) * 0.5;
+				
 				featuredTextEntry.y = (featuredTextEntries.length * ENTRY_HEIGHT);
 				featuredTextEntries.push(featuredTextEntry);
 				featuredTextPanel.addChild(featuredTextEntry);

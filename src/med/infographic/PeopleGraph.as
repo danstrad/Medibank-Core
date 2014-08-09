@@ -92,6 +92,7 @@ package med.infographic {
 				var yIndex:int = Math.floor(i / 10);
 
 				people[i].rowIndex = yIndex;
+				people[i].columnIndex = xIndex; 
 				
 				people[i].x = startX + (xIndex * PEOPLE_SPACING);
 				people[i].y = startY + (yIndex * PEOPLE_SPACING);
@@ -172,13 +173,17 @@ package med.infographic {
 									
 			for each (var person:PeopleGraphPerson in people) {
 				
-				var targetX:int = -800;
+				var targetX:Number;
 				
 				if (person.state == PeopleGraphPerson.STATE_RIGHT) {
-					targetX = 800;
+					targetX = person.x + 800;
+				} else {
+					targetX = person.x - 800;
 				}
 				
-				TweenMax.to(person, 1.25, { x:targetX, delay:(Rndm.integer(0, 25) * 0.01) } );
+				var delay:Number = (person.columnIndex * 0.025) + (Rndm.integer(0, 25) * 0.01); 
+				
+				TweenMax.to(person, 1.25, { x:targetX, delay: delay } );
 			}
 		
 			// wait, then callback
@@ -446,7 +451,7 @@ package med.infographic {
 					
 					person = people[(row * 10) + i];
 					
-					var delay:Number = rndm.integer(0, 100) * 0.001;
+					var delay:Number = (i * 0.025) + rndm.integer(0, 75) * 0.001;
 					
 					
 					if (i < targetRowCountsLeft[row]) {

@@ -15,8 +15,6 @@ package med.infographic {
 
 		
 		public static const BOX_SIZE:Number = 256;
-
-		public static const BOX_SIZE_LARGE:Number = 295;
 		
 //		protected static const BACK_BOX_SCALE:Number = 0.2;
 		protected static const BACK_BOX_ALPHA:Number = 0.5;
@@ -41,7 +39,7 @@ package med.infographic {
 		protected var currentValue:int;
 		
 		
-		public function FloatingBox(value:int, showNumber:Boolean, textString:String, topTextString:String, boxColor:uint, textColor:uint, largeSize:Boolean=false) {
+		public function FloatingBox(value:int, showNumber:Boolean, textString:String, topTextString:String, boxColor:uint, textColor:uint) {
 			
 			this.targetValue = value;
 			
@@ -66,32 +64,52 @@ package med.infographic {
 			textField.textColor = textColor;
 			Text.boldText(textField);
 					
+			const TOP_TEXT_NORMAL_FONT_SIZE:Number = 21;
+			const TOP_TEXT_NORMAL_WIDTH:Number = 225;
+			
 			if (topTextString != "") {
 				
 				topTextField.text = TextUtils.safeText(topTextString);
 				topTextField.textColor = textColor;
-//				Text.boldText(topTextField);
 				Text.setTextSpacing(topTextField, -0.4);
+				topTextField.autoSize = TextFieldAutoSize.LEFT;
 				
 				// move number down
 				numberField.y += 20;
+			
+			
+				// adjust font size if necessary
+				var fontSize:Number = TOP_TEXT_NORMAL_FONT_SIZE;
+				
+				
+				while (topTextField.height >= (BOX_SIZE - 20)) {
+				
+					fontSize--;
+					
+					topTextField.autoSize = TextFieldAutoSize.NONE;
+					topTextField.width = TOP_TEXT_NORMAL_WIDTH;
+					
+					// if the text is too big, we need to reduce the font size					
+					var tf:TextFormat = topTextField.getTextFormat();
+					tf.size = fontSize;					
+					topTextField.setTextFormat(tf);
+					
+					topTextField.autoSize = TextFieldAutoSize.LEFT;					
+				}
 				
 			} else {
 				topTextField.visible = false;
 			}
 				
+			
 			textField.autoSize = TextFieldAutoSize.LEFT;
+
 			textField.y = (BOX_SIZE * 0.5) - textField.height - 15; 
 			
 			// draw the box
 			graphics.clear();
 			graphics.beginFill(boxColor, 1.0);
-			
-			if (largeSize) {
-				graphics.drawRect( -BOX_SIZE * 0.5, -BOX_SIZE * 0.5, BOX_SIZE_LARGE, BOX_SIZE_LARGE);
-			} else {
-				graphics.drawRect( -BOX_SIZE * 0.5, -BOX_SIZE * 0.5, BOX_SIZE, BOX_SIZE);
-			}
+			graphics.drawRect( -BOX_SIZE * 0.5, -BOX_SIZE * 0.5, BOX_SIZE, BOX_SIZE);
 			
 			graphics.endFill();
 			

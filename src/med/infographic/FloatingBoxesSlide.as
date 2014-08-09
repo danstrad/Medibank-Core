@@ -10,6 +10,7 @@ package med.infographic {
 	import flash.display.Sprite;
 	import flash.filters.BlurFilter;
 	import flash.geom.Rectangle;
+	import flash.text.TextFieldAutoSize;
 	
 	
 	public class FloatingBoxesSlide extends _FloatingBoxesSlide implements ISlide {
@@ -47,7 +48,7 @@ package med.infographic {
 				</slide>
 			*/
 			
-			var featuredString:String = slideData.xml.featuredText;
+			var featuredString:String = TextUtils.safeText(slideData.xml.featuredText);
 			
 			hasFeatureText = (featuredString != "");
 			
@@ -55,6 +56,9 @@ package med.infographic {
 			Text.boldText(featuredText);
 			Text.setTextSpacing(featuredText, -0.4);
 
+			featuredText.autoSize = TextFieldAutoSize.LEFT;
+			featuredText.y = 0 - (featuredText.height * 0.5) 
+			
 			boxes = new Vector.<FloatingBox>();
 			
 			
@@ -130,7 +134,7 @@ package med.infographic {
 				
 				var showNumber:Boolean = boxXML.hasOwnProperty("@value");
 				
-				var box:FloatingBox = new FloatingBox(int(boxXML.@value), showNumber, boxXML.@text, boxXML.@topText, slideData.currentBoxColor, slideData.currentTextColor, (boxXML.@largeBox == "true"));
+				var box:FloatingBox = new FloatingBox(int(boxXML.@value), showNumber, boxXML.@text, boxXML.@topText, slideData.currentBoxColor, slideData.currentTextColor);
 				boxes.push(box);
 				
 				
@@ -223,7 +227,7 @@ package med.infographic {
 				delay = (Rndm.integer(0, 500) * 0.001);
 //				if (hasFeatureText) delay += 0.5;
 				
-				TweenMax.fromTo(box, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-800 }, { x:box.x, immediateRender:true, delay:delay, ease:Strong.easeIn } );
+				TweenMax.fromTo(box, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-600 }, { x:box.x, immediateRender:true, delay:delay, ease:Strong.easeIn } );
 			}
 					
 			
@@ -236,7 +240,7 @@ package med.infographic {
 
 				dummyBox.filters = [blurFilter];
 				
-				TweenMax.fromTo(dummyBox, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-800 }, { x:dummyBox.x, immediateRender:true, delay:delay, ease:Strong.easeIn, onComplete:initDummyBox, onCompleteParams:[dummyBox] } );
+				TweenMax.fromTo(dummyBox, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-600 }, { x:dummyBox.x, immediateRender:true, delay:delay, ease:Strong.easeIn, onComplete:initDummyBox, onCompleteParams:[dummyBox] } );
 			}
 			
 			
