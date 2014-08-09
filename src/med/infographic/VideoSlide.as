@@ -129,7 +129,16 @@ package med.infographic {
 		private function asyncErrorHandler(event:AsyncErrorEvent):void {
 		}
 
+		public function pauseVideo():void {
+			if (ns) ns.pause();
+		}
 		
+		public function resumeVideo():void {
+			if (ns) ns.resume();
+		}
+		
+
+
 		
 		
 		public function animateOn():void {
@@ -162,7 +171,6 @@ package med.infographic {
 			
 		}
 		
-
 		protected function showNextTextState():void {
 			if (stateIndex >= textStates.length) return;
 			var state:TextState = textStates[stateIndex];
@@ -311,9 +319,7 @@ package med.infographic {
 			dispose();
 			if (finishedCallback != null) finishedCallback(this);
 		}
-
 		
-
 		
 	}
 

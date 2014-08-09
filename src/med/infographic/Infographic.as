@@ -19,9 +19,15 @@ package med.infographic {
 		public var data:InfographicData;		
 		protected var background:Background;
 		
-		public var currentSlideIndex:int = 0;
-		
 		protected var initialBackgroundColor:uint;
+		protected var colors:Vector.<uint>;
+
+		public var currentSlideIndex:int = 0;
+		protected var currentSlideTime:Number; // number of msec the current slide has been displayed (we count this up in animate())
+		protected var slideSprite:Sprite;
+		protected var previousSlideSprite:Sprite;
+		protected var slideAnimatingOff:Boolean;
+		
 		
 		protected var inputVars:Object;
 		
@@ -29,9 +35,7 @@ package med.infographic {
 		
 		protected var endCallback:Function;
 		
-		protected var previousSlideSprite:Sprite;
-		
-		protected var colors:Vector.<uint>;
+
 		
 		
 		public function Infographic(data:InfographicData, background:Background, colors:Vector.<uint>, launchRect:Rectangle = null) {
@@ -43,13 +47,26 @@ package med.infographic {
 			// we store this so we can return to it when we're done with the infographic
 			if (background) initialBackgroundColor = background.getTargetColor();
 			
+			begin();
+		}
+		
+		protected function begin():void {
 			// any user inputted data that needs to persist between slides, passed in to slides that may need it
 			inputVars = { }
-			
+						
 			// load first slide	
+			slideAnimatingOff = false;
+			currentSlideTime = 0;
 			currentSlideIndex = -1;
 			nextSlide();
-
+		}
+		
+		public function reset():void {
+			if (slideSprite) {
+				if (slideSprite.parent) slideSprite.parent.removeChild(slideSprite);
+				slideSprite = null;
+			}
+			begin();
 		}
 		
 		
@@ -60,52 +77,47 @@ package med.infographic {
 		
 		
 		
-		protected var slideSprite:Sprite;
 		
-		
-		protected function removePreviousSlide():void {		
+		protected function animateSlideOff():void {
 			if (slideSprite == null)	return;
-			
-			trace("removePreviousSprite");
-			
-			var oldSlideSprite:Sprite = slideSprite;
-			slideSprite = null;
 			
 			var nextSlideData:InfographicSlideData;				
 			if (currentSlideIndex < data.slides.length - 1) {
 				nextSlideData = data.slides[currentSlideIndex + 1];
 			}
-				
-			if (oldSlideSprite is InfographicCenterBox) {
+			
+			slideAnimatingOff = true;
+			
+			if (slideSprite is InfographicCenterBox) {
 				
 				switch (data.slides[currentSlideIndex].animateOff) {
 					
 					case "zoomIn":
-						InfographicCenterBox(oldSlideSprite).animateOffZoom(onSlideFinished);
+						InfographicCenterBox(slideSprite).animateOffZoom(onSlideFinished);
 						break;
 						
 					case "squash":
-						InfographicCenterBox(oldSlideSprite).animateOffSquash(onSlideFinished);
+						InfographicCenterBox(slideSprite).animateOffSquash(onSlideFinished);
 						break;
 						
 					case "ignore":
-						InfographicCenterBox(oldSlideSprite).animateOffIgnore(onSlideFinished);
+						InfographicCenterBox(slideSprite).animateOffIgnore(onSlideFinished);
 						break;
 				
 					default:	
 					case "none":
-						ISlide(oldSlideSprite).animateOff(onSlideFinished);
+						ISlide(slideSprite).animateOff(onSlideFinished);
 						break;
 				}
 				
 				
-			} else if (oldSlideSprite is ISlide) {
+			} else if (slideSprite is ISlide) {
 				// under normal circumstances, trust the ISlide to animate itself off
-				ISlide(oldSlideSprite).animateOff(onSlideFinished);
+				ISlide(slideSprite).animateOff(onSlideFinished);
 			
 			} else {
 				// not sure what this thing is. just get rid of it
-				onSlideFinished(oldSlideSprite);
+				onSlideFinished(slideSprite);
 			}
 
 			
@@ -115,13 +127,9 @@ package med.infographic {
 		
 		
 		protected function nextSlide():void {
-		
-			// make sure previous slide is removed
-			removePreviousSlide();
 			
 			var slideIndex:int = currentSlideIndex + 1;
-			
-			
+						
 			if ((slideIndex >= 0) && (slideIndex < data.slides.length) && (data.slides[slideIndex] != null)) {
 				
 				this.currentSlideIndex = slideIndex;
@@ -339,6 +347,11 @@ package med.infographic {
 		
 		
 		protected function onSlideFinished(sprite:Sprite):void {
+			if (sprite != slideSprite) return;
+			
+			slideAnimatingOff = false;
+			slideSprite = null;
+			
 			previousSlideSprite = sprite;
 			if (sprite && sprite.parent)  sprite.parent.removeChild(sprite);
 			slideSprite = null;
@@ -351,20 +364,17 @@ package med.infographic {
 		
 		protected function animateLastSlideOff(endCallback:Function):void {
 			this.endCallback = endCallback;
-			removePreviousSlide();			
+			animateSlideOff();
 		}
 		
 		
 
 		
-		// number of msec the current slide has been displayed (we count this up in animate())
-		protected var currentSlideTime:Number = 0;
-		
 
 		public function animate(dTime:Number):void {
 			
 			// do we even have a slide?
-			if (!slideSprite)	return;
+			if (!slideSprite || slideAnimatingOff)	return;
 			
 			
 			// check whether we've exceeded the amount of time to show this slide
@@ -377,7 +387,7 @@ package med.infographic {
 				
 				if (currentSlideIndex < (data.slides.length-1)) {
 					// remove previous slide, wait for callback to start next slide
-					removePreviousSlide();
+					animateSlideOff();
 				
 				} else {
 					//removePreviousSlide();
@@ -402,6 +412,19 @@ package med.infographic {
 			
 		}
 		
+		
+		public function pauseMedia():void {
+			if (!slideSprite) return;
+			if (slideSprite is VideoSlide) {
+				VideoSlide(slideSprite).pauseVideo();
+			}
+		}
+		
+		public function resumeMedia():void {
+			if (slideSprite is VideoSlide) {
+				VideoSlide(slideSprite).resumeVideo();
+			}
+		}
 		
 		
 	
