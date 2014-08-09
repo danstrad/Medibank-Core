@@ -214,6 +214,11 @@ package med.infographic {
 
 			var value:int = int(graphStateXML.@value);
 			
+			// sanity checking on value
+			// todo: use extra dots for values above 100
+			value = Math.min(value, 100);
+			value = Math.max(value, 0);
+			
 			var isWhiteOnLeft:Boolean = ((graphStateIndex % 2) == 0);
 			
 			var isTextOnRightEdge:Boolean = (graphStateXML.@textOnRightEdge == "true");			
@@ -443,18 +448,27 @@ package med.infographic {
 			var ease:Ease = Strong.easeInOut;
 			
 			
+			const DELAY_CONSTANT:Number = 0.025;
+			
+			
 			// now nominate which people will move across
 			for (var row:int = 0; row < 10; row++) {
+				
+				var rowDelay:Number = rndm.integer(0, 50) * 0.001;
+				
 				
 				for (i = 0; i < 10; i++) { 
 					var finalX:Number;
 					
 					person = people[(row * 10) + i];
 					
-					var delay:Number = (i * 0.025) + rndm.integer(0, 75) * 0.001;
+					var delay:Number = rowDelay + rndm.integer(0, 25) * 0.001;
 					
 					
 					if (i < targetRowCountsLeft[row]) {
+					
+						// when moving left, the leftmost dots should have the smallest delay
+						delay += (i * DELAY_CONSTANT); 
 						
 						if (person.state != PeopleGraphPerson.STATE_LEFT) {
 							
@@ -475,6 +489,9 @@ package med.infographic {
 						// it needs to go to the right
 						if ((person.state != PeopleGraphPerson.STATE_RIGHT) || isTextOnRightEdge || previousStateWasOffsetFromRightEdge) {
 							
+							// when moving left, the rightmost dots should have the smallest delay
+							delay += ((10-i) * DELAY_CONSTANT); 
+								
 							person.state = PeopleGraphPerson.STATE_RIGHT;
 															
 							// set animation to move to right side						

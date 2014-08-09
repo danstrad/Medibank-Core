@@ -30,7 +30,8 @@ package med.infographic {
 
 			
 			
-			flipNumber.setStartingValue(0, 2);
+			flipNumber.setStartingValue(0, 2, false);
+			
 			
 			var topString:String = slideData.xml.featuredText;
 			
@@ -53,11 +54,12 @@ package med.infographic {
 			TweenMax.to(this, 1.5, { onComplete:flipToBlank } );
 		}
 		
+		
 		protected function flipToBlank():void {
 			flipNumber.flipToBlank(null, null);
 			
 			// tween off the top text
-			TweenMax.fromTo(topText, 0.5, {y:topText.y, alpha:0}, { y:topText.y+50, alpha:1, delay:0.5, immediateRender:true, ease:Strong.easeInOut } ); 				
+			TweenMax.fromTo(topText, 0.5, {y:topText.y, alpha:1}, { y:topText.y+50, alpha:0, delay:0, immediateRender:true, ease:Strong.easeInOut } ); 				
 		}
 		
 		

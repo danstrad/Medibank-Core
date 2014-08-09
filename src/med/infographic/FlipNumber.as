@@ -215,7 +215,7 @@ package med.infographic {
 		}
 		
 		
-		public function setStartingValue(value:int, numDigits:int):void {
+		public function setStartingValue(value:int, numDigits:int, changeInstantly:Boolean):void {
 
 			// if numDigits is higher than it should be, we padd the value with leading zeroes
 			targetValues = value.toString().split("");
@@ -228,7 +228,7 @@ package med.infographic {
 			
 			for (var i:int = 0; i < targetValues.length; i++) {
 				var targetValue:int = int(String(targetValues[i]));				
-				numerals[i].setValue(targetValue, true);
+				numerals[i].setValue(targetValue, changeInstantly);
 			}
 			
 		}

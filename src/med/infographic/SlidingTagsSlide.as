@@ -79,8 +79,9 @@ package med.infographic {
 		
 		public function animateOn():void {
 			
-			for each (var tag:SlidingTag in tags) {
-				var delay:Number = Rndm.integer(0, 100) * 0.001;
+			for (var i:int = 0; i < tags.length; i++ ) {
+				var tag:SlidingTag = tags[i];
+				var delay:Number = i * 0.3;
 				TweenMax.fromTo(tag, TAGS_ANIMATE_ON_DURATION_SECONDS, { x:-2000 }, { x:tag.startX, immediateRender:true, delay:delay, onComplete:tag.startSway } );
 			}
 			
