@@ -88,7 +88,7 @@ package med.infographic {
 					//var offDuration:Number = ((newWipe.duration / 1000) - offStart) * 2;
 					var offDuration:Number = 0.5;
 					var offStart:Number = newWipe.duration / 1000 - offDuration / 2;
-					TweenMax.to(this, offDuration, { x:( -1024), delay:offStart, ease:Linear.easeNone, onComplete:finishedSlidingOff } );			
+					TweenMax.to(this, offDuration, { x:( -Infographic.WIDTH), delay:offStart, ease:Linear.easeNone, onComplete:finishedSlidingOff } );			
 					
 				}
 			}
