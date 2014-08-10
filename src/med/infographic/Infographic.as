@@ -41,6 +41,7 @@ package med.infographic {
 		protected var endCallback:Function;
 		
 
+		public function get isOnLastFrame():Boolean { return (currentSlideIndex == data.slides.length - 1); }
 		
 		
 		public function Infographic(data:InfographicData, background:Background, colors:Vector.<uint>, launchRect:Rectangle = null) {
