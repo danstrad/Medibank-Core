@@ -13,16 +13,15 @@ package med.infographic {
 		protected var bars:Vector.<Pick3Bar>;
 		
 		
-		public function BarGraph(xml:XML, inputVars:Object) {
+		public function BarGraph(slideData:InfographicSlideData, inputVars:Object) {
+			var xml:XML = slideData.xml;
+			
 			var optionCT1:ColorTransform = new ColorTransform();
+			optionCT1.color = slideData.currentGraphColor1;
 			var optionCT2:ColorTransform = new ColorTransform();
+			optionCT2.color = slideData.currentGraphColor2;
 			var selectedOptionCT:ColorTransform = new ColorTransform();
-			if (xml.hasOwnProperty("optionColor1")) optionCT1.color = uint(xml.optionColor1[0].toString().replace("#", "0x"));
-			else optionCT1.color = 0x744785;
-			if (xml.hasOwnProperty("optionColor2")) optionCT2.color = uint(xml.optionColor2[0].toString().replace("#", "0x"));
-			else optionCT2.color = 0x744785;
-			if (xml.hasOwnProperty("selectedOptionColor")) selectedOptionCT.color = uint(xml.selectedOptionColor[0].toString().replace("#", "0x"));
-			else selectedOptionCT.color = 0xB0018D;
+			selectedOptionCT.color = slideData.currentSelectionColor;
 			
 			bars = new Vector.<Pick3Bar>();
 			var barCount:int = 0;

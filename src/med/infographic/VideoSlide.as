@@ -23,7 +23,7 @@ package med.infographic {
 
 	public class VideoSlide extends Sprite implements ISlide {
 		
-		static public const WIPE_TIME:Number = 0.9;
+		static public const WIPE_TIME:Number = 0.7;// 0.9;
 		static public const POP_TIME:Number = 0.5;
 		
 		protected var url:String;
@@ -36,9 +36,14 @@ package med.infographic {
 		protected var textStates:Vector.<TextState>
 		
 		protected var boxColor:uint;
+		protected var wipeColor:uint;
+
+		protected var startTime:Number;
 		
 		protected var animateOnType:String;
 		protected var animateOffType:String;
+		
+		protected var wipeOnMask:Sprite;
 
 		protected var finishedCallback:Function;
 		
@@ -53,14 +58,28 @@ package med.infographic {
 				var videoXML:XML = xml.video[0];
 				var url:String = videoXML.@url.toString();
 				var scale:Number = 1;
-				if (videoXML.hasOwnProperty("@scale")) scale = parseFloat(videoXML.@scale.toString());
-				showVideo(url, 1920 * scale, 1080 * scale);
+				var sourceWidth:Number = 1920;
+				var sourceHeight:Number = 1080;
+				if (videoXML.hasOwnProperty("@sourceWidth")) sourceWidth = parseFloat(videoXML.@sourceWidth.toString())
+				if (videoXML.hasOwnProperty("@sourceHeight")) sourceHeight = parseFloat(videoXML.@sourceHeight.toString())
+				if (videoXML.hasOwnProperty("@scale")) {
+					if (videoXML.@scale.toString() == "auto") {
+						scale = Math.max(Infographic.WIDTH / sourceWidth, Infographic.HEIGHT / sourceHeight);
+					} else {
+						scale = parseFloat(videoXML.@scale.toString());
+					}
+				}
+				if (videoXML.hasOwnProperty("@startTime")) startTime = parseFloat(videoXML.@startTime.toString());
+				else startTime = 0;
+				showVideo(url, sourceWidth * scale, sourceHeight * scale);
 			}
 			
 			boxColor = 0xFF8080;
+			wipeColor = 0xFF8080;
 			if (xml.hasOwnProperty("appearance")) {
 				var appearanceXML:XML = xml.appearance[0];
-				if (appearanceXML.hasOwnProperty("@boxColor")) boxColor = slideData.currentColors[parseInt(appearanceXML.@boxColor)];
+				boxColor = slideData.currentBoxColor;
+				if (appearanceXML.hasOwnProperty("@wipeColor")) wipeColor = slideData.currentColors[Math.max(0, int(appearanceXML.@wipeColor) - 1)];
 			}
 			
 			textStates = new Vector.<TextState>();
@@ -111,6 +130,7 @@ package med.infographic {
 			
 			video.attachNetStream(ns);
 			ns.play(url);
+			ns.inBufferSeek = true;
 			ns.pause();
 
 			video.width = width;
@@ -143,9 +163,18 @@ package med.infographic {
 		
 		public function animateOn():void {
 			switch(animateOnType) {
-				// Fade?				
+				case "wipe_from_bottom":
+				case "wipe_from_top":
+				case "wipe_from_left":
+				case "wipe_from_right":
+					wipeOn(animateOnType);
+					break;
 			}
+			//trace(startTime, ns.time);
+			//trace(ns.inBufferSeek);
+			ns.seek(startTime / 1000);
 			ns.resume();
+			//trace(startTime, ns.time);
 			stateIndex = 0;
 			showNextTextState();
 		}
@@ -156,8 +185,11 @@ package med.infographic {
 			switch(animateOffType) {
 				// Fade?	
 				
-				case "box_wipe":
-					wipeOff();
+				case "wipe_from_bottom":
+				case "wipe_from_top":
+				case "wipe_from_left":
+				case "wipe_from_right":
+					wipeOff(animateOffType);
 					break;
 					
 				default:
@@ -292,8 +324,47 @@ package med.infographic {
 			showNextTextState();
 		}
 		
+		
+		protected function wipeOn(type:String):void {
+			var wiper:Sprite = wipeOnMask = new Sprite();
+			var g:Graphics = wiper.graphics;
+			g.beginFill(0xFFFFFF);
+			g.drawRect( -Infographic.WIDTH / 2, -Infographic.HEIGHT / 2, Infographic.WIDTH, Infographic.HEIGHT);
+			g.endFill();
+			addChild(wiper);
+			switch(type) {
+				case "wipe_from_bottom":
+					wiper.scaleY = 0;
+					wiper.y = Infographic.HEIGHT / 2;
+					TweenMax.to(wiper, WIPE_TIME, { scaleY:1, y:0, ease:Quad.easeOut, onComplete:onWipeOnComplete } );
+					break;
+				case "wipe_from_top":
+					wiper.scaleY = 0;
+					wiper.y = -Infographic.HEIGHT / 2;
+					TweenMax.to(wiper, WIPE_TIME, { scaleY:1, y:0, ease:Quad.easeOut, onComplete:onWipeOnComplete } );
+					break;
+				case "wipe_from_left":
+					wiper.scaleX = 0;
+					wiper.x = -Infographic.WIDTH / 2;
+					TweenMax.to(wiper, WIPE_TIME, { scaleX:1, x:0, ease:Quad.easeOut, onComplete:onWipeOnComplete } );
+					break;
+				case "wipe_from_right":				
+					wiper.scaleX = 0;
+					wiper.x = Infographic.WIDTH / 2;
+					TweenMax.to(wiper, WIPE_TIME, { scaleX:1, x:0, ease:Quad.easeOut, onComplete:onWipeOnComplete } );
+					break;
+			}
+			wiper.visible = false;
+			mask = wiper;
+		}		
+		protected function onWipeOnComplete():void {
+			mask = null;
+			if (wipeOnMask.parent) wipeOnMask.parent.removeChild(wipeOnMask);
+			wipeOnMask = null;
+		}
 
-		protected function wipeOff():void {
+		protected function wipeOff(type:String):void {
+			// scroll text out of any remaining boxes, but leave the color
 			for (var i:int = numChildren - 1; i >= 0; i--) {
 				var box:MovieClip = getChildAt(i) as _VideoText;
 				if (box) {
@@ -304,18 +375,37 @@ package med.infographic {
 					}
 				}
 			}
+			
 			var wiper:Shape = new Shape();
 			var g:Graphics = wiper.graphics;
-			g.beginFill(boxColor);
-			g.drawRect( -Infographic.WIDTH / 2, -Infographic.HEIGHT, Infographic.WIDTH, Infographic.HEIGHT);
+			g.beginFill(wipeColor);
+			g.drawRect( -Infographic.WIDTH / 2, -Infographic.HEIGHT / 2, Infographic.WIDTH, Infographic.HEIGHT);
 			g.endFill();
-			wiper.y = Infographic.HEIGHT / 2;
 			addChild(wiper);
-			wiper.scaleY = 0;
-			TweenMax.to(wiper, WIPE_TIME, { scaleY:1, ease:Quad.easeIn, onComplete:onWipeComplete } );
-		}
-		
-		protected function onWipeComplete():void {
+			switch(type) {
+				case "wipe_from_bottom":
+					wiper.scaleY = 0;
+					wiper.y = Infographic.HEIGHT / 2;
+					TweenMax.to(wiper, WIPE_TIME, { scaleY:1, y:0, ease:Quad.easeIn, onComplete:onWipeOffComplete } );
+					break;
+				case "wipe_from_top":
+					wiper.scaleY = 0;
+					wiper.y = -Infographic.HEIGHT / 2;
+					TweenMax.to(wiper, WIPE_TIME, { scaleY:1, y:0, ease:Quad.easeIn, onComplete:onWipeOffComplete } );
+					break;
+				case "wipe_from_left":
+					wiper.scaleX = 0;
+					wiper.x = -Infographic.WIDTH / 2;
+					TweenMax.to(wiper, WIPE_TIME, { scaleX:1, x:0, ease:Quad.easeIn, onComplete:onWipeOffComplete } );
+					break;
+				case "wipe_from_right":				
+					wiper.scaleX = 0;
+					wiper.x = Infographic.WIDTH / 2;
+					TweenMax.to(wiper, WIPE_TIME, { scaleX:1, x:0, ease:Quad.easeIn, onComplete:onWipeOffComplete } );
+					break;
+			}
+		}		
+		protected function onWipeOffComplete():void {
 			dispose();
 			if (finishedCallback != null) finishedCallback(this);
 		}

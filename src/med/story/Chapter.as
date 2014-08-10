@@ -15,6 +15,9 @@ package med.story {
 		public var infographicColor1:uint;
 		public var infographicColor2:uint;
 		public var infographicColor3:uint;
+		public var infographicColor4:uint;
+		public var infographicColor5:uint;
+		public var infographicColor6:uint;
 		
 		
 		public function get baseStory():Story {
@@ -30,6 +33,17 @@ package med.story {
 		
 		public function Chapter(id:int) {
 			this.id = id;			
+		}
+		
+		public function getInfographicColors():Vector.<uint> {
+			var colors:Vector.<uint> = new Vector.<uint>();
+			colors.push(infographicColor1);
+			colors.push(infographicColor2);
+			colors.push(infographicColor3);
+			colors.push(infographicColor4);
+			colors.push(infographicColor5);
+			colors.push(infographicColor6);
+			return colors;
 		}
 
 	}

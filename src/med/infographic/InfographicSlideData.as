@@ -14,6 +14,9 @@ package med.infographic {
 		public var currentTextColor:uint;
 		public var currentBoxColor:uint;
 		public var currentBackgroundColor:uint;
+		public var currentGraphColor1:uint;
+		public var currentGraphColor2:uint;
+		public var currentSelectionColor:uint;
 		
 		
 		
@@ -97,6 +100,8 @@ package med.infographic {
 		public static const DUAL_BAR_GRAPH:String				= "dual_bar_graph";	// vertical bar graph with 2 channels displayed side by side for each category
 
 		public static const VIDEO:String						= "video";	// video playing with optional splash text or text popups
+		
+		public static const RESET:String						= "reset";	// prompts the user to reset the infographic. Infographic plays from the first slide again when a reset slide is removed
 		
 				
 

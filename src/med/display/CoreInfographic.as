@@ -33,19 +33,9 @@ package med.display {
 			
 			
 			// get the infographicColors from the relevant Chapter, then pass them to our superclass
-			var infographicColors:Vector.<uint> = new Vector.<uint>();
-
-			if (chapter) {
-				infographicColors.push(chapter.infographicColor1);
-				infographicColors.push(chapter.infographicColor2);
-				infographicColors.push(chapter.infographicColor3);
-			} else {
-				// default colors for fallback
-				infographicColors.push(0xe4002b);
-				infographicColors.push(0xFFFFFF);
-				infographicColors.push(0xEC4D6B);				
-			}			
-			
+			var infographicColors:Vector.<uint>;
+			if (chapter) infographicColors = chapter.getInfographicColors();
+			else infographicColors = Infographic.DEFAULT_COLORS;
 			
 			super(data, background, infographicColors, launchRect);
 		

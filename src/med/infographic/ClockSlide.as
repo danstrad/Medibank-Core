@@ -36,7 +36,7 @@ package med.infographic {
 			if (xml.hasOwnProperty("clockText")) clockText = xml.clockText[0].toString();
 			if (xml.hasOwnProperty("appearance")) {
 				var appearanceXML:XML = xml.appearance[0];
-				if (appearanceXML.hasOwnProperty("@clockTextColor")) clockTextColor = uint(appearanceXML.@clockTextColor.toString().replace("#", "0x"));
+				if (appearanceXML.hasOwnProperty("@clockTextColor")) clockTextColor = slideData.currentColors[parseInt(appearanceXML.@clockTextColor) - 1];
 			}
 			
 			var tf:TextField = textField;

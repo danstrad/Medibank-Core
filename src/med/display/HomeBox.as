@@ -11,7 +11,6 @@ package med.display {
 	public class HomeBox extends Box {
 		
 		public var id:int;
-		public var chapter:Chapter;
 		
 		public var start:Point;
 		public var destination:Point;

@@ -334,7 +334,7 @@ package {
 				trace("No animationInfo for this story with this animation type");
 				return null;
 			}
-			var animation:AnimationController = new AnimationController(story, animationInfo, parent, parentHighlightPosition, container, camera, !showHomeButtons);
+			var animation:AnimationController = new AnimationController(story, animationInfo, parent, parentHighlightPosition, container, camera, currentChapter, !showHomeButtons);
 			currentAnimations.push(animation);
 
 			var homeData:HomeAnimationData;

@@ -13,6 +13,7 @@ package med.display {
 	import med.animation.HomeAnimationController;
 	import med.infographic.InfographicData;
 	import med.story.BoxPlacement;
+	import med.story.Chapter;
 	import med.story.ContentInfo;
 	import med.story.StorySet;
 
@@ -48,6 +49,7 @@ package med.display {
 		
 		public var endState:BoxState;
 		public var home:HomeAnimationController;
+		public var chapter:Chapter;
 		
 		public var ending:Boolean;
 				
@@ -298,7 +300,7 @@ package med.display {
 			bg.scaleY = bgMask.scaleY = contentMask.scaleY = height / Box.SIZE;
 			bg.visible = true;
 			
-			infographicContent = new InfographicContent(data);
+			infographicContent = new InfographicContent(data, chapter);
 			infographicContent.scaleX = infographicContent.scaleY = infographicScale;
 			content.addChild(infographicContent);
 			

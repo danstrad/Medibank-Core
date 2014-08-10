@@ -22,7 +22,7 @@ package med.infographic {
 			if (xml.hasOwnProperty("subtitle")) subtitleField.text = xml.subtitle[0].toString();
 			else subtitleField.text = "";
 			
-			graph = new BarGraph(xml, inputVars);
+			graph = new BarGraph(slideData, inputVars);
 			graph.y = -130;
 			addChild(graph);
 			

@@ -34,7 +34,7 @@ package med.infographic {
 				</tag>
 			*/			
 			
-			var featuredString:String = slideData.xml.featuredText;
+			var featuredString:String = TextUtils.safeText(slideData.xml.featuredText);
 			
 			featuredText.text = featuredString;
 			Text.boldText(featuredText);

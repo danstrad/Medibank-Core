@@ -236,7 +236,7 @@ package med.infographic {
 			
 			var entryXML:XML = getEntryDataForYear(startYear + currentIndex);
 			
-			trace("attempted to get entryXML: ", startYear, currentIndex, startYear + currentIndex);
+			//trace("attempted to get entryXML: ", startYear, currentIndex, startYear + currentIndex);
 			
 			if (entryXML) {
 				featuredString = entryXML.@featuredText;

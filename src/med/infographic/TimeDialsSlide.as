@@ -30,9 +30,12 @@ package med.infographic {
 				var dial:TimeDial = new TimeDial();
 				if (dialXML.hasOwnProperty("@type")) dial.input = (dialXML.@type.toString() == "input");
 				dial.title = dialXML.@title;
-				if (dialXML.hasOwnProperty("@color")) dial.color = uint(dialXML.@color.toString().replace("#", "0x"));
-				else dial.color = 0x845b94;
-				dial.variable = dialXML.@variable;
+				if (dialXML.hasOwnProperty("@variable")) {
+					dial.variable = dialXML.@variable;
+					dial.color = slideData.currentSelectionColor;
+				} else {
+					dial.color = slideData.currentGraphColor1;
+				}				
 				if (dialXML.hasOwnProperty("@value")) dial.value = parseFloat(dialXML.@value.toString());
 				if (!dial.input && dial.variable) dial.value = inputVars[dial.variable];
 				addChild(dial);

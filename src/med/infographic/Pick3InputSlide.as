@@ -27,11 +27,9 @@ package med.infographic {
 			else subtitleField.text = "";
 			
 			var optionCT:ColorTransform = new ColorTransform();
+			optionCT.color = slideData.currentGraphColor1;
 			var selectedOptionCT:ColorTransform = new ColorTransform();
-			if (xml.hasOwnProperty("optionColor")) optionCT.color = uint(xml.optionColor[0].toString().replace("#", "0x"));
-			else optionCT.color = 0x744785;
-			if (xml.hasOwnProperty("selectedOptionColor")) selectedOptionCT.color = uint(xml.selectedOptionColor[0].toString().replace("#", "0x"));
-			else selectedOptionCT.color = 0xB0018D;
+			selectedOptionCT.color = slideData.currentSelectionColor;
 
 			options = new Vector.<Pick3Option>();
 			var optionCount:int = 0;

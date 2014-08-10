@@ -15,6 +15,11 @@ package med.infographic {
 		
 		public static var WIDTH:Number = 1024;
 		public static var HEIGHT:Number = 576;
+
+		static public const DEFAULT_COLORS:Vector.<uint> = Vector.<uint>([
+			0xe4002b, 0xFFFFFF, 0xEC4D6B, 0xf93257, 0xec244a, 0xffafbe
+		]);
+			
 		
 		public var data:InfographicData;		
 		protected var background:Background;
@@ -150,6 +155,9 @@ package med.infographic {
 				slideData.currentBackgroundColor = getBackgroundColor(slideData);
 				slideData.currentTextColor = getTextColor(slideData);
 				slideData.currentBoxColor = getBoxColor(slideData);
+				slideData.currentGraphColor1 = getGraphColor1(slideData);
+				slideData.currentGraphColor2 = getGraphColor2(slideData);
+				slideData.currentSelectionColor = getSelectionColor(slideData);
 				
 				
 				
@@ -324,6 +332,14 @@ package med.infographic {
 						
 						break;
 						
+					case InfographicSlideData.RESET:
+						
+						var resetSlide:ResetSlide = new ResetSlide(slideData, initialBackgroundColor, onSlideFinished);
+						addSlideSprite(resetSlide);
+						resetSlide.animateOn();
+						
+						break;
+						
 					default:
 						lastFrameReached();
 						break;
@@ -349,13 +365,17 @@ package med.infographic {
 		protected function onSlideFinished(sprite:Sprite):void {
 			if (sprite != slideSprite) return;
 			
+			var resetAfter:Boolean = slideSprite is ResetSlide;
+
 			slideAnimatingOff = false;
 			slideSprite = null;
 			
 			previousSlideSprite = sprite;
 			if (sprite && sprite.parent)  sprite.parent.removeChild(sprite);
 			slideSprite = null;
-			if (endCallback != null) {
+			if (resetAfter) {
+				reset();
+			} else if (endCallback != null) {
 				endCallback(this)
 			} else {
 				nextSlide();
@@ -458,6 +478,39 @@ package med.infographic {
 			}
 
 		}		
+		
+		
+		protected function getGraphColor1(slideData:InfographicSlideData):uint {		
+			if (slideData.xml.hasOwnProperty("appearance") && slideData.xml.appearance.hasOwnProperty("@graphColor1")) {
+				var colorIndex:int = Math.max(0, int(slideData.xml.appearance.@graphColor1) - 1);
+				return colors[colorIndex];
+			} else {
+				return 0;
+			}
+
+		}
+		
+		
+		protected function getGraphColor2(slideData:InfographicSlideData):uint {		
+			if (slideData.xml.hasOwnProperty("appearance") && slideData.xml.appearance.hasOwnProperty("@graphColor2")) {
+				var colorIndex:int = Math.max(0, int(slideData.xml.appearance.@graphColor2) - 1);
+				return colors[colorIndex];
+			} else {
+				return 0;
+			}
+
+		}
+		
+		
+		protected function getSelectionColor(slideData:InfographicSlideData):uint {		
+			if (slideData.xml.hasOwnProperty("appearance") && slideData.xml.appearance.hasOwnProperty("@selectionColor")) {
+				var colorIndex:int = Math.max(0, int(slideData.xml.appearance.@selectionColor) - 1);
+				return colors[colorIndex];
+			} else {
+				return 0;
+			}
+
+		}
 		
 		
 

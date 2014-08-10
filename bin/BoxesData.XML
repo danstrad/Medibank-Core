@@ -6,7 +6,7 @@
 		<BackgroundColour>#e4002b</BackgroundColour>		
 		<BoxColour>#e4002b</BoxColour>
 		<LinkedInfographic>vision info1</LinkedInfographic>
-		<InfographicColors color1="#e4002b" color2="#FFFFFF" color3="#EC4D6B" />
+		<InfographicColors color1="#e4002b" color2="#FFFFFF" color3="#EC4D6B" color4="#f93257" color5="#ec244a" color6="#ffafbe" />
 	</Chapter>	
 	
 	<Chapter>
@@ -16,7 +16,7 @@
 		<BoxColour>#754787</BoxColour>
 		<BoxColour>#9470a0</BoxColour>
 		<LinkedStory>Chapter 1</LinkedStory>
-		<InfographicColors color1="#653279" color2="#FFFFFF" color3="#B0008E" />
+		<InfographicColors color1="#653279" color2="#FFFFFF" color3="#B0008E" color4="#7b4e8e" color5="#845b94" color6="#b0018d" />
 	</Chapter>	
 	
 	<Chapter>
@@ -25,7 +25,7 @@
 		<BoxColour>#ff9e45</BoxColour>
 		<BoxColour>#ffa95a</BoxColour>
 		<LinkedStory>Chapter 2</LinkedStory>
-		<InfographicColors color1="#FF9330" color2="#FFFFFF" color3="#E4002B" />
+		<InfographicColors color1="#FF9330" color2="#FFFFFF" color3="#E4002B" color4="#feac62" color5="#ffb979" color6="#e4002b" />
 	</Chapter>
 	
 	<Chapter>
@@ -35,8 +35,9 @@
 		<BoxColour>#33b5e7</BoxColour>
 		<BoxColour>#4ebfe9</BoxColour>
 		<LinkedStory>Chapter 3</LinkedStory>
-		<InfographicColors color1="#00A3E0" color2="#FFFFFF" color3="#2C5697" />
+		<InfographicColors color1="#00A3E0" color2="#FFFFFF" color3="#2C5697" color4="#3ab9e9" color5="#56caf5" color6="#2c5697" />
 	</Chapter>
+	
 	
 		
 	
@@ -1285,7 +1286,7 @@ acquisition of McKesson and Carepoint." />
 Flybuys Partnership Announced." />		
 		</slide>
 		<slide type="center_text_box" duration="4000" animateOn="zoom" animateOff="squash">
-			<appearance textColor="#FFFFFF" backgroundColor="#00A3E0" boxColor="#2C5697"/>
+			<appearance textColor="2" backgroundColor="1" boxColor="3"/>
 			<featuredText>Growing with
 Australia.</featuredText>
 		</slide>				
@@ -1555,10 +1556,12 @@ healthier lives.</featuredText>
 	
 	<Infographic id="art1 Box F">
 		<slide type="dual_bar_graph">
-			<title>Average Hours of Screen Use</title>
+			<title>Average Hours of Screen Use</title>			
 
-			<channel color="#7b4e8e" text="Average hours per day excluding work and study (total 6.3 hours)" />
-			<channel color="#845b94" text="Average hours per day, work and study (total 3.2 hours)" />
+			<appearance graphColor1="4" graphColor2="5" />
+			
+			<channel text="Average hours per day excluding work and study (total 6.3 hours)" />
+			<channel text="Average hours per day, work and study (total 3.2 hours)" />
 			
 			<category text="TV" value1="2.4" value2="0.5" />
 			<category text="Smartphone" value1="1.0" value2="0.5" />
@@ -1574,8 +1577,8 @@ healthier lives.</featuredText>
 		<slide type="bar_graph">
 			<title>What would you do instead?</title>
 			<subtitle>(Three Responses Required)</subtitle>
-			<optionColor1>#7b4e8e</optionColor1>
-			<optionColor2>#845b94</optionColor2>
+			
+			<appearance graphColor1="4" graphColor2="5" />
 
 			<bar id="A" text="Cycling" value="0.3333333333333333" />
 			<bar id="B" text="Family time" value="0.4219931271477663" />

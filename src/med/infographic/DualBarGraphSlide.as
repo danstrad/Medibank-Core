@@ -19,7 +19,7 @@ package med.infographic {
 			if (xml.hasOwnProperty("subtitle")) subtitleField.text = xml.subtitle[0].toString();
 			else subtitleField.text = "";
 			
-			graph = new DualBarGraph(xml, 800, 420);
+			graph = new DualBarGraph(slideData, 800, 420);
 			graph.x = -400
 			graph.y = -165;			
 			addChild(graph);

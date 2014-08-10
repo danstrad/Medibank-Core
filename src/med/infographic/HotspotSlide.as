@@ -52,9 +52,8 @@ package med.infographic {
 					
 				}
 			}
-			if (xml.hasOwnProperty("hotspotColor")) {
-				hotspotColor = uint(xml.hotspotColor[0].toString().replace("#", "0x"));
-			}
+			
+			hotspotColor = slideData.currentGraphColor1;
 			
 			if (xml.hasOwnProperty("intro")) {
 				var introXML:XML = xml.intro[0];

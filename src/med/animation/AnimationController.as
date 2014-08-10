@@ -11,6 +11,7 @@ package med.animation {
 	import med.display.HomeBox;
 	import med.display.SubstoryFlash;
 	import med.story.BoxPlacement;
+	import med.story.Chapter;
 	import med.story.ContentInfo;
 	import med.story.Story;
 
@@ -61,19 +62,21 @@ package med.animation {
 		protected var endTimeTotal:Number;
 		protected var flashTimeRemaining:Number;
 		protected var flashTimeTotal:Number;
+		public var chapter:Chapter;
 		
 		public var autoPanStart:Point;
 		public var autoPanEnd:Point;
 		
 
-		public function AnimationController(story:Story, animationInfo:AnimationInfo, parentBox:Box, parentHighlightPosition:Point, container:DisplayObjectContainer, camera:Camera, isChapter:Boolean) {
-			this.isChapter = isChapter;
-			this.animationInfo = animationInfo;
-			this.parentHighlightPosition = parentHighlightPosition;
+		public function AnimationController(story:Story, animationInfo:AnimationInfo, parentBox:Box, parentHighlightPosition:Point, container:DisplayObjectContainer, camera:Camera, chapter:Chapter, isChapter:Boolean) {
 			this.story = story;
+			this.animationInfo = animationInfo;
 			this.parentBox = parentBox;
+			this.parentHighlightPosition = parentHighlightPosition;
 			this.container = container;
 			this.camera = camera;
+			this.chapter = chapter;
+			this.isChapter = isChapter;
 
 			currentParentPosition = new Point(0, 0);
 			
@@ -101,6 +104,7 @@ package med.animation {
 
 				var box:Box = new Box(placement.color);
 				box.home = home;
+				box.chapter = chapter;
 				box.endState = animationData.boxEndStates[i];
 				box.showContentInfo(info, placement);
 

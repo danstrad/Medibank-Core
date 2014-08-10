@@ -52,6 +52,9 @@
 					chapter.infographicColor1 = uint(infographicColorsXML.@color1.toString().replace("#", "0x"));
 					chapter.infographicColor2 = uint(infographicColorsXML.@color2.toString().replace("#", "0x"));
 					chapter.infographicColor3 = uint(infographicColorsXML.@color3.toString().replace("#", "0x"));
+					chapter.infographicColor4 = uint(infographicColorsXML.@color4.toString().replace("#", "0x"));
+					chapter.infographicColor5 = uint(infographicColorsXML.@color5.toString().replace("#", "0x"));
+					chapter.infographicColor6 = uint(infographicColorsXML.@color6.toString().replace("#", "0x"));
 				}
 				
 				chapterCount++;

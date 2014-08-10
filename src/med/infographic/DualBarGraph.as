@@ -17,7 +17,9 @@ package med.infographic {
 		protected var bars:Vector.<Pick3Bar>;
 		
 		
-		public function DualBarGraph(xml:XML, w:Number, h:Number) {
+		public function DualBarGraph(slideData:InfographicSlideData, w:Number, h:Number) {
+			var xml:XML = slideData.xml;
+			
 			var g:Graphics;
 			var tf:TextField;
 			
@@ -28,14 +30,22 @@ package med.infographic {
 			for each(var channelXML:XML in xml.channel) {
 				var channel:Object = new Object();
 				
-				if (channelXML.hasOwnProperty("@color")) channel.color = uint(channelXML.@color.toString().replace("#", "0x"));
-				else channel.color = 0x744785;
-				channel.ct = new ColorTransform(0, 0, 0, 1);
-				channel.ct.color = channel.color;
 				if (channelXML.hasOwnProperty("@text")) channel.text = channelXML.@text.toString();
 				else channel.text = "";
 				
 				channels.push(channel);
+			}
+			if (channels.length > 0) {
+				channel = channels[0];
+				channel.color = slideData.currentGraphColor1;
+				channel.ct = new ColorTransform(0, 0, 0, 1);
+				channel.ct.color = channel.color;
+			}
+			if (channels.length > 1) {
+				channel = channels[1];
+				channel.color = slideData.currentGraphColor2;
+				channel.ct = new ColorTransform(0, 0, 0, 1);
+				channel.ct.color = channel.color;				
 			}
 			
 			var maxValue:Number = 0;

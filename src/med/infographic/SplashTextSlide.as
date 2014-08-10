@@ -36,7 +36,7 @@ package med.infographic {
 			if (xml.hasOwnProperty("appearance")) {
 				var appearanceXML:XML = xml.appearance[0];
 				if (appearanceXML.hasOwnProperty("@backdropColor")) {
-					var backdropColor:uint = slideData.currentColors[parseInt(appearanceXML.@backdropColor)];
+					var backdropColor:uint = slideData.currentColors[parseInt(appearanceXML.@backdropColor) - 1];
 					var backdrop:Shape = new Shape();
 					var g:Graphics = backdrop.graphics;
 					g.beginFill(backdropColor);
@@ -68,6 +68,7 @@ package med.infographic {
 				
 				switch(textXML.@type.toString()) {
 					case "corner":
+					case "cornerText":
 						var cornerAssets:MovieClip = new _CornerText();						
 						textField = cornerAssets.textField;
 						textField.text = text;
