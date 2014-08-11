@@ -1165,7 +1165,7 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 			<graphstate value="2736" featuredText="Pacemakers" topText="In one year, we supported" />	
 		</slide>	
 		<slide type="center_text_box" duration="4000" animateOn="zoom" animateOff="squash">
-			<appearance textColor="1" backgroundColor="1" boxColor="3"/>
+			<appearance textColor="2" backgroundColor="1" boxColor="3"/>
 			<featuredText>Making advice and care more accessible.</featuredText>
 		</slide>					
 	</Infographic>

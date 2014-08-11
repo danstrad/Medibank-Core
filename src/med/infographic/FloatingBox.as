@@ -30,6 +30,8 @@ package med.infographic {
 		protected var countingUpTimeMSec:Number = 0;
 		
 		
+		protected var textLayer:Sprite;
+		
 		
 		protected var backScale:Number;	
 		public var isAtBack:Boolean;
@@ -45,16 +47,20 @@ package med.infographic {
 		public function FloatingBox(value:int, showNumber:Boolean, textString:String, topTextString:String, boxColor:uint, textColor:uint) {
 			
 			this.targetValue = value;
-			
-			// set correct text size for numberField based on value length
-			/*
-			if (targetValue >= 10000) {
-				var textFormat:TextFormat = numberField.getTextFormat();
-				textFormat.size = 78;
-				numberField.setTextFormat(textFormat);
-			}		
-			*/
 
+			// added so we can toggle text visibility as a whole (and preserve individual visibility for each textfield)
+			textLayer = new Sprite();
+			addChild(textLayer);
+			
+			removeChild(numberField);
+			removeChild(textField);
+			removeChild(topTextField);
+			
+			textLayer.addChild(numberField);
+			textLayer.addChild(textField);
+			textLayer.addChild(topTextField);
+			
+			
 			if (showNumber) {
 				numberField.textColor = textColor;
 				showNumberValue(0);
@@ -122,7 +128,6 @@ package med.infographic {
 			} else {
 				topTextField.visible = false;
 			}
-				
 			
 			textField.autoSize = TextFieldAutoSize.LEFT;
 
@@ -137,18 +142,25 @@ package med.infographic {
 			
 			backScale = Rndm.integer(8, 20) * 0.01;
 			
-			initForBack();
-			
+			initForBack();			
 		}
 
+		
+		public function addBlur():void {
+			TweenMax.to(this, 0.5, {  blurFilter: { blurX:BACK_BOX_BLUR, blurY:BACK_BOX_BLUR, quality:FloatingBox.BLUR_QUALITY }, delay:0.3 } );
+		}
+				
 		
 		protected function initForBack():void {				
 			// set it to background state
 			isAtBack = true;
 			
+			textLayer.visible = false;
+			
 			this.alpha = BACK_BOX_ALPHA;
 			this.scaleX = this.scaleY = backScale;
-			this.filters = [new BlurFilter(BACK_BOX_BLUR, BACK_BOX_BLUR, BLUR_QUALITY)];	
+			
+//			this.filters = [new BlurFilter(BACK_BOX_BLUR, BACK_BOX_BLUR, BLUR_QUALITY)];	
 			
 			var colorTransform:ColorTransform = this.transform.colorTransform;
 			colorTransform.color = 0xFFFFFF;
@@ -173,10 +185,6 @@ package med.infographic {
 			// new: now we try to dynamically adjust the length of time the box is shown for
 			var duration:Number = BOX_DISPLAY_TIME_MINIMUM_SECONDS + BOX_ANIM_TIME_SECONDS;
 			
-			if (numberField.visible) {
-				// if we're showing the number field, we increase the minimum time so we have time for the number to tick up?
-//				duration += 1.0;
-			}
 			
 			duration += (textLength * BOX_DISPLAY_TIME_EXTRA_PER_CHARACTER);
 			
@@ -188,6 +196,8 @@ package med.infographic {
 		public function bringForward():void {
 			isAtBack = false;
 			countingUpTimeMSec = 0;
+			
+			textLayer.visible = true;
 			
 			TweenMax.to(this, BOX_ANIM_TIME_SECONDS, { overwrite:1, scaleX:1.0, scaleY:1.0, alpha:1.0, colorTransform:{ tint:0xFFFFFF, tintAmount:0}, blurFilter: { blurX:0, blurY:0, quality:BLUR_QUALITY }, ease:SineIn.ease}); 					
 			
@@ -202,7 +212,7 @@ package med.infographic {
 			if (isAtBack)	return;
 			isAtBack = true;
 			
-			TweenMax.to(this, BOX_ANIM_TIME_SECONDS, { scaleX:backScale, scaleY:backScale, alpha:BACK_BOX_ALPHA, colorTransform:{ tint:0xFFFFFF, tintAmount:1.0}, blurFilter:{ blurX:BACK_BOX_BLUR, blurY:BACK_BOX_BLUR }, onComplete:initForBack, ease:SineOut.ease}); 	
+			TweenMax.to(this, BOX_ANIM_TIME_SECONDS * 0.5, { scaleX:backScale, scaleY:backScale, alpha:BACK_BOX_ALPHA, colorTransform:{ tint:0xFFFFFF, tintAmount:1.0}, blurFilter:{ blurX:BACK_BOX_BLUR, blurY:BACK_BOX_BLUR, quality:BLUR_QUALITY }, onComplete:initForBack, ease:SineOut.ease}); 	
 		}
 		
 		
@@ -221,6 +231,7 @@ package med.infographic {
 			
 		}
 		
+
 		
 		protected function showNumberValue(value:int):void {
 			var numberString:String = String(value);
