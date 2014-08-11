@@ -96,6 +96,7 @@ package med.infographic {
 			textField.width = 1;
 			textField.height = 1;
 			textField.defaultTextFormat = TextUtils.infographicSplashFormat;
+			textField.embedFonts = true;
 			textField.autoSize = TextFieldAutoSize.LEFT;
 			textField.textColor = 0xFFFFFF;
 

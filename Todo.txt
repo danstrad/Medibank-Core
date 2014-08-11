@@ -31,4 +31,8 @@ rearrange orange & purple stories
 Build for release
 
 
+flybuys should always be lower case and italics
 
+Burdekin images
+
+need a way to abort infographics. Drag off?

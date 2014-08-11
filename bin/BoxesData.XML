@@ -1514,15 +1514,15 @@ around the country.</featuredText>
 			<appearance textColor="1" backgroundColor="1" boxColor="2"/>
 			<featuredText></featuredText>			
 			<tag size="large" startLeft="true">
-				<tagstate text="Better health is better for everyone--" />				
+				<tagstate text="Better health is better for everyone" />				
 			</tag>			
-			<tag size="small" startLeft="true">
+			<tag size="medium" startLeft="true">
 				<tagstate text="us," />		
 			</tag>
 			<tag size="medium" startLeft="false">
 				<tagstate text="our members," />			
 			</tag>			
-			<tag size="large" startLeft="true">
+			<tag size="medium" startLeft="true">
 				<tagstate text="and the whole community" />				
 			</tag>					
 		</slide>	

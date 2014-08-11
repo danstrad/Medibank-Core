@@ -124,11 +124,11 @@ package med.infographic {
 			if (!boxWidth) boxWidth = MAX_WIDTH;
 			
 			if (right) {
-				dockedX = boxRadius;
-				extendedX = boxRadius;
+				dockedX = boxRadius - 1;
+				extendedX = boxRadius - 1;
 			} else {
-				dockedX = -boxRadius;
-				extendedX = -boxRadius - boxWidth;
+				dockedX = -boxRadius + 1;
+				extendedX = -boxRadius - boxWidth + 1;
 			}
 			
 			textBG.width = boxWidth;
