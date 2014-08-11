@@ -6,6 +6,7 @@ package med.infographic {
 	import com.garin.Text;
 	import com.gskinner.utils.Rndm;
 	import flash.display.DisplayObject;
+	import flash.display.Graphics;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.filters.BlurFilter;
@@ -64,14 +65,18 @@ package med.infographic {
 			// work out bounds for boxes
 			// we need to bear in mind their size once expanded		
 			const EDGE_BUFFER:Number = 10;
-			const GAP_BETWEEN_LEFT_AND_RIGHT:Number = 20;
+			const GAP_BETWEEN_LEFT_AND_RIGHT:Number = 0;
 			
 			var topBorder:Number = -288 + EDGE_BUFFER + (FloatingBox.BOX_SIZE * 0.5);
 			var boundsHeight:Number = 576 - ((EDGE_BUFFER + (FloatingBox.BOX_SIZE * 0.5)) * 2);
-			var boundsWidth:Number = (512 + 150) - (GAP_BETWEEN_LEFT_AND_RIGHT * 0.5) - EDGE_BUFFER - (FloatingBox.BOX_SIZE * 0.5);
+			
+			// this has changed to be the width of EACH bounding box
+			var boundsWidth:Number = 512 - 160 - (GAP_BETWEEN_LEFT_AND_RIGHT * 0.5) - EDGE_BUFFER - (FloatingBox.BOX_SIZE * 0.5);
 				
-			var leftBoxBounds:Rectangle = new Rectangle(-150, topBorder, boundsWidth / 2, boundsHeight);
-			var rightBoxBounds:Rectangle = new Rectangle(leftBoxBounds.left + GAP_BETWEEN_LEFT_AND_RIGHT + (boundsWidth * 0.5), topBorder, boundsWidth / 2, boundsHeight);			
+			
+			var rightBoxBounds:Rectangle = new Rectangle(512 - boundsWidth - EDGE_BUFFER - (FloatingBox.BOX_SIZE * 0.5), topBorder, boundsWidth, boundsHeight);			
+			var leftBoxBounds:Rectangle = new Rectangle((rightBoxBounds.left - GAP_BETWEEN_LEFT_AND_RIGHT) - boundsWidth, topBorder, boundsWidth, boundsHeight);
+
 			
 			if (hasFeatureText == false) {
 				// with no featured string, we increase the bounds. our usable area is larger when we don't have to worry about overlapping the text
@@ -94,7 +99,9 @@ package med.infographic {
 			
 			// new: align to invisible grid
 			var gridLineCount:int = 3;
-			var gridSize:Number = Math.floor(boundsWidth / (gridLineCount + 2));
+
+			var gridSizeX:Number = Math.floor(boundsWidth / gridLineCount);
+			var gridSizeY:Number = Math.floor(boundsHeight / gridLineCount);
 	
 			var gridPositionsOnLeft:Array = [];
 			var gridPositionsOnRight:Array = [];
@@ -104,19 +111,19 @@ package med.infographic {
 				gridPositionsOnLeft.push(j);
 				gridPositionsOnRight.push(j);
 				
-				// draw for debug		
+				// draw for debug
 				/*
-				var rightX:Number = rightBoxBounds.x + (gridSize * 0.25) + ((j % gridLineCount) * gridSize);
-				var rightY:Number = rightBoxBounds.y + (gridSize * 0.5) + (Math.floor(j / gridLineCount) * gridSize);
+				var rightX:Number = rightBoxBounds.x + (gridSizeX * 0.5) + ((j % gridLineCount) * gridSizeX);
+				var rightY:Number = rightBoxBounds.y + (gridSizeY * 0.5) + (Math.floor(j / gridLineCount) * gridSizeY);
 
-				var leftX:Number = leftBoxBounds.x + (gridSize * 0.25) + ((j % gridLineCount) * gridSize);
-				var leftY:Number = leftBoxBounds.y + (gridSize * 0.5) + (Math.floor(j / gridLineCount) * gridSize);
+				var leftX:Number = leftBoxBounds.x + (gridSizeX * 0.5) + ((j % gridLineCount) * gridSizeX);
+				var leftY:Number = leftBoxBounds.y + (gridSizeY * 0.5) + (Math.floor(j / gridLineCount) * gridSizeY);
 					
 				this.graphics.lineStyle(2, 0x0000FF, 0.7);
-				this.graphics.drawCircle(rightX, rightY, (gridSize * 0.2));
-
+				this.graphics.drawEllipse(rightX - (gridSizeX * 0.5 * 0.4), rightY - (gridSizeY * 0.5 * 0.4), gridSizeX * 2 * 0.2, gridSizeY * 2 * 0.2);
+				
 				this.graphics.lineStyle(2, 0x00FF00, 0.7);
-				this.graphics.drawCircle(leftX, leftY, (gridSize * 0.2));				
+				this.graphics.drawEllipse(leftX - (gridSizeX * 0.5 * 0.4), leftY - (gridSizeY * 0.5 * 0.4), gridSizeX * 2 * 0.2, gridSizeY * 2 * 0.2);
 				*/
 			}
 
@@ -147,15 +154,15 @@ package med.infographic {
 					
 					gridPosition = gridPositionsOnRight.pop();
 					
-					box.x = rightBoxBounds.x + (gridSize * 0.25) + ((gridPosition % gridLineCount) * gridSize) + Rndm.integer((gridSize * -0.2), (gridSize * 0.2));
-					box.y = rightBoxBounds.y + (gridSize * 0.5) + (Math.floor(gridPosition / gridLineCount) * gridSize) + Rndm.integer((gridSize * -0.2), (gridSize * 0.2));
+					box.x = rightBoxBounds.x + (gridSizeX * 0.5) + ((gridPosition % gridLineCount) * gridSizeX) + Rndm.integer((gridSizeX * -0.2), (gridSizeX * 0.2));
+					box.y = rightBoxBounds.y + (gridSizeY * 0.5) + (Math.floor(gridPosition / gridLineCount) * gridSizeY) + Rndm.integer((gridSizeY * -0.2), (gridSizeY * 0.2));
 					
 				} else {
 					// odd -> left
 					gridPosition = gridPositionsOnLeft.pop();
 
-					box.x = leftBoxBounds.x + (gridSize * 0.25) + ((gridPosition % gridLineCount) * gridSize) + Rndm.integer((gridSize * -0.2), (gridSize * 0.2));
-					box.y = leftBoxBounds.y + (gridSize * 0.5) + (Math.floor(gridPosition / gridLineCount) * gridSize) + Rndm.integer((gridSize * -0.2), (gridSize * 0.2));
+					box.x = leftBoxBounds.x + (gridSizeX * 0.5) + ((gridPosition % gridLineCount) * gridSizeX) + Rndm.integer((gridSizeX * -0.2), (gridSizeX * 0.2));
+					box.y = leftBoxBounds.y + (gridSizeY * 0.5) + (Math.floor(gridPosition / gridLineCount) * gridSizeY) + Rndm.integer((gridSizeY * -0.2), (gridSizeY * 0.2));
 														
 				}
 				
