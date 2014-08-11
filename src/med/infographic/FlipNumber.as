@@ -1,4 +1,8 @@
 package med.infographic {
+	import com.greensock.easing.ExpoIn;
+	import com.greensock.easing.Sine;
+	import com.greensock.easing.SineIn;
+	import com.greensock.TweenMax;
 	import com.gskinner.utils.Rndm;
 	import flash.display.Shape;
 	import flash.display.Sprite;
@@ -65,15 +69,20 @@ package med.infographic {
 				
 			var numCommasRequired:int = Math.ceil(targetValues.length / 3) - 1;
 			
+			commasHaveChanged = false;
+			
+			
 			while (commas.length < numCommasRequired) {			
 				comma = new FlipNumberComma();
 				commas.push(comma);
 				numeralParent.addChild(comma);
+				commasHaveChanged = true;
 			}
 			
 			while (commas.length > numCommasRequired) {
 				comma = commas.pop();
 				numeralParent.removeChild(comma);
+				commasHaveChanged = true;
 			}
 							
 			var commaIndex:int = commas.length - 1;
@@ -91,7 +100,8 @@ package med.infographic {
 				if ((significantDigitIndex != 0) && ((significantDigitIndex % 3) == 0)) {
 					// insert comma here
 					commas[commaIndex].x = -30 - totalWidth + 20;
-					commas[commaIndex].visible = true;
+					commas[commaIndex].visible = false;	// wait for animation
+					
 					totalWidth += 26;
 					commaIndex--;
 				}				
@@ -120,6 +130,9 @@ package med.infographic {
 			else if (values.length < numerals.length) 	return true;
 			else	return false;
 		}
+		
+		
+		protected var commasHaveChanged:Boolean = false;
 		
 		
 		public function initForNumber(value:int, forceLengthTo:int=-1):void {
@@ -155,19 +168,24 @@ package med.infographic {
 		protected var afterFlipCallback:Function;
 		protected var afterFlipCallbackParam:Object;
 		
+		
 		public function flipToBlank(callback:Function, callbackParam:Object):void {
+			var i:int;
+			
 			afterFlipCallback = callback;
 			afterFlipCallbackParam = callbackParam;
 			
 			numeralsFinishedCount = 0;
 			
-			for (var i:int = 0; i < numerals.length; i++) {
+			for (i = 0; i < numerals.length; i++) {
 				var numeral:FlipNumberNumeral = numerals[i];
 				numeral.setValue(-1, false, i * 0.1, numeralFinished);
 			}
 			
-			for each (var comma:FlipNumberComma in commas) {
-				comma.visible = false;
+			for (i = 0; i < commas.length; i++) {
+				var comma:FlipNumberComma = commas[i];
+				var delay:Number = 0.1 + (i * 0.1);
+				TweenMax.to(comma, FlipNumberNumeral.DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { scaleY:0, delay:delay, ease:SineIn.ease } );
 			}
 		}
 		
@@ -194,8 +212,6 @@ package med.infographic {
 		
 		public function flipToNumber(value:int):void {
 
-//			initForNumber(value);
-
 			targetValues = value.toString().split("");
 
 			numeralsFinishedCount = 0;
@@ -211,8 +227,14 @@ package med.infographic {
 				
 			}
 
+			// flip down any new commas
+			if (commasHaveChanged) {
+				flipDownCommas();
+			}
 			
+			commasHaveChanged = false;
 		}
+		
 		
 		
 		public function setStartingValue(value:int, numDigits:int, changeInstantly:Boolean):void {
@@ -229,6 +251,32 @@ package med.infographic {
 			for (var i:int = 0; i < targetValues.length; i++) {
 				var targetValue:int = int(String(targetValues[i]));				
 				numerals[i].setValue(targetValue, changeInstantly);
+			}
+			
+			
+			if (changeInstantly == false) {
+				flipDownCommas();
+			
+			} else {
+				
+				for each (var comma:FlipNumberComma in commas) {
+					comma.visible = true;
+				}
+				
+			}
+		
+			commasHaveChanged = false;
+		}
+		
+		
+		protected function flipDownCommas():void {
+			// flip the comma "down" into existence		
+			
+			for (var i:int = 0; i < commas.length; i++) {
+				var comma:FlipNumberComma = commas[i];
+				var delay:Number = 0.1 + (0.1 * i);
+				TweenMax.fromTo(comma, FlipNumberNumeral.DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { scaleY:0 }, { scaleY:1.0, delay:delay, immediateRender:true, ease:Sine.easeOut } );
+				comma.visible = true;
 			}
 			
 		}

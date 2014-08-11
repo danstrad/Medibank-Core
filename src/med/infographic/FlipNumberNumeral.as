@@ -1,6 +1,7 @@
 package med.infographic {
 	import com.greensock.easing.ExpoIn;
 	import com.greensock.easing.ExpoOut;
+	import com.greensock.easing.Sine;
 	import com.greensock.TweenMax;
 	import flash.display.Sprite;
 
@@ -9,8 +10,8 @@ package med.infographic {
 		
 		public static const SLIDE_IN_DURATION_SECS:Number = 0.5;
 		
-		protected static const DELAY_BETWEEN_TOP_AND_BOTTOM_SEC:Number = 0.15; // 0.03;
-		protected static const DELAY_BEFORE_STARTING_NEXT_FLIP_SEC:Number = 0.15; // 0.025;
+		public static const DELAY_BETWEEN_TOP_AND_BOTTOM_SEC:Number = 0.15; // 0.03;
+		public static const DELAY_BEFORE_STARTING_NEXT_FLIP_SEC:Number = 0.15; // 0.025;
 		
 		
 		protected var currentValue:int = 0;
@@ -170,7 +171,7 @@ package med.infographic {
 				
 			lowerHalfTemp.visible = true;
 			upperHalfTemp.visible = false;			
-			TweenMax.fromTo(lowerHalfTemp, DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { scaleY:1.0 }, { scaleY:0, immediateRender:true, onComplete: flipUpperHalfUp, ease:ExpoIn.ease} );
+			TweenMax.fromTo(lowerHalfTemp, DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { scaleY:1.0 }, { scaleY:0, immediateRender:true, onComplete: flipUpperHalfUp, ease:Sine.easeIn} );
 			
 //			TweenMax.to(this, DELAY_BETWEEN_TOP_AND_BOTTOM_SEC, { onComplete: flipUpperHalfUp } );
 			
@@ -181,7 +182,7 @@ package med.infographic {
 						
 			lowerHalfTemp.visible = false;
 			upperHalfTemp.visible = true;			
-			TweenMax.fromTo(upperHalfTemp, DELAY_BEFORE_STARTING_NEXT_FLIP_SEC, { scaleY:0 }, { scaleY:1, immediateRender:true, onComplete:lockInValueUpper, ease:ExpoOut.ease } );
+			TweenMax.fromTo(upperHalfTemp, DELAY_BEFORE_STARTING_NEXT_FLIP_SEC, { scaleY:0 }, { scaleY:1, immediateRender:true, onComplete:lockInValueUpper, ease:Sine.easeOut } );
 			
 			upperHalfTemp.numberField.text = currentValueAsString;
 			
