@@ -1,6 +1,8 @@
 package med.infographic {
 	import com.garin.Text;
 	import com.greensock.easing.BounceInOut;
+	import com.greensock.easing.Sine;
+	import com.greensock.easing.Strong;
 	import com.greensock.TweenMax;
 	import com.gskinner.utils.Rndm;
 	import flash.display.Shape;
@@ -192,7 +194,6 @@ package med.infographic {
 			var i:int;
 								
 			targetValues = value.toString().split("");
-
 			
 			// show / hide decimal point
 			showDecimal = ((value % 1) > 0);
@@ -250,6 +251,8 @@ package med.infographic {
 		}
 		
 				
+		protected var isFirstReposition:Boolean = true;
+		
 		
 		
 		protected function repositionSlots():void {
@@ -264,13 +267,13 @@ package med.infographic {
 			
 			while (commas.length < numCommasRequired) {			
 				comma = new SpinNumberComma();
-				commas.push(comma);
+				commas.unshift(comma);
 				addChild(comma);
 			}
 			
 			while (commas.length > numCommasRequired) {
-				comma = commas.pop();
-				removeChild(comma);
+				comma = commas.shift();
+				comma.animateOff();
 			}
 							
 			var commaIndex:int = commas.length - 1;
@@ -288,6 +291,12 @@ package med.infographic {
 				if ((significantDigitIndex > 0) && ((significantDigitIndex % 3) == 0)) {
 					// insert comma here
 					commas[commaIndex].x = 512 - RIGHT_EDGE_SLOT_OFFSET - totalWidth + 18;
+					
+					if (commas[commaIndex].isNew) {
+						commas[commaIndex].animateOn();
+						commas[commaIndex].isNew = false;
+					}
+					
 					totalWidth += 14;
 					commaIndex--;
 				}				
@@ -304,10 +313,15 @@ package med.infographic {
 			}
 	
 			// place dollar sign correctly
- 			dollarSign.x = 512 - RIGHT_EDGE_SLOT_OFFSET - totalWidth + 5;
+			var dollarX:Number = 512 - RIGHT_EDGE_SLOT_OFFSET - totalWidth + 5;
 
+			if (isFirstReposition) {
+				dollarSign.x = dollarX;
+			} else {
+				TweenMax.to(dollarSign, 0.2, { x:dollarX, immediateRender:true, easing:Strong.easeInOut } );
+			}
 			
-			
+			isFirstReposition = false;
 		}
 				
 		
