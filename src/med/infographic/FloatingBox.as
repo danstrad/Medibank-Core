@@ -39,6 +39,9 @@ package med.infographic {
 		protected var currentValue:int;
 		
 		
+		protected var textLength:int = 0;
+		
+		
 		public function FloatingBox(value:int, showNumber:Boolean, textString:String, topTextString:String, boxColor:uint, textColor:uint) {
 			
 			this.targetValue = value;
@@ -64,6 +67,8 @@ package med.infographic {
 			textField.textColor = textColor;
 			Text.boldText(textField);
 					
+			textLength += textString.length;
+			
 			const TOP_TEXT_NORMAL_FONT_SIZE:Number = 21;
 			const TOP_TEXT_NORMAL_WIDTH:Number = 225;
 			
@@ -73,6 +78,8 @@ package med.infographic {
 				topTextField.textColor = textColor;
 				Text.setTextSpacing(topTextField, -0.4);
 				topTextField.autoSize = TextFieldAutoSize.LEFT;
+
+				textLength += topTextString.length;
 				
 				// move number down
 				numberField.y += 20;
@@ -140,6 +147,28 @@ package med.infographic {
 			TweenMax.to(this, duration, { alpha: targetAlpha, repeat: -1, yoyo:true, delay:0 } );
 		}
 		
+
+		
+		public static const BOX_DISPLAY_TIME_MINIMUM_SECONDS:Number = 2.0;
+
+		public static const BOX_DISPLAY_TIME_EXTRA_PER_CHARACTER:Number = 0.03;
+		
+		
+		public function get displayDurationSeconds():Number {
+			// new: now we try to dynamically adjust the length of time the box is shown for
+			var duration:Number = BOX_DISPLAY_TIME_MINIMUM_SECONDS + BOX_ANIM_TIME_SECONDS;
+			
+			if (numberField.visible) {
+				// if we're showing the number field, we increase the minimum time so we have time for the number to tick up?
+//				duration += 1.0;
+			}
+			
+			duration += (textLength * BOX_DISPLAY_TIME_EXTRA_PER_CHARACTER);
+			
+			
+			return duration;
+		}
+		
 		
 		public function bringForward():void {
 			isAtBack = false;
@@ -148,7 +177,9 @@ package med.infographic {
 			TweenMax.to(this, BOX_ANIM_TIME_SECONDS, { overwrite:1, scaleX:1.0, scaleY:1.0, alpha:1.0, colorTransform:{ tint:0xFFFFFF, tintAmount:0}, blurFilter: { blurX:0, blurY:0, quality:BLUR_QUALITY }, ease:SineIn.ease}); 					
 			
 			// timer
-			TweenMax.to(this, FloatingBoxesSlide.BOX_DISPLAY_TIME_SECONDS + BOX_ANIM_TIME_SECONDS, { onComplete:sendBack } );
+			var duration:Number = displayDurationSeconds;
+			
+			TweenMax.to(this, duration, { onComplete:sendBack } );
 		}
 		
 		

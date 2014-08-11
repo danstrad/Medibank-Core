@@ -95,6 +95,7 @@ package med.infographic {
 			interior.graphics.drawCircle(0, 0, drawRadius);
 			
 			if (frac == 1.0) {
+				drawFull();
 				filling = false;
 			}
 			
@@ -104,11 +105,22 @@ package med.infographic {
 		public var filling:Boolean = false;
 		
 		
+		public function drawFull():void {
+			interior.graphics.beginFill(drawColor, 1);
+			interior.graphics.drawCircle(0, 0, RADIUS);
+			interior.graphics.endFill();
+		}
+		
 		private function animateOnFill():void {
 			// second phase of animating on- expand the interior fill
 			filling = true;
 			fillingTimeMsec = 0;		
 			interior.visible = true;
+		}
+		
+		
+		public function remove():void {
+			if (parent) parent.removeChild(this);
 		}
 		
 		

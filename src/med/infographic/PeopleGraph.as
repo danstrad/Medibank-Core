@@ -12,6 +12,7 @@ package med.infographic {
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.filters.ColorMatrixFilter;
+	import flash.geom.Point;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
 	
@@ -21,15 +22,21 @@ package med.infographic {
 		// using a static array for this for performance / memory reasons
 		protected static var people:Vector.<PeopleGraphPerson>;
 				
+		protected var extraPeople:Vector.<PeopleGraphPerson>;
+		
 		protected static const PEOPLE_SPACING:Number = 43;
 		
 		protected static const LEFTMOST_X_POSITION:Number = -415;
 		protected static const RIGHTMOST_X_POSITION:Number = 415;
 		protected static const RIGHTMOST_X_POSITION_WHEN_TEXT_ON_RIGHT:Number = 205;
+				
+		protected static const START_X_POSITION:Number = -192;
+		protected static const START_Y_POSITION:Number = -189;		
 		
 		protected static const BOTTOM_TEXT_LOWER_BOUND:Number = 490;
 		
 		protected static const PEOPLE_TRANSITION_TIME_SEC:Number = 1.0; 
+		protected static const PEOPLE_COLOR_CHANGE_TIME_SEC:Number = 0.5;
 		
 		
 		protected static const MIN_TEXT_ANIMATE_ON_DELAY:Number = 1.4;
@@ -39,7 +46,8 @@ package med.infographic {
 		protected static const TEXT_ANIMATE_OFFSET_LEFT:Number = -300;
 		protected static const TEXT_ANIMATE_OFFSET_RIGHT:Number = 300;
 		
-		public static const GRAPH_STATE_DURATION_SEC:Number = 5.0;		
+		public static const GRAPH_STATE_DURATION_MIN_SEC:Number = 3.5;		
+		
 		public static const ANIMATE_ON_DURATION_SEC:Number = 1.5;
 		public static const ANIMATE_OFF_DURATION_SEC:Number = 1.5;
 		
@@ -58,8 +66,7 @@ package med.infographic {
 				
 		protected var textPanelMask:Shape;
 		
-		
-		
+
 		
 		public function PeopleGraph(slideData:InfographicSlideData) {
 			var i:int;
@@ -84,8 +91,6 @@ package med.infographic {
 			}
 			
 			// reset the graph to the "start" position
-			var startX:int = -192;
-			var startY:int = -189;
 			
 			for (i = 0; i < 100; i++) {
 				var xIndex:int = i % 10;
@@ -94,8 +99,8 @@ package med.infographic {
 				people[i].rowIndex = yIndex;
 				people[i].columnIndex = xIndex; 
 				
-				people[i].x = startX + (xIndex * PEOPLE_SPACING);
-				people[i].y = startY + (yIndex * PEOPLE_SPACING);
+				people[i].x = START_X_POSITION + (xIndex * PEOPLE_SPACING);
+				people[i].y = START_Y_POSITION + (yIndex * PEOPLE_SPACING);
 				
 				people[i].state = PeopleGraphPerson.STATE_NEUTRAL;
 				
@@ -139,9 +144,9 @@ package med.infographic {
 					person.animate(dTime);
 				}
 			
-			}
-			
+			}			
 		}
+		
 		
 		protected var isAnimatingOn:Boolean = false;
 		
@@ -153,7 +158,7 @@ package med.infographic {
 			var rndm:Rndm = new Rndm();
 			
 			for each (var person:PeopleGraphPerson in people) {
-				var animationDelayMsec:Number = Number(rndm.integer(0, 500));
+				var animationDelayMsec:Number = Number(rndm.integer(0, 400));
 				person.animateOnPerson(animationDelayMsec);
 			}
 					
@@ -170,28 +175,65 @@ package med.infographic {
 		
 		
 		public function animateOff(callback:Function):void {
-									
+							
+			var delayBase:Number = 0;
+			
+			if (extraPeople && extraPeople.length) {
+				delayBase = PEOPLE_DELAY_CONSTANT * Math.min(numExtraColumnsAllowed, extraPeople.length / 10);
+			}
+			
 			for each (var person:PeopleGraphPerson in people) {
 				
 				var targetX:Number;
+				var delay:Number = 0;
 				
 				if (person.state == PeopleGraphPerson.STATE_RIGHT) {
 					targetX = person.x + 800;
+					delay = ((10 - person.columnIndex) * PEOPLE_DELAY_CONSTANT);
 				} else {
 					targetX = person.x - 800;
+					delay = (person.columnIndex * PEOPLE_DELAY_CONSTANT);
 				}
 				
-				var delay:Number = (person.columnIndex * 0.025) + (Rndm.integer(0, 25) * 0.01); 
-				
-				TweenMax.to(person, 1.25, { x:targetX, delay: delay } );
+				TweenMax.to(person, 1.25, { x:targetX, delay:delayBase + delay, ease:Strong.easeIn } );
 			}
+			
+			
+			// remove extra people (if any)
+			flyOffExtraDots();
 		
 			// wait, then callback
 			TweenMax.to(this, ANIMATE_OFF_DURATION_SEC, { onComplete:callback, onCompleteParams:[this] });
 			
 		}
-		
 
+		
+		protected function flyOffExtraDots():void {
+			// remove extra people (if any)
+			
+			for each (var person:PeopleGraphPerson in extraPeople) {				
+				var targetX:Number;				
+				var delay:Number;
+				
+				if (person.state == PeopleGraphPerson.STATE_RIGHT) {
+					targetX = person.x + 800;
+					delay = (((10 + numExtraColumnsAllowed) - person.columnIndex) * PEOPLE_DELAY_CONSTANT);
+					
+				} else {
+					targetX = person.x - 800;
+					delay = ((person.columnIndex + numExtraColumnsAllowed) * PEOPLE_DELAY_CONSTANT);
+				}	
+				
+				TweenMax.to(person, 1.25, { x:targetX, delay:delay, ease:Strong.easeIn, onComplete:person.remove } );				
+			}		
+			
+			extraPeople = new Vector.<PeopleGraphPerson>();
+		}
+
+		
+		
+		protected var textLength:int;
+		
 		
 		
 		public function nextGraphState():void {
@@ -206,32 +248,40 @@ package med.infographic {
 				return;
 			}
 			
+			if (extraPeople && extraPeople.length) {
+				flyOffExtraDots();
+			}
 			
 			var graphStateXML:XML = graphStatesXML[graphStateIndex];
 			
 			// Example XML
 			//<graphstate value="33" featuredText="1 in 3" usePercentage="false" topText="" bottomText="Consultations for patients up to the age of 15 are for dermatology." />
 
-			var value:int = int(graphStateXML.@value);
+			var value:int = int(graphStateXML.@value);			
+			var isWhiteOnLeft:Boolean = ((graphStateIndex % 2) == 0);			
+			var isTextOnRightEdge:Boolean = (graphStateXML.@textOnRightEdge == "true");			
+						
 			
 			// sanity checking on value
-			// todo: use extra dots for values above 100
+			var extraDotsRequired:int = Math.max(0, value-100);
+			
 			value = Math.min(value, 100);
 			value = Math.max(value, 0);
-			
-			var isWhiteOnLeft:Boolean = ((graphStateIndex % 2) == 0);
-			
-			var isTextOnRightEdge:Boolean = (graphStateXML.@textOnRightEdge == "true");			
-			
+									
 			
 			// animate people
 			animateToGraphState(value, isWhiteOnLeft, isTextOnRightEdge);
 			
 			
+			if (extraDotsRequired > 0) {
+				flyOnExtraDots(extraDotsRequired, isWhiteOnLeft, isTextOnRightEdge);
+			}
+			
+			
 			// set up text	
 			textPanel.visible = true;
 			
-			// textpanel alignment
+				// textpanel alignment
 			var textAnimationStartOffset:Number = 0;
 			
 			if (isTextOnRightEdge) {
@@ -253,11 +303,14 @@ package med.infographic {
 
 			// text panels contents and animation
 			var bottomTextString:String = TextUtils.safeText(graphStateXML.@bottomText);
-			var topTextString:String = TextUtils.safeText(graphStateXML.@topText);
-			
+			var topTextString:String = TextUtils.safeText(graphStateXML.@topText);			
 			var featuredTextString:String = TextUtils.safeText(graphStateXML.@featuredText);
 			var usePercentage:Boolean = (graphStateXML.@usePercentage == "true");
-
+			
+				
+			textLength = topTextString.length + bottomTextString.length + featuredTextString.length;
+							
+			
 			
 			if (topTextString.length) {
 				
@@ -268,7 +321,7 @@ package med.infographic {
 				Text.setTextSpacing(textPanel.topField, -0.6);
 				
 				slideTextOn(textPanel.topField, MIN_TEXT_ANIMATE_ON_DELAY + 0.1, textAnimationStartOffset);
-				slideTextOff(textPanel.topField, GRAPH_STATE_DURATION_SEC - TEXT_SLIDE_DURATION_SEC - 0.1, textAnimationStartOffset);				
+				slideTextOff(textPanel.topField, currentStateDisplayDurationSeconds - TEXT_SLIDE_DURATION_SEC - 0.1, textAnimationStartOffset);				
 				
 			} else {
 				textPanel.topField.visible = false;
@@ -306,10 +359,10 @@ package med.infographic {
 				textPanel.featuredField.visible = false;
 				
 				slideTextOn(textPanel.percentageField, MIN_TEXT_ANIMATE_ON_DELAY, textAnimationStartOffset);
-				slideTextOff(textPanel.percentageField, GRAPH_STATE_DURATION_SEC - TEXT_SLIDE_DURATION_SEC, textAnimationStartOffset);				
+				slideTextOff(textPanel.percentageField, currentStateDisplayDurationSeconds - TEXT_SLIDE_DURATION_SEC, textAnimationStartOffset);				
 
 				slideTextOn(textPanel.percentageSignField, MIN_TEXT_ANIMATE_ON_DELAY, textAnimationStartOffset);
-				slideTextOff(textPanel.percentageSignField, GRAPH_STATE_DURATION_SEC - TEXT_SLIDE_DURATION_SEC, textAnimationStartOffset);				
+				slideTextOff(textPanel.percentageSignField, currentStateDisplayDurationSeconds - TEXT_SLIDE_DURATION_SEC, textAnimationStartOffset);				
 				
 				
 			} else {
@@ -325,7 +378,7 @@ package med.infographic {
 				textPanel.percentageSignField.visible = false;
 				
 				slideTextOn(textPanel.featuredField, MIN_TEXT_ANIMATE_ON_DELAY, textAnimationStartOffset);
-				slideTextOff(textPanel.featuredField, GRAPH_STATE_DURATION_SEC - TEXT_SLIDE_DURATION_SEC, textAnimationStartOffset);				
+				slideTextOff(textPanel.featuredField, currentStateDisplayDurationSeconds - TEXT_SLIDE_DURATION_SEC, textAnimationStartOffset);				
 
 			}
 			
@@ -344,14 +397,14 @@ package med.infographic {
 				
 			
 				slideTextOn(textPanel.bottomField, MIN_TEXT_ANIMATE_ON_DELAY + 0.2, textAnimationStartOffset + 0.35);
-				slideTextOff(textPanel.bottomField, GRAPH_STATE_DURATION_SEC - TEXT_SLIDE_DURATION_SEC - 0.1, textAnimationStartOffset);				
+				slideTextOff(textPanel.bottomField, currentStateDisplayDurationSeconds - TEXT_SLIDE_DURATION_SEC - 0.1, textAnimationStartOffset);				
 				
 			} else {
 				textPanel.bottomField.visible = false;
 			}
 			
 			
-			waitThenAdvance(GRAPH_STATE_DURATION_SEC);
+			waitThenAdvance(currentStateDisplayDurationSeconds);
 			
 		}
 		
@@ -367,17 +420,22 @@ package med.infographic {
 			TweenMax.to(textField, TEXT_SLIDE_DURATION_SEC, { x: xOffset, delay:delay, overwrite:5 } );
 		}		
 		
+
 		
 		protected var previousStateWasOffsetFromRightEdge:Boolean = false;
 		
 		
+		protected static const PEOPLE_DELAY_CONSTANT:Number = 0.025;
+
 		
+
 		public function animateToGraphState(value:int, leftSideIsWhite:Boolean, isTextOnRightEdge:Boolean):void {
 			// move the dots and change their color until we have the correct number of colored dots on each side
 			
 			var i:int;
 			var person:PeopleGraphPerson;
 			
+
 			// figure out how many in each row are currently on each side (or neutral)
 			var rowCountsLeft:Array = [];
 			var rowCountsRight:Array = [];	
@@ -443,12 +501,9 @@ package med.infographic {
 			}
 			
 			
-			var rndm:Rndm = new Rndm(50);
-			
-			var ease:Ease = Strong.easeInOut;
+			var rndm:Rndm = new Rndm();
 			
 			
-			const DELAY_CONSTANT:Number = 0.025;
 			
 			
 			// now nominate which people will move across
@@ -468,7 +523,7 @@ package med.infographic {
 					if (i < targetRowCountsLeft[row]) {
 					
 						// when moving left, the leftmost dots should have the smallest delay
-						delay += (i * DELAY_CONSTANT); 
+						delay += (i * PEOPLE_DELAY_CONSTANT); 
 						
 						if (person.state != PeopleGraphPerson.STATE_LEFT) {
 							
@@ -478,7 +533,7 @@ package med.infographic {
 							// change color
 							
 							finalX = LEFTMOST_X_POSITION + (i * PEOPLE_SPACING);
-							TweenMax.to(person, PEOPLE_TRANSITION_TIME_SEC, { x:finalX, delay:delay, ease:Ease });
+							TweenMax.to(person, PEOPLE_TRANSITION_TIME_SEC, { x:finalX, delay:delay, ease:Strong.easeIn });
 						
 						}
 							
@@ -490,7 +545,7 @@ package med.infographic {
 						if ((person.state != PeopleGraphPerson.STATE_RIGHT) || isTextOnRightEdge || previousStateWasOffsetFromRightEdge) {
 							
 							// when moving left, the rightmost dots should have the smallest delay
-							delay += ((10-i) * DELAY_CONSTANT); 
+							delay += ((10-i) * PEOPLE_DELAY_CONSTANT); 
 								
 							person.state = PeopleGraphPerson.STATE_RIGHT;
 															
@@ -503,7 +558,7 @@ package med.infographic {
 								finalX = RIGHTMOST_X_POSITION - ((9 - i) * PEOPLE_SPACING);		
 							}
 							
-							TweenMax.to(person, PEOPLE_TRANSITION_TIME_SEC, { x:finalX, delay:delay, ease:Ease});
+							TweenMax.to(person, PEOPLE_TRANSITION_TIME_SEC, { x:finalX, delay:delay, ease:Strong.easeIn});
 						
 						}
 
@@ -523,7 +578,7 @@ package med.infographic {
 
 					}
 					
-					TweenMax.to(person, 0.5, { delay:delay, colorTransform:{tint:tintColor, tintAmount:1.0} } );
+					TweenMax.to(person, PEOPLE_COLOR_CHANGE_TIME_SEC, { delay:delay, colorTransform:{tint:tintColor, tintAmount:1.0}, ease:Strong.easeIn } );
 					
 					
 				}
@@ -534,6 +589,179 @@ package med.infographic {
 		}
 
 		
+		
+		protected var numExtraRowsAllowed:int = 2;
+		protected var numExtraColumnsAllowed:int = 2;
+		
+		
+		protected function flyOnExtraDots(extraDotCount:int, leftSideIsWhite:Boolean, isTextOnRightEdge:Boolean):void {
+			var i:int, j:int;
+			var point:Point;
+			var person:PeopleGraphPerson;
+			
+			// create array of positions, then iterate through it as far as we need to
+			var newPeoplePositions:Vector.<Point> = new Vector.<Point>();
+			
+			var newTopPositions:Vector.<Point> = new Vector.<Point>();
+			var newBottomPositions:Vector.<Point> = new Vector.<Point>();
+			var newSidePositions:Vector.<Point> = new Vector.<Point>();
+			
+			var newStartPositions:Vector.<Point> = new Vector.<Point>();
+	
+			const START_POSITION_OFFSET:Number = 300;
+			
+			
+			extraPeople = new Vector.<PeopleGraphPerson>();
+			
+			
+			if (Infographic.HEIGHT > 576) {
+				// if we're in feature, we have more room
+				numExtraRowsAllowed = 3;
+			}
+		
+			/*
+			if (Infographic.WIDTH > 1024) {
+				numExtraColumnsAllowed = 3;
+			}
+			*/
+			
+			var rightMostX:Number = RIGHTMOST_X_POSITION;
+			
+			
+			
+			if (leftSideIsWhite) {
+			
+				
+				// two rows at side 
+				for (i = 1; i <= numExtraColumnsAllowed; i++) {
+					for (j = 0; j < 10; j++) {
+						newSidePositions.push(new Point(LEFTMOST_X_POSITION - (PEOPLE_SPACING * i), START_Y_POSITION + (j * PEOPLE_SPACING)));
+					}
+				}				
+				
+				// two rows at top, two at bottom
+				for (i = 1; i <= numExtraRowsAllowed; i++) {
+					for (j = 0; j < 9 + numExtraColumnsAllowed + 1; j++) {
+						newTopPositions.push(new Point(LEFTMOST_X_POSITION + (PEOPLE_SPACING * (j - numExtraColumnsAllowed)), START_Y_POSITION - (i * PEOPLE_SPACING)));
+						newBottomPositions.push(new Point(LEFTMOST_X_POSITION + (PEOPLE_SPACING * (j - numExtraColumnsAllowed)), START_Y_POSITION + ((9 + i) * PEOPLE_SPACING)));
+					}
+				}
+
+				
+			} else {	
+					
+				if (isTextOnRightEdge) {
+					rightMostX = RIGHTMOST_X_POSITION_WHEN_TEXT_ON_RIGHT;		
+				} 
+				
+				// two rows at side
+				for (i = 1; i <= numExtraColumnsAllowed; i++) {
+					for (j = 0; j < 10; j++) {
+						newSidePositions.push(new Point(rightMostX + (PEOPLE_SPACING * i), START_Y_POSITION + (j * PEOPLE_SPACING)));
+					}
+				}
+				
+				
+				// two rows at top, two at bottom
+				for (i = 1; i <= numExtraRowsAllowed; i++) {
+					for (j = 0; j < 9 + numExtraColumnsAllowed + 1; j++) {
+						newTopPositions.push(new Point(rightMostX - (PEOPLE_SPACING * (j - numExtraColumnsAllowed)), START_Y_POSITION - (i * PEOPLE_SPACING)));
+						newBottomPositions.push(new Point(rightMostX - (PEOPLE_SPACING * (j - numExtraColumnsAllowed)), START_Y_POSITION + ((9 + i) * PEOPLE_SPACING)));
+					}
+				}
+				
+								
+				
+				
+			}
+
+			
+			if (leftSideIsWhite) {
+				for each (point in newSidePositions) 	newStartPositions.push(new Point(point.x - START_POSITION_OFFSET, point.y)); 
+			} else {
+				for each (point in newSidePositions) 	newStartPositions.push(new Point(point.x + START_POSITION_OFFSET, point.y)); 
+			}
+		
+			for each (point in newTopPositions) 		newStartPositions.push(new Point(point.x, point.y - START_POSITION_OFFSET)); 
+			for each (point in newBottomPositions) 		newStartPositions.push(new Point(point.x, point.y + START_POSITION_OFFSET)); 
+			
+			
+			
+			// put them together in the preferred order
+			newPeoplePositions = newSidePositions.concat(newTopPositions).concat(newBottomPositions);
+							
+			
+			for (var k:int = 0; k < Math.min(extraDotCount, newPeoplePositions.length); k++) {
+				
+				// animate on each dot
+				var startPoint:Point = newStartPositions[k];
+				var endPoint:Point = newPeoplePositions[k];
+				
+				// they're always white.. right?
+				person = new PeopleGraphPerson(0xFFFFFF);
+				
+				if (leftSideIsWhite) {
+					person.state = PeopleGraphPerson.STATE_LEFT
+					person.columnIndex = Math.floor((endPoint.x - LEFTMOST_X_POSITION) / PEOPLE_SPACING);
+
+				} else {
+					person.state = PeopleGraphPerson.STATE_RIGHT;
+					person.columnIndex = Math.floor(Math.abs(endPoint.x - (rightMostX - (10 * PEOPLE_SPACING))) / PEOPLE_SPACING);
+				}
+				
+				
+				
+				
+				person.drawFull();
+				
+				extraPeople.push(person);
+				addChild(person);
+				
+				var delay:Number = Rndm.integer(0, 50) * 0.001;
+				
+				TweenMax.fromTo(person, PEOPLE_TRANSITION_TIME_SEC, { x:startPoint.x, y:startPoint.y }, { x:endPoint.x, y:endPoint.y, delay:delay, ease:Strong.easeIn });
+			}
+		
+			
+		}
+		
+				
+		
+		
+		public static function getTotalMSecDurationFromXML(xml:XML):Number {
+			var duration:Number = PeopleGraph.ANIMATE_ON_DURATION_SEC;
+			
+			for (var i:int = 0; i < xml.graphstate.length(); i++) {
+				var graphStateXML:XML = xml.graphstate[i];
+				
+				var bottomTextString:String = TextUtils.safeText(graphStateXML.@bottomText);
+				var topTextString:String = TextUtils.safeText(graphStateXML.@topText);
+				var featuredTextString:String = TextUtils.safeText(graphStateXML.@featuredText);
+
+				var textLength:int = topTextString.length + bottomTextString.length + featuredTextString.length;
+				
+				duration += getStateDurationFromTextLength(textLength);
+			}
+			
+			return duration * 1000;
+		}
+		
+		
+		public static function getStateDurationFromTextLength(length:int):Number {
+			var duration:Number = GRAPH_STATE_DURATION_MIN_SEC;	
+			duration += (length * DISPLAY_TIME_EXTRA_PER_CHARACTER);
+			return duration;			
+		}
+		
+
+		protected static const DISPLAY_TIME_EXTRA_PER_CHARACTER:Number = 0.032;
+		
+		
+		public function get currentStateDisplayDurationSeconds():Number {
+			// new: now we try to dynamically adjust the length of time the state is shown for
+			return getStateDurationFromTextLength(textLength);
+		}
+				
 		
 	}
 

@@ -26,7 +26,7 @@ package med.infographic {
 				
 				if (type == InfographicSlideData.PEOPLE_GRAPH) {
 					// calculate duration automatically based on slide count, ignore what's in the xml (if anything)
-					displayTimeMsec = (PeopleGraph.ANIMATE_ON_DURATION_SEC + (slideXML.graphstate.length() * PeopleGraph.GRAPH_STATE_DURATION_SEC)) * 1000;	
+					displayTimeMsec = PeopleGraph.getTotalMSecDurationFromXML(slideXML);
 					
 				} else if (type == InfographicSlideData.SPIN_NUMBER_STRIP) {
 					// calculate duration automatically based on slide count, ignore what's in the xml (if anything)

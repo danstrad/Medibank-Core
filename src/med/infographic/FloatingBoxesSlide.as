@@ -28,7 +28,6 @@ package med.infographic {
 		protected static const ANIMATE_ON_DURATION_SECONDS:Number = 3.0;
 		protected static const ANIMATE_OFF_DURATION_SECONDS:Number = 3.0;
 				
-		public static const BOX_DISPLAY_TIME_SECONDS:Number = 4.0;
 		
 		
 		protected var hasFeatureText:Boolean;
@@ -200,15 +199,18 @@ package med.infographic {
 				return;
 			}
 			
-			bringBoxToFront(showingBoxIndex + 1);
+			
+			
+			var newFrontBox:FloatingBox = bringBoxToFront(showingBoxIndex + 1);
+			
 			
 			// timer
-			TweenMax.to(this, BOX_DISPLAY_TIME_SECONDS + 0.4, { onComplete:showNextBox } );
+			TweenMax.to(this, newFrontBox.displayDurationSeconds - 0.25, { onComplete:showNextBox } );
 		}
 		
 
 		
-		protected function bringBoxToFront(boxIndex:int):void {
+		protected function bringBoxToFront(boxIndex:int):FloatingBox {
 			this.showingBoxIndex = boxIndex;
 					
 			// boxes send themselves back now
@@ -216,6 +218,7 @@ package med.infographic {
 			box.bringForward();
 			addChild(box);
 			
+			return box;
 		}
 		
 		
