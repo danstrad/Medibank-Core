@@ -266,7 +266,7 @@ package med.infographic {
 					
 						
 					case InfographicSlideData.HOTSPOT:						
-						var hotspotSlide:HotspotSlide = new HotspotSlide(slideData, initialBackgroundColor);
+						var hotspotSlide:HotspotSlide = new HotspotSlide(slideData, initialBackgroundColor, onSlideFinished);
 						addSlideSprite(hotspotSlide);
 						hotspotSlide.animateOn();						
 						break;
@@ -366,7 +366,9 @@ package med.infographic {
 		protected function onSlideFinished(sprite:Sprite):void {
 			if (sprite != slideSprite) return;
 			
-			var resetAfter:Boolean = slideSprite is ResetSlide;
+			var resetAfter:Boolean = false;
+			if (slideSprite is ResetSlide) resetAfter = true;
+			if (slideSprite is HotspotSlide) resetAfter = true;
 
 			slideAnimatingOff = false;
 			slideSprite = null;

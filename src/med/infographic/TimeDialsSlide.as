@@ -25,13 +25,25 @@ package med.infographic {
 			if (xml.hasOwnProperty("subtitle")) subtitleField.text = xml.subtitle[0].toString();
 			else subtitleField.text = "";
 
+			var dialY:Number = 43;
+			if (subtitleField.text.length == 0) dialY -= 13;
+			if (titleField.text.length == 0) dialY -= 30;
+			
+			var showNext:Boolean = false;
 			dials = new Vector.<TimeDial>();
 			for each(var dialXML:XML in xml.dial) {
 				var dial:TimeDial = new TimeDial();
-				if (dialXML.hasOwnProperty("@type")) dial.input = (dialXML.@type.toString() == "input");
+				if (dialXML.hasOwnProperty("@type")) {
+					var type:String = dialXML.@type.toString();
+					dial.input = (type == "input");
+					dial.winding = (type == "winding");
+				}
+				if (!dial.winding) showNext = true;
 				dial.title = dialXML.@title;
 				if (dialXML.hasOwnProperty("@variable")) {
 					dial.variable = dialXML.@variable;
+					dial.color = slideData.currentSelectionColor;
+				} else if (dial.winding) {
 					dial.color = slideData.currentSelectionColor;
 				} else {
 					dial.color = slideData.currentGraphColor1;
@@ -43,11 +55,12 @@ package med.infographic {
 			}
 			for (var i:int = 0; i < dials.length; i++) {
 				dial = dials[i];
-				dial.y = 43;
+				dial.y = dialY;
 				if (dials.length == 0) dial.x = 0;
 				else dial.x = -271 + (271 * 2) * i / (dials.length - 1);
 			}
 			
+			if (!showNext) nextButton.visible = false;
 			nextButton.mouseChildren = false;
 			addEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown, false, 0, true);
 		}

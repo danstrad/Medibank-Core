@@ -58,7 +58,7 @@ package med.infographic {
 		protected var color:uint;
 		protected var colorTransform:ColorTransform;
 		
-		public function HotspotExpander(title:String, text:String, imageURL:String, dir:String, color:uint) {
+		public function HotspotExpander(title:String, text:String, imageURL:String, dir:String, color:uint, showBase:Boolean) {
 			this.title = title;
 			this.text = text;
 			this.imageURL = imageURL;
@@ -74,6 +74,10 @@ package med.infographic {
 			down = dir.charAt(0) == "d";
 
 			boxRadius = 15;
+			
+			if (!showBase) {
+				bg.visible = verticalLine.visible = horizontalLine.visible = false;
+			}
 			
 			const MARGIN:Number = 15;
 			const GAP_SQUEEZE:Number = 20;
@@ -281,9 +285,9 @@ package med.infographic {
 				TweenMax.to(textBG, EXPAND_HORIZONTAL_TIME, { delay:t, x:dockedX, width:0, ease:Quad.easeIn } );				
 				t += EXPAND_HORIZONTAL_TIME - BUTTON_OVERLAP;
 				
-				TweenMax.to(bg, BUTTON_CHANGE_TIME, { delay:t, colorTransform:{ tint:color, tintAmount:1 }, ease:Quad.easeOut } );
-				TweenMax.to(verticalLine, BUTTON_CHANGE_TIME, {delay:t, scaleY:1, colorTransform: { tint:0xFFFFFF, tintAmount:1 }, alpha:1, ease:Quad.easeOut } );
-				TweenMax.to(horizontalLine, BUTTON_CHANGE_TIME, { delay:t, scaleX:1, scaleY:1, colorTransform: { tint:0xFFFFFF, tintAmount:1 }, ease:Quad.easeOut } );				
+				TweenMax.to(bg, BUTTON_CHANGE_TIME, { delay:t, colorTransform:{ tint:0xFFFFFF, tintAmount:1 }, ease:Quad.easeOut } );
+				TweenMax.to(verticalLine, BUTTON_CHANGE_TIME, {delay:t, scaleY:1, colorTransform: { tint:color, tintAmount:1 }, alpha:1, ease:Quad.easeOut } );
+				TweenMax.to(horizontalLine, BUTTON_CHANGE_TIME, { delay:t, scaleX:1, scaleY:1, colorTransform: { tint:color, tintAmount:1 }, ease:Quad.easeOut } );				
 				
 				// Dummy to trigger callback
 				TweenMax.to(textBG, BUTTON_CHANGE_TIME, { delay:t, onComplete:onExpandingFinished } );								

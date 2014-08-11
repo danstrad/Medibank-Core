@@ -13,6 +13,8 @@ package med.infographic {
 		
 		public function get displayDurationSeconds():Number { return 0; }
 		
+		protected const TOGGLE_TIME:Number = 1000;
+		
 		protected const SKIP_INTRO:Boolean = false;
 		
 		//76b82a
@@ -21,9 +23,21 @@ package med.infographic {
 		protected var intro:Sprite;
 		protected var disclaimer:MovieClip;
 		
-		protected var hotspotsLayer:Sprite;
+		protected var hotspotsLayer:Sprite;		
+		protected var expanders:Vector.<HotspotExpander>;
+		protected var resetButton:Sprite;
 		
-		public function HotspotSlide(slideData:InfographicSlideData, color:uint) {
+		protected var auto:Boolean;
+		
+		protected var expandTime:Number;
+		protected var retractTime:Number;
+		protected var expandQueue:Vector.<HotspotExpander>;
+		protected var retractQueue:Vector.<HotspotExpander>;
+		
+		protected var finishedCallback:Function;
+				
+		public function HotspotSlide(slideData:InfographicSlideData, color:uint, finishedCallback:Function) {
+			this.finishedCallback = finishedCallback;
 			
 			var W:Number = 1024;
 			var H:Number = 576;
@@ -32,6 +46,10 @@ package med.infographic {
 			var xml:XML = slideData.xml;
 			
 			var hotspotColor:uint = 0x0;
+			
+			if (xml.hasOwnProperty("mode")) {
+				auto = xml.mode[0].toString() == "auto"
+			}
 
 			if (xml.hasOwnProperty("Background")) {
 				var bgXML:XML = xml.Background[0];
@@ -82,6 +100,7 @@ package med.infographic {
 			}
 			
 			
+			expanders = new Vector.<HotspotExpander>();
 			hotspotsLayer = new Sprite();
 			for each(var hotspotXML:XML in xml.hotspot) {
 				var expanderTitle:String = null;
@@ -93,20 +112,62 @@ package med.infographic {
 				if (hotspotXML.hasOwnProperty("Image")) expanderImageURL = hotspotXML.Image[0].@url.toString();
 				if (hotspotXML.hasOwnProperty("@dir")) expanderDir = hotspotXML.@dir.toString();
 
-				var expander:HotspotExpander = new HotspotExpander(expanderTitle, expanderText, expanderImageURL, expanderDir, hotspotColor);
+				var expander:HotspotExpander = new HotspotExpander(expanderTitle, expanderText, expanderImageURL, expanderDir, hotspotColor, !auto);
 				expander.x = (parseFloat(hotspotXML.@x) * coordScale) || 0;
 				expander.y = (parseFloat(hotspotXML.@y) * coordScale) || 0;
 				hotspotsLayer.addChild(expander);
+				expanders.push(expander);
+			}
+			
+			if (xml.hasOwnProperty("resetButton")) {
+				var resetXML:XML = xml.resetButton[0];
+				var resetText:String = "Replay";
+				if (resetXML.hasOwnProperty("text")) resetText = resetXML.text[0].toString();
+				resetButton = ResetSlide.createResetButton(resetText);
+				const MARGIN:Number = 10;
+				resetButton.x = Infographic.WIDTH / 2 - resetButton.width / 2 - MARGIN;
+				resetButton.y = Infographic.HEIGHT / 2 - resetButton.height / 2 - MARGIN;
+				hotspotsLayer.addChild(resetButton);
+			}
+			
+			if (auto) {
+				expandTime = 0;
+				retractTime = 2.5 * TOGGLE_TIME;
+				expandQueue = expanders.concat();
+				retractQueue = new Vector.<HotspotExpander>();
 			}
 			
 		}
 		
-		public function animate(dTime:Number):void { }
+		public function animate(dTime:Number):void { 
+			if (auto) {
+				var expander:HotspotExpander;
+				
+				expandTime -= dTime;
+				if (expandTime <= 0) {
+					expandTime += TOGGLE_TIME;
+					autoExpand();
+				}
+				
+				retractTime -= dTime;
+				if (retractTime <= 0) {
+					retractTime += TOGGLE_TIME;
+					autoRetract();
+				}
+			}
+		}
 		
-		public function animateOff(callback:Function):void {
-			removeEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
+		protected function autoExpand():void {
+			var expander:HotspotExpander = expandQueue.shift();
+			expandQueue.push(expander);
+			retractQueue.push(expander);
+			expander.toggle();
+		}		
+		protected function autoRetract():void {
+			if (retractQueue.length == 0) return;
 			
-			callback(this);
+			var expander:HotspotExpander = retractQueue.shift();
+			expander.toggle();
 		}
 		
 		public function animateOn():void {
@@ -154,12 +215,35 @@ package med.infographic {
 			t += HOTSPOTS_OPAQUE_TIME;
 			
 		}
-		
 		protected function onHotspotsAppeared():void {
-			addEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
+			if (expanders.length > 0) addEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
 		}
 		
+		public function animateOff(callback:Function):void {
+			removeEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
+			
+			finishedCallback = callback;
+
+			var t:Number = 0;			
+			const FADE_TIME:Number = 0.8;
+			
+			if (bitmap) {
+				TweenMax.to(bitmap, FADE_TIME, { alpha:0, delay:t, ease:Quad.easeOut } ); 
+			}
+			
+			TweenMax.to(hotspotsLayer, FADE_TIME, { alpha:0, delay:t, ease:Quad.easeOut, onComplete:onHotspotsGone } ); 
+			//t += HOTSPOTS_OPAQUE_TIME;			
+		}		
+		protected function onHotspotsGone():void {
+			finishedCallback(this);
+		}
+		
+
 		protected function handleMouseDown(event:MouseEvent):void {
+			if (resetButton && (event.target == resetButton)) {
+				animateOff(finishedCallback);
+				return;
+			}
 			var expander:HotspotExpander = event.target as HotspotExpander;
 			if (!expander) return;
 			if (expander.canToggle) {

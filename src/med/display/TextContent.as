@@ -264,7 +264,6 @@ package med.display {
 		}
 		
 		
-		//protected function scaleToFit(scale:Number, width:Number, height:Number):Number {
 		protected function scaleToFit(width:Number, height:Number, textScale:Number):void {
 			var scale:Number = Math.min(width, height) / NATURAL_SIZE * textScale;
 			textField.scaleX = textField.scaleY = scale;

@@ -35,4 +35,4 @@ flybuys should always be lower case and italics
 
 Burdekin images
 
-need a way to abort infographics. Drag off?
+need a way to abort infographics. Drag off? click = prompt
