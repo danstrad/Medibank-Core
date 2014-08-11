@@ -174,6 +174,9 @@ package med.infographic {
 		}
 		
 		
+		protected static const ANIMATE_PEOPLE_ON_OFF_OFFSET_X:Number = 512;
+		
+		
 		public function animateOff(callback:Function):void {
 							
 			var delayBase:Number = 0;
@@ -188,10 +191,10 @@ package med.infographic {
 				var delay:Number = 0;
 				
 				if (person.state == PeopleGraphPerson.STATE_RIGHT) {
-					targetX = person.x + 800;
+					targetX = person.x + ANIMATE_PEOPLE_ON_OFF_OFFSET_X;
 					delay = ((10 - person.columnIndex) * PEOPLE_DELAY_CONSTANT);
 				} else {
-					targetX = person.x - 800;
+					targetX = person.x - ANIMATE_PEOPLE_ON_OFF_OFFSET_X;
 					delay = (person.columnIndex * PEOPLE_DELAY_CONSTANT);
 				}
 				
@@ -216,11 +219,11 @@ package med.infographic {
 				var delay:Number;
 				
 				if (person.state == PeopleGraphPerson.STATE_RIGHT) {
-					targetX = person.x + 800;
+					targetX = person.x + ANIMATE_PEOPLE_ON_OFF_OFFSET_X;
 					delay = (((10 + numExtraColumnsAllowed) - person.columnIndex) * PEOPLE_DELAY_CONSTANT);
 					
 				} else {
-					targetX = person.x - 800;
+					targetX = person.x - ANIMATE_PEOPLE_ON_OFF_OFFSET_X;
 					delay = ((person.columnIndex + numExtraColumnsAllowed) * PEOPLE_DELAY_CONSTANT);
 				}	
 				

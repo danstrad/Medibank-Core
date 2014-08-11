@@ -72,37 +72,52 @@ package med.infographic {
 			const TOP_TEXT_NORMAL_FONT_SIZE:Number = 21;
 			const TOP_TEXT_NORMAL_WIDTH:Number = 225;
 			
+//			var topTextSpacing:Number = -0.4;
+//			var topTextLeading:Number = -3.0;
+			
+			
 			if (topTextString != "") {
 				
 				topTextField.text = TextUtils.safeText(topTextString);
 				topTextField.textColor = textColor;
-				Text.setTextSpacing(topTextField, -0.4);
+				Text.boldText(topTextField);
+//				Text.setTextSpacing(topTextField, topTextSpacing);
 				topTextField.autoSize = TextFieldAutoSize.LEFT;
 
+					
 				textLength += topTextString.length;
 				
 				// move number down
 				numberField.y += 20;
 			
-			
-				// adjust font size if necessary
-				var fontSize:Number = TOP_TEXT_NORMAL_FONT_SIZE;
 				
+				// make sure we fit in the box
+				TextUtils.scaleToFit(topTextField, 225, BOX_SIZE-20, 1.0, 0.05); 
+
+				
+				
+				// adjust font size if necessary
+				/*
+				var fontSize:Number = TOP_TEXT_NORMAL_FONT_SIZE;
 				
 				while (topTextField.height >= (BOX_SIZE - 20)) {
 				
 					fontSize--;
-					
+										
 					topTextField.autoSize = TextFieldAutoSize.NONE;
 					topTextField.width = TOP_TEXT_NORMAL_WIDTH;
 					
 					// if the text is too big, we need to reduce the font size					
 					var tf:TextFormat = topTextField.getTextFormat();
-					tf.size = fontSize;					
+					tf.size = fontSize;	
+					tf.letterSpacing = topTextSpacing * (TOP_TEXT_NORMAL_FONT_SIZE / fontSize);
+					tf.leading = topTextLeading * (TOP_TEXT_NORMAL_FONT_SIZE / fontSize);
 					topTextField.setTextFormat(tf);
 					
 					topTextField.autoSize = TextFieldAutoSize.LEFT;					
 				}
+				*/
+				
 				
 			} else {
 				topTextField.visible = false;

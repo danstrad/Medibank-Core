@@ -17,6 +17,7 @@ package  {
 		public static var splashFormat:TextFormat;
 		public static var infographicSplashFormat:TextFormat;
 		public static var infographicChapterHeaderFormat:TextFormat;
+		public static var beyondBlueFormat:TextFormat;
 		
 
 		public static function createTextFormats():void {
@@ -53,7 +54,7 @@ package  {
 			format.leading = -2;
 			format.letterSpacing = -0.35;
 			format.align = TextFormatAlign.CENTER;
-
+			
 			infographicSplashFormat = format = new TextFormat("DINCond-Black", 50);
 			format.leading = -5;
 			format.letterSpacing = -0.35;
@@ -110,6 +111,22 @@ package  {
 			}
 		}		
 
+		
+		public static function scaleToFit(textField:TextField, width:Number, height:Number, textScale:Number=1.0, scaleStep:Number=0.05):void {
+//			var scale:Number = Math.min(width, height) / (textField.width * textScale);
+			var scale:Number = width / (textField.width * textScale);
+			textField.scaleX = textField.scaleY = scale;
+			textField.width = width / scale;
+			textField.height = height / scale;
+			
+			while (textField.height > height) {
+				scale -= scaleStep;
+				textField.scaleX = textField.scaleY = scale;
+				textField.width = width / textField.scaleX;
+				textField.height = height / textField.scaleY;
+			}
+		}		
+		
 		
 		public static function safeText(text:String):String {
 			text = text.replace(/\n\r/ig, '\n');
