@@ -75,22 +75,7 @@ package med.infographic {
 						
 						textField.text = text;
 						
-						var scanPos:int = 0;
-						var searchTerm:String = "beyondblue";
-						
-						while (text.indexOf(searchTerm, scanPos) != -1) {
-							var bbStart:int = text.indexOf(searchTerm);
-							var bbEnd:int = bbStart + searchTerm.length;
-							
-							var textFormat:TextFormat = textField.getTextFormat(bbStart, bbEnd);
-							textFormat.font = "DIN-BoldItalic";
-//							textFormat.bold = true;
-//							textFormat.italic = true;
-							textField.setTextFormat(textFormat, bbStart, bbEnd);							
-							
-							scanPos = bbEnd;
-						}
-						
+						TextUtils.parseTags(textField, true);
 						
 						if (textScale != 1) textField.scaleX = textField.scaleY = textScale;
 						break;

@@ -17,7 +17,6 @@ package  {
 		public static var splashFormat:TextFormat;
 		public static var infographicSplashFormat:TextFormat;
 		public static var infographicChapterHeaderFormat:TextFormat;
-		public static var beyondBlueFormat:TextFormat;
 		
 
 		public static function createTextFormats():void {
@@ -25,12 +24,15 @@ package  {
 			chapterHeaderFormat = format = new TextFormat("DINCond-Black", 15);
 			format.leading = -5;
 			format.letterSpacing = -0.35;
+			
 			storyHeaderFormat = format = new TextFormat("DIN Bold", 13);
 			format.leading = -1;
 			format.letterSpacing = -0.35;
+			
 			quoteFormat = format = new TextFormat("DIN Bold", 20);// 11);
 			format.leading = -2;
 			format.letterSpacing = -0.35;
+			
 			contentFormat = format = new TextFormat("DIN", 11);
 			format.leading = 0;//-2;
 			format.letterSpacing = -0.1;
@@ -42,23 +44,28 @@ package  {
 			format.letterSpacing = -0.1;
 			contentNewlineFormat = format = new TextFormat("DIN", 0);
 			format.leading = 0;
+			
 			labelFormat = format = new TextFormat("DIN Bold", 27);
 			format.leading = -2;
 			format.letterSpacing = -0.35;
 			format.align = TextFormatAlign.CENTER;
+			
 			statBoldFormat = format = new TextFormat("DIN Bold", 26);
 			format.leading = -2;
 			format.letterSpacing = -0.35;
 			format.align = TextFormatAlign.CENTER;
+			
 			splashFormat = format = new TextFormat("DIN Bold", 12);
-			format.leading = -2;
+			format.leading = 0;// -2;
 			format.letterSpacing = -0.35;
 			format.align = TextFormatAlign.CENTER;
+			
 			
 			infographicSplashFormat = format = new TextFormat("DINCond-Black", 50);
 			format.leading = -5;
 			format.letterSpacing = -0.35;
 			format.align = TextFormatAlign.CENTER;
+			
 			infographicChapterHeaderFormat = format = new TextFormat("DINCond-Black", 66);
 			format.leading = -17;
 			format.letterSpacing = -0.35;
@@ -133,6 +140,57 @@ package  {
 			text = text.replace(/\r\n/ig, '\n');
 			text = text.replace(/\r/ig, '\n');
 			return text;
+		}
+		
+		static public function parseTags(textField:TextField, bold:Boolean):void {			
+			var text:String = textField.text;
+			var scanPos:int = text.length - 1;
+			
+			var tag:String;
+			var tagLength:Number;
+			var startIndex:int;
+			var endIndex:int;
+			var textFormat:TextFormat;
+			
+			tag = "i";
+			tagLength = tag.length;
+			while (true) {
+				startIndex = text.lastIndexOf("[" + tag + "]", scanPos);
+				if (startIndex == -1) break;
+				text = text.substr(0, startIndex) + text.substr(startIndex + tagLength + 2);
+				textField.replaceText(startIndex, startIndex + tagLength + 2, "");
+				endIndex = text.indexOf("[/" + tag + "]", startIndex);
+				text = text.substr(0, endIndex) + text.substr(endIndex + tagLength + 3);
+				textField.replaceText(endIndex, endIndex + tagLength + 3, "");
+				
+				textFormat = textField.getTextFormat(startIndex, endIndex);
+				if (bold) textFormat.font = "DIN-BoldItalic";
+				else textFormat.font = "DIN-RegularItalic";
+
+				textField.setTextFormat(textFormat, startIndex, endIndex);											
+
+				scanPos = startIndex;
+			}
+					
+			tag = "bullet";
+			tagLength = tag.length;
+			while (true) {
+				startIndex = text.lastIndexOf("[" + tag + "]", scanPos);
+				if (startIndex == -1) break;
+				text = text.substr(0, startIndex) + text.substr(startIndex + tagLength + 2);
+				textField.replaceText(startIndex, startIndex + tagLength + 2, "");
+				endIndex = text.indexOf("[/" + tag + "]", startIndex);
+				text = text.substr(0, endIndex) + text.substr(endIndex + tagLength + 3);
+				textField.replaceText(endIndex, endIndex + tagLength + 3, "");
+				
+				textFormat = textField.getTextFormat(startIndex, endIndex);
+				textFormat.bullet = true;
+
+				textField.setTextFormat(textFormat, startIndex, endIndex);											
+
+				scanPos = startIndex;
+			}
+			
 		}
 		
 		

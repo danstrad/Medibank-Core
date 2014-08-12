@@ -1,5 +1,32 @@
-Add grid snapping back in?
+Build for release
+
+When clicking "time to unplug", then transitioning to blue, camera is dumb
+Camera focus is messed up for nested floating
+
+
 do we want sound on video?
+doc1: Does that image fit the theme?
+
+Doc3 - Text hard to read over bus image
+Doc5 - Healthy Weight for life: Quote images? Or other option?
+
+rearrange orange & purple stories & chapter
+
+
+Megan's feedback
+	1800RESPECT stuff
+
+Kelly's feedback
+
+Anything in quotation marks should be in bree font
+
+orange laddering up
+
+DAN:-------------------------------------
+
+
+
+DONT CARE:-----------------------------------
 
 art1:
 	F and G expand
@@ -7,32 +34,7 @@ art1:
 art2:
 	D and G aren't infographics - Used Stats text for now
 	E - infographic included in content?
-	Gap in expansion? according to  art2 box.pdf
-	
-doc1:
-	Does that image fit the theme?
 
-doc6:
-	Jumbled text
-	
-	
+Add grid snapping back in?
 
-
-
-
-Doc4, Doc5
-
-When clicking "time to unplug", then transitioning to blue, camera is dumb
-Camera focus is messed up for nested floating
-
-rearrange orange & purple stories
-
-
-Build for release
-
-
-flybuys should always be lower case and italics
-
-Burdekin images
-
-need a way to abort infographics. Drag off? click = prompt
+Doc4 small image

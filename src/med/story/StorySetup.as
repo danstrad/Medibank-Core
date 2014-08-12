@@ -109,6 +109,7 @@
 					if (textXML.hasOwnProperty("@type")) info.textType = textXML.@type.toString();
 					if (!info.textType || !info.textType.length) info.textType = TextContent.TYPE_STORY_HEADER;
 					if (textXML.hasOwnProperty("@scale")) info.textScale = parseFloat(textXML.@scale.toString());
+					if (textXML.hasOwnProperty("@textScale")) info.textScale = parseFloat(textXML.@textScale.toString());
 				}
 				if (boxXML.hasOwnProperty("Subtext")) {
 					var subtextXML:XML = boxXML.Subtext[0];
@@ -121,6 +122,15 @@
 					if (imageXML.hasOwnProperty("@scroll")) info.imageScrollMargin = parseFloat(imageXML.@scroll.toString());
 					
 					AssetManager.loadImage(info.imageURL);
+				}
+				if (boxXML.hasOwnProperty("Footer")) {
+					var footerXML:XML = boxXML.Footer[0];
+					if (footerXML.hasOwnProperty("@space")) info.footerSpace = parseFloat(footerXML.@space.toString());
+					if (footerXML.hasOwnProperty("Image")) {
+						imageXML = footerXML.Image[0];
+						if (imageXML.hasOwnProperty("@url")) info.footerImageURL = imageXML.@url.toString();
+						AssetManager.loadImage(info.footerImageURL);
+					}
 				}
 				if (boxXML.hasOwnProperty("Video")) {
 					var videoXML:XML = boxXML.Video[0];

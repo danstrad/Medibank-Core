@@ -16,6 +16,8 @@ package med.story {
 		
 		public var imageURL:String;
 		public var imageScrollMargin:Number;
+		public var footerImageURL:String;
+		public var footerSpace:Number;
 		
 		public var videoURL:String;
 		
@@ -43,6 +45,7 @@ package med.story {
 			subtextScale = 1;
 			imageScrollMargin = 20;
 			infographicScale = 1;
+			footerSpace = 0.5;
 		}
 		
 		

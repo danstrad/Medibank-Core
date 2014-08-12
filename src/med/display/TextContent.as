@@ -55,7 +55,7 @@ package med.display {
 			textMask.visible = false;
 			subtextField.visible = false;
 			max = 0;
-
+			
 			switch(textType) {
 				case TYPE_LABEL:
 				case TYPE_STATS:
@@ -71,6 +71,7 @@ package med.display {
 			if (textType == TYPE_CONTENT) {
 				
 				TextUtils.fillText(textField, text, TextUtils.contentFormat, TextUtils.contentBoldFormat);
+				TextUtils.parseTags(textField, false);
 				
 				textField.width = width;
 				textField.height = height;
@@ -100,6 +101,7 @@ package med.display {
 				}
 								
 				textField.text = text;				
+				TextUtils.parseTags(textField, true);
 				scaleToFit(width, height, textScale);
 				
 				switch(textType) {
@@ -269,6 +271,7 @@ package med.display {
 			textField.scaleX = textField.scaleY = scale;
 			textField.width = width / scale;
 			textField.height = height / scale;
+			
 			while (textField.height > height) {
 				scale -= 0.05;
 				textField.scaleX = textField.scaleY = scale;

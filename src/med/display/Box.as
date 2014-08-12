@@ -1,4 +1,5 @@
 package med.display {
+	import flash.display.BitmapData;
 	import flash.display.BlendMode;
 	import flash.display.DisplayObject;
 	import flash.display.Graphics;
@@ -32,6 +33,7 @@ package med.display {
 		public var textContent:TextContent;
 		public var videoContent:VideoContent;
 		public var imageContent:ImageContent;
+		public var footerImageContent:ImageContent;
 		public var infographicContent:InfographicContent;
 		public var substoryFlash:SubstoryFlash;
 		
@@ -224,6 +226,10 @@ package med.display {
 			if (contentInfo.imageURL) {
 				showImage(contentInfo.imageURL, w, h, contentInfo.imageScrollMargin);
 			}
+			if (contentInfo.footerImageURL) {
+				showFooterImage(contentInfo.footerImageURL, w, h * contentInfo.footerSpace);
+				footerImageContent.y += h * (1 - contentInfo.footerSpace) / 2;
+			}
 			if (contentInfo.videoURL) {
 				showVideo(contentInfo.videoURL, w, h);
 			}
@@ -232,7 +238,10 @@ package med.display {
 				showInfographic(data, w, h, contentInfo.infographicScale);
 			}
 			if (contentInfo.text) {
-				showText(contentInfo.text, w, h, contentInfo.textType, contentInfo.textScale, contentInfo.subtext, contentInfo.subtextScale, (imageContent != null));
+				var textHeight:Number = h;
+				if (footerImageContent) textHeight *= (1 - contentInfo.footerSpace);
+				showText(contentInfo.text, w, textHeight, contentInfo.textType, contentInfo.textScale, contentInfo.subtext, contentInfo.subtextScale, (imageContent != null));
+				if (footerImageContent) textContent.y -= h * contentInfo.footerSpace / 2;
 			}
 			
 			if (contentInfo.linkedStory) {
@@ -255,17 +264,35 @@ package med.display {
 		public function showText(text:String, width:Number, height:Number, textType:String, textScale:Number = 1, subtext:String = "", subtextScale:Number = 1, addShadow:Boolean = false):void {
 			textContent = generateTextContent(text, width, height, textType, textScale, subtext, subtextScale);
 			bg.visible = true;
+
+			var shadowDistance1:Number = 0.5;// 1;
+			var shadowAlpha1:Number = 1;// 0.8;
+			var shadowDistance2:Number = 0.5;// 0.5;
+			var shadowAlpha2:Number = 0.5;// 1;// 0.2;
 			
 			if (addShadow) {
 				var shadow:TextContent = generateTextContent(text, width, height, textType, textScale, subtext, subtextScale);
 				shadow.transform.colorTransform = new ColorTransform(0, 0, 0, 1);
-				shadow.x = shadow.y = 1;
-				shadow.alpha = 0.8;
+				shadow.x = shadow.y = shadowDistance1;
+				shadow.alpha = shadowAlpha1;
 				textContent.addChildAt(shadow, 0);
+				
 				shadow = generateTextContent(text, width, height, textType, textScale, subtext, subtextScale);
 				shadow.transform.colorTransform = new ColorTransform(0, 0, 0, 1);
-				shadow.x = shadow.y = -0.5;
-				shadow.alpha = 0.2;
+				shadow.x = shadow.y = -shadowDistance2;
+				shadow.alpha = shadowAlpha2;
+				textContent.addChildAt(shadow, 0);
+
+				shadow = generateTextContent(text, width, height, textType, textScale, subtext, subtextScale);
+				shadow.transform.colorTransform = new ColorTransform(0, 0, 0, 1);
+				shadow.x = -shadowDistance2; shadow.y = shadowDistance2;
+				shadow.alpha = shadowAlpha2;
+				textContent.addChildAt(shadow, 0);
+
+				shadow = generateTextContent(text, width, height, textType, textScale, subtext, subtextScale);
+				shadow.transform.colorTransform = new ColorTransform(0, 0, 0, 1);
+				shadow.x = shadowDistance2; shadow.y = -shadowDistance2;
+				shadow.alpha = shadowAlpha2;
 				textContent.addChildAt(shadow, 0);
 			}
 			content.addChild(textContent);
@@ -280,6 +307,13 @@ package med.display {
 			content.addChild(imageContent);
 			bg.visible = true;
 			bg.alpha = 0.2;
+		}		
+		
+		public function showFooterImage(imageURL:String, width:Number, height:Number):void {
+			var bitmapData:BitmapData = AssetManager.getImage(imageURL);
+			var scale:Number = Math.min(width / bitmapData.width, height / bitmapData.height);			
+			footerImageContent = new ImageContent(bitmapData, bitmapData.width * scale, bitmapData.height * scale, 0);
+			content.addChild(footerImageContent);
 		}		
 		
 		public function showVideo(videoURL:String, width:Number, height:Number):void {
@@ -325,6 +359,7 @@ package med.display {
 			bg.width = placement.unitsWide * SIZE + padding;
 			if (substoryFlash) substoryFlash.width = bg.width;
 			if (imageContent) imageContent.setPadding(padding);
+			if (footerImageContent) footerImageContent.x = -padding / 2;
 			if (textContent) textContent.x = -padding / 2;
 			if (infographicContent) infographicContent.x = -padding / 2;
 		}

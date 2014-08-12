@@ -135,7 +135,7 @@
 			<LinkedStory>prof1</LinkedStory>
 		</Box>
 		<Box id="C">
-			<Text>How far is too far for specialist healthcare?</Text>
+			<Text>Improving access to specialist care in regional and remote Australia</Text>
 			<LinkedInfographic>info1</LinkedInfographic>
 		</Box>
 		<Box id="D">
@@ -143,7 +143,7 @@
 			<LinkedStory>doc2</LinkedStory>
 		</Box>
 		<Box id="E">
-			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians</Text>
+			<Text>[i]beyondblue[/i] and Medibank. Side by side to support the mental health of young Australians</Text>
 			<LinkedStory>doc3</LinkedStory>
 		</Box>		
 		<Box id="F">
@@ -183,7 +183,7 @@
 			<LinkedInfographic>info4</LinkedInfographic>
 		</Box>
 		<Box id="O">
-			<Text>1800 RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault</Text>
+			<Text>1800RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault</Text>
 			<LinkedStory>doc8</LinkedStory>
 		</Box>
 		<Box id="P">
@@ -242,7 +242,7 @@
 			<LinkedStory>doc10</LinkedStory>
 		</Box>
 		<Box id="F">
-			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians</Text>
+			<Text>[i]beyondblue[/i] and Medibank. Side by side to support the mental health of young Australians</Text>
 			<LinkedStory>doc3</LinkedStory>
 		</Box>
 
@@ -326,8 +326,9 @@ each year.
 more than previous estimates.</Text>
 		</Box>
 		<Box id="E">
-			<Text type="Content">Released in May 2013 by Medibank and leading management consulting firm, The Nous Group, the compelling research paper – The Case for Mental Health Reform in Australia – provided an in-depth review of healthcare expenditure and system design. The research:
-•	Provided a complete picture of the direct financial costs of supporting people with a mental illness in Australia 
+			<Text type="Content">Released in May 2013 by Medibank and leading management consulting firm, The Nous Group, [i]The Case for Mental Health Reform in Australia[/i] provides an in-depth review of healthcare expenditure and system design.
+The research:
+•	Provides a complete picture of the direct financial costs of supporting people with a mental illness in Australia 
 •	Examined the structure of the current Australian mental health system
 •	Reviewed domestic and international examples of how integrated approaches to mental healthcare and social services deliver better health outcomes and a better experience for patients, as well as improved cost effectiveness.
 [b]Getting the complete picture[/b]
@@ -337,7 +338,7 @@ The report highlighted that although both policy attention and new funding are b
 Though the report identified significant challenges facing Australia’s mental health care system, it also highlighted an unprecedented opportunity for Australia to lead the world in end-to-end mental health system redesign, delivering better outcomes at a lower cost. 
 The report suggested that by adopting an integrated approach, Australia can provide the most effective care for those suffering from mental illness and set the standard for best practice mental health care across the globe.
 [b]From talking the talk to walking the walk[/b]
-Demonstrating commitment to the cause, in November 2013 Medibank partnered with beyondblue to host a roundtable involving more than 40 of Australia’s leading thinkers in mental health, health and social services. Based on the insights and discussions at the workshop, Medibank and beyondblue published the report, Australia’s Mental Health System – can we achieve generational change?
+Demonstrating commitment to the cause, in November 2013 Medibank partnered with [i]beyondblue[/i] to host a roundtable involving more than 40 of Australia’s leading thinkers in mental health, health and social services. Based on the insights and discussions at the workshop, Medibank and [i]beyondblue[/i] published the report, Australia’s Mental Health System – can we achieve generational change?
 Medibank has since taken the outcomes of the research and roundtable event to inform a submission to the National Mental Health Commission – the government agency responsible for building a better mental health system – as part of Medibank’s mission to take the lead on policy reform in mental health.</Text>
 		</Box>
 		<Box id="F">
@@ -381,14 +382,14 @@ Testament to his positive spirit, Grant hopes to represent New Zealand in target
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
-			<Box id="B" width="2.5" height="4.444" /> <!-- 1152, 2048 -->
-			<Box id="C" width="2.5" height="1.5" />
-			<Box id="D" width="1.5" height="1" />
-			<Box id="F" width="2" height="1.666" /> <!-- 600, 500 -->
-			<Box id="E" width="3" height="2.666" />
+			<Box id="B" x="1.666" y="0" width="2.252" height="4" /> <!-- 563, 1000 -->
+			<Box id="C" x="5.333" y="-1.5" width="2.5" height="1.5" />
+			<Box id="D" x="4" y="1" width="1.5" height="1" />
+			<Box id="F" x="6.1666" y="1" width="2" height="1.666" /> <!-- 600, 500 -->
+			<Box id="E" x="9.1666" y="" width="3" height="2.666" />
 		</Animation>
 		<Animation type="Sprouting" direction="90" randomSeed="41">
-			<Box id="B" width="2.5" height="4.444" /> <!-- 1152, 2048 -->
+			<Box id="B" width="2.252" height="4" /> <!-- 563, 1000 -->
 			<Box id="C" width="2.5" height="1.5" branch="ru" />
 			<Box id="D" width="1.5" height="1" />
 			<Box id="F" width="2" height="1.666" /> <!-- 600, 500 -->
@@ -399,7 +400,7 @@ Testament to his positive spirit, Grant hopes to represent New Zealand in target
 	<Story id="doc2"> <!-- Meeting the mental health challenge -->
 		<Box id="B">
 			<Text type="Stats">[b]Every year[/b]
-more than one in five Australians experiences a mental illness, and almost half the Australian population will experience a mental illness at some point in their life.
+more than one in five Australians experiences mental illness, and almost half the Australian population will experience a mental illness at some point in their life.
 [b]In any one year[/b]
 about 1 million Australian adults will experience depression and more than 2 million will suffer from anxiety.
 [b]Every day[/b]
@@ -422,21 +423,21 @@ it costs $28.6 billion to support people with a mental illness in Australia, not
 		<Box id="E">
 			<Text type="Content">Australia has an unprecedented opportunity to meet the mental health challenge.
 A mental health system with:
-•	Timely, affordable and equitable access to mental health services
-•	Fewer unnecessary public hospital admissions
-•	Better care coordination for consumers of mental health services
-•	Efficient expenditure on quality mental health care
-•	Services that address skills shortages and provide 24/7 care.
+[bullet]Timely, affordable and equitable access to mental health services
+Fewer unnecessary public hospital admissions
+Better care coordination for consumers of mental health services
+Efficient expenditure on quality mental health care
+Services that address skills shortages and provide 24/7 care.[/bullet]
 But major system changes are needed to get the best outcomes – from detection and diagnosis to treatment and ongoing recovery.
 At Medibank we deliver a range of evidence-based programs that give Australians 24/7 access to trained mental health professionals via online, telephone and face-to-face channels, including:
-•	Care coordination and counselling
-•	Mental health triage 
-•	Relapse prevention
-•	Occupational health medicine 
-•	Suicide prevention follow-up and support 
-•	Return to work programs 
-•	Mental health services for the justice system. 
-Demonstrating our commitment to better mental health, we also partner with like-minded organisations such as beyondblue to influence mental health policy and reform, and ultimately provide better care and life outcomes for all Australians.</Text>
+[bullet]Care coordination and counselling
+Mental health triage 
+Relapse prevention
+Occupational health medicine 
+Suicide prevention follow-up and support 
+Return to work programs 
+Mental health services for the justice system.[/bullet]
+Demonstrating our commitment to better mental health, we also partner with like-minded organisations such as [i]beyondblue[/i] to influence mental health policy and reform, and ultimately provide better care and life outcomes for all Australians.</Text>
 		</Box>
 		
 		<Animation type="Sprouting" direction="90" randomSeed="41">
@@ -465,6 +466,9 @@ Demonstrating our commitment to better mental health, we also partner with like-
 		<Box id="C">
 			<Text type="Quote">Mental health is one of Australia’s biggest health challenges – and young Australians are particularly vulnerable. Every year, one in three young Australians faces mental illness, and only one in four of those people will actually receive professional help.</Text>
 		</Box>
+		<Box id="I">
+			<Image url="assets/doc3/beyondblue.png" scroll="0" />			
+		</Box>
 		<Box id="F">
 			<Image url="assets/doc3/F.png" />
 		</Box>
@@ -477,18 +481,19 @@ of mental illness emerges before the age of 25.</Text>
 		</Box>
 		<Box id="H">
 			<Text type="Stats">[b]100,000:[/b]
-the total number of phone, chat and email consultations delivered through the 24 hour service.</Text>
+the total number of phone, chat and email consultations delivered through the 24 hour service provided by Medibank.</Text>
 		</Box>
 		<Box id="E">
 			<Text type="Content">With around 50% of substance abuse problems in young people developing after the onset of mental illness, and a youth suicide rate among the highest in the world, it is critical those with mental illness have somewhere to turn.
-That’s why, since early 2013, Medibank has provided a 24 hour service on behalf of beyondblue that connects people with a qualified mental health professional via phone or online chat. The beyondblue Support Service helps people seeking care for themselves, along with friends, family, colleagues and employers who are impacted by mental illness.
-And it’s making a big difference. Though the service is available to all Australians, the online chat has been particularly popular among younger people, giving those nervous about using traditional face-to-face avenues an easy, confidential and anonymous way to seek help and advice, often for the first time. In fact, people aged under 20 account for 40% of all interactions with online chat, with a spike in young people using the service around end-of-year-exams. 
+That’s why, since early 2013, Medibank has provided a 24 hour service on behalf of [i]beyondblue[/i] that connects people with a qualified mental health professional via phone or online chat. The [i]beyondblue[/i] Support Service helps people seeking care for themselves, along with friends, family, colleagues and employers who are impacted by mental illness.
+And it’s making a big difference. Although the service is available to all Australians, the online chat has been particularly popular among younger people, giving those nervous about using traditional face-to-face avenues an easy, confidential and anonymous way to seek help and advice, often for the first time. In fact, people aged under 20 account for 40% of all interactions with online chat, with a spike in young people using the service around end-of-year-exams. 
 The beyondblue Support Service is just one way Medibank is using its clinical expertise to partner with like-minded organisations to provide the care people need – when, where and how they need it.</Text>
 		</Box>
 		
 		<Animation type="Sprouting" direction="90" randomSeed="41">
 			<Box id="B" width="4" height="2.3" /> <!-- 1000, 575 -->
 			<Box id="C" width="2.5" height="1.5" />
+			<Box id="I" width="1.5" height="0.8138" /> <!-- 623, 338 -->
 			<Box id="D" width="1.5" height="1" />
 			<Box id="E" width="3" height="2.5" />
 			<Box id="F" width="3" height="2" /> <!-- 600, 400 -->
@@ -497,6 +502,7 @@ The beyondblue Support Service is just one way Medibank is using its clinical ex
 		<Animation type="Sliding" direction="180" randomSeed="41" slidingWidth="2.5">
 			<Box id="B" width="2.5" height="1.4375" /> <!-- 1000, 575 -->
 			<Box id="C" width="2.5" height="1.5" />
+			<Box id="I" x="2" y="2.1666" width="1.5" height="0.8138" /> <!-- 623, 338 -->
 			<Box id="F" width="2.5" height="1.666" /> <!-- 600, 400 -->
 			<Box id="D" x="-2" y="3.75" width="1.5" height="1" />
 			<Box id="G" width="2.5" height="1.666" /> <!-- 600, 400 -->
@@ -603,11 +609,12 @@ The 18-week program has already improved the lives of more than 450 members. The
 	<Story id="doc6"> <!-- Taking action on reconciliation -->
 		<Box id="B">
 			<Image url="assets/doc6/B.png" />
-			<Text type="Splash">Reconciliation with Aboriginal and Torres Strait Islander peoples can be achieved through a whole-of-community effort.</Text>
+			<Text type="Splash">Equity and wellbeing outcomes for Aboriginal and Torres Strait Islander peoples can be achieved through a whole-of-community effort. And we're committed to playing a vital role in it.</Text>
 		</Box>
 		<Box id="C">
 			<Text type="Quote">In 2012, we became the first private health insurer to develop a Reconciliation Action Plan (RAP). In it we outlined the action we would take to improve the health and wellbeing outcomes of Aboriginal and Torres Strait Islander health.</Text>
 		</Box>
+		<!-- 
 		<Box id="D">
 			<Text type="Quote">The first pillar of our RAP
 Relationships
@@ -624,8 +631,29 @@ Medibank is founded on a culture based on respect. And we understand that to Clo
 Opportunities
 As a health organisation we know that by helping to create opportunities for education, employment and partnerships, we are playing a role in improving the health and wellbeing outcomes of Aboriginal and Torres Strait Islander peoples.</Text>
 		</Box>
+		 -->
+		<Box id="D">
+			<Text type="Stats">Building
+[b]Relationships,[/b]
+[b]Respect &[/b]
+[b]Opportunities[/b]</Text>
+		</Box>
+			
 		<Box id="E">
-			<Text type="Content">Closing the gap
+			<Text type="Content">[b]Building relationships, respect & opportunities[/b]
+Medibank's RAP is built around three key areas.
+
+Relationships:
+It is through the development of relationships with the Aboriginal and Torres Strait Islander peoples community, that Medibank aims to address the challenge of equity in health and wellbeing outcomes.
+These are relationships built on the principles of dialogue, respect, understanding, partnership and reciprocity.
+
+Respect:
+Medibank is founded on a culture based on respect. And we understand that to Close the Gap, we must respect Aboriginal and Torres Strait Islander peoples culture and history while helping others to do the same.
+
+Opportunities:
+As a health organisation we know that by helping to create opportunities for education, employment and partnerships, we are playing a role in improving the health and wellbeing outcomes of Aboriginal and Torres Strait Islander peoples.
+
+[b]Closing the gap[/b]
 We recently conducted research into community perceptions of life expectancy for Aboriginal and Torres Strait Islander peoples, which found that most Australians believed that ‘health’ and ‘poor living conditions’ are responsible for a gap between Indigenous and non-Indigenous Australians.
 
 As a community we know there’s a gap, and we must close it.
@@ -640,10 +668,10 @@ We’re making progress, but we can’t stop now. We know that until there is ge
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
-			<Box id="B" width="4.5" height="3" /> <!-- 1000, 667 -->
-			<Box id="C" width="2.5" height="1.5" />
-			<Box id="D" width="1.5" height="1" />
-			<Box id="E" width="3" height="2.5" />
+			<Box id="B" x="2" y="-0.5" width="3.75" height="2.5" /> <!-- 1000, 667 -->
+			<Box id="C" x="6" y="-1.333" width="2.5" height="2" />
+			<Box id="D" x="6" y="1.333" width="2" height="1.5" />
+			<Box id="E" x="9.1666" y="0" width="3" height="3.5" />
 		</Animation>
 	</Story>
 	
@@ -695,18 +723,18 @@ Since 2013, over 300,000 members have already joined the program.</Text>
 		</Animation>
 	</Story>
 	
-	<Story id="doc8"> <!-- 1800 RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault -->
+	<Story id="doc8"> <!-- 1800RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault -->
 		<Box id="B">
-			<Text type="Splash">Responding to domestic violence is everyone’s business.</Text>
+			<Text type="Splash" textScale="1.5">Responding to domestic violence is everyone’s business.</Text>
+			<Footer space="0.35">
+				<Image url="assets/doc8/1800RESPECT_padded_bottom.png" />
+			</Footer>
 		</Box>		
 		<Box id="C">
 			<Text type="Quote">1800RESPECT is the national sexual assault, domestic and family violence counselling service, delivered by Medibank on behalf of the Australian Government to help end violence against women and their children.</Text>
 		</Box>
 		<Box id="D">
 			<Text type="Splash">One in three Australian women experiences family or domestic violence.</Text>
-		</Box>
-		<Box id="G">
-			<Image url="assets/doc8/1800RESPECT.png" scroll="0" />
 		</Box>
 		<Box id="H">
 			<Text type="Splash">There are a lot of reasons to take action.</Text>
@@ -726,14 +754,14 @@ It also offers online resources for workers across sectors including health, dis
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
-			<Box id="B" width="4.5" height="3" />
+			<Box id="B" width="2.5" height="2" />
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="1.5" height="1" />
 			<Box id="E" width="3" height="2.5" />
 			<Box id="G" width="3" height="0.96" /> <!-- 600, 192 -->
 		</Animation>
 		<Animation type="Sprouting" direction="110" randomSeed="41">
-			<Box id="B" width="4.5" height="3" />
+			<Box id="B" width="2.5" height="2" />
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="1.5" height="1" />
 			<Box id="E" width="3" height="2.5" />
@@ -828,7 +856,7 @@ ahm, with the backing of Medibank, is there to provide health insurance for peop
 			<Text type="Quote">“My work-life balance is brilliant.”</Text>
 		</Box>
 		<Box id="D">
-			<Text type="Content">Leith is a registered nurse with more than 25 years’ experience and one of 2500 health professionals employed by Medibank to care for patients across Australia.
+			<Text type="Content">Leith is a registered nurse with more than 25 years’ experience and one of 2,500 health professionals employed by Medibank to care for patients across Australia.
 As part of the nation’s largest telephone triage, health advice and referral service, Leith assesses callers based on their symptoms before providing advice and recommendations on what care they need. 
 Just one telehealth nurse can support 6,000 patients each year.
 Like 85% of Medibank’s nurse workforce, Leith works from home as part of our work@home model, which lets her balance her important role in providing quality healthcare with her equally important role as a mum.
@@ -962,7 +990,7 @@ Jayde is now considering moving forward towards university education, an opportu
 	
 	<Story id="prof6"> <!-- Burdekin Police Citizen Youth Welfare Association - 2014 Grant Recipient for Queensland -->
 		<Box id="B">
-			<Image url="assets/prof6/KinderGym.png" />
+			<Image url="assets/prof6/mebibank kindergym.png" />
 		</Box>
 		<Box id="C">
 			<Text type="Quote">“We are giving families living in extreme poverty the opportunity to access KinderGym classes to  enhance the development of young children, and invite parents to socially connect with the community”.</Text>
@@ -972,12 +1000,12 @@ Jayde is now considering moving forward towards university education, an opportu
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
-			<Box id="B" width="3.24" height="2.33" /> <!-- 648, 466  -->
+			<Box id="B" width="2.226" height="3" /> <!-- 742, 1000  -->
 			<Box id="C" width="1.5" height="1.5" />
 			<Box id="D" width="3" height="2.5" />
 		</Animation>
 		<Animation type="Sprouting" direction="110" randomSeed="41">
-			<Box id="B" width="3.24" height="2.33" /> <!-- 648, 466  -->
+			<Box id="B" width="2.226" height="3" /> <!-- 742, 1000  -->
 			<Box id="C" width="1.5" height="1.5" />
 			<Box id="D" width="3" height="2.5" />
 		</Animation>		
@@ -1116,11 +1144,10 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 		</slide>		
 		<slide type="flip_number">
 			<appearance backgroundColor="3" />
-			<graphstate value="80" featuredText="Psychology and psychiatry consultations take place each month." topText="About" />		
+			<graphstate value="80" featuredText="Psychology and psychiatry consultations take place each month." topText="Approximately" />		
 		</slide>		
 		<slide type="people_graph">
 			<appearance backgroundColor="3" boxColor="1" />
-			<graphstate value="33" featuredText="1 in 3" usePercentage="false" topText="" bottomText="Consultations for patients up to the age of 15 are for dermatology." />
 			<graphstate value="5" featuredText="95" usePercentage="true" topText="Thanks to Anywhere Healthcare" bottomText="Of patients avoid travelling long distances." />
 			<graphstate value="92" featuredText="92" usePercentage="true" topText="Thanks to Anywhere Healthcare" bottomText="Of patients save money on travel costs." />
 			<graphstate value="50" featuredText="50" usePercentage="true" textOnRightEdge="true" topText="Thanks to Anywhere Healthcare more than" bottomText="Of patients avoid having to take time off work." />
@@ -1323,9 +1350,9 @@ of Health.</featuredText>
 		</slide>
 		<slide type="people_graph">
 			<appearance backgroundColor="3" boxColor="1" />
-			<graphstate value="40" featuredText="40" usePercentage="true" textOnRightEdge="true" topText="Up to" bottomText="of callers are given information to safely manage the condition at home." />
+			<graphstate value="40" featuredText="40" usePercentage="true" textOnRightEdge="true" topText="Up to" bottomText="of callers are given information to safely manage their condition at home." />
 			<graphstate value="50" featuredText="" usePercentage="false" topText="" bottomText="Other callers are advised to see a GP." />
-			<graphstate value="10" featuredText="" usePercentage="false" topText="" bottomText="Only a small number of callers are referred to emergency or urgent care." />			
+			<graphstate value="10" featuredText="" usePercentage="false" topText="" bottomText="A small number of callers are referred to emergency or urgent care." />			
 		</slide>	
 		<slide type="flip_number">
 			<appearance backgroundColor="3" />
