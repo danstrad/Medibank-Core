@@ -31,6 +31,8 @@ package med.display {
 		protected var ending:Boolean;
 		public var ended:Boolean;
 		
+		public var endedEarly:Boolean = false;
+		
 		
 		public function CoreInfographic(data:InfographicData, mover:Sprite, launchRect:Rectangle, backgroundImageLayer:Sprite, background:Background, chapter:Chapter) {			
 			this.mover = mover;
@@ -180,6 +182,9 @@ package med.display {
 		
 		protected function exitInfographic():void {
 //			animateOff();
+
+			this.endedEarly = true;
+//			forceLoadLastSlide();			
 			lastFrameReached();
 		}
 		

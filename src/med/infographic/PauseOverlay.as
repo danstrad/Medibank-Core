@@ -129,9 +129,15 @@ package med.infographic {
 		
 		protected function finishedAnimateOn():void {
 			this.mouseEnabled = true;
+
 			if (pauseCallback != null) {
 				pauseCallback();
 			}
+						
+			if (parent) {
+				// ensure we're still on top
+				parent.addChild(this);
+			}					
 		}
 		
 		
