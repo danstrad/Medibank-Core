@@ -827,7 +827,7 @@ The Medibank Community Fund is proud to be working with the Heart Foundation to 
 		</Animation>
 		<Animation type="Sprouting" direction="110" randomSeed="41">
 			<Box id="B" width="3.333" height="5" /> <!-- 667, 1000 -->
-			<Box id="C" width="2.5" height="1.5" />
+			<Box id="C" width="2.5" height="1.5" branch="rd" />
 			<Box id="D" width="1.5" height="1" />
 			<Box id="E" width="3" height="2.5" />
 			<Box id="F" width="2.5" height="1.5" /> <!-- 600, 400 -->
@@ -973,8 +973,8 @@ Jayde is now considering moving forward towards university education, an opportu
 		</Animation>
 		<Animation type="Sprouting" direction="110" randomSeed="41">
 			<Box id="B" width="3.51" height="4.75" /> <!-- 702, 950  -->
-			<Box id="C" width="1.5" height="1.5" />
-			<Box id="D" width="3" height="2.5" />
+			<Box id="C" width="1.5" height="1.5" branch="rd"/>
+			<Box id="D" width="3" height="2.5" branch="rd"/>
 		</Animation>		
 	</Story>
 	
@@ -999,9 +999,9 @@ In partnership with Melbourne Heart Football Club, Blind Sports Victoria (BSV) h
 			<Box id="D" width="3" height="2.5" x="5.8" y="1.2" />
 		</Animation>
 		<Animation type="Sprouting" direction="110" randomSeed="41">
-			<Box id="B" width="6.23" height="4.14" /> <!-- 623, 414  -->
-			<Box id="C" width="1.5" height="1.5" />
-			<Box id="D" width="3" height="2.5" />
+			<Box id="B" width="5.267" height="4.14" /> <!-- 623, 414  -->
+			<Box id="C" width="1.5" height="1.5" branch="rd"/>
+			<Box id="D" width="3" height="2.5" branch="rd"/>
 		</Animation>		
 	</Story>
 	
@@ -1070,8 +1070,8 @@ The $7,300 grant will give Whyalla Men’s Shed the resources to build an outdoo
 			<Box id="D" width="3" height="2.5" x="6.5" y="0.3" />
 		</Animation>
 		<Animation type="Sprouting" direction="110" randomSeed="41">
-			<Box id="B" width="6.895" height="4.57" /> <!-- 1379, 914  -->
-			<Box id="C" width="1.5" height="1.5" />
+			<Box id="B" width="6" height="3.977" /> <!-- 1379, 914  -->
+			<Box id="C" width="1.5" height="1.5" branch="rd" />
 			<Box id="D" width="3" height="2.5" />
 		</Animation>		
 	</Story>
