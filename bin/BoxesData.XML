@@ -47,7 +47,7 @@
 			<LinkedStory>art1</LinkedStory>
 		</Box>
 		<Box id="B">
-			<Text>Delivering quality care across New Zealand</Text>
+			<Text>Delivering quality care across New Zealand.</Text>
 			<LinkedStory>doc1</LinkedStory>
 		</Box>
 		<Box id="C">
@@ -55,43 +55,43 @@
 			<LinkedInfographic>info6</LinkedInfographic>
 		</Box>				
 		<Box id="D">
-			<Text>Creating a system for Better Health</Text>
+			<Text>Creating a system for Better Health.</Text>
 			<LinkedStory>doc4</LinkedStory>
 		</Box>		
 		<Box id="E">
-			<Text>Funding Aboriginal and Torres Strait Islander health and wellbeing programs</Text>
+			<Text>Funding Aboriginal and Torres Strait Islander health and wellbeing programs.</Text>
 			<LinkedStory>prof2</LinkedStory>
 		</Box>
 		<Box id="F">
-			<Text>Walking side-by-side with Heart Foundation</Text>
+			<Text>Walking side-by-side with Heart Foundation.</Text>
 			<LinkedStory>doc9</LinkedStory>
 		</Box>
 		<Box id="G">
-			<Text>Meet Jayde, Yalari scholarship recipient</Text>
+			<Text>Meet Jayde, Yalari scholarship recipient.</Text>
 			<LinkedStory>prof3</LinkedStory>
 		</Box>
 		<Box id="H">
-			<Text>BLIND SPORTS VICTORIA 2014 - $10,000 Grant Recipient for Victoria</Text>
+			<Text>BLIND SPORTS VICTORIA 2014 - $10,000 Grant Recipient for Victoria.</Text>
 			<LinkedStory>prof5</LinkedStory>
 		</Box>
 		<Box id="I">
-			<Text>Burdekin Police Citizen Youth Welfare Association - 2014 Grant Recipient for Queensland</Text>
+			<Text>Burdekin Police Citizen Youth Welfare Association - 2014 Grant Recipient for Queensland.</Text>
 			<LinkedStory>prof6</LinkedStory>
 		</Box>
 		<Box id="J">
-			<Text>Taking action on reconciliation</Text>
+			<Text>Taking action on reconciliation.</Text>
 			<LinkedStory>doc6</LinkedStory>
 		</Box>
 		<Box id="K">
-			<Text>Bankstown Women’s Community Garden - 2014 Grant Recipient for New South Wales</Text>
+			<Text>Bankstown Women’s Community Garden - 2014 Grant Recipient for New South Wales.</Text>
 			<LinkedStory>prof7</LinkedStory>
 		</Box>
 		<Box id="L">
-			<Text>Whyalla Men's Shed - 2014 Grant Recipient for South Australia</Text>
+			<Text>Whyalla Men's Shed - 2014 Grant Recipient for South Australia.</Text>
 			<LinkedStory>prof8</LinkedStory>
 		</Box>
 		<Box id="M">
-			<Text>We’re moving to a healthier way of working</Text>
+			<Text>We’re moving to a healthier way of working.</Text>
 			<LinkedStory>prof9</LinkedStory>
 		</Box>
 		<Box id="N">
@@ -99,15 +99,15 @@
 			<LinkedInfographic>info3</LinkedInfographic>
 		</Box>		
 		<Box id="O">
-			<Text>Healthy Weight for Life</Text>
+			<Text>Healthy Weight for Life.</Text>
 			<LinkedStory>doc5</LinkedStory>
 		</Box>		
 		<Box id="P">
-			<Text>Fair Game sports equipment - 2014 Community Fund Grant Recipient for Western Australia</Text>
+			<Text>Fair Game sports equipment - 2014 Community Fund Grant Recipient for Western Australia.</Text>
 			<LinkedStory>prof4</LinkedStory>
 		</Box>
 		<Box id="Q">
-			<Text>1800 RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault</Text>
+			<Text>1800 RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault.</Text>
 			<LinkedStory>doc8</LinkedStory>
 		</Box>		
 		
@@ -127,11 +127,11 @@
 	
 	<Story id="Chapter 2">	
 		<Box id="A">
-			<Text>Delivering quality care across New Zealand</Text>
+			<Text>Delivering quality care across New Zealand.</Text>
 			<LinkedStory>doc1</LinkedStory>
 		</Box>
 		<Box id="B">
-			<Text>Meet Leith, Medibank nurse</Text>
+			<Text>Meet Leith, Medibank nurse.</Text>
 			<LinkedStory>prof1</LinkedStory>
 		</Box>
 		<Box id="C">
@@ -139,11 +139,11 @@
 			<LinkedInfographic>info1</LinkedInfographic>
 		</Box>
 		<Box id="D">
-			<Text>Meeting the mental health challenge</Text>
+			<Text>Meeting the mental health challenge.</Text>
 			<LinkedStory>doc2</LinkedStory>
 		</Box>
 		<Box id="E">
-			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians</Text>
+			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians.</Text>
 			<LinkedStory>doc3</LinkedStory>
 		</Box>		
 		<Box id="F">
@@ -151,19 +151,19 @@
 			<LinkedInfographic>info2</LinkedInfographic>
 		</Box>
 		<Box id="G">
-			<Text>Fair Game sports equipment - 2014 Community Fund Grant Recipient for Western Australia</Text>
+			<Text>Fair Game sports equipment - 2014 Community Fund Grant Recipient for Western Australia.</Text>
 			<LinkedStory>prof4</LinkedStory>
 		</Box>
 		<Box id="H">
-			<Text>Creating a system for Better Health</Text>
+			<Text>Creating a system for Better Health.</Text>
 			<LinkedStory>doc4</LinkedStory>
 		</Box>			
 		<Box id="I">
-			<Text>Healthy Weight for Life</Text>
+			<Text>Healthy Weight for Life.</Text>
 			<LinkedStory>doc5</LinkedStory>
 		</Box>		
 		<Box id="J">
-			<Text>BLIND SPORTS VICTORIA 2014 - $10,000 Grant Recipient for Victoria</Text>
+			<Text>Blind Sports Victoria - 2014 Grant Recipient for Victoria.</Text>
 			<LinkedStory>prof5</LinkedStory>
 		</Box>
 		<Box id="K">
@@ -171,11 +171,11 @@
 			<LinkedInfographic>info3</LinkedInfographic>
 		</Box>
 		<Box id="L">
-			<Text>Rewarding better health with flybuys and Medibank</Text>
+			<Text>Rewarding better health with flybuys and Medibank.</Text>
 			<LinkedStory>doc7</LinkedStory>
 		</Box>
 		<Box id="M">
-			<Text>Burdekin Police Citizen Youth Welfare Association - 2014 Grant Recipient for Queensland</Text>
+			<Text>Burdekin Police Citizen Youth Welfare Association - 2014 Grant Recipient for Queensland.</Text>
 			<LinkedStory>prof6</LinkedStory>
 		</Box>
 		<Box id="N">
@@ -183,15 +183,15 @@
 			<LinkedInfographic>info4</LinkedInfographic>
 		</Box>
 		<Box id="O">
-			<Text>1800 RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault</Text>
+			<Text>1800 RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault.</Text>
 			<LinkedStory>doc8</LinkedStory>
 		</Box>
 		<Box id="P">
-			<Text>Bankstown Women’s Community Garden - 2014 Grant Recipient for New South Wales</Text>
+			<Text>Bankstown Women’s Community Garden - 2014 Grant Recipient for New South Wales.</Text>
 			<LinkedStory>prof7</LinkedStory>
 		</Box>
 		<Box id="Q">
-			<Text>Walking side-by-side with Heart Foundation</Text>
+			<Text>Walking side-by-side with the Heart Foundation.</Text>
 			<LinkedStory>doc9</LinkedStory>
 		</Box>
 		<Box id="R">
@@ -199,7 +199,7 @@
 			<LinkedInfographic>info6</LinkedInfographic>
 		</Box>
 		<Box id="S">
-			<Text>Whyalla Men's Shed - 2014 Grant Recipient for South Australia</Text>
+			<Text>Whyalla Men's Shed - 2014 Grant Recipient for South Australia.</Text>
 			<LinkedStory>prof8</LinkedStory>
 		</Box>
 
@@ -222,15 +222,15 @@
 	
 	<Story id="Chapter 3">
 		<Box id="A">
-			<Text>Meet Leith, Medibank nurse</Text>
+			<Text>Meet Leith, Medibank nurse.</Text>
 			<LinkedStory>prof1</LinkedStory>
 		</Box>
 		<Box id="B">
-			<Text>Driving discussion about mental health reform</Text>
+			<Text>Driving discussion about mental health reform.</Text>
 			<LinkedStory>art2</LinkedStory>
 		</Box>
 		<Box id="C">
-			<Text>Meeting the mental health challenge</Text>
+			<Text>Meeting the mental health challenge.</Text>
 			<LinkedStory>doc2</LinkedStory>
 		</Box>		
 		<Box id="E">
@@ -238,11 +238,11 @@
 			<LinkedInfographic>info5</LinkedInfographic>
 		</Box>
 		<Box id="F">
-			<Text>ahm – A more flexible choice</Text>
+			<Text>ahm – A more flexible choice.</Text>
 			<LinkedStory>doc10</LinkedStory>
 		</Box>
 		<Box id="F">
-			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians</Text>
+			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians.</Text>
 			<LinkedStory>doc3</LinkedStory>
 		</Box>
 
@@ -552,12 +552,12 @@ We believe that improving the quality of interaction between people and their do
 	
 	<Story id="doc5"> <!-- Healthy Weight for Life -->
 		<Box id="B">
-			<Text type="Splash">“Previously I would only come down the stairs in the morning and go up at night. Now I can go up and down without too much difficulty or pain, I can even go up without pulling myself up on the bannisters.”
-Norm, 67, Queensland</Text>
-			<!-- <Image url="assets/doc4/box B.jpg" />  -->
+			<Text type="Splash">Medibank’s Healthy Weight For Life program makes life better for members by providing guidance and strategies for weight reduction, pain management and an overall healthier lifestyle.</Text>
 		</Box>
 		<Box id="C">
-			<Text type="Quote">Medibank’s Healthy Weight For Life program makes life better for members by providing guidance and strategies for weight reduction, pain management and an overall healthier lifestyle.</Text>
+			<Text type="Quote">“Previously I would only come down the stairs in the morning and go up at night. Now I can go up and down without too much difficulty or pain, I can even go up without pulling myself up on the bannisters.”
+Norm, 67, Queensland</Text>
+			<!-- <Image url="assets/doc4/box B.jpg" />  -->
 		</Box>
 		<Box id="F">
 			<Text type="Splash">“The program has shown me that keeping my weight low has reduced the load on my hip/back and has given me back a lot of mobility, flexibility and strength.”
@@ -677,7 +677,7 @@ We want to encourage all Australians to take control of their health, so Mediban
 
 It’s our way of making the benefits of better health even better.
 
-Fruit and Vegetables
+[b]Fruit and Vegetables[/b]
 We are what we eat, and making healthy choices when we go shopping is another simple change that will result in better health for Australians.
 
 Medibank and flybuys have teamed up to reward members for making healthy choices by providing them with triple flybuys points when they purchase fresh and frozen fruit and vegetables at Coles supermarkets.
@@ -747,7 +747,7 @@ It also offers online resources for workers across sectors including health, dis
 			<Text type="Splash">“Inactivity and being overweight are both risk factors for the development of chronic disease. Walking can help address both.”</Text>
 		</Box>
 		<Box id="C">
-			<Text type="Quote">The Heart Foundation Walking program is Australia’s largest walking group. With 1,300 groups and 21,000 members, around 42,000 Australians have already participated and have started walking their way to better health.</Text>
+			<Text type="Quote">The Heart Foundation Walking program is Australia’s largest walking group. With over 1,300 groups and more than 21,000 people registered, around 42,000 Australians have already participated and have started walking their way to better health.</Text>
 		</Box>
 		<Box id="F">
 			<Image url="assets/doc9/F.png" />
@@ -947,7 +947,11 @@ Jayde is now considering moving forward towards university education, an opportu
 			<Text type="Quote">“We’re providing opportunities for blind or vision impaired people to become active in sport and recreation throughout Victoria.”</Text>
 		</Box>
 		<Box id="D">
-			<Text type="Content">Blind Sports Victoria (BSV) is dedicated to increasing and providing opportunities for blind or vision impaired people to become active in sport and recreation throughout Victoria. A soccer program which has made a major impact on the lives of blind and vision impaired children in the City of Darebin will be extended to the Melbourne CBD, northern suburbs and Bendigo thanks to the Medibank Community Fund. In partnership with Melbourne Heart Football Club, Blind Sports Victoria (BSV) has been and will continue to run blind soccer clinics to help build skills and fitness among blind and vision impaired children, who generally have fewer opportunities to participate in physical activity programs. The blind soccer clinics encourage skills development through use of adaptive equipment, including audible balls containing ball bearings. By participating alongside sighted players who wear blindfolds, vision impaired children become more connected to their community, gaining confidence and new skills.</Text>
+			<Text type="Content">Blind Sports Victoria (BSV) is dedicated to increasing and providing opportunities for blind or vision impaired people to become active in sport and recreation throughout Victoria. 
+
+A soccer program which has made a major impact on the lives of blind and vision impaired children in the City of Darebin will be extended to the Melbourne CBD, northern suburbs and Bendigo thanks to the Medibank Community Fund. 
+
+In partnership with Melbourne Heart Football Club, Blind Sports Victoria (BSV) has been and will continue to run blind soccer clinics to help build skills and fitness among blind and vision impaired children, who generally have fewer opportunities to participate in physical activity programs. The blind soccer clinics encourage skills development through use of adaptive equipment, including audible balls containing ball bearings. By participating alongside sighted players who wear blindfolds, vision impaired children become more connected to their community, gaining confidence and new skills.</Text>
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
@@ -1016,7 +1020,9 @@ Jayde is now considering moving forward towards university education, an opportu
 			<Text type="Quote">“We’re a grass roots community based organisation that aims to engage men in a positive and friendly environment in order to promote healthy lifestyle choices.”</Text>
 		</Box>
 		<Box id="D">
-			<Text type="Content">The Whyalla Men's Shed (WMS) is a grass roots community based organisation that aims to engage men in a positive and friendly environment in order to promote healthy lifestyle choices that will improve their physical and social wellbeing and reduce the risk of chronic disease and mental illness. The $7,300 grant will give Whyalla Men’s Shed the resources to build an outdoor area that will allow them to reach out to men of all ages and backgrounds and encourage them to come together in a sociable, non-judgmental positive environment. Currently comprising 20 active members, the shed aims to create an environment where older men can mentor younger men from disadvantaged backgrounds and improve their overall social and emotional wellbeing through friendship, camaraderie and hands-on activities such as woodwork, metal work, lead lighting and computing.</Text>
+			<Text type="Content">The Whyalla Men's Shed (WMS) is a grass roots community based organisation that aims to engage men in a positive and friendly environment in order to promote healthy lifestyle choices that will improve their physical and social wellbeing and reduce the risk of chronic disease and mental illness. 
+
+The $7,300 grant will give Whyalla Men’s Shed the resources to build an outdoor area that will allow them to reach out to men of all ages and backgrounds and encourage them to come together in a sociable, non-judgmental positive environment. Currently comprising 20 active members, the shed aims to create an environment where older men can mentor younger men from disadvantaged backgrounds and improve their overall social and emotional wellbeing through friendship, camaraderie and hands-on activities such as woodwork, metal work, lead lighting and computing.</Text>
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
@@ -1405,18 +1411,18 @@ to policy.</featuredText>
 	
 	<Story id="vision story section">
 		<Box id="A">
-			<Image url="assets/vision/A.png" />
-			<Text type="Splash" textScale="0.85">WE ARE ONE OF AUSTRALIA’S LEADING
-HEALTH COMPANIES. AND WE STAND FOR
-BETTER HEALTH. FOR EVERYONE.</Text>
+			<!-- <Image url="assets/vision/A.png" /> -->
+			<Text type="Splash" textScale="0.85">WE ARE ONE OF AUSTRALIA’S LEADING HEALTH COMPANIES. 
+AND WE STAND FOR BETTER HEALTH. 
+FOR EVERYONE.</Text>
 		</Box>
 		<Box id="B">
+			<Image url="assets/vision/C.jpg" />
+		</Box>		
+		<Box id="C">
 			<Text type="Quote">For better health choices and better health outcomes. For a better health system that truly delivers the care you need, when you need it.
 
 We are committed to supporting Australians with their health and wellbeing and guiding them towards the best choices and outcomes.</Text>
-		</Box>
-		<Box id="C">
-			<Image url="assets/vision/C.png" />
 		</Box>
 		<Box id="D">
 			<Text type="Stats">People know and trust Medibank and ahm. 
@@ -1427,8 +1433,7 @@ people trust us with their health every day.</Text>
 			<Image url="assets/vision/E.png" />
 		</Box>
 		<Box id="F">
-			<Text type="Quote">As well as being Australia’s largest health insurer, we are also Australia’s largest provider of tele-healthcare solutions. We partner with government and other organisations to provide scalable, multi-channel healthcare services that reduce the burden on the public system while providing high quality, accessible care at an efficient cost.
-			
+			<Text type="Content">As well as being Australia’s largest health insurer, we are also Australia’s largest provider of tele-healthcare solutions. We partner with government and other organisations to provide scalable, multi-channel healthcare services that reduce the burden on the public system while providing high quality, accessible care at an efficient cost.			
 And at a policy level, we are working with government to find long-term solutions to ensure all Australians have access to healthcare.</Text>
 		</Box>
 		<Box id="G">
@@ -1445,7 +1450,7 @@ in medical claims on their behalf each year.</Text>
 		<Animation type="Sprouting" direction="180" randomSeed="0">
 			<Box id="A" x="1" y="1.5" width="5" height="3" color="#ec4d6b" branch="dr" /> <!-- 1000, 600 -->
 			<Box id="B" width="3" height="2" color="#ec4d6b" branch="dl" />
-			<Box id="C" width="3" height="2" color="#ec4d6b" branch="rd" /> <!-- 600, 400 -->
+			<Box id="C" width="3" height="2" color="#ec4d6b" branch="rd" /> 
 			<Box id="D" width="2" height="1.5" color="#ec4d6b" branch="rd" />
 			<Box id="E" width="3" height="2" color="#ec4d6b" branch="dl" /> <!-- 600, 400 -->
 			<Box id="F" width="3.5" height="1.5" branch="rd" color="#ec4d6b" />
