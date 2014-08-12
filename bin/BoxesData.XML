@@ -143,11 +143,7 @@
 			<LinkedStory>doc2</LinkedStory>
 		</Box>
 		<Box id="E">
-<<<<<<< HEAD
 			<Text>[i]beyondblue[/i] and Medibank. Side by side to support the mental health of young Australians</Text>
-=======
-			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians.</Text>
->>>>>>> 7336b78e41c168fe3bb1a929a9b982e7574da30b
 			<LinkedStory>doc3</LinkedStory>
 		</Box>		
 		<Box id="F">
@@ -187,11 +183,7 @@
 			<LinkedInfographic>info4</LinkedInfographic>
 		</Box>
 		<Box id="O">
-<<<<<<< HEAD
 			<Text>1800RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault</Text>
-=======
-			<Text>1800 RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault.</Text>
->>>>>>> 7336b78e41c168fe3bb1a929a9b982e7574da30b
 			<LinkedStory>doc8</LinkedStory>
 		</Box>
 		<Box id="P">
@@ -250,11 +242,7 @@
 			<LinkedStory>doc10</LinkedStory>
 		</Box>
 		<Box id="F">
-<<<<<<< HEAD
 			<Text>[i]beyondblue[/i] and Medibank. Side by side to support the mental health of young Australians</Text>
-=======
-			<Text>beyondblue and Medibank. Side by side to support the mental health of young Australians.</Text>
->>>>>>> 7336b78e41c168fe3bb1a929a9b982e7574da30b
 			<LinkedStory>doc3</LinkedStory>
 		</Box>
 
@@ -1488,7 +1476,7 @@ in medical claims on their behalf each year.</Text>
 		
 		<Animation type="Sprouting" direction="180" randomSeed="0">
 			<Box id="A" x="1" y="1.5" width="5" height="3" color="#ec4d6b" branch="dr" /> <!-- 1000, 600 -->
-			<Box id="B" width="3" height="2" color="#ec4d6b" branch="dl" />
+			<Box id="B" width="3" height="2" color="#ec4d6b" branch="dl" /> <!-- 1227, 818 -->
 			<Box id="C" width="3" height="2" color="#ec4d6b" branch="rd" /> 
 			<Box id="D" width="2" height="1.5" color="#ec4d6b" branch="rd" />
 			<Box id="E" width="3" height="2" color="#ec4d6b" branch="dl" /> <!-- 600, 400 -->

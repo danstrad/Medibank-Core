@@ -27,7 +27,8 @@ package med.animation {
 		public var homePoint:Point;
 		public var bounds:Rectangle;
 		
-		public function AnimationData() {			
+		public function AnimationData() {
+			totalTime = 0;
 			boxEndStates = new Vector.<BoxState>();			
 		}
 		

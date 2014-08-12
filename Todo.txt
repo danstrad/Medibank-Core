@@ -5,24 +5,37 @@ Camera focus is messed up for nested floating
 
 
 do we want sound on video?
-doc1: Does that image fit the theme?
-
-Doc3 - Text hard to read over bus image
-Doc5 - Healthy Weight for life: Quote images? Or other option?
 
 rearrange orange & purple stories & chapter
 
+Doc3 - Text hard to read over bus image
 
-Megan's feedback
-	1800RESPECT stuff
+Orange section has all the content laddering up, instead of across the screen.
 
-Kelly's feedback
+Doc5:
+	Needs at least one image. E.g; someone playing golf, or climbing stairs. Prefer older person. (Using which option?)
+	Could remove a quote to make this less wordy - needs image as above
 
-Anything in quotation marks should be in bree font
 
-orange laddering up
+
+Anything in ""quotes needs to be in Medibank Bree font
+	Doc5, Doc7, Prof2, Prof3, Prof5, Prof6, Prof7, Prof8
+	
+
+
+
 
 DAN:-------------------------------------
+
+Vision:
+	Correct formatting in up front screens
+
+Prof3:
+	layout: Quote is hiding a bit too much behind photo
+	
+Prof9:
+	layout: Quote box hides too much behind the image - you can't see the whole quote
+
 
 
 
@@ -38,3 +51,5 @@ art2:
 Add grid snapping back in?
 
 Doc4 small image
+
+doc1: Does that image fit the theme?

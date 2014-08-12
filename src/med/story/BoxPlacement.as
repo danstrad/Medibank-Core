@@ -5,6 +5,9 @@ package med.story {
 
 	public class BoxPlacement {
 
+		public var parentID:String;
+		public var branch:String; // direction it sprouts in when using Sprouting animation style
+
 		public var position:Point;
 		public var offset:Point;
 		
@@ -14,7 +17,6 @@ package med.story {
 		public var color:uint;
 		public var inverted:Boolean;
 		
-		public var branch:String; // direction it sprouts in when using Sprouting animation style
 		
 		
 		public function BoxPlacement() {

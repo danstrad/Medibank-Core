@@ -32,13 +32,9 @@ package med.animation {
 			var i:int;
 			var len:int = contentInfos.length;
 			var currentDir:uint;
-			var currentW:Number = 0;
-			var currentH:Number = 0;
 			var x:Number = 0;
 			var y:Number = 0;
 			var time:Number = 600;
-			var lastPlacedState:BoxState;
-			var lastPlacedBounds:Rectangle;
 			
 			var exactDir:Number = ((direction * 8 / (Math.PI * 2)) + 8) % 8;
 			var lowerDir:int = Math.floor(exactDir);
@@ -48,7 +44,7 @@ package med.animation {
 			var dirsTemplate:Array = [];
 			for (i = 0; i < highCount; i++) dirsTemplate.push(higherDir);
 			for (i = 0; i < (templateCount - highCount); i++) dirsTemplate.push(lowerDir);
-			
+
 			var dirPool:Array = [];
 			for (i = 0; i < len; i++) {
 			
@@ -63,6 +59,37 @@ package med.animation {
 				var bounds:Rectangle = placement.getBounds();
 				var w:Number = bounds.width;
 				var h:Number = bounds.height;
+
+				
+				var parentIndex:int = Math.max(0, i - 1);
+				var parentState:BoxState;
+				var parentPlacement:BoxPlacement;
+				if (placement.parentID) {
+					for (var parentI:int = story.contentInfos.length - 1; parentI >= 0; parentI--) {
+						var pInfo:ContentInfo = contentInfos[parentI];
+						if (pInfo.id == placement.parentID) {
+							parentIndex = parentI;
+							parentState = data.boxEndStates[parentIndex];
+							parentPlacement = animationInfo.placements[parentIndex];
+							break;
+						}
+					}
+				} else if (i > 0) {
+					parentState = data.boxEndStates[parentIndex];
+					parentPlacement = animationInfo.placements[parentIndex];
+				}
+
+				var parentW:Number = 0;
+				var parentH:Number = 0;
+				if (parentState && parentPlacement) {
+					var parentBounds:Rectangle = parentPlacement.getBounds();
+					parentW = parentBounds.width;
+					parentH = parentBounds.height;
+					x = parentState.x;
+					y = parentState.y;
+					time = parentState.endTime - (parentState.endTime - parentState.startTime) * 0.25;
+				}
+				
 				
 				if (placement.branch) {
 					var branchDir:uint = 0;
@@ -91,7 +118,7 @@ package med.animation {
 					dx = xShift / dDivisor;
 					dy = yShift / dDivisor;					
 				} else if (placement.offset) {
-					var offsetState:BoxState = data.boxEndStates[Math.max(0, i - 1)];
+					var offsetState:BoxState = parentState;
 					state.x = offsetState.x + placement.offset.x;
 					state.y = offsetState.y + placement.offset.y;
 					xShift = state.x - x;
@@ -141,8 +168,8 @@ package med.animation {
 							dy = -Y_SLIDE;
 							break;
 					}
-					xShift = dx * (currentW + w);
-					yShift = dy * (currentH + h);
+					xShift = dx * (parentW + w);
+					yShift = dy * (parentH + h);
 				}
 				state.source = getSourceFromDir(currentDir);
 				x += xShift;
@@ -151,17 +178,13 @@ package med.animation {
 				y = roundCoordinate(y, h, gridOffset);
 				state.x = x;
 				state.y = y;
-				lastPlacedState = state;
-				lastPlacedBounds = bounds;
 				if (!data.originVector) data.originVector = new Point(dx * 2, dy * 2);
 					
 				
 				state.startTime = time;
 				state.endTime = state.startTime + 60 + 80 * Math.sqrt(Math.pow(bounds.width, 2) + Math.pow(bounds.height, 2)) / Box.SIZE;
-				data.totalTime = state.endTime;
-				time = state.endTime - (state.endTime - state.startTime) * 0.25;
-				currentW = w;
-				currentH = h;
+				data.totalTime = Math.max(data.totalTime, state.endTime);
+				//time = state.endTime - (state.endTime - state.startTime) * 0.25;
 				data.boxEndStates.push(state);
 				
 				/*
@@ -182,24 +205,23 @@ package med.animation {
 			
 			data.generateBoxBounds(story, animationInfo, TYPE_INDEX);
 
-			if (!lastPlacedState) {
-				lastPlacedState = state;
-				lastPlacedBounds = bounds;
-			}
-			if (lastPlacedState) {
+			if (data.boxEndStates.length > 0) {
+				var lastState:BoxState = data.boxEndStates[data.boxEndStates.length - 1];
+				var lastPlacement:BoxPlacement = animationInfo.placements[animationInfo.placements.length - 1];
+				var lastBounds:Rectangle = lastPlacement.getBounds();
 				var offset:Number;
-				switch(lastPlacedState.source) {
+				switch(lastState.source) {
 					case "tl":
 					case "bl":
 						//offset = Box.SIZE * 1; //-homeRect.left;
 						offset = -homeRect.left;
-						data.homePoint = new Point(lastPlacedState.x + lastPlacedBounds.width / 2 + offset, lastPlacedState.y);
+						data.homePoint = new Point(lastState.x + lastBounds.width / 2 + offset, lastState.y);
 						break;
 					case "tr":
 					case "br":
 						//offset = -Box.SIZE * 1; //-homeRect.right;
 						offset = -homeRect.right;
-						data.homePoint = new Point(lastPlacedState.x - lastPlacedBounds.width / 2 + offset, lastPlacedState.y);
+						data.homePoint = new Point(lastState.x - lastBounds.width / 2 + offset, lastState.y);
 						break;
 				}
 				//data.endPoint = new Point(lastPlacedState.x, lastPlacedState.y);

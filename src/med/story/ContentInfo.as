@@ -7,6 +7,8 @@ package med.story {
 
 	public class ContentInfo {
 		
+		public var id:String;
+
 		public var text:String;
 		public var textType:String;
 		public var textScale:Number;

@@ -98,11 +98,13 @@
 				if (continueXML.hasOwnProperty("LinkedInfographic")) story.continueInfographicID = continueXML.LinkedInfographic[0].toString();
 			}
 			
+			var parentID:String = null;
 			for each(var boxXML:XML in storyXML.Box) {
 				var info:ContentInfo = new ContentInfo();
 				story.contentInfos.push(info);
-				infos[boxXML.@id.toString()] = info;
-
+				info.id = boxXML.@id.toString();
+				infos[info.id] = info;
+				
 				if (boxXML.hasOwnProperty("Text")) {
 					var textXML:XML = boxXML.Text[0];
 					info.text = textXML.toString();
@@ -156,7 +158,6 @@
 					info.action = AnimationAction.HOME;
 				}
 
-					
 			}
 			
 			for each(var animXML:XML in storyXML.Animation) {
@@ -192,6 +193,14 @@
 				
 				for each(boxXML in animXML.Box) {
 					var placement:BoxPlacement = new BoxPlacement();
+					
+					var boxID:String = boxXML.@id.toString();
+					info = infos[boxID];
+					var boxIndex:int = story.contentInfos.indexOf(info);
+					placements[boxIndex] = placement;
+
+					if (boxXML.hasOwnProperty("@parent")) placement.parentID = boxXML.@parent.toString();
+					
 					if (boxXML.hasOwnProperty("@width")) placement.unitsWide = parseFloat(boxXML.@width);
 					if (boxXML.hasOwnProperty("@height")) placement.unitsHigh = parseFloat(boxXML.@height);
 					if (boxXML.hasOwnProperty("@size")) placement.unitsWide = placement.unitsHigh = parseFloat(boxXML.@size);
@@ -207,10 +216,6 @@
 					else if (boxXML.hasOwnProperty("@colorIndex")) placement.color = colors[int(boxXML.@colorIndex.toString()) % colors.length];
 					if (boxXML.hasOwnProperty("@branch")) placement.branch = boxXML.@branch.toString();
 					
-					var boxID:String = boxXML.@id.toString();
-					info = infos[boxID];
-					var boxIndex:int = story.contentInfos.indexOf(info);
-					placements[boxIndex] = placement;
 				}
 				var len:int = story.contentInfos.length;
 				for (i = 0; i < len; i++) {
@@ -218,6 +223,7 @@
 					if (!placement) placement = new BoxPlacement();
 					animationInfo.placements[i] = placement;
 				}
+				
 								
 				var colorIndex:int = 0;
 				for each(placement in animationInfo.placements) {
