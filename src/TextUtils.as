@@ -172,6 +172,25 @@ package  {
 				scanPos = startIndex;
 			}
 					
+			tag = "q";
+			tagLength = tag.length;
+			while (true) {
+				startIndex = text.lastIndexOf("[" + tag + "]", scanPos);
+				if (startIndex == -1) break;
+				text = text.substr(0, startIndex) + text.substr(startIndex + tagLength + 2);
+				textField.replaceText(startIndex, startIndex + tagLength + 2, "");
+				endIndex = text.indexOf("[/" + tag + "]", startIndex);
+				text = text.substr(0, endIndex) + text.substr(endIndex + tagLength + 3);
+				textField.replaceText(endIndex, endIndex + tagLength + 3, "");
+				
+				textFormat = textField.getTextFormat(startIndex, endIndex);
+				textFormat.font = "Bree Medibank Regular";
+
+				textField.setTextFormat(textFormat, startIndex, endIndex);											
+
+				scanPos = startIndex;
+			}
+			
 			tag = "bullet";
 			tagLength = tag.length;
 			while (true) {

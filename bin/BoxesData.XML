@@ -460,8 +460,10 @@ Demonstrating our commitment to better mental health, we also partner with like-
 	
 	<Story id="doc3"> <!-- beyondblue and Medibank. Side by side to support the mental health of young Australians -->
 		<Box id="B">
+			<Text type="Splash">[q]“We’re making it easier for Australians to get help and advice on mental health – when, where and how they need it.”[/q]</Text>
+		</Box>
+		<Box id="B2">
 			<Image url="assets/doc3/B.png" />
-			<Text type="Splash">“We’re making it easier for Australians to get help and advice on mental health – when, where and how they need it.”</Text>
 		</Box>
 		<Box id="C">
 			<Text type="Quote">Mental health is one of Australia’s biggest health challenges – and young Australians are particularly vulnerable. Every year, one in three young Australians faces mental illness, and only one in four of those people will actually receive professional help.</Text>
@@ -491,7 +493,8 @@ The beyondblue Support Service is just one way Medibank is using its clinical ex
 		</Box>
 		
 		<Animation type="Sprouting" direction="90" randomSeed="41">
-			<Box id="B" width="4" height="2.3" /> <!-- 1000, 575 -->
+			<Box id="B" width="2" height="1.5" />
+			<Box id="B2" width="4" height="2.3" /> <!-- 1000, 575 -->
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="I" width="1.5" height="0.8138" /> <!-- 623, 338 -->
 			<Box id="D" width="1.5" height="1" />
@@ -500,13 +503,14 @@ The beyondblue Support Service is just one way Medibank is using its clinical ex
 			<Box id="G" width="3" height="2" /> <!-- 600, 400 -->
 		</Animation>
 		<Animation type="Sliding" direction="180" randomSeed="41" slidingWidth="2.5">
-			<Box id="B" width="2.5" height="1.4375" /> <!-- 1000, 575 -->
+			<Box id="B" width="2.5" height="1" />
+			<Box id="B2" width="2.5" height="1.4375" /> <!-- 1000, 575 -->
 			<Box id="C" width="2.5" height="1.5" />
-			<Box id="I" x="2" y="2.1666" width="1.5" height="0.8138" /> <!-- 623, 338 -->
+			<Box id="I" x="2" y="3.1666" width="1.5" height="0.8138" /> <!-- 623, 338 -->
 			<Box id="F" width="2.5" height="1.666" /> <!-- 600, 400 -->
-			<Box id="D" x="-2" y="3.75" width="1.5" height="1" />
+			<Box id="D" x="-2" y="4.75" width="1.5" height="1" />
 			<Box id="G" width="2.5" height="1.666" /> <!-- 600, 400 -->
-			<Box id="H" x="2" y="5.5" width="1.5" height="1" />
+			<Box id="H" x="2" y="6.5" width="1.5" height="1" />
 			<Box id="E" width="2.5" height="2.5" />
 		</Animation>
 	</Story>
@@ -561,12 +565,12 @@ We believe that improving the quality of interaction between people and their do
 			<Text type="Splash">Medibank’s Healthy Weight For Life program makes life better for members by providing guidance and strategies for weight reduction, pain management and an overall healthier lifestyle.</Text>
 		</Box>
 		<Box id="C">
-			<Text type="Quote">“Previously I would only come down the stairs in the morning and go up at night. Now I can go up and down without too much difficulty or pain, I can even go up without pulling myself up on the bannisters.”
+			<Text type="Quote">[q]“Previously I would only come down the stairs in the morning and go up at night. Now I can go up and down without too much difficulty or pain, I can even go up without pulling myself up on the bannisters.”[/q]
 Norm, 67, Queensland</Text>
 			<!-- <Image url="assets/doc4/box B.jpg" />  -->
 		</Box>
 		<Box id="F">
-			<Text type="Splash">“The program has shown me that keeping my weight low has reduced the load on my hip/back and has given me back a lot of mobility, flexibility and strength.”
+			<Text type="Quote">[q]“The program has shown me that keeping my weight low has reduced the load on my hip/back and has given me back a lot of mobility, flexibility and strength.”[/q]
 David, 64, Victoria</Text>
 			<!-- <Image url="assets/doc5/F.png" />  -->
 		</Box>
@@ -577,12 +581,15 @@ million Australians living with osteoarthritis.
 Osteoarthritis of the knee and hip are the most common forms of arthritis in Australia.</Text>
 		</Box>
 		<Box id="G">
-			<Text type="Splash">“I've never felt so good in years, have become more aware of the foods I should be eating and am very happy within myself. Never ever thought that by losing weight my hip would feel so good.”
+			<Text type="Quote">[q]“I've never felt so good in years, have become more aware of the foods I should be eating and am very happy within myself. Never ever thought that by losing weight my hip would feel so good.”[/q]
 Gloria, Tasmania</Text>
 			<!-- <Image url="assets/doc5/G.png" />  -->
 		</Box>
 		<Box id="H">
 			<Text type="Splash">Weight control and activity are the best forms of preventing arthritis.</Text>
+		</Box>
+		<Box id="I">
+			<Image url="assets/doc5/Swim.png" />
 		</Box>
 		<Box id="E">
 			<Text type="Content">Osteoarthritis is a challenge faced by many Australians, especially later in life. Arthritis of the knee or hip can turn simple things like climbing stairs and other common activities difficult. But there are steps sufferers can take to vastly improve their quality of life. 
@@ -593,15 +600,23 @@ The 18-week program has already improved the lives of more than 450 members. The
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
-			<Box id="B" width="4.5" height="3" /> <!-- 5616, 3744  1.5 -->
-			<Box id="C" width="2.5" height="1.5" />
-			<Box id="D" width="1.5" height="1" />
-			<Box id="E" width="3" height="2.5" />
+			<Box id="B" x="2" y="0" width="2.5" height="2" />
+			<Box id="C" x="4" y="-2" width="1.5" height="1" />
+			<Box id="F" x="4.5" y="0" width="1.5" height="1" />
+			<Box id="G" x="4" y="2" width="1.5" height="1" />
+			<Box id="I" x="7" y="-1.333" width="3" height="1.94" /> <!-- 600, 388 -->
+			<Box id="H" x="7" y="1" width="1.5" height="1" />
+			<Box id="D" x="10" y="-1.5" width="2" height="1.5" />
+			<Box id="E" x="10" y="1.5" width="3" height="2.5" />
 		</Animation>
 		<Animation type="Sprouting" direction="90" randomSeed="41">
-			<Box id="B" width="4.5" height="3" /> <!-- 5616, 3744  1.5 -->
-			<Box id="C" width="2.5" height="1.5" />
-			<Box id="D" width="1.5" height="1" />
+			<Box id="B" width="2.5" height="2" />
+			<Box id="C" width="1.5" height="1" />
+			<Box id="F" width="1.5" height="1" />
+			<Box id="G" width="1.5" height="1" />
+			<Box id="D" width="2" height="1.5" />
+			<Box id="H" width="1.5" height="1" />
+			<Box id="I" width="3" height="1.94" /> <!-- 600, 388 -->
 			<Box id="E" width="3" height="2.5" />
 		</Animation>
 	</Story>
@@ -677,7 +692,7 @@ We’re making progress, but we can’t stop now. We know that until there is ge
 	
 	<Story id="doc7"> <!-- Rewarding better health with flybuys and Medibank -->
 		<Box id="B">
-			<Text type="Splash">“Rewarding members for their activity is making the benefits of better health even better.”</Text>
+			<Text type="Splash">[q]“Rewarding members for their activity is making the benefits of better health even better.”[/q]</Text>
 			<Image url="assets/doc7/B.png" />
 		</Box>		
 		<Box id="C">
@@ -885,7 +900,7 @@ By working from home, Leith benefits too because she gets to enjoy more valuable
 			<Image url="assets/prof2/image for boxB.jpg" />
 		</Box>
 		<Box id="C">
-			<Text type="Quote">“Nine organisations building a healthier future for Aboriginal and Torres Strait Islander peoples.”</Text>
+			<Text type="Quote">[q]“Nine organisations building a healthier future for Aboriginal and Torres Strait Islander peoples.”[/q]</Text>
 		</Box>
 		<Box id="D">
 			<Text type="Content">Nine organisations from across Australia’s states and territories shared in $100,000 in grants to support their vital work delivering better health and wellbeing to Australian Aboriginal and Torres Strait Islander communities.
@@ -917,14 +932,14 @@ The AHCSA will get rolling to eliminate racism through their roller derby team. 
 			<Image url="assets/prof3/prof3 Yalari education IMAGE B.png" />
 		</Box>
 		<Box id="C">
-			<Text type="Quote">“Yalari has opened so many doors for me and has been such a great impact on life for me and my family.”</Text>
+			<Text type="Quote">[q]“Yalari has opened so many doors for me and has been such a great impact on life for me and my family.”[/q]</Text>
 		</Box>
 		<Box id="D">
 			<Text type="Content">Education is one of the most valuable investments we can make towards better health and wellbeing for all Australians. That’s why we’re proud to support Yalari, a foundation dedicated to creating educational opportunities for Aboriginal and Torres Strait Islander students.
 
 Yalari offers students the chance to enrich their understanding of their heritage while also opening opportunities to study at some of Australia’s best schools. Yalari’s emphasis on leadership and cultural pride matches our hope that students might one day emerge from their educational journey to take up prominent roles in the health sector.
 
-Jayde is a Yalari scholarship recipient who is currently attending Geelong Grammar School. Although it’s a long way from home in Derby, WA, she’s taken the brave step in order to improve the future for herself and her community. 
+Jayde is a Yalari scholarship recipient who is currently attending Geelong Grammar School. Although it’s a long way from home in Derby, WA, she’s taken the brave step in order to improve the future for herself and her community.
 
 “I applied for a scholarship because I knew opportunities for my future might be limited if I stayed at home,” said Jayde. “I wanted to leave home and get a great education, so after school I can hopefully help support more family than if I’d stayed." 
 
@@ -972,7 +987,7 @@ Jayde is now considering moving forward towards university education, an opportu
 			<Image url="assets/prof5/Box B.jpg" />
 		</Box>
 		<Box id="C">
-			<Text type="Quote">“We’re providing opportunities for blind or vision impaired people to become active in sport and recreation throughout Victoria.”</Text>
+			<Text type="Quote">[q]“We’re providing opportunities for blind or vision impaired people to become active in sport and recreation throughout Victoria.”[/q]</Text>
 		</Box>
 		<Box id="D">
 			<Text type="Content">Blind Sports Victoria (BSV) is dedicated to increasing and providing opportunities for blind or vision impaired people to become active in sport and recreation throughout Victoria. 
@@ -999,7 +1014,7 @@ In partnership with Melbourne Heart Football Club, Blind Sports Victoria (BSV) h
 			<Image url="assets/prof6/mebibank kindergym.png" />
 		</Box>
 		<Box id="C">
-			<Text type="Quote">“We are giving families living in extreme poverty the opportunity to access KinderGym classes to  enhance the development of young children, and invite parents to socially connect with the community”.</Text>
+			<Text type="Quote">[q]“We are giving families living in extreme poverty the opportunity to access KinderGym classes to  enhance the development of young children, and invite parents to socially connect with the community.”[/q]</Text>
 		</Box>
 		<Box id="D">
 			<Text type="Content">Queensland Police Citizen Youth Welfare Association at the Burdekin Branch are giving families living in extreme poverty the opportunity to access KinderGym classes which enhance the physical, social and cognitive development of young children and invite parents to socially connect with the community. The $14,800 grant will allow PCYC Burdekin to allow 20 local families to access KinderGym at a subsidised rate and provide free transport to and from the classes. Additionally Burdekin PCYC will use the KinderGym as a platform to provide information and awareness on other relevant issues including child nutrition and literacy programs.</Text>
@@ -1022,7 +1037,7 @@ In partnership with Melbourne Heart Football Club, Blind Sports Victoria (BSV) h
 			<Image url="assets/prof7/Box B.jpg" />
 		</Box>
 		<Box id="C">
-			<Text type="Quote">“We’re a not for profit organisation run by women, for women, providing free or heavily discounted health and wellbeing services to help women take care of their wellbeing.”</Text>
+			<Text type="Quote">[q]“We’re a not for profit organisation run by women, for women, providing free or heavily discounted health and wellbeing services to help women take care of their wellbeing.”[/q]</Text>
 		</Box>
 		<Box id="D">
 			<Text type="Content">Bankstown Women's Health Centre is a not for profit organisation run by women, for women, providing free or heavily discounted health and wellbeing services to help women take care of their physical, emotional and psychological wellbeing. The $10,600 grant will be used to establish an organic garden that will be available to the wider community, to encourage growing, cooking and eating health food, social interaction and physical exercise. The garden will provide inclusive programs, targeting vulnerable community members, with hands-on skills in sustainable gardening, waste management and food preservation. There are plans to have regular visits and demonstrators from educators to the community garden on gardening skills, open days and cooking demonstrations.</Text>
@@ -1045,7 +1060,7 @@ In partnership with Melbourne Heart Football Club, Blind Sports Victoria (BSV) h
 			<Image url="assets/prof8/Box B.jpg" />
 		</Box>
 		<Box id="C">
-			<Text type="Quote">“We’re a grass roots community based organisation that aims to engage men in a positive and friendly environment in order to promote healthy lifestyle choices.”</Text>
+			<Text type="Quote">[q]“We’re a grass roots community based organisation that aims to engage men in a positive and friendly environment in order to promote healthy lifestyle choices.”[/q]</Text>
 		</Box>
 		<Box id="D">
 			<Text type="Content">The Whyalla Men's Shed (WMS) is a grass roots community based organisation that aims to engage men in a positive and friendly environment in order to promote healthy lifestyle choices that will improve their physical and social wellbeing and reduce the risk of chronic disease and mental illness. 
