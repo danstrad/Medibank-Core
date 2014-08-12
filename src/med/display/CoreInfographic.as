@@ -1,13 +1,15 @@
 package med.display {
+	import com.greensock.TweenMax;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import med.display.Background;
-	import med.infographic.Infographic;
-	import med.infographic.InfographicData;
+	import med.infographic.*;
 	import med.story.Chapter;
 
+	
 	public class CoreInfographic extends Infographic {
 
 		protected static const SCROLL_OFF_TIME:Number = 1400;
@@ -23,9 +25,12 @@ package med.display {
 		protected var mainScrollingOn:Boolean;
 		protected var mainScrollOnTime:Number;
 		
+		protected var backgroundHitArea:Shape;
+		
 		public var finished:Boolean;
 		protected var ending:Boolean;
 		public var ended:Boolean;
+		
 		
 		public function CoreInfographic(data:InfographicData, mover:Sprite, launchRect:Rectangle, backgroundImageLayer:Sprite, background:Background, chapter:Chapter) {			
 			this.mover = mover;
@@ -45,8 +50,16 @@ package med.display {
 			mainScrollingOff = true;
 			mainScrollOffTime = 0;
 			
+			// we need to add an invisible hitlayer to the background, so we can intercept touch events properly
+			backgroundHitArea = new Shape();
+			backgroundHitArea.graphics.beginFill(0xFFFFFF, 0);
+			backgroundHitArea.graphics.drawRect(Infographic.WIDTH * -0.5, Infographic.HEIGHT * -0.5, Infographic.WIDTH, Infographic.HEIGHT);
+			backgroundHitArea.graphics.endFill();
+			backgroundHitArea.cacheAsBitmap = true;
+			addChildAt(backgroundHitArea, 0);
 			
 		}
+		
 		
 		override protected function lastFrameReached():void {
 			super.lastFrameReached();
@@ -115,6 +128,59 @@ package med.display {
 		
 		protected function lastSlideEnded(infographic:Infographic):void {
 			ended = true;
+		}
+		
+		
+		override protected function addSlideSprite(sprite:Sprite):void {
+			super.addSlideSprite(sprite);
+			
+			// we don't need touch interaction with slides in core.
+			// this is disabled so we can use the pause menu instead
+			sprite.mouseEnabled = false;
+		}
+		
+		
+		
+		
+		override protected function handleMouseDown(event:MouseEvent):void {
+
+			// add a pause overlay
+			var pauseOverlay:PauseOverlay = new PauseOverlay(returnFromPauseOverlay, exitInfographic, pauseAll);
+			
+			addChild(pauseOverlay);
+			
+			// disable ourself so we don't continue to spawn pause overlays
+			disable();
+						
+		}		
+		
+		
+		protected function pauseAll():void {
+			this.paused = true;
+			pauseMedia();
+			TweenMax.pauseAll();			
+		}
+		
+		
+		protected function resumeAll():void {
+			this.paused = false;
+			resumeMedia();
+			TweenMax.resumeAll();			
+		}
+		
+		
+		protected function returnFromPauseOverlay():void {		
+			// resume
+			resumeAll();	
+			
+			// back to normal
+			enable();
+		}
+		
+		
+		protected function exitInfographic():void {
+//			animateOff();
+			lastFrameReached();
 		}
 		
 		

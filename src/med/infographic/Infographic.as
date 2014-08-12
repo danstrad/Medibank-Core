@@ -39,9 +39,13 @@ package med.infographic {
 		protected var launchRect:Rectangle;
 		
 		protected var endCallback:Function;
-		
 
+		
+		protected var paused:Boolean = false;
+
+		
 		public function get isOnLastFrame():Boolean { return (currentSlideIndex == data.slides.length - 1); }
+		
 		
 		
 		public function Infographic(data:InfographicData, background:Background, colors:Vector.<uint>, launchRect:Rectangle = null) {
@@ -393,13 +397,14 @@ package med.infographic {
 		
 
 		
-
 		public function animate(dTime:Number):void {
+			
+			// are we paused?
+			if (paused)	return;
 			
 			// do we even have a slide?
 			if (!slideSprite || slideAnimatingOff)	return;
-			
-			
+						
 			// check whether we've exceeded the amount of time to show this slide
 			currentSlideTime += dTime;
 			
@@ -422,18 +427,11 @@ package med.infographic {
 		
 		
 		
+		
 		protected function handleMouseDown(event:MouseEvent):void {
-
-			/*
-			if (currentSlideIndex < (data.slides.length-1)) {
-				initSlide(currentSlideIndex + 1);
-			} else {
-				removePreviousSlides();
-				end();
-			}
-			*/
 			
 		}
+		
 		
 		
 		public function pauseMedia():void {
