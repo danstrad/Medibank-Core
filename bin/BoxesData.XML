@@ -107,7 +107,7 @@
 			<LinkedStory>prof4</LinkedStory>
 		</Box>
 		<Box id="Q">
-			<Text>1800 RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault.</Text>
+			<Text>1800RESPECT: Supporting women and children impacted by domestic and family violence and sexual assault.</Text>
 			<LinkedStory>doc8</LinkedStory>
 		</Box>		
 		
@@ -543,15 +543,19 @@ We believe that improving the quality of interaction between people and their do
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
-			<Box id="B" width="4.5" height="3" /> <!-- 5616, 3744  1.5 -->
-			<Box id="C" width="2.5" height="1.5" />
-			<Box id="D" width="1.5" height="1" />
-			<Box id="E" width="3" height="2.5" />
+			<Box id="B" width="4.5" height="3" x="2.9" y="0.5" /> <!-- 5616, 3744  1.5 -->
+			<Box id="C" width="2.5" height="1.5" x="1.4" y="-1.8" />
+			<Box id="D" width="1.5" height="1" x="4.4" y="-1.8" />
+			<Box id="H" width="1" height="1" x="3.2" y="2.8" />
+			<Box id="G" width="2" height="2" x="7.3" y="-1.8" />
+			<Box id="E" width="3" height="2.5" x="8.0" y="1.5" />
 		</Animation>
 		<Animation type="Sprouting" direction="90" randomSeed="41">
 			<Box id="B" width="4.5" height="3" /> <!-- 5616, 3744  1.5 -->
 			<Box id="C" width="2.5" height="1.5" />
 			<Box id="D" width="1.5" height="1" />
+			<Box id="H" width="1" height="1" />
+			<Box id="G" width="2" height="2" />
 			<Box id="E" width="3" height="2.5" />
 		</Animation>
 	</Story>
@@ -670,7 +674,7 @@ We’re making progress, but we can’t stop now. We know that until there is ge
 		<Animation type="Floating" direction="90" randomSeed="41">
 			<Box id="B" x="2" y="-0.5" width="3.75" height="2.5" /> <!-- 1000, 667 -->
 			<Box id="C" x="6" y="-1.333" width="2.5" height="2" />
-			<Box id="D" x="6" y="1.333" width="2" height="1.5" />
+			<Box id="D" x="6.1" y="1.333" width="2" height="1.5" />
 			<Box id="E" x="9.1666" y="0" width="3" height="3.5" />
 		</Animation>
 	</Story>
@@ -729,19 +733,16 @@ Since 2013, over 300,000 members have already joined the program.</Text>
 			<Footer space="0.35">
 				<Image url="assets/doc8/1800RESPECT_padded_bottom.png" />
 			</Footer>
-		</Box>		
+		</Box>	
+		
 		<Box id="C">
-			<Text type="Quote">1800RESPECT is the national sexual assault, domestic and family violence counselling service, delivered by Medibank on behalf of the Australian Government to help end violence against women and their children.</Text>
-		</Box>
-		<Box id="D">
-			<Text type="Splash">One in three Australian women experiences family or domestic violence.</Text>
-		</Box>
-		<Box id="H">
-			<Text type="Splash">There are a lot of reasons to take action.</Text>
-		</Box>
-		<Box id="F">
 			<Text type="Splash">1800RESPECT provides a 24-hour counselling service to people who have experienced sexual assault and domestic and family violence.</Text>
 		</Box>
+		
+		<Box id="D">
+			<Text type="Quote">1800RESPECT is the national sexual assault, domestic and family violence counselling service, delivered by Medibank on behalf of the Australian Government to help end violence against women and their children.</Text>
+		</Box>
+
 		<Box id="E">
 			<Text type="Content">Violence against women and their children is alarmingly high in Australia and has a profound impact on the health of our community. 
 Over their lifetime, one in three Australian women will experience family or domestic violence and one in five women over the age of 15 will experience sexual assault. 
@@ -752,20 +753,30 @@ It provides counselling information and referral to friends and family members a
 It also offers online resources for workers across sectors including health, disability and housing, empowering them to provide best-practice support to their clients who have experienced domestic and family violence and sexual assault.
 1800RESPECT is not only about responding to domestic and family violence and sexual assault, but also about providing all Australians with information and resources so they too can respond, because responding is everyone’s business.</Text>
 		</Box>
+
+		<Box id="F">
+			<Text type="Splash">There are a lot of reasons to take action.</Text>
+		</Box>
+		
+		<Box id="G">
+			<Text type="Splash">One in three Australian women experiences family or domestic violence.</Text>
+		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
-			<Box id="B" width="2.5" height="2" />
-			<Box id="C" width="2.5" height="1.5" />
-			<Box id="D" width="1.5" height="1" />
-			<Box id="E" width="3" height="2.5" />
-			<Box id="G" width="3" height="0.96" /> <!-- 600, 192 -->
+			<Box id="B" width="2.5" height="2" x="1.5" y="-0.3" />
+			<Box id="C" width="3" height="0.96" x="5" y="-1" /> <!-- 600, 192 -->
+			<Box id="D" width="2.5" height="1.5" x="5" y="0.7" />
+			<Box id="E" width="3" height="2.5" x="8.8" y="0.15" />
+			<Box id="F" width="1.5" height="1" x="12" y="-0.75" />
+			<Box id="G" width="1.5" height="1" x="12" y="0.75" />
 		</Animation>
 		<Animation type="Sprouting" direction="110" randomSeed="41">
 			<Box id="B" width="2.5" height="2" />
-			<Box id="C" width="2.5" height="1.5" />
-			<Box id="D" width="1.5" height="1" />
+			<Box id="C" width="3" height="0.96" /> <!-- 600, 192 -->
+			<Box id="D" width="2.5" height="1.5" />
 			<Box id="E" width="3" height="2.5" />
-			<Box id="G" width="3" height="0.96" /> <!-- 600, 192 -->
+			<Box id="F" width="1.5" height="1" />
+			<Box id="G" width="1.5" height="1" />
 		</Animation>
 	</Story>
 	
@@ -907,8 +918,8 @@ The AHCSA will get rolling to eliminate racism through their roller derby team. 
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
 			<Box id="B" width="3.264" height="2.448" /> <!-- 3264, 2448   -->
-			<Box id="C" width="1.5" height="1.5" />
-			<Box id="D" width="3" height="2.5" />
+			<Box id="C" width="1.5" height="1.5" x="5.1" y="-1.4" />
+			<Box id="D" width="3" height="2.5" x="4.9" y="1.3" />
 		</Animation>		
 	</Story>
 	
@@ -938,9 +949,9 @@ Jayde is now considering moving forward towards university education, an opportu
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
-			<Box id="B" width="4.63" height="3" /> <!-- 463, 300  -->
-			<Box id="C" width="1.5" height="1.5" />
-			<Box id="D" width="3" height="2.5" />
+			<Box id="B" width="4.63" height="3" x="2.2" /> <!-- 463, 300  -->
+			<Box id="C" width="1.5" height="1.5" x="1.9" y="-3.1" />
+			<Box id="D" width="3" height="2.5" x="6.4" y="0.6" />
 		</Animation>		
 	</Story>
 	
@@ -983,9 +994,9 @@ In partnership with Melbourne Heart Football Club, Blind Sports Victoria (BSV) h
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
-			<Box id="B" width="6.23" height="4.14" /> <!-- 623, 414  -->
-			<Box id="C" width="1.5" height="1.5" />
-			<Box id="D" width="3" height="2.5" />
+			<Box id="B" width="6.23" height="4.14" x="3" y="-1.8" /> <!-- 623, 414  -->
+			<Box id="C" width="1.5" height="1.5" x="1.3" y="2.1" />
+			<Box id="D" width="3" height="2.5" x="5.8" y="1.2" />
 		</Animation>
 		<Animation type="Sprouting" direction="110" randomSeed="41">
 			<Box id="B" width="6.23" height="4.14" /> <!-- 623, 414  -->
@@ -1007,8 +1018,8 @@ In partnership with Melbourne Heart Football Club, Blind Sports Victoria (BSV) h
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
 			<Box id="B" width="2.226" height="3" /> <!-- 742, 1000  -->
-			<Box id="C" width="1.5" height="1.5" />
-			<Box id="D" width="3" height="2.5" />
+			<Box id="C" width="1.5" height="1.5" x="1" y="-1.9" />
+			<Box id="D" width="3" height="2.5" x="4.5" y="0.3" />
 		</Animation>
 		<Animation type="Sprouting" direction="110" randomSeed="41">
 			<Box id="B" width="2.226" height="3" /> <!-- 742, 1000  -->
@@ -1054,9 +1065,9 @@ The $7,300 grant will give Whyalla Men’s Shed the resources to build an outdoo
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
-			<Box id="B" width="6.895" height="4.57" /> <!-- 1379, 914  -->
-			<Box id="C" width="1.5" height="1.5" />
-			<Box id="D" width="3" height="2.5" />
+			<Box id="B" width="6" height="3.977" x="3.2" y="-1" /> <!-- 1379, 914  -->
+			<Box id="C" width="1.5" height="1.5" x="1" y="3" />
+			<Box id="D" width="3" height="2.5" x="6.5" y="0.3" />
 		</Animation>
 		<Animation type="Sprouting" direction="110" randomSeed="41">
 			<Box id="B" width="6.895" height="4.57" /> <!-- 1379, 914  -->
@@ -1065,7 +1076,7 @@ The $7,300 grant will give Whyalla Men’s Shed the resources to build an outdoo
 		</Animation>		
 	</Story>
 		
-	<Story id="prof9"> <!-- We’re moving to a healthier way of working --> 
+	<Story id="prof9"> <!-- We're moving to a healthier way of working --> 
 		<Box id="B">
 			<Image url="assets/prof9/BOX B.jpg" />
 		</Box>
@@ -1087,9 +1098,9 @@ Medibank Place gives us a home that embodies our commitment to delivering better
 		</Box>
 		
 		<Animation type="Floating" direction="90" randomSeed="41">
-			<Box id="B" width="4.43" height="2.9525" /> <!-- 1772, 1181 -->
-			<Box id="C" width="1.5" height="1.5" />
-			<Box id="D" width="3" height="2.5" />
+			<Box id="B" width="4.43" height="2.9525" x="2.4" y="1.2" /> <!-- 1772, 1181 -->
+			<Box id="C" width="1.5" height="1.5" x="1.9" y="-1.6"/>
+			<Box id="D" width="3" height="2.5" x="6.5" y="0.4"/>
 		</Animation>
 	</Story>
 	
@@ -1491,29 +1502,10 @@ in medical claims on their behalf each year.</Text>
 			<appearance textColor="1" backgroundColor="1" boxColor="2"/>
 			<featuredText>Better health is our business, 
 and our purpose.</featuredText>	
-			<box topText="It's not about insurance, 
-it's about reassurance." />
-			<box topText="It’s about connecting
-people with the right
-care to help them
-improve their health." />
-			<box topText="It’s about managing
-an extensive network
-of contracted hospitals, 
-specialists and GPs to 
-provide better quality 
-and lower cost
-healthcare." />
-			<box topText="And as one of the largest
-purchasers of health
-services in the country,
-we use our influence and
-expertise to help deliver
-sustainable solutions and
-drive a better health system
-with the patient at its centre,
-including managing the
-health of our armed forces." />
+			<box topText="It's not about insurance, it's about reassurance." />
+			<box topText="It’s about connecting people with the right care to help them improve their health." />
+			<box topText="It’s about managing an extensive network of contracted hospitals, specialists and GPs to provide better quality and lower cost healthcare." />
+			<box topText="And as one of the largest purchasers of health services in the country, we use our influence and expertise to help deliver sustainable solutions and drive a better health system with the patient at its centre, including managing the health of our armed forces." />
 		</slide>	
 		<slide type="timeline_number" duration="10000" markerFrequency="0" lineSpacing="22" alwaysShowYear="false">
 			<appearance backgroundColor="1" /> 
