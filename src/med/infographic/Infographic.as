@@ -1,5 +1,6 @@
 package med.infographic {
 	import com.garin.Text;
+	import com.greensock.loading.data.VideoLoaderVars;
 	import com.greensock.TweenMax;
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
@@ -39,9 +40,13 @@ package med.infographic {
 		protected var launchRect:Rectangle;
 		
 		protected var endCallback:Function;
-		
 
+		
+		protected var paused:Boolean = false;
+
+		
 		public function get isOnLastFrame():Boolean { return (currentSlideIndex == data.slides.length - 1); }
+		
 		
 		
 		public function Infographic(data:InfographicData, background:Background, colors:Vector.<uint>, launchRect:Rectangle = null) {
@@ -132,10 +137,24 @@ package med.infographic {
 		
 		
 		
-		protected function nextSlide():void {
+		
+		protected function forceLoadLastSlide():void {
+			if (slideSprite) 	onSlideFinished(slideSprite);
+			var lastSlideIndex:int = data.slides.length - 1;
+			loadSlide(lastSlideIndex);
+		}
 			
+		
+		
+		protected function nextSlide():void {
 			var slideIndex:int = currentSlideIndex + 1;
-						
+			loadSlide(slideIndex);
+		}
+		
+
+		
+		protected function loadSlide(slideIndex:int, forcedLoad:Boolean=false):void {
+			
 			if ((slideIndex >= 0) && (slideIndex < data.slides.length) && (data.slides[slideIndex] != null)) {
 				
 				this.currentSlideIndex = slideIndex;
@@ -147,7 +166,6 @@ package med.infographic {
 				// get some info on what (if any) the previous slide was
 				var previousSlideData:InfographicSlideData;				
 				if (slideIndex > 0)		previousSlideData = data.slides[slideIndex - 1];
-				
 				
 				
 				// store color information on the slideData to pass to the ISlide
@@ -224,6 +242,11 @@ package med.infographic {
 						
 						var box:InfographicCenterBox = new InfographicCenterBox(slideData);						
 						addSlideSprite(box);
+						
+						if (forcedLoad) {
+							box.animateOn();
+							break;
+						}
 						
 						
 						switch (data.slides[currentSlideIndex].animateOn) {
@@ -361,7 +384,7 @@ package med.infographic {
 			addChild(sprite);
 		}
 		
-		
+
 		
 		protected function onSlideFinished(sprite:Sprite):void {
 			if (sprite != slideSprite) return;
@@ -385,6 +408,7 @@ package med.infographic {
 			}
 		}
 		
+		
 		protected function animateLastSlideOff(endCallback:Function):void {
 			this.endCallback = endCallback;
 			animateSlideOff();
@@ -393,13 +417,14 @@ package med.infographic {
 		
 
 		
-
 		public function animate(dTime:Number):void {
+			
+			// are we paused?
+			if (paused)	return;
 			
 			// do we even have a slide?
 			if (!slideSprite || slideAnimatingOff)	return;
-			
-			
+						
 			// check whether we've exceeded the amount of time to show this slide
 			currentSlideTime += dTime;
 			
@@ -420,21 +445,10 @@ package med.infographic {
 			}
 		}
 		
-		
-		
-		protected function handleMouseDown(event:MouseEvent):void {
-
-			/*
-			if (currentSlideIndex < (data.slides.length-1)) {
-				initSlide(currentSlideIndex + 1);
-			} else {
-				removePreviousSlides();
-				end();
-			}
-			*/
-			
+				
+		protected function handleMouseDown(event:MouseEvent):void {			
 		}
-		
+			
 		
 		public function pauseMedia():void {
 			if (!slideSprite) return;
@@ -443,12 +457,12 @@ package med.infographic {
 			}
 		}
 		
+		
 		public function resumeMedia():void {
 			if (slideSprite is VideoSlide) {
 				VideoSlide(slideSprite).resumeVideo();
 			}
-		}
-		
+		}		
 		
 	
 		protected function getBackgroundColor(slideData:InfographicSlideData):uint {

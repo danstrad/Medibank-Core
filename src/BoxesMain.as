@@ -441,16 +441,23 @@ package {
 		protected function restoreAfterInfographic():void {
 			mover.mouseChildren = true;
 
+			var offset:Point;
+			var container:Sprite;
+			var homeAnim:HomeAnimationController;
+
 			//if (currentInfographic.parent) currentInfographic.parent.removeChild(currentInfographic);
 			//currentInfographic = null;
 			
 			var chapterID:int = 0;
 			if (currentChapter) chapterID = currentChapter.id;
 
+			
+			
 			var story:Story;
 			if (currentInfographic.data.xml.hasOwnProperty("LinkedStory")) story = StorySet.getStory(currentInfographic.data.xml.LinkedStory[0].toString());
 
-			if (story) {
+			
+			if (story && (currentInfographic.endedEarly == false)) {
 				
 				var animIndex:int = 0;
 				for (var i:int = 0;  i <= 3; i++) {
@@ -472,28 +479,56 @@ package {
 				var boxHighlightPosition:Point = new Point(0, 0);
 				expandStoryFrom(story, animIndex, false, fakeParentBox, boxHighlightPosition, false, true);				
 				
-			} else {
 				
-				var offset:Point = new Point(450, 0);
+			} else if (currentInfographic.endedEarly) {
+				// the infographic was forced to exit from the pause menu
+
+				offset = new Point(0, 0);
 				
-				var container:Sprite = new Sprite();
+				container = new Sprite();
 				boxesLayer.addChild(container);
 				container.x = offset.x;
 				container.y = offset.y;
 				
-				var homeAnim:HomeAnimationController = new HomeAnimationController(null, offset, ZERO_POINT, container, StorySet.baseAnimationData);
+				homeAnim = new HomeAnimationController(null, offset, ZERO_POINT, container, StorySet.baseAnimationData);
+				homeAnimations.push(homeAnim);
+				currentHomeAnimation = homeAnim;
+				
+				transitionToChapter(homeAnim.boxes[chapterID]);
+				
+				if (currentInfographic.parent) {
+					currentInfographic.parent.removeChild(currentInfographic);
+				}
+				
+				currentInfographic = null;
+				
+				
+			} else {
+				
+				offset = new Point(450, 0);
+				
+				container = new Sprite();
+				boxesLayer.addChild(container);
+				container.x = offset.x;
+				container.y = offset.y;
+				
+				homeAnim = new HomeAnimationController(null, offset, ZERO_POINT, container, StorySet.baseAnimationData);
 				homeAnimations.push(homeAnim);
 				currentHomeAnimation = homeAnim;
 				
 				transitionToChapter(homeAnim.boxes[chapterID]);
 				
 			}
+
 			
-			mover.addChild(currentInfographic);
-			currentInfographic.x = 0;
-			currentInfographic.y = 0;
-			lingeringInfographic = currentInfographic;
-			currentInfographic = null;
+			if (currentInfographic) {
+				mover.addChild(currentInfographic);
+				currentInfographic.x = 0;
+				currentInfographic.y = 0;
+				lingeringInfographic = currentInfographic;
+				currentInfographic = null;
+			}
+						
 			
 			updateCameraBounds();
 			camera.setFocus(new Point(0, 0));
@@ -688,9 +723,11 @@ package {
 						launchRect = box.getBounds(this);
 						
 						killAnimations(null);
+						currentChapter = homeBox.chapter;	// correct problems with vision palette when opened from other chapter. hope this doesn't break everything
 						background.fadeToColor(homeBox.chapter.bgColor, 300);
 						beginInfographic(homeBox.chapter.baseInfographic, launchRect);
 						showBlip = true;
+						
 					} else if (homeBox.chapter.baseStory) {
 						if (homeBox.chapter.baseStory == currentStory) return false;
 
@@ -926,6 +963,7 @@ package {
 					endingInfographic = null;
 				}
 			}
+			
 			if (currentInfographic) {
 				currentInfographic.animate(dTime);
 				if (currentInfographic.finished) {

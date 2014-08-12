@@ -237,7 +237,7 @@ package med.infographic {
 				delay = (Rndm.integer(0, 500) * 0.001);
 //				if (hasFeatureText) delay += 0.5;
 				
-				TweenMax.fromTo(box, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-600 }, { x:box.x, immediateRender:true, delay:delay, ease:Strong.easeIn } );
+				TweenMax.fromTo(box, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-600 }, { x:box.x, immediateRender:true, delay:delay, ease:Strong.easeIn, onComplete:box.addBlur } );
 			}
 					
 			
@@ -248,7 +248,7 @@ package med.infographic {
 				delay = (Rndm.integer(0, 500) * 0.001);
 //				if (hasFeatureText) delay += 0.5;
 
-				dummyBox.filters = [blurFilter];
+//				dummyBox.filters = [blurFilter];
 				
 				TweenMax.fromTo(dummyBox, BOX_ANIMATE_ON_DURATION_SECONDS, { x:-600 }, { x:dummyBox.x, immediateRender:true, delay:delay, ease:Strong.easeIn, onComplete:initDummyBox, onCompleteParams:[dummyBox] } );
 			}
@@ -267,6 +267,9 @@ package med.infographic {
 			var delay:Number = Rndm.integer(0, 100) * 0.001;
 			var duration:Number = 1.0 + (Rndm.integer(0, 500) * 0.001);			
 			TweenMax.to(dummyBox, duration, { alpha: targetAlpha, repeat: -1, yoyo:true, delay:0 } );
+			
+			TweenMax.to(dummyBox, 0.5, {  blurFilter: { blurX:FloatingBox.BACK_BOX_BLUR, blurY:FloatingBox.BACK_BOX_BLUR, quality:FloatingBox.BLUR_QUALITY }, delay:0.3 } );
+//			dummyBox.filters = [blurFilter];
 		}
 		
 		
@@ -279,13 +282,14 @@ package med.infographic {
 			
 			for each (var box:FloatingBox in boxes) {
 				delay = 0.5 + (Rndm.integer(0, 500) * 0.001);
-				TweenMax.fromTo(box, BOX_ANIMATE_ON_DURATION_SECONDS, { x:box.x }, { x:1000, immediateRender:true, delay:delay, ease:Strong.easeOut } );
+				TweenMax.fromTo(box, BOX_ANIMATE_ON_DURATION_SECONDS, { x:box.x }, { x:700, immediateRender:true, delay:delay, ease:Strong.easeOut } );
+				TweenMax.to(box, 0.5, {  blurFilter: { blurX:0, blurY:0, quality:FloatingBox.BLUR_QUALITY } } );
 			}
 			
 			for each (var dummyBox:DisplayObject in dummyBoxes) {
 				delay = 0.5 + (Rndm.integer(0, 500) * 0.001);
-				TweenMax.fromTo(dummyBox, BOX_ANIMATE_ON_DURATION_SECONDS, { x:dummyBox.x }, { x:1000, immediateRender:true, delay:delay, ease:Strong.easeOut } );
-			
+				TweenMax.fromTo(dummyBox, BOX_ANIMATE_ON_DURATION_SECONDS, { x:dummyBox.x }, { x:700, immediateRender:true, delay:delay, ease:Strong.easeOut } );
+				TweenMax.to(dummyBox, 0.5, {  blurFilter: { blurX:0, blurY:0, quality:FloatingBox.BLUR_QUALITY } } );
 			}
 				
 			// tween for timer
