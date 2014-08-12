@@ -595,12 +595,17 @@ package {
 			
 			camArea = null;
 			
+			var floaterBuffers:Vector.<Number> = new Vector.<Number>();
+			
 			floaterOnScreen = false;
 			for each(var anim:AnimationController in currentAnimations) {
 				b = anim.animationData.bounds.clone();
 				b.offsetPoint(anim.parentHighlightPosition);
 				b.offsetPoint(anim.animationData.getOriginOffsetFor(anim.parentBox));
-				if (anim.animationInfo.type == AnimationType.FLOATING) floaterOnScreen = true;
+				if (anim.animationInfo.type == AnimationType.FLOATING) {
+					floaterOnScreen = true;
+					floaterBuffers.push(b.width * 0.1);
+				}
 				if (camArea) camArea = camArea.union(b);
 				else camArea = b;				
 			}
@@ -618,6 +623,13 @@ package {
 			
 			camArea.inflate(Math.max(margin, (Camera.WIDTH - camArea.width) / 2), Math.max(margin, (Camera.HEIGHT - camArea.height) / 2));
 			
+			var buffer:Number = 0;
+			var len:int = floaterBuffers.length;
+			for (var i:int = 0; i < len; i++) {
+				var n:Number = floaterBuffers[i];
+				buffer += n * (len - i);
+			}
+			camArea.right += buffer;
 
 			/*
 			// Tricky because each bounds are dependent on the float of any previous bounds

@@ -1,6 +1,5 @@
 Build for release
 
-Camera problems - purple goes off edge. Weird adjustment when switching to blue
 
 rearrange orange & purple stories & chapter
 Orange section has all the content laddering up, instead of across the screen.
@@ -31,3 +30,5 @@ Doc5:
 	Could remove a quote to make this less wordy - needs image as above
 
 do we want sound on video?
+
+Camera problems - purple goes off edge. Weird adjustment when switching to blue
