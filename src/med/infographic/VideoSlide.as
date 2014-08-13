@@ -38,7 +38,8 @@ package med.infographic {
 		protected var boxColor:uint;
 		protected var wipeColor:uint;
 
-		protected var startTime:Number;
+		protected var startTime:Number; // Seconds
+		protected var endTime:Number;
 		
 		protected var animateOnType:String;
 		protected var animateOffType:String;
@@ -46,6 +47,9 @@ package med.infographic {
 		protected var wipeOnMask:Sprite;
 
 		protected var finishedCallback:Function;
+		
+		protected var playing:Boolean;
+		protected var seeking:Boolean;
 		
 		
 		public function VideoSlide(slideData:InfographicSlideData, initialBackgroundColor:uint) {
@@ -71,6 +75,8 @@ package med.infographic {
 				}
 				if (videoXML.hasOwnProperty("@startTime")) startTime = parseFloat(videoXML.@startTime.toString());
 				else startTime = 0;
+				if (videoXML.hasOwnProperty("@endTime")) endTime = parseFloat(videoXML.@endTime.toString());
+				else endTime = 0;
 				showVideo(url, sourceWidth * scale, sourceHeight * scale);
 			}
 			
@@ -101,6 +107,7 @@ package med.infographic {
 		}
 		
 		public function dispose():void {
+			playing = false;
 			if (ns) {
 				ns.pause();
 				ns.close();
@@ -131,6 +138,8 @@ package med.infographic {
 			video.attachNetStream(ns);
 			ns.play(url);
 			ns.inBufferSeek = true;
+			
+			playing = false;
 			ns.pause();
 
 			video.width = width;
@@ -140,9 +149,18 @@ package med.infographic {
 		}
 		
 		private function netStatusHandler(event:NetStatusEvent):void {
-			if (event.info.code == "NetStream.Buffer.Empty") {
-				ns.seek(0);
-				ns.resume();
+			//trace(event.info.code);
+			switch(event.info.code) {
+				case "NetStream.Buffer.Empty":
+					//ns.seek(0);
+					//ns.resume();
+					seekTo(startTime);
+					break;
+					
+				case "NetStream.Seek.Notify":
+					seeking = false;
+					if (playing && ns) ns.resume();
+					break;
 			}
 		}
 
@@ -150,10 +168,12 @@ package med.infographic {
 		}
 
 		public function pauseVideo():void {
+			playing = false;
 			if (ns) ns.pause();
 		}
 		
 		public function resumeVideo():void {
+			playing = false;
 			if (ns) ns.resume();
 		}
 		
@@ -170,14 +190,15 @@ package med.infographic {
 					wipeOn(animateOnType);
 					break;
 			}
-			//trace(startTime, ns.time);
-			//trace(ns.inBufferSeek);
-			ns.seek(startTime / 1000);
-			ns.resume();
-			//trace(startTime, ns.time);
+			seekTo(startTime);
+			//ns.seek(startTime);
+			
+			playing = true;
+		//	ns.resume();
 			stateIndex = 0;
 			showNextTextState();
 		}
+		
 
 		public function animateOff(callback:Function):void {
 			finishedCallback = callback;
@@ -200,8 +221,25 @@ package med.infographic {
 		}
 		
 		public function animate(dTime:Number):void {
+			if (seeking) return;
 			
+			var restart:Boolean = false;
+			//if ((startTime > 0) && (ns.time < startTime)) restart = true;
+			if ((endTime > 0) && (ns.time > endTime)) restart = true;
+			//trace(ns.time, startTime, endTime, restart);
+			
+			if (restart) {
+				ns.pause();
+				seekTo(startTime);
+				//ns.seek(startTime);
+			}
 		}
+
+		protected function seekTo(startTime:Number):void {
+			seeking = true;
+			ns.seek(startTime);
+		}
+		
 		
 		protected function showNextTextState():void {
 			if (stateIndex >= textStates.length) return;
