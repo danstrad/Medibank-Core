@@ -19,6 +19,7 @@ package {
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.text.TextField;
+	import flash.ui.Mouse;
 	import flash.ui.Multitouch;
 	import flash.utils.getTimer;
 	import med.display.ContinueButton;
@@ -184,6 +185,7 @@ package {
 			xmlLoader.load(new URLRequest("BoxesData.XML"));
 
 			CONFIG::release {
+				Mouse.hide();
 				stage.addEventListener(MouseEvent.CLICK, handleFullScreenClick);
 			}
 			

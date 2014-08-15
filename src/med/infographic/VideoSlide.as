@@ -14,6 +14,7 @@ package med.infographic {
 	import flash.events.StatusEvent;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.media.SoundTransform;
 	import flash.media.Video;
 	import flash.net.NetConnection;
 	import flash.net.NetStream;
@@ -23,6 +24,9 @@ package med.infographic {
 
 	public class VideoSlide extends Sprite implements ISlide {
 		
+		static public const POOL:Boolean = true;
+		static protected const pooled:Vector.<Object> = new Vector.<Object>;
+
 		static public const WIPE_TIME:Number = 0.7;// 0.9;
 		static public const POP_TIME:Number = 0.5;
 		
@@ -77,6 +81,9 @@ package med.infographic {
 				else startTime = 0;
 				if (videoXML.hasOwnProperty("@endTime")) endTime = parseFloat(videoXML.@endTime.toString());
 				else endTime = 0;
+				var volume:Number = 1;
+				if (videoXML.hasOwnProperty("@volume")) volume = parseFloat(videoXML.@volume.toString());
+				soundTransform = new SoundTransform(volume);
 				showVideo(url, sourceWidth * scale, sourceHeight * scale);
 			}
 			
@@ -108,13 +115,22 @@ package med.infographic {
 		
 		public function dispose():void {
 			playing = false;
-			if (ns) {
-				ns.pause();
+			if (!ns) return;
+			
+			ns.pause();
+			ns.removeEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+			ns.removeEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
+			
+			video.clear();
+			video.attachNetStream(null);
+			
+			if (POOL) {
+				pooled.push( { ns:ns, nc:nc } );
+			} else {
 				ns.close();
-			}
-			if (video) {
-				video.clear();
-				video.attachNetStream(null);
+				ns = null;
+				nc.close();
+				nc = null;
 			}
 		}
 
@@ -125,23 +141,30 @@ package med.infographic {
 			//Create a new Video object that display the video and add it to the stage display list, as shown in the following snippet:
 			video = new Video();
 			addChild(video);
+			
+			if (POOL && (pooled.length > 0)) {
+				var o:Object = pooled.pop();
+				nc = o.nc;
+				ns = o.ns;
+			} else {
+				nc = new NetConnection();
+				nc.connect(null);
+				
+				ns = new NetStream(nc);
+				ns.client = { onMetaData:function(obj:Object):void { } }
+			}
 
-			nc = new NetConnection();
-			nc.connect(null);
 
-			//Create a NetStream object, passing the NetConnection object as an argument to the constructor. The following snippet connects a NetStream object to the NetConnection instance and sets up the event handlers for the stream:
-			ns = new NetStream(nc);
 			ns.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
 			ns.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
-			ns.client = { onMetaData:function(obj:Object):void { } }
 			
-			video.attachNetStream(ns);
 			ns.play(url);
 			ns.inBufferSeek = true;
 			
 			playing = false;
 			ns.pause();
-
+			
+			video.attachNetStream(ns);
 			video.width = width;
 			video.height = height;
 			video.x = -video.width / 2;
@@ -150,11 +173,12 @@ package med.infographic {
 		
 		private function netStatusHandler(event:NetStatusEvent):void {
 			//trace(event.info.code);
+			
 			switch(event.info.code) {
 				case "NetStream.Buffer.Empty":
+					seekTo(startTime);				
 					//ns.seek(0);
 					//ns.resume();
-					seekTo(startTime);
 					break;
 					
 				case "NetStream.Seek.Notify":
@@ -190,11 +214,12 @@ package med.infographic {
 					wipeOn(animateOnType);
 					break;
 			}
-			seekTo(startTime);
-			//ns.seek(startTime);
-			
+
 			playing = true;
-		//	ns.resume();
+			//ns.seek(startTime);
+			seekTo(startTime);
+			ns.resume();
+			
 			stateIndex = 0;
 			showNextTextState();
 		}
@@ -221,6 +246,9 @@ package med.infographic {
 		}
 		
 		public function animate(dTime:Number):void {
+			//trace(seeking, url, startTime, endTime, dTime, ns.time);
+			//trace(seeking, playing);
+			
 			if (seeking) return;
 			
 			var restart:Boolean = false;
@@ -235,9 +263,9 @@ package med.infographic {
 			}
 		}
 
-		protected function seekTo(startTime:Number):void {
+		protected function seekTo(time:Number):void {
 			seeking = true;
-			ns.seek(startTime);
+			ns.seek(time);
 		}
 		
 		

@@ -14,6 +14,9 @@ package med.display {
 
 	public class VideoContent extends Sprite {
 		
+		static public const POOL:Boolean = true;
+		static protected const pooled:Vector.<Object> = new Vector.<Object>;
+		
 		protected static const EXPAND_TIME:Number = 500;
 		
 		protected var url:String;
@@ -38,13 +41,24 @@ package med.display {
 		}
 		
 		public function dispose():void {
-			if (ns) ns.close();
-			if (video) {
-				video.clear();
-				video.attachNetStream(null);
+			if (!ns) return;
+			
+			ns.pause();
+			ns.removeEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+			ns.removeEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
+			
+			video.clear();
+			video.attachNetStream(null);
+			
+			if (POOL) {
+				pooled.push( { ns:ns, nc:nc } );
+			} else {
+				ns.close();
+				ns = null;
+				nc.close();
+				nc = null;
 			}
 		}
-
 		
 		public function showVideo(url:String, width:Number, height:Number):void {
 			this.url = url;
@@ -53,20 +67,26 @@ package med.display {
 			video = new Video();
 			addChild(video);
 
-			nc = new NetConnection();
-			nc.connect(null);
+			if (POOL && (pooled.length > 0)) {
+				var o:Object = pooled.pop();
+				nc = o.nc;
+				ns = o.ns;
+			} else {
+				nc = new NetConnection();
+				nc.connect(null);
+				
+				ns = new NetStream(nc);
+				ns.client = { onMetaData:function(obj:Object):void { } }
+			}
 
-			//Create a NetStream object, passing the NetConnection object as an argument to the constructor. The following snippet connects a NetStream object to the NetConnection instance and sets up the event handlers for the stream:
-			ns = new NetStream(nc);
-			ns.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
-			ns.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);
-			ns.client = { onMetaData:function(obj:Object):void { } }
 			
-			video.attachNetStream(ns);
+			ns.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
+			ns.addEventListener(AsyncErrorEvent.ASYNC_ERROR, asyncErrorHandler);			
 			ns.play(url);
 
 			homeRect = new Rectangle( -width / 2, -height / 2, width, height);
 
+			video.attachNetStream(ns);
 			video.smoothing = true;
 			video.x = homeRect.x;
 			video.y = homeRect.y;

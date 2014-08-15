@@ -74,6 +74,8 @@ package med.infographic {
 		
 		public function reset():void {
 			if (slideSprite) {
+				var slide:ISlide = slideSprite as ISlide;
+				if (slide) slide.animateOff(function():void { });
 				if (slideSprite.parent) slideSprite.parent.removeChild(slideSprite);
 				slideSprite = null;
 			}
