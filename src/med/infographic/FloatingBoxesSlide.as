@@ -150,8 +150,7 @@ package med.infographic {
 				
 				
 				if ((i % 2) == 0) {
-					// even -> right
-					
+					// even -> right					
 					gridPosition = gridPositionsOnRight.pop();
 					
 					box.x = rightBoxBounds.x + (gridSizeX * 0.5) + ((gridPosition % gridLineCount) * gridSizeX) + Rndm.integer((gridSizeX * -0.2), (gridSizeX * 0.2));
@@ -160,10 +159,10 @@ package med.infographic {
 				} else {
 					// odd -> left
 					gridPosition = gridPositionsOnLeft.pop();
-
+					
 					box.x = leftBoxBounds.x + (gridSizeX * 0.5) + ((gridPosition % gridLineCount) * gridSizeX) + Rndm.integer((gridSizeX * -0.2), (gridSizeX * 0.2));
 					box.y = leftBoxBounds.y + (gridSizeY * 0.5) + (Math.floor(gridPosition / gridLineCount) * gridSizeY) + Rndm.integer((gridSizeY * -0.2), (gridSizeY * 0.2));
-														
+					
 				}
 				
 				addChild(box);

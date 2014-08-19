@@ -666,11 +666,23 @@ package med.animation {
 			vector.x *= multiplier;
 			vector.y *= multiplier;
 			
+
+			//var length:Number = isChapter ? 300 : 450;
+			var length:Number = isChapter ? 300 : 500;
+			var yMultiplier:Number = ((BoxesMain.STAGE_HEIGHT + Box.SIZE) / (BoxesMain.STAGE_WIDTH + Box.SIZE));			
+			//x = parentHighlightPosition.x + vector.x * ( -Box.SIZE + length);
+			//y = parentHighlightPosition.y + vector.y * ( -Box.SIZE + length * yMultiplier);
+
+			var margin:Number = (isChapter ? 200 : 100) + Box.SIZE * 0.5;
+			var xRad:Number = BoxesMain.STAGE_WIDTH / 2 - margin;
+			var yRad:Number = BoxesMain.STAGE_HEIGHT / 2 - margin;
+			var clamp:Rectangle = new Rectangle( -xRad, -yRad, xRad * 2, yRad * 2);
+			x = parentHighlightPosition.x + Math.max(clamp.left, Math.min(clamp.right, animationData.endPoint.x));
+			y = parentHighlightPosition.y + Math.max(clamp.top, Math.min(clamp.bottom, animationData.endPoint.y));
+			//trace(animationData.endPoint);
+
+			// Pull it out to corner instead of from vector
 			
-			var length:Number = isChapter ? 300 : 450;
-			var yMultiplier:Number = ((BoxesMain.STAGE_HEIGHT + Box.SIZE) / (BoxesMain.STAGE_WIDTH + Box.SIZE));
-			x = parentHighlightPosition.x + vector.x * ( -Box.SIZE + length);
-			y = parentHighlightPosition.y + vector.y * ( -Box.SIZE + length * yMultiplier);
 			
 			camera.animateTo(x, y, animationData.focusTime, 100);			
 

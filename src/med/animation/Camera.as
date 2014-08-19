@@ -2,11 +2,14 @@ package med.animation {
 	import flash.display.DisplayObject;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import med.display.Box;
 
 	public class Camera {
 		
 		static public const WIDTH:Number = 1024;// 1920;
 		static public const HEIGHT:Number = 576;// 1080;
+		
+		protected static const TETHER:Number = 150;
 
 		public function get animating():Boolean { return _animating; }
 		
@@ -25,6 +28,9 @@ package med.animation {
 		protected var floatTime:Number;
 		protected var waitTimeRemaining:Number;
 		protected var roundFactor:Number;
+
+		public var tetheredObjects:Vector.<DisplayObject>;
+		protected var tether:Point;
 		
 		protected var panBounds:Rectangle;
 		
@@ -40,6 +46,7 @@ package med.animation {
 			_animating = false;
 			waitTimeRemaining = 0;
 			roundFactor = 1;
+			tetheredObjects = new Vector.<DisplayObject>();
 		}
 		
 		public function setScreenSize(w:Number, h:Number):void {
@@ -49,8 +56,9 @@ package med.animation {
 		}
 		
 		public function move(xShift:Number, yShift:Number):void {
-			current.x = clampX(current.x + xShift);
-			current.y = clampY(current.y + yShift);
+			current.x += xShift;
+			current.y += yShift;
+			clamp(current);
 			target.x = current.x;
 			target.y = current.y;
 			_animating = false;
@@ -61,8 +69,9 @@ package med.animation {
 
 		public function getFocus():Point { return current.clone(); }
 		public function setFocus(focus:Point):void {
-			target.x = clampX(focus.x);
-			target.y = clampY(focus.y);
+			target.x = focus.x;
+			target.y = focus.y;
+			clamp(target);
 			current.x = target.x;
 			current.y = target.y;
 			_animating = false;
@@ -90,8 +99,7 @@ package med.animation {
 			}
 			panBounds = area.clone();
 			panBounds.inflate( -WIDTH / 2, -HEIGHT / 2);
-			target.x = clampX(target.x);
-			target.y = clampY(target.y);
+			clamp(target);
 		}
 		
 		
@@ -108,6 +116,36 @@ package med.animation {
 					dTime -= waitTimeRemaining;
 					waitTimeRemaining = 0;
 				}
+			}
+			
+			var nearest:DisplayObject;
+			var dist2:Number;
+			var dx:Number, dy:Number;
+			for each(var d:DisplayObject in tetheredObjects) {
+				var box:Box = d as Box;
+				if (box) {
+					dx = box.parent.x + box.getX() - current.x;
+					dy = box.parent.y + box.getY() - current.y;
+				} else {
+					dx = d.x - current.x;
+					dy = d.y - current.y;
+				}
+				var dDist2:Number = dx * dx + dy * dy;
+				if (!nearest || (dDist2 < dist2)) {
+					nearest = d;
+					dist2 = dDist2;
+				}
+			}
+			if (nearest) {
+				var distance:Number = Math.sqrt(dist2);
+				box = nearest as Box;
+				if (box) {
+					tether = new Point(box.parent.x + box.getX(), box.parent.y + box.getY());
+				} else {
+					tether = new Point(nearest.x, nearest.y);
+				}
+			} else {
+				tether = null;
 			}
 			
 			if (!dragging) pullBackToBounds();
@@ -188,6 +226,7 @@ package med.animation {
 		protected function pullBackToBounds():void {
 			if (!panBounds) return;
 			const PULL:Number = 0.15;
+			
 			if (current.x > panBounds.right) {
 				current.x -= (current.x - panBounds.right) * PULL;
 			} else if (current.x < panBounds.left) {
@@ -198,15 +237,42 @@ package med.animation {
 			} else if (current.y < panBounds.top) {
 				current.y += (panBounds.top - current.y) * PULL;
 			}
+			
+			if (tether) {
+				var p:Point = current;
+				var distance:Number = Point.distance(p, tether);
+				if (distance > TETHER) {
+					var boundPoint:Point = p.subtract(tether);
+					boundPoint.normalize(TETHER + (distance - TETHER) * (1 - PULL));
+					p.x = tether.x + boundPoint.x;
+					p.y = tether.y + boundPoint.y;
+				}
+			}
 		}
 		
-		public function clampX(x:Number):Number {
+		/*
+		protected function clampX(x:Number):Number {
 			if (!panBounds) return x;
 			return Math.max(panBounds.left, Math.min(panBounds.right, x));
 		}
-		public function clampY(y:Number):Number {
+		protected function clampY(y:Number):Number {
 			if (!panBounds) return y;
 			return Math.max(panBounds.top, Math.min(panBounds.bottom, y));
+		}
+		*/
+		protected function clamp(p:Point):void {
+			if (!panBounds || !p) return;
+			p.x = Math.max(panBounds.left, Math.min(panBounds.right, p.x));
+			p.y = Math.max(panBounds.top, Math.min(panBounds.bottom, p.y));
+			if (tether) {
+				var distance:Number = Point.distance(p, tether);
+				if (distance > TETHER) {
+					var boundPoint:Point = p.subtract(tether);
+					boundPoint.normalize(distance);
+					p.x = tether.x + boundPoint.x;
+					p.y = tether.y + boundPoint.y;
+				}
+			}
 		}
 		
 		public function getPanArea():Rectangle {

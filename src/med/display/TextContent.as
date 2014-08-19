@@ -139,6 +139,8 @@ package med.display {
 		
 		protected function setupScrolling(width:Number, height:Number):void {
 			if (textField.height > height) {
+				textField.cacheAsBitmap = BoxesMain.CACHE_AND_SNAP;
+
 				textField.width -= 10;
 				
 				scrollY = textField.y;

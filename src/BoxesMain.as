@@ -57,7 +57,7 @@ package {
 
 	public class BoxesMain extends MovieClip {
 		
-		public static const CACHE_AND_SNAP:Boolean = false;// true;
+		public static const CACHE_AND_SNAP:Boolean = true;
 		
 		//1024x576 = 1920x1080
 		static public var STAGE_WIDTH:Number = 1024;
@@ -586,7 +586,7 @@ package {
 			var current:Rectangle = camera.getPanArea().clone();
 			current.inflate(STAGE_WIDTH / 2, STAGE_HEIGHT / 2);
 			camArea = camArea.union(current);
-
+			
 			camera.setPanArea(camArea);
 		}
 		protected function updateCameraBounds():void {
@@ -594,7 +594,9 @@ package {
 			
 			var camArea:Rectangle;
 			var b:Rectangle
+			var d:DisplayObject;
 			
+			camera.tetheredObjects.length = 0;
 			camArea = null;
 			
 			var floaterBuffers:Vector.<Number> = new Vector.<Number>();
@@ -609,16 +611,27 @@ package {
 					floaterBuffers.push(b.width * 0.1);
 				}
 				if (camArea) camArea = camArea.union(b);
-				else camArea = b;				
+				else camArea = b;
+				
+				for each(d in anim.contentBoxes) camera.tetheredObjects.push(d);
 			}
 			for each(var homeAnim:HomeAnimationController in homeAnimations) {
 				b = homeAnim.currentBounds.clone();
 				b.offsetPoint(homeAnim.getTargetPosition());
 				if (camArea) camArea = camArea.union(b);
 				else camArea = b;
+
+				for each(d in homeAnim.boxes) camera.tetheredObjects.push(d);
 			}
 			if (lingeringInfographic) {
 				b = new Rectangle( -Camera.WIDTH / 2 + margin, -Camera.HEIGHT / 2 + margin, Camera.WIDTH - margin * 2, Camera.HEIGHT - margin * 2);
+				if (camArea) camArea = camArea.union(b);
+				else camArea = b;
+				
+				camera.tetheredObjects.push(lingeringInfographic);
+			}			
+			if (currentAnimation) {
+				b = new Rectangle(currentAnimation.parentHighlightPosition.x - Camera.WIDTH / 2, currentAnimation.parentHighlightPosition.y - Camera.HEIGHT / 2, Camera.WIDTH, Camera.HEIGHT);
 				if (camArea) camArea = camArea.union(b);
 				else camArea = b;
 			}
@@ -934,7 +947,7 @@ package {
 			var FALLOFF_PER_SECOND:Number = (dragging) ? 0.6 : 3;
 			var falloff:Number = FALLOFF_PER_SECOND * dTime / 1000;
 			dragMomentum.normalize(Math.max(0, dragMomentum.length * (1 - falloff) - 1));
-		
+			
 			camera.animateFloat(dTime);			
 			camera.animate(dTime, dragging);
 		}
