@@ -52,8 +52,10 @@ package med.infographic {
 
 		protected var finishedCallback:Function;
 		
+		protected var videoStarted:Boolean;
+		protected var slideStarted:Boolean;
 		protected var playing:Boolean;
-		protected var seeking:Boolean;
+		protected var seeking:Boolean;		
 		
 		
 		public function VideoSlide(slideData:InfographicSlideData, initialBackgroundColor:uint) {
@@ -162,7 +164,6 @@ package med.infographic {
 			ns.inBufferSeek = true;
 			
 			playing = false;
-			ns.pause();
 			
 			video.attachNetStream(ns);
 			video.width = width;
@@ -175,10 +176,14 @@ package med.infographic {
 			//trace(event.info.code);
 			
 			switch(event.info.code) {
+				case "NetStream.Play.Start":
+					ns.pause();
+					videoStarted = true;
+					checkBegin();
+					break;
+					
 				case "NetStream.Buffer.Empty":
 					seekTo(startTime);				
-					//ns.seek(0);
-					//ns.resume();
 					break;
 					
 				case "NetStream.Seek.Notify":
@@ -187,7 +192,7 @@ package med.infographic {
 					break;
 			}
 		}
-
+		
 		private function asyncErrorHandler(event:AsyncErrorEvent):void {
 		}
 
@@ -202,6 +207,14 @@ package med.infographic {
 		}
 		
 
+		protected function checkBegin():void {
+			if (videoStarted && slideStarted) {
+				playing = true;
+				seekTo(startTime);
+				ns.resume();
+			}
+		}
+
 
 		
 		
@@ -215,10 +228,8 @@ package med.infographic {
 					break;
 			}
 
-			playing = true;
-			//ns.seek(startTime);
-			seekTo(startTime);
-			ns.resume();
+			slideStarted = true;
+			checkBegin();
 			
 			stateIndex = 0;
 			showNextTextState();
