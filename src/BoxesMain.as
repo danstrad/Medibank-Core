@@ -11,6 +11,7 @@ package {
 	import flash.events.Event;
 	import flash.events.FullScreenEvent;
 	import flash.events.GestureEvent;
+	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
 	import flash.geom.ColorTransform;
 	import flash.geom.Point;
@@ -19,6 +20,7 @@ package {
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.text.TextField;
+	import flash.ui.Keyboard;
 	import flash.ui.Mouse;
 	import flash.ui.Multitouch;
 	import flash.utils.getTimer;
@@ -215,6 +217,7 @@ package {
 		}
 
 		protected function clear():void {
+			stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
 			removeEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
 			removeEventListener(Event.ENTER_FRAME, handleAnimate);
 		}
@@ -236,6 +239,7 @@ package {
 
 			background.showColor(StorySet.bgColor);
 			
+			stage.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
 			addEventListener(MouseEvent.MOUSE_DOWN, handleMouseDown);
 			addEventListener(Event.ENTER_FRAME, handleAnimate);
 			lastFrameTime = getTimer();
@@ -485,6 +489,8 @@ package {
 			} else if (currentInfographic.endedEarly) {
 				// the infographic was forced to exit from the pause menu
 
+				Stats.abortedInfographic(currentInfographic);
+				
 				offset = new Point(0, 0);
 				
 				container = new Sprite();
@@ -507,6 +513,8 @@ package {
 				
 			} else {
 				
+				Stats.finishedInfographic(currentInfographic);
+
 				offset = new Point(450, 0);
 				
 				container = new Sprite();
@@ -686,9 +694,16 @@ package {
 		}
 
 
+		protected function handleKeyDown(event:KeyboardEvent):void {
+			if (event.keyCode == Keyboard.S) {
+				Stats.print();
+			}
+		}
 
 
 		protected function handleMouseDown(event:MouseEvent):void {
+			if (stage) stage.focus = stage;
+
 			idleTime = 0;
 						
 			if (currentInfographic) return;
@@ -715,7 +730,7 @@ package {
 				if (box.textContent && box.textContent.isScroller) allowDrag = false;
 			}
 			
-			if (allowDrag) beginDragging();
+			if (allowDrag) beginDragging();			
 		}
 		
 		protected function checkClick(event:MouseEvent):Boolean {
@@ -733,6 +748,7 @@ package {
 				if ((homeBox.alpha < 0) || (homeBox.parent.alpha < 0)) return false;
 				
 				if (homeBox.videoContent) {
+					Stats.homeBoxClicked(homeBox);
 					homeBox.videoContent.expand();
 					return true;
 				}
@@ -747,17 +763,21 @@ package {
 				
 				if (homeBox.chapter) {
 					if (homeBox.chapter.baseInfographic) {
-						launchRect = box.getBounds(this);
 						
+						Stats.homeBoxClicked(homeBox);
+
+						launchRect = box.getBounds(this);						
 						killAnimations(null);
 						currentChapter = homeBox.chapter;	// correct problems with vision palette when opened from other chapter. hope this doesn't break everything
 						background.fadeToColor(homeBox.chapter.bgColor, 300);
 						beginInfographic(homeBox.chapter.baseInfographic, launchRect);
 						showBlip = true;
 						
+						
 					} else if (homeBox.chapter.baseStory) {
 						if (homeBox.chapter.baseStory == currentStory) return false;
 
+						Stats.homeBoxClicked(homeBox);
 						showBlip = true;
 						transitionToChapter(homeBox);
 					} else {
@@ -785,6 +805,7 @@ package {
 					}
 					
 					if (!showing) {
+						Stats.boxClicked(box);
 						//disableExistingClickableBoxes();
 						// Change this to some sort of destination coords
 						var boxHighlightPosition:Point = new Point(box.parent.x + box.getX(), box.parent.y + box.getY());
@@ -794,8 +815,9 @@ package {
 					}
 				} else if (linkedInfographic) {
 					
-					launchRect = box.getBounds(this);
+					Stats.boxClicked(box);
 					
+					launchRect = box.getBounds(this);					
 					killAnimations(null);
 					beginInfographic(linkedInfographic, launchRect);
 					showBlip = true;
@@ -805,6 +827,7 @@ package {
 					//transitionToChapter(null);
 					return true;
 				} else if (box.videoContent) {
+					Stats.boxClicked(box);
 					showBlip = false;
 					box.videoContent.expand();
 					return true;
