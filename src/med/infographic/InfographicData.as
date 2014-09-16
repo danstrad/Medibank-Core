@@ -13,10 +13,16 @@ package med.infographic {
 			
 			slides = new Vector.<InfographicSlideData>();
 			
+			var startIndex:int = 0;
 			
 			for (var i:int = 0; i < xml.slide.length(); i++) {
 			
-				var slideXML:XML = xml.slide[i];								
+				var slideXML:XML = xml.slide[i];
+				
+				// skip to the last slide that has a "<startPoint />" tag in its xml
+				if (slideXML.hasOwnProperty("startPoint")) {
+					startIndex = i;
+				}
 				
 				var type:String = slideXML.@type;
 				
@@ -53,6 +59,11 @@ package med.infographic {
 				*/
 				
 				this.slides.push(slideData);
+			}
+			
+			while (startIndex > 0) {
+				startIndex--;
+				this.slides.shift();
 			}
 			
 		}

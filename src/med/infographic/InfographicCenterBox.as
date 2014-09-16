@@ -91,6 +91,7 @@ package med.infographic {
 				if (quoteString != "")		quoteByField.visible = true;
 				
 				quoteByField.text = quoteString;
+
 				quoteByField.textColor = slideData.currentTextColor;
 				Text.setTextSpacing(quoteByField, -0.5);
 				

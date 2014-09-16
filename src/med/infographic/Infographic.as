@@ -350,6 +350,12 @@ package med.infographic {
 						dualBarGraph.animateOn();						
 						break;
 						
+					case InfographicSlideData.CAPTIONED_IMAGES:						
+						var captionedImages:CaptionedImagesSlide = new CaptionedImagesSlide(slideData, initialBackgroundColor, onSlideFinished);
+						addSlideSprite(captionedImages);
+						captionedImages.animateOn();						
+						break;
+						
 					case InfographicSlideData.VIDEO:
 						
 						var videoSlide:VideoSlide = new VideoSlide(slideData, initialBackgroundColor);
