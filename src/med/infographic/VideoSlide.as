@@ -60,7 +60,7 @@ package med.infographic {
 		
 		public function VideoSlide(slideData:InfographicSlideData, initialBackgroundColor:uint) {
 			var xml:XML = slideData.xml;
-						
+									
 			if (xml.hasOwnProperty("@animateOn")) animateOnType = xml.@animateOn;
 			if (xml.hasOwnProperty("@animateOff")) animateOffType = xml.@animateOff;
 			
@@ -75,6 +75,7 @@ package med.infographic {
 				if (videoXML.hasOwnProperty("@scale")) {
 					if (videoXML.@scale.toString() == "auto") {
 						scale = Math.max(Infographic.WIDTH / sourceWidth, Infographic.HEIGHT / sourceHeight);
+						trace(Infographic.WIDTH, sourceWidth, Infographic.HEIGHT, sourceHeight, scale);
 					} else {
 						scale = parseFloat(videoXML.@scale.toString());
 					}
@@ -169,7 +170,7 @@ package med.infographic {
 			video.width = width;
 			video.height = height;
 			video.x = -video.width / 2;
-			video.y = -video.height / 2;
+			video.y = -video.height / 2;			
 		}
 		
 		private function netStatusHandler(event:NetStatusEvent):void {
