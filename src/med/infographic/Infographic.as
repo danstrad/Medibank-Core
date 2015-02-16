@@ -112,6 +112,10 @@ package med.infographic {
 					case "squash":
 						InfographicCenterBox(slideSprite).animateOffSquash(onSlideFinished);
 						break;
+					
+					case "implode":
+						InfographicCenterBox(slideSprite).animateOffImplode(onSlideFinished);
+						break;
 						
 					case "ignore":
 						InfographicCenterBox(slideSprite).animateOffIgnore(onSlideFinished);
@@ -267,6 +271,10 @@ package med.infographic {
 								box.animateOn();
 								break;
 								
+							case "explode":
+								box.animateOnExplode();
+								break;
+								
 							case "zoom":
 								box.animateOnZoom();
 								break;
@@ -354,6 +362,12 @@ package med.infographic {
 						var captionedImages:CaptionedImagesSlide = new CaptionedImagesSlide(slideData, initialBackgroundColor, onSlideFinished);
 						addSlideSprite(captionedImages);
 						captionedImages.animateOn();						
+						break;
+						
+					case InfographicSlideData.CAPTIONED_VIDEO:						
+						var captionedVideo:CaptionedVideoSlide = new CaptionedVideoSlide(slideData, initialBackgroundColor, onSlideFinished);
+						addSlideSprite(captionedVideo);
+						captionedVideo.animateOn();						
 						break;
 						
 					case InfographicSlideData.VIDEO:

@@ -1,6 +1,7 @@
 package med.infographic {
 	import com.garin.Text;
 	import com.greensock.TweenMax;
+	import flash.display.Bitmap;
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.geom.Point;
@@ -47,6 +48,10 @@ package med.infographic {
 			
 			// get details from xml
 			var boxText:String = TextUtils.safeText(slideData.xml.featuredText);
+			var textXOffset:Number = 0;
+			var textYOffset:Number = 0;
+			if (slideData.xml.featuredText.hasOwnProperty("@x")) textXOffset = parseFloat(slideData.xml.featuredText.@x);
+			if (slideData.xml.featuredText.hasOwnProperty("@y")) textYOffset = parseFloat(slideData.xml.featuredText.@y);
 			
 
 			
@@ -77,8 +82,21 @@ package med.infographic {
 			textLayer.addChild(textField);
 			textLayer.addChild(quoteByField);
 			
-				
 			
+			for each(var imageXML:XML in slideData.xml.Image) {
+				var url:String = imageXML.@url.toString();
+				var bitmap:Bitmap = new Bitmap(AssetManager.getImage(url), "auto", true);
+				if (imageXML.hasOwnProperty("@scale")) bitmap.scaleX = bitmap.scaleY = parseFloat(imageXML.@scale.toString());
+				if (imageXML.hasOwnProperty("@x")) bitmap.x = parseFloat(imageXML.@x.toString());
+				if (imageXML.hasOwnProperty("@y")) bitmap.y = parseFloat(imageXML.@y.toString());
+				bitmap.x -= bitmap.width / 2;
+				bitmap.y -= bitmap.height / 2;
+				textLayer.addChild(bitmap);
+			}
+			
+			
+			textLayer.x = textXOffset;
+			textLayer.y = textYOffset;
 			
 						
 			if (slideData.xml.@quote == "true") {
@@ -141,6 +159,14 @@ package med.infographic {
 			TweenMax.fromTo(box, ANIMATE_ON_TIME, { scaleX:0, scaleY:0 }, { scaleX:1, scaleY:1, immediateRender:true, onComplete:rollOutText } );
 		}
 		
+		public function animateOnExplode():void {
+			// standard animation on-- squish out
+			//TweenMax.fromTo(box, ANIMATE_ON_TIME, { scaleX:0, scaleY:0 }, { scaleX:1, scaleY:1, immediateRender:true, onComplete:explodeOutText } );
+			const TIME:Number = ANIMATE_ON_TIME * 0.7;
+			TweenMax.fromTo(box, TIME, { scaleX:0, scaleY:0 }, { scaleX:1, scaleY:1, immediateRender:true } );
+			TweenMax.delayedCall(TIME * 1.3, explodeOutText);
+		}
+		
 		
 		public function animateOnLaunch(launchRect:Rectangle):void {
 			// roll out from a specific point. Used in tansition from BoxesMain into Infographic
@@ -193,6 +219,13 @@ package med.infographic {
 			TweenMax.fromTo(box, ANIMATE_OFF_TIME, { scaleX:1, scaleY:1 }, { scaleX:0, scaleY:0, immediateRender:true, onComplete:callback, onCompleteParams:[this], delay: TEXT_TRANSITION_OFF_TIME } );						
 		}
 		
+		public function animateOffImplode(callback:Function):void {								
+			// squash to a point
+			// note: this isn't used if the next slide is also an InfographicCenterBox
+			implodeTextOff();
+			TweenMax.fromTo(box, ANIMATE_OFF_TIME, { scaleX:1, scaleY:1 }, { scaleX:0, scaleY:0, immediateRender:true, onComplete:callback, onCompleteParams:[this], delay: TEXT_TRANSITION_OFF_TIME } );						
+		}
+		
 		
 		public function animateOffZoom(callback:Function):void {		
 			// zoom in to this box until it fills the screen
@@ -201,6 +234,7 @@ package med.infographic {
 		}
 		
 		public function animate(dTime:Number):void { }
+		
 		
 		
 		
@@ -219,10 +253,36 @@ package med.infographic {
 			}
 		}
 		
+		protected function implodeTextOff(callback:Function = null):void {
+			if (callback != null) {
+				TweenMax.to(textLayer, TEXT_TRANSITION_OFF_TIME, { scaleX:0, scaleY:0, onComplete:callback, onCompleteParams:[this] } );	
+			} else {
+				TweenMax.to(textLayer, TEXT_TRANSITION_OFF_TIME, { scaleX:0, scaleY:0 } );	
+			}
+		}
+		
 		
 		protected function rollOutText():void {
 			// once our animation is done, we have the text appear from the left hand side
 			TweenMax.to(textLayer, TEXT_TRANSITION_ON_TIME, { x:0 } );			
+		}
+		
+		protected function explodeOutText():void {
+			// once our animation is done, we have the text appear from the left hand side
+			textLayer.x = 0;
+			textLayer.scaleX = textLayer.scaleY = 0;
+			textLayer.alpha = 0;
+
+			/*
+			const OVERSCALE:Number = 1.15;
+			const OUT_TIME:Number = 2.5 * TEXT_TRANSITION_OFF_TIME;
+			const SETTLE_TIME :Number = 0.6 * TEXT_TRANSITION_OFF_TIME;
+			*/
+			const OVERSCALE:Number = 1;
+			const OUT_TIME:Number = 7 * TEXT_TRANSITION_OFF_TIME;
+			const SETTLE_TIME :Number = 1 * TEXT_TRANSITION_OFF_TIME;
+			TweenMax.to(textLayer, OUT_TIME, { alpha:1, scaleX:OVERSCALE, scaleY:OVERSCALE } );			
+			TweenMax.to(textLayer, SETTLE_TIME, { delay:OUT_TIME, scaleX:1, scaleY:1 } );			
 		}
 		
 		

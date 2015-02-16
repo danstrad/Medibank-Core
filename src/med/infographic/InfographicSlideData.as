@@ -100,6 +100,7 @@ package med.infographic {
 		public static const DUAL_BAR_GRAPH:String				= "dual_bar_graph";	// vertical bar graph with 2 channels displayed side by side for each category
 		
 		public static const CAPTIONED_IMAGES:String				= "captioned_images";	// A list of images with possibly multiple captions sliding on the side
+		public static const CAPTIONED_VIDEO:String				= "captioned_video";
 
 		public static const VIDEO:String						= "video";	// video playing with optional splash text or text popups
 		

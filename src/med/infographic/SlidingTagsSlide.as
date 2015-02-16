@@ -3,6 +3,10 @@ package med.infographic {
 	import com.greensock.easing.*;
 	import com.greensock.TweenMax;
 	import com.gskinner.utils.Rndm;
+	import flash.geom.Rectangle;
+	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
+	import flash.text.TextFormat;
 	import med.animation.SlidingAnimationData;
 	
 	
@@ -15,6 +19,8 @@ package med.infographic {
 		
 		public static const TAG_DISPLAY_TIME_SECONDS:Number = 7.0;
 		protected static const TAGS_ANIMATE_ON_DURATION_SECONDS:Number = 1.5;		
+		
+		protected var tagDelay:Number;
 		
 		
 		public function SlidingTagsSlide(slideData:InfographicSlideData) {
@@ -39,15 +45,38 @@ package med.infographic {
 			featuredText.text = featuredString;
 			Text.boldText(featuredText);
 			Text.setTextSpacing(featuredText, 0.4);
+			
+			var textScale:Number = 1;
+			if (slideData.xml.featuredText.hasOwnProperty("@textScale")) textScale = parseFloat(slideData.xml.featuredText.@textScale);
+			if (textScale != 1 && (featuredString.length > 2)) {
+				var tf:TextField = featuredText;
+				var format:TextFormat = tf.getTextFormat(0, 1);
+				var size:Number = Number(format.size);
+				format.size = size * textScale;
+				trace(textScale, size, format.size);
+				tf.setTextFormat(format, 0, featuredString.length);
+				tf.autoSize = TextFieldAutoSize.LEFT;
+				
+				tf.y = -tf.height / 2;
+			}
 		
+			
+			if (slideData.xml.hasOwnProperty("tagDelay")) tagDelay = parseFloat(slideData.xml.tagDelay.toString());
+			else tagDelay = 0;
 			
 			// create tags
 			tags = new Vector.<SlidingTag>();
 			
+			
+			var featuredBounds:Rectangle = featuredText.getBounds(this);
+			var featuredTop:Number = Math.floor(featuredBounds.top - 40);
+			var featuredBottom:Number = Math.ceil(featuredBounds.bottom + 40);
+			trace(featuredBounds);
+			
 			for (var i:int = 0; i < slideData.xml.tag.length(); i++) {				
 				var tagXML:XML = slideData.xml.tag[i];
 				
-				var tag:SlidingTag = new SlidingTag(tagXML, slideData.currentBoxColor, slideData.currentTextColor);
+				var tag:SlidingTag = new SlidingTag(tagXML, slideData.currentBoxColor, slideData.currentTextColor, featuredTop, featuredBottom);
 				
 				tags.push(tag);
 				addChild(tag);
@@ -81,7 +110,7 @@ package med.infographic {
 			
 			for (var i:int = 0; i < tags.length; i++ ) {
 				var tag:SlidingTag = tags[i];
-				var delay:Number = i * 0.3;
+				var delay:Number = i * 0.3 + (tagDelay / 1000);
 				TweenMax.fromTo(tag, TAGS_ANIMATE_ON_DURATION_SECONDS, { x:-2000 }, { x:tag.startX, immediateRender:true, delay:delay, onComplete:tag.startSway } );
 			}
 			

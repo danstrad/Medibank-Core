@@ -46,14 +46,18 @@ package med.infographic {
 		protected var maxWidthLeft:Number = 0;
 		protected var maxWidthRight:Number = 0;
 		
+		protected var featuredTextTop:Number;
+		protected var featuredTextBottom:Number;
 
 		
-		public function SlidingTag(tagXML:XML, tagColor:uint, textColor:uint) {
-			
+		public function SlidingTag(tagXML:XML, tagColor:uint, textColor:uint, featuredTextTop:Number = -50, featuredTextBottom:Number = 90) {						
 			this.tagXML = tagXML;
 			this.size = tagXML.@size;
 			this.tagColor = tagColor;
 			this.textColor = textColor;
+			
+			this.featuredTextBottom = featuredTextBottom;
+			this.featuredTextTop = featuredTextTop;
 			
 			this.startLeft = (tagXML.@startLeft == "true");
 			
@@ -131,7 +135,7 @@ package med.infographic {
 			var rightMargin:Number = EDGE_MARGIN;
 			
 			// if we're near the middle of the screen, our left margin is incerased so we don't cover the featured text
-			if ((this.y >= -50) && (this.y <= 90)) {
+			if ((this.y >= featuredTextTop) && (this.y <= featuredTextBottom)) {
 				leftMargin = 310;
 			}
 			
@@ -148,7 +152,7 @@ package med.infographic {
 			var rightMargin:Number = EDGE_MARGIN;
 			
 			// if we're near the middle of the screen, our left margin is incerased so we don't cover the featured text
-			if ((this.y >= -50) && (this.y <= 90)) {
+			if ((this.y >= featuredTextTop) && (this.y <= featuredTextBottom)) {
 				leftMargin = 310;
 			}
 			

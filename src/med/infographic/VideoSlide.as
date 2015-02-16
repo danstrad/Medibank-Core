@@ -21,6 +21,8 @@ package med.infographic {
 	import flash.text.AntiAliasType;
 	import flash.text.TextField;
 	import flash.text.TextFieldAutoSize;
+	import flash.text.TextFormat;
+	import flash.text.TextFormatAlign;
 
 	public class VideoSlide extends Sprite implements ISlide {
 		
@@ -31,10 +33,13 @@ package med.infographic {
 		static public const POP_TIME:Number = 0.5;
 		
 		protected var url:String;
-
+		
 		protected var nc:NetConnection;
 		protected var ns:NetStream;
 		protected var video:Video;
+
+		protected var offsetX:Number;
+		protected var offsetY:Number;
 		
 		protected var stateIndex:int;
 		protected var textStates:Vector.<TextState>
@@ -75,11 +80,14 @@ package med.infographic {
 				if (videoXML.hasOwnProperty("@scale")) {
 					if (videoXML.@scale.toString() == "auto") {
 						scale = Math.max(Infographic.WIDTH / sourceWidth, Infographic.HEIGHT / sourceHeight);
-						trace(Infographic.WIDTH, sourceWidth, Infographic.HEIGHT, sourceHeight, scale);
 					} else {
 						scale = parseFloat(videoXML.@scale.toString());
 					}
 				}
+				if (videoXML.hasOwnProperty("@x")) offsetX = parseFloat(videoXML.@x);
+				else offsetX = 0;
+				if (videoXML.hasOwnProperty("@y")) offsetY = parseFloat(videoXML.@y);
+				else offsetY = 0;
 				if (videoXML.hasOwnProperty("@startTime")) startTime = parseFloat(videoXML.@startTime.toString());
 				else startTime = 0;
 				if (videoXML.hasOwnProperty("@endTime")) endTime = parseFloat(videoXML.@endTime.toString());
@@ -169,8 +177,8 @@ package med.infographic {
 			video.attachNetStream(ns);
 			video.width = width;
 			video.height = height;
-			video.x = -video.width / 2;
-			video.y = -video.height / 2;			
+			video.x = -video.width / 2 + offsetX;
+			video.y = -video.height / 2 + offsetY;			
 		}
 		
 		private function netStatusHandler(event:NetStatusEvent):void {
@@ -383,6 +391,59 @@ package med.infographic {
 							delay = (duration / 1000 - POP_TIME);
 							TweenMax.to(box, SplashTextSlide.SCROLL_TIME, { y:(Infographic.HEIGHT / 2), delay:delay, onComplete:removeBox, onCompleteParams:[box], ease:Quad.easeIn } );
 						}						
+						
+						break;
+									
+					case "bottom_caption":
+						margin = 45;
+						box = new _VideoText();
+						addChild(box);
+						
+						textField = box.textField;
+						textField.mouseEnabled = false;
+						textField.text = "";
+						textField.width = Infographic.WIDTH - 2 * margin;
+						textField.height = 1;
+						textField.autoSize = TextFieldAutoSize.CENTER;
+						textField.wordWrap = true;
+			
+						textField.text = boxData.text;
+						textField.scaleX = textField.scaleY = boxData.textScale;
+
+						if (textField.text.length > 2) {
+							var format:TextFormat = textField.getTextFormat(0, 1);
+							format.align = TextFormatAlign.CENTER;
+							textField.setTextFormat(format, 0, textField.text.length);
+						}
+									
+						textField.x = -textField.width / 2;
+						textField.y = -textField.height / 2;
+						
+						//var onY:Number = (Infographic.HEIGHT / 2) - 100;// ((video.y + video.height) + (Infographic.HEIGHT / 2)) / 2;
+						var onY:Number = (video.y + video.height) + 50;
+						var offY:Number = (Infographic.HEIGHT / 2) + 40;
+
+						textField.height += 10;
+						textField.appendText("\n "); // fix rendering issue
+						
+						box.x = 0;
+						box.y = offY;
+						TweenMax.to(box, POP_TIME, { y:onY, ease:Quad.easeOut } );
+						if (duration > 0) {
+							delay = (duration / 1000 - POP_TIME);
+							TweenMax.to(box, SplashTextSlide.SCROLL_TIME, { y:offY, delay:delay, onComplete:removeBox, onCompleteParams:[box], ease:Quad.easeIn } );
+						}						
+						
+						/*
+						box.x = 0;
+						box.y = onY;
+						box.alpha = 0;
+						TweenMax.to(box, POP_TIME, { alpha:1, ease:Quad.easeOut } );
+						if (duration > 0) {
+							delay = (duration / 1000 - POP_TIME);
+							TweenMax.to(box, SplashTextSlide.SCROLL_TIME, { alpha:0, delay:delay, onComplete:removeBox, onCompleteParams:[box], ease:Quad.easeIn } );
+						}						
+						*/
 						
 						break;
 						
